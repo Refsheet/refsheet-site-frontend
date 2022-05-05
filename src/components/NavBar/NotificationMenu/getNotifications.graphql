@@ -1,4 +1,4 @@
-#import 'graphql/fragments/NotificationsFields.graphql'
+#import '../../../graph/fragments/NotificationsFields.graphql'
 
 query getNotifications {
     getNotifications {

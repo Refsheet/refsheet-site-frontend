@@ -1,7 +1,7 @@
 import React from 'react'
 import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
-import sanitize from 'sanitize'
+import sanitize from 'utils/sanitize'
 
 export default RichText = createReactClass
   getInitialState: ->
@@ -39,23 +39,25 @@ export default RichText = createReactClass
       editable = true
 
     if @state.edit
-      `<div className={ 'rich-text editing ' + this.props.className }>
-          <textarea ref='input' className='materialize-textarea' onChange={ this.handleMarkupChange } value={ this.state.markup } autoFocus />
-          <button type='submit' className='btn right waves-effect waves-light' onClick={ this.handleSubmit }>Save Changes</button>
-          <a className='btn grey darken-3' onClick={ this.handleEditStop }>
-              <i className='material-icons'>cancel</i>
-          </a>
+      `<div className={'rich-text editing ' + this.props.className}>
+        <textarea ref='input' className='materialize-textarea' onChange={this.handleMarkupChange}
+                  value={this.state.markup} autoFocus/>
+        <button type='submit' className='btn right waves-effect waves-light' onClick={this.handleSubmit}>Save Changes
+        </button>
+        <a className='btn grey darken-3' onClick={this.handleEditStop}>
+          <i className='material-icons'>cancel</i>
+        </a>
       </div>`
 
     else if !@isEmpty(this.state.markup)
-      `<div className={ 'rich-text ' + this.props.className }>
-          { editable &&
-              <a className='edit-button right' onClick={ this.handleEditStart }>
-                  <i className='material-icons'>edit</i>
-              </a>
-          }
+      `<div className={'rich-text ' + this.props.className}>
+        {editable &&
+          <a className='edit-button right' onClick={this.handleEditStart}>
+            <i className='material-icons'>edit</i>
+          </a>
+        }
 
-          <div dangerouslySetInnerHTML={{ __html: sanitize(this.props.content) }} />
+        <div dangerouslySetInnerHTML={{__html: sanitize(this.props.content)}}/>
       </div>`
 
     else
@@ -64,12 +66,12 @@ export default RichText = createReactClass
       else
         placeholderText = @props.placeholder || 'No content.'
 
-      `<div className={ 'rich-text empty ' + this.props.className } onClick={ this.handleEditStart }>
-          { editable &&
-              <a className='edit-button right' onClick={ this.handleEditStart }>
-                  <i className='material-icons'>edit</i>
-              </a>
-          }
+      `<div className={'rich-text empty ' + this.props.className} onClick={this.handleEditStart}>
+        {editable &&
+          <a className='edit-button right' onClick={this.handleEditStart}>
+            <i className='material-icons'>edit</i>
+          </a>
+        }
 
-          <div>{ placeholderText }</div>
+        <div>{placeholderText}</div>
       </div>`

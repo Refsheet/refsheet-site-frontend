@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import WindowAlert from 'WindowAlert'
+import WindowAlert from 'utils/WindowAlert'
 import styled from 'styled-components'
 import c from 'classnames'
-import { buildShadow } from '../Styled/common'
+import {buildShadow} from '../Styled/common'
 
 class _Main extends Component {
   constructor(props) {

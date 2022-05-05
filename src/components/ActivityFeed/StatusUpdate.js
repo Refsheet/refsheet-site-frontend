@@ -1,12 +1,14 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import CommentForm from '../Shared/CommentForm'
-import CreateActivity from './createActivity.graphql'
-import { Mutation } from 'react-apollo'
-import { withTranslation } from 'react-i18next'
+import {loader} from 'graphql.macro'
+import {Mutation} from 'react-apollo'
+import {withTranslation} from 'react-i18next'
+
+const CreateActivity = loader('./createActivity.graphql');
 
 class StatusUpdate extends Component {
-  handleSubmit({ comment, identity }) {
+  handleSubmit({comment, identity}) {
     return this.props.post({
       variables: {
         comment,
@@ -16,7 +18,7 @@ class StatusUpdate extends Component {
   }
 
   render() {
-    const { t } = this.props
+    const {t} = this.props
 
     return (
       <CommentForm

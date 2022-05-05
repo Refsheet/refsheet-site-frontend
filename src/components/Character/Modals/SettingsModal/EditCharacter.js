@@ -1,15 +1,17 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import compose from 'utils/compose'
-import { Trans, withTranslation } from 'react-i18next'
-import { TextInput, Row, Col, Checkbox } from 'react-materialize'
-import { withCurrentUser, withMutations } from '../../../../utils/compose'
-import updateSettings from './updateSettings.graphql'
+import {Trans, withTranslation} from 'react-i18next'
+import {TextInput, Row, Col, Checkbox} from 'react-materialize'
+import {withCurrentUser, withMutations} from '../../../../utils/compose'
+import {loader} from 'graphql.macro'
 import M from 'materialize-css'
-import { withRouter } from 'react-router'
-import { Authorized } from '../../../../policies'
-import validate, { isRequired, isSluggable, isSlug } from 'utils/validate'
-import { errorProps } from '../../../../utils/validate'
+import {withRouter} from 'react-router'
+import {Authorized} from '../../../../policies'
+import validate, {isRequired, isSluggable, isSlug} from 'utils/validate'
+import {errorProps} from '../../../../utils/validate'
+
+const updateSettings = loader('./updateSettings.graphql');
 
 class EditCharacter extends Component {
   constructor(props) {
@@ -34,7 +36,7 @@ class EditCharacter extends Component {
   }
 
   handleInputChange(e) {
-    let character = { ...this.state.character }
+    let character = {...this.state.character}
     let value = e.target.value
     let name = e.target.name
 
@@ -46,13 +48,16 @@ class EditCharacter extends Component {
     character[name] = value
 
     const errors = validate(character, this.validations)
-    this.setState({ character, errors })
+    this.setState({character, errors})
   }
 
   handleSubmit(e) {
     e.preventDefault()
 
-    const { history, updateSettings, character, onSave = _c => {} } = this.props
+    const {
+      history, updateSettings, character, onSave = _c => {
+      }
+    } = this.props
 
     updateSettings({
       wrapped: true,
@@ -61,7 +66,7 @@ class EditCharacter extends Component {
         id: character.id,
       },
     })
-      .then(({ data: { updateCharacter } }) => {
+      .then(({data: {updateCharacter}}) => {
         M.toast({
           html: 'Character saved!',
           classes: 'green',
@@ -80,15 +85,15 @@ class EditCharacter extends Component {
 
         onSave(updateCharacter)
       })
-      .catch(({ formErrors }) => {
-        this.setState({ errors: formErrors })
+      .catch(({formErrors}) => {
+        this.setState({errors: formErrors})
       })
   }
 
   render() {
-    const { t } = this.props
+    const {t} = this.props
 
-    const { character, errors, submitting } = this.state
+    const {character, errors, submitting} = this.state
 
     const username =
       (character && character.user && character.user.username) || 'me'
@@ -259,7 +264,7 @@ EditCharacter.propTypes = {
 
 export default compose(
   withTranslation('common'),
-  withMutations({ updateSettings }),
+  withMutations({updateSettings}),
   withCurrentUser(),
   withRouter
 )(EditCharacter)

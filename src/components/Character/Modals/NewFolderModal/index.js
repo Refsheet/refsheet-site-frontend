@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import Modal from '../../../Styled/Modal'
-import { withTranslation } from 'react-i18next'
-import { Col, Row, TextInput, Button } from 'react-materialize'
+import {withTranslation} from 'react-i18next'
+import {Col, Row, TextInput, Button} from 'react-materialize'
 import validate, {
   isRequired,
   isSluggable,
@@ -14,7 +14,9 @@ import compose, {
   withCurrentUser,
   withMutations,
 } from '../../../../utils/compose'
-import createFolder from './createFolder.graphql'
+import {loader} from 'graphql.macro'
+
+const createFolder = loader('./createFolder.graphql');
 
 class NewFolderModal extends Component {
   constructor(props) {
@@ -36,7 +38,7 @@ class NewFolderModal extends Component {
   }
 
   handleInputChange(e) {
-    let folder = { ...this.state.folder }
+    let folder = {...this.state.folder}
     let value = e.target.value
     let name = e.target.name
 
@@ -48,13 +50,16 @@ class NewFolderModal extends Component {
     folder[name] = value
 
     const errors = validate(folder, this.validations)
-    this.setState({ folder, errors })
+    this.setState({folder, errors})
   }
 
   handleSubmit(e) {
     e.preventDefault()
 
-    const { createFolder, characterId, onSave = _c => {} } = this.props
+    const {
+      createFolder, characterId, onSave = _c => {
+      }
+    } = this.props
 
     createFolder({
       wrapped: true,
@@ -63,7 +68,7 @@ class NewFolderModal extends Component {
         characterId,
       },
     })
-      .then(({ data: { createFolder } }) => {
+      .then(({data: {createFolder}}) => {
         M.toast({
           html: 'Folder saved!',
           classes: 'green',
@@ -72,15 +77,15 @@ class NewFolderModal extends Component {
 
         onSave(createFolder)
       })
-      .catch(({ formErrors }) => {
-        this.setState({ errors: formErrors })
+      .catch(({formErrors}) => {
+        this.setState({errors: formErrors})
       })
   }
 
   render() {
-    const { onClose, t } = this.props
-    const { folder, errors, submitting } = this.state
-    console.log({ folder })
+    const {onClose, t} = this.props
+    const {folder, errors, submitting} = this.state
+    console.log({folder})
 
     return (
       <div>
@@ -142,6 +147,6 @@ NewFolderModal.propTypes = {
 
 export default compose(
   withTranslation('common'),
-  withMutations({ createFolder }),
+  withMutations({createFolder}),
   withCurrentUser()
 )(NewFolderModal)

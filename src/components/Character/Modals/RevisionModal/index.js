@@ -1,16 +1,19 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import compose from 'utils/compose'
-import { Trans, withTranslation } from 'react-i18next'
+import {Trans, withTranslation} from 'react-i18next'
 import Diff from 'react-stylable-diff'
 import TimelineEntry from '../../../Shared/Timeline/TimelineEntry'
-import { Loading } from '../../../Lightbox/Status'
+import {Loading} from '../../../Lightbox/Status'
 import Error from '../../../Shared/Error'
-import { Query } from 'react-apollo'
-import getCharacterVersions from './getCharacterVersions.graphql'
+import {Query} from 'react-apollo'
+import {loader} from 'graphql.macro'
+
 
 import Modal from 'v1/shared/Modal'
 import * as Materialize from 'materialize-css'
+
+const getCharacterVersions = loader('./getCharacterVersions.graphql');
 
 class RevisionModal extends Component {
   constructor(props) {
@@ -30,19 +33,19 @@ class RevisionModal extends Component {
   handleVersionClick(version) {
     return e => {
       e.preventDefault()
-      this.setState({ activeVersion: version })
+      this.setState({activeVersion: version})
     }
   }
 
-  renderHistory({ data, loading, error }) {
-    const { t } = this.props
+  renderHistory({data, loading, error}) {
+    const {t} = this.props
 
     if (loading) {
-      return <Loading />
+      return <Loading/>
     }
 
     if (error || !data) {
-      return <Error error={error} />
+      return <Error error={error}/>
     }
 
     let versions = [...data.getCharacter.versions]
@@ -98,7 +101,7 @@ class RevisionModal extends Component {
   }
 
   render() {
-    const { t } = this.props
+    const {t} = this.props
 
     return (
       <Modal
@@ -116,7 +119,7 @@ class RevisionModal extends Component {
 
         <Query
           query={getCharacterVersions}
-          variables={{ characterId: this.props.characterId }}
+          variables={{characterId: this.props.characterId}}
         >
           {this.renderHistory.bind(this)}
         </Query>

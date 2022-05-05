@@ -1,8 +1,12 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import { Query } from 'react-apollo'
-import getConversations from './getConversations.graphql'
-import subscribeToConversations from './subscribeToConversations.graphql'
+import {Query} from 'react-apollo'
+import {loader} from 'graphql.macro'
+
+const getConversations = loader('./getConversations.graphql');
+import {loader} from 'graphql.macro'
+
+const subscribeToConversations = loader('./subscribeToConversations.graphql');
 import _ from 'underscore'
 
 import ConversationLink from './ConversationLink'
@@ -27,19 +31,19 @@ class Conversations extends Component {
 
   handleNewConversationClick(e) {
     e.preventDefault()
-    this.setState({ startNew: true })
+    this.setState({startNew: true})
   }
 
   handleNewConversationClose(username = null) {
-    this.setState({ startNew: false })
+    this.setState({startNew: false})
 
     if (username) {
-      this.props.onConversationSelect({ username })
+      this.props.onConversationSelect({username})
     }
   }
 
   render() {
-    const { conversations = [], onConversationSelect } = this.props
+    const {conversations = [], onConversationSelect} = this.props
 
     return (
       <div className="chat-body conversations">
@@ -75,7 +79,7 @@ class Conversations extends Component {
   }
 }
 
-const renderConversations = props => ({ loading, data, subscribeToMore }) => {
+const renderConversations = props => ({loading, data, subscribeToMore}) => {
   if (loading) {
     return <div className="chat-loading">Loading...</div>
   } else if (!data) {
@@ -84,9 +88,9 @@ const renderConversations = props => ({ loading, data, subscribeToMore }) => {
     const subscribe = () => {
       subscribeToMore({
         document: subscribeToConversations,
-        updateQuery: (prev, { subscriptionData }) => {
+        updateQuery: (prev, {subscriptionData}) => {
           if (!subscriptionData.data) return prev
-          const { newConversation } = subscriptionData.data
+          const {newConversation} = subscriptionData.data
 
           return Object.assign({}, prev, {
             getConversations: [...prev.getConversations, newConversation],

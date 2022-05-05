@@ -1,10 +1,12 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import View from './View'
-import { Query } from 'react-apollo'
-import { getArtist } from './getArtist.graphql'
+import {Query} from 'react-apollo'
+import {loader} from 'graphql.macro'
 import Error from '../../Shared/Error'
 import Loading from 'v1/shared/Loading'
+
+const getArtist = loader('./getArtist.graphql');
 
 class Show extends Component {
   render() {
@@ -14,10 +16,10 @@ class Show extends Component {
 
     return (
       <Query query={getArtist} variables={variables}>
-        {({ data, loading, errors }) => {
-          if (loading) return <Loading />
-          else if (errors) return <Error error={errors} />
-          else return <View artist={data.getArtist} />
+        {({data, loading, errors}) => {
+          if (loading) return <Loading/>
+          else if (errors) return <Error error={errors}/>
+          else return <View artist={data.getArtist}/>
         }}
       </Query>
     )

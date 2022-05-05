@@ -1,6 +1,6 @@
-import { createReducer } from 'reducers'
+import {createReducer} from 'reducers'
 import * as Actions from 'actions'
-import defaultState from 'App/defaultState.json'
+import defaultState from 'components/App/defaultState.json'
 
 const handlers = {
   [Actions.OPEN_CONVERSATION]: (state, action) => {

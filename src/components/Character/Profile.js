@@ -1,10 +1,13 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import ProfileSection from './ProfileSection'
 import c from 'classnames'
-import { Mutation } from 'react-apollo'
-import createProfileSection from './createProfileSection.graphql'
+import {Mutation} from 'react-apollo'
+import {loader} from 'graphql.macro'
+
 import * as M from 'materialize-css'
+
+const createProfileSection = loader('./createProfileSection.graphql');
 
 class Profile extends Component {
   handleNewSection(lastSection) {
@@ -17,14 +20,14 @@ class Profile extends Component {
             createAfterSectionId: lastSection,
           },
         })
-        .then(({ data, errors }) => {
+        .then(({data, errors}) => {
           if (errors) {
             console.error(errors)
             errors.map(e =>
-              M.toast({ html: e.message, classes: 'red', displayLength: 3000 })
+              M.toast({html: e.message, classes: 'red', displayLength: 3000})
             )
           } else {
-            console.log({ data })
+            console.log({data})
             this.props.refetch()
           }
         })
@@ -33,7 +36,7 @@ class Profile extends Component {
   }
 
   groupProfileSections() {
-    const { profileSections, editable } = this.props
+    const {profileSections, editable} = this.props
     const groupOrder = []
     const groups = {}
 
@@ -63,7 +66,7 @@ class Profile extends Component {
   }
 
   renderProfileSections() {
-    const { editable, refetch, characterId, character } = this.props
+    const {editable, refetch, characterId, character} = this.props
     const [groups, groupOrder] = this.groupProfileSections()
     const render = []
 
@@ -104,7 +107,7 @@ class Profile extends Component {
           <a
             key={'new-' + id}
             className="btn btn-flat block margin-top--medium margin-bottom--large"
-            style={{ border: '1px dashed #ffffff33' }}
+            style={{border: '1px dashed #ffffff33'}}
             onClick={this.handleNewSection(lastSectionId).bind(this)}
           >
             Add Section
@@ -135,7 +138,7 @@ Profile.propTypes = {
 const CreateSectionMutation = props => (
   <Mutation mutation={createProfileSection}>
     {createProfileSection => (
-      <Profile {...props} createProfileSection={createProfileSection} />
+      <Profile {...props} createProfileSection={createProfileSection}/>
     )}
   </Mutation>
 )

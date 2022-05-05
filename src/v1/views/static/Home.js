@@ -1,7 +1,7 @@
 import React from 'react'
 import createReactClass from 'create-react-class'
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import Main from '../../../components/Shared/Main'
 import Jumbotron from '../../../components/Shared/Jumbotron'
 import Section from '../../../components/Shared/Section'
@@ -24,11 +24,11 @@ const cHome = createReactClass({
     }
 
     const demoSwatches = [
-      { name: 'Light Fur', color: '#fdf2d4', id: 0 },
-      { name: 'Dark Fur', color: '#b5a67e', id: 1 },
-      { name: 'Hair', color: '#402b2b', notes: 'Shades may vary.', id: 2 },
-      { name: 'Eyes', color: '#2a3c1e', id: 3 },
-      { name: 'Markings', color: '#99b734', id: 4 },
+      {name: 'Light Fur', color: '#fdf2d4', id: 0},
+      {name: 'Dark Fur', color: '#b5a67e', id: 1},
+      {name: 'Hair', color: '#402b2b', notes: 'Shades may vary.', id: 2},
+      {name: 'Eyes', color: '#2a3c1e', id: 3},
+      {name: 'Markings', color: '#99b734', id: 4},
     ]
 
     return (
@@ -57,7 +57,7 @@ const cHome = createReactClass({
                 <div className="card card-light">
                   <div className="card-image">
                     <img
-                      src="https://assets.refsheet.net/assets/marketing/feature_profile.png"
+                      src={require("assets/images/marketing/feature_profile.png")}
                       alt="Character Profiles"
                       className="materialboxed"
                     />
@@ -134,8 +134,8 @@ const cHome = createReactClass({
               </p>
             </div>
             <div className="character-image">
-              <div className="slant" />
-              <img src="https://assets.refsheet.net/assets/unsplash/yawn.jpg" />
+              <div className="slant"/>
+              <img src="https://assets.refsheet.net/assets/unsplash/yawn.jpg"/>
             </div>
           </div>
         </PageHeader>
@@ -155,10 +155,10 @@ const cHome = createReactClass({
                   hideNotesForm={true}
                   freezeName="true"
                 >
-                  <Attribute name="Name" value="James the Hunter" />
-                  <Attribute name="Species" value="Humanoid" />
-                  <Attribute name="Age" value="135 years" />
-                  <Attribute name="Favorite Color" value={null} />
+                  <Attribute name="Name" value="James the Hunter"/>
+                  <Attribute name="Species" value="Humanoid"/>
+                  <Attribute name="Age" value="135 years"/>
+                  <Attribute name="Favorite Color" value={null}/>
                 </AttributeTable>
               </div>
             </div>
@@ -181,7 +181,7 @@ const cHome = createReactClass({
 
         <Section container className="padded-bottom" id="detailed-reference">
           <div className="padding-bottom--large">
-            <SwatchPanel swatches={demoSwatches} expand={true} />
+            <SwatchPanel swatches={demoSwatches} expand={true}/>
           </div>
 
           <Row>
@@ -219,6 +219,6 @@ const cHome = createReactClass({
   },
 })
 
-const mapStateToProps = state => ({ currentUser: state.session.currentUser })
+const mapStateToProps = state => ({currentUser: state.session.currentUser})
 const Home = connect(mapStateToProps)(cHome)
 export default Home

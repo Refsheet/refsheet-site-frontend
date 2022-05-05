@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import * as M from 'materialize-css'
+import Tab from './Tab'
 
 class Tabs extends Component {
   constructor(props) {
@@ -21,18 +22,18 @@ class Tabs extends Component {
 
   handleTabShow(data) {
     console.log(data)
-    const { onChange } = this.props
+    const {onChange} = this.props
     onChange && onChange(data.id)
   }
 
   render() {
-    const { children } = this.props
+    const {children} = this.props
 
     return (
       <React.Fragment>
         <ul className={'tabs'} ref={r => (this.tabRef = r)}>
           {React.Children.map(children, child => {
-            const { id, title } = child.props
+            const {id, title} = child.props
             return (
               <li className={'tab'}>
                 <a href={`#${id}`}>{title}</a>
@@ -46,6 +47,5 @@ class Tabs extends Component {
   }
 }
 
-import Tab from './Tab'
-export { Tab }
+export {Tab}
 export default Tabs

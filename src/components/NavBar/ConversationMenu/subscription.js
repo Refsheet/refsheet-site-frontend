@@ -1,13 +1,15 @@
-import { subscribe } from 'services/ApplicationService'
-import getConversations from './getConversations.graphql'
-import subscribeToConversations from './subscribeToConversations.graphql'
+import {subscribe} from 'services/ApplicationService'
+import {loader} from 'graphql.macro'
+
+const getConversations = loader('./getConversations.graphql');
+const subscribeToConversations = loader('./subscribeToConversations.graphql');
 
 const mapDataToProps = data => ({
   conversations: data.getConversations,
 })
 
 const updateQuery = (prev, data) => {
-  const { newConversation } = data
+  const {newConversation} = data
 
   return {
     ...prev,

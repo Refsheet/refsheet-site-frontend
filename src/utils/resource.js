@@ -7,23 +7,24 @@
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
 import Axios from 'axios'
-import { CancelToken } from 'axios'
+import {CancelToken} from 'axios'
+import {host} from "../services/ApplicationService";
 
-export var get = function ({ path, request }) {
+export var get = function ({path, request}) {
   const source = CancelToken.source()
   console.log(`GET ${path}`)
 
   return new Promise(function (resolve, reject) {
-    Axios.get(path, { cancelToken: source.token })
+    Axios.get(`${host}${path}`, {cancelToken: source.token})
       .then(req => {
-        const { data } = req
+        const {data} = req
         return resolve(data)
       })
       .catch(req => {
-        const { data } = req
+        const {data} = req
         const error = (data != null ? data.error : undefined) || req.statusText
         console.error(error, data, req)
-        return reject({ error })
+        return reject({error})
       })
 
     if (request) {
@@ -32,21 +33,21 @@ export var get = function ({ path, request }) {
   })
 }
 
-export var put = function ({ path, params, request }) {
+export var put = function ({path, params, request}) {
   const source = CancelToken.source()
   console.log(`PUT ${path}: ${JSON.stringify(params)}`)
 
   return new Promise(function (resolve, reject) {
-    Axios.put(path, params, { cancelToken: source.token })
+    Axios.put(`${host}${path}`, params, {cancelToken: source.token})
       .then(req => {
-        const { data } = req
+        const {data} = req
         return resolve(data)
       })
       .catch(req => {
-        const { data } = req
+        const {data} = req
         const error = (data != null ? data.error : undefined) || req.statusText
         console.error(error, data, req)
-        return reject({ error })
+        return reject({error})
       })
 
     if (request) {

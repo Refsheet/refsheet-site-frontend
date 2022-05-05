@@ -1,0 +1,43 @@
+#import './CharacterFields.graphql'
+#import './CharacterProfile.graphql'
+#import './CharacterAttributes.graphql'
+#import './CharacterSwatches.graphql'
+#import './CharacterImages.graphql'
+#import './CharacterUser.graphql'
+#import './CharacterTheme.graphql'
+#import './LodestoneCharacterFields.graphql'
+
+fragment DefaultCharacterFields on Character {
+    ...CharacterFields
+    ...CharacterAttributes
+    ...CharacterProfile
+    ...CharacterSwatches
+    ...CharacterImages
+    ...CharacterUser
+    ...CharacterTheme
+
+    featured_image {
+        url {
+            large
+        }
+    }
+
+    profile_image {
+        url {
+            medium
+        }
+    }
+
+    avatar_url(style: "medium")
+    cover_image_url(style: "large")
+
+    lodestone_character {
+        ...LodestoneCharacterFields
+    }
+
+    marketplace_listing {
+        id
+        amount_cents
+        amount_currency
+    }
+}

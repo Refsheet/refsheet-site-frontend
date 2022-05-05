@@ -1,12 +1,14 @@
-import React, { Component } from 'react'
-import { withTranslation } from 'react-i18next'
-import { Icon } from 'react-materialize'
-import { Link } from 'react-router-dom'
+import React, {Component} from 'react'
+import {withTranslation} from 'react-i18next'
+import {Icon} from 'react-materialize'
+import {Link} from 'react-router-dom'
 import c from 'classnames'
-import compose, { withMutations } from '../../../utils/compose'
-import addFavorite from './addFavorite.graphql'
-import removeFavorite from './removeFavorite.graphql'
-import { connect } from 'react-redux'
+import compose, {withMutations} from '../../../utils/compose'
+import {loader} from 'graphql.macro'
+import {connect} from 'react-redux'
+
+const addFavorite = loader('./addFavorite.graphql');
+const removeFavorite = loader('./removeFavorite.graphql');
 
 class Favorites extends Component {
   constructor(props) {
@@ -23,9 +25,9 @@ class Favorites extends Component {
   handleFavoriteClick(e) {
     e.preventDefault()
 
-    const { mediaId, addFavorite, removeFavorite } = this.props
+    const {mediaId, addFavorite, removeFavorite} = this.props
 
-    let { isFavorite } = this.props
+    let {isFavorite} = this.props
 
     if (this.state.dirty) {
       isFavorite = this.state.isFavorite
@@ -37,8 +39,8 @@ class Favorites extends Component {
           mediaId,
         },
       })
-        .then(({ data }) => {
-          console.log({ data })
+        .then(({data}) => {
+          console.log({data})
           this.setState({
             dirty: true,
             isFavorite: false,
@@ -53,8 +55,8 @@ class Favorites extends Component {
           mediaId,
         },
       })
-        .then(({ data }) => {
-          console.log({ data })
+        .then(({data}) => {
+          console.log({data})
           this.setState({
             dirty: true,
             isFavorite: true,
@@ -66,9 +68,9 @@ class Favorites extends Component {
   }
 
   render() {
-    const { currentUser, t } = this.props
+    const {currentUser, t} = this.props
 
-    let { isFavorite, favorites, count = 0 } = this.props
+    let {isFavorite, favorites, count = 0} = this.props
 
     if (this.state.dirty) {
       isFavorite = this.state.isFavorite
@@ -102,7 +104,7 @@ class Favorites extends Component {
                 : t('actions.add_favorite', 'Add Favorite')
             }
           >
-            <Icon className={c('left', { isFavorite })}>star</Icon>
+            <Icon className={c('left', {isFavorite})}>star</Icon>
           </a>
         )}
 
@@ -127,11 +129,11 @@ class Favorites extends Component {
             href={'#favs'}
             title={t('actions.show_all_favorites', 'Show All Favorites')}
           >
-            {t('media.favorites', '{{count}} Favorites', { count })}
+            {t('media.favorites', '{{count}} Favorites', {count})}
           </a>
         </span>
 
-        <br className={'clearfix'} />
+        <br className={'clearfix'}/>
       </div>
     )
   }
@@ -143,7 +145,7 @@ const mapStateToProps = (state, props) => ({
 })
 
 export default compose(
-  withMutations({ addFavorite, removeFavorite }),
+  withMutations({addFavorite, removeFavorite}),
   withTranslation('common'),
   connect(mapStateToProps)
 )(Favorites)

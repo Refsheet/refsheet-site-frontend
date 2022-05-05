@@ -1,14 +1,16 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import compose from 'utils/compose'
-import { withCurrentUser, withMutations } from '../../../utils/compose'
+import {withCurrentUser, withMutations} from '../../../utils/compose'
 import M from 'materialize-css'
 import CommentForm from '../../Shared/CommentForm'
-import { Row, Col } from 'react-materialize'
-import postReply from './postReply.graphql'
-import editReply from './editReply.graphql'
-import createDiscussion from '../NewDiscussion/createDiscussion.graphql'
+import {Row, Col} from 'react-materialize'
+import {loader} from 'graphql.macro'
 import Muted from '../../Styled/Muted'
+
+const postReply = loader('./postReply.graphql');
+const editReply = loader('./editReply.graphql');
+const createDiscussion = loader('../NewDiscussion/createDiscussion.graphql');
 
 class DiscussionReplyForm extends Component {
   constructor(props) {
@@ -17,7 +19,7 @@ class DiscussionReplyForm extends Component {
 
   canReply(user) {
     // TODO: Use a policy for this.
-    const { forum, discussion, edit } = this.props
+    const {forum, discussion, edit} = this.props
     if (!user) return false
     if (edit) return true
     if (user.is_admin) return true
@@ -25,7 +27,7 @@ class DiscussionReplyForm extends Component {
     return !(forum && forum.locked) || (discussion && discussion.locked)
   }
 
-  handleSubmit({ comment: content, identity }) {
+  handleSubmit({comment: content, identity}) {
     const {
       edit,
       post,
@@ -72,8 +74,8 @@ class DiscussionReplyForm extends Component {
     })
   }
 
-  handleSubmitConfirm({ postReply, editReply, createDiscussion }) {
-    const { edit } = this.props
+  handleSubmitConfirm({postReply, editReply, createDiscussion}) {
+    const {edit} = this.props
 
     M.toast({
       html: edit ? 'Reply edited!' : 'Reply submitted!',
@@ -152,5 +154,5 @@ DiscussionReplyForm.propTypes = {
 
 export default compose(
   withCurrentUser(),
-  withMutations({ postReply, editReply, createDiscussion })
+  withMutations({postReply, editReply, createDiscussion})
 )(DiscussionReplyForm)

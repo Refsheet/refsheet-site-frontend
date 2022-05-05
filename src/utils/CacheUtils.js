@@ -1,8 +1,10 @@
-import { getCharacterProfile as gcp } from 'queries/getCharacterProfile.graphql'
+import {loader} from 'graphql.macro'
+
+const gcp = loader('../graph/queries/getCharacterProfile.graphql');
 
 const CacheUtils = {
-  deleteMedia: (cache, { data: { deleteMedia } }) => {
-    const { getCharacterByUrl } = cache.readQuery({
+  deleteMedia: (cache, {data: {deleteMedia}}) => {
+    const {getCharacterByUrl} = cache.readQuery({
       query: gcp,
       variables: {
         username: deleteMedia.character.username,

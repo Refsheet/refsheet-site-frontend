@@ -35,11 +35,11 @@ export default Character = createReactClass({
         <Row key={character.id} oneColumn noMargin>
           <div
             className="character-card compact-mobile z-depth-0 margin-bottom--none margin-top--small"
-            style={{ backgroundColor: '#1a1a1a', overflow: 'visible' }}
+            style={{backgroundColor: '#1a1a1a', overflow: 'visible'}}
           >
-            <div className="character-details" style={{ minHeight: 'initial' }}>
+            <div className="character-details" style={{minHeight: 'initial'}}>
               <h3 className="name margin-top--none">
-                <IdentityLink to={identity} />
+                <IdentityLink to={identity}/>
               </h3>
 
               <div className="description">
@@ -59,8 +59,8 @@ export default Character = createReactClass({
             </div>
 
             <div className="character-image" onClick={this.handleImageClick}>
-              <div className="slant" style={{ backgroundColor: '#1a1a1a' }} />
-              <img src={character.profile_image_url} />
+              <div className="slant" style={{backgroundColor: '#1a1a1a'}}/>
+              <img src={character.profile_image_url}/>
             </div>
           </div>
         </Row>

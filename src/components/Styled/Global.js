@@ -1,9 +1,9 @@
 import React from 'react'
-import styled, { withTheme } from 'styled-components'
-import { Style } from 'react-style-tag'
-import Main from 'Shared/Main'
+import styled, {withTheme} from 'styled-components'
+import {Style} from 'react-style-tag'
+import Main from 'components/Shared/Main'
 
-const GlobalStyle = ({ theme }) => (
+const GlobalStyle = ({theme}) => (
   <Style>{`
     body {
       color: ${theme.text} !important;

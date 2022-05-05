@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import DropdownLink from '../DropdownLink'
 import NotificationItem from '../Dropdown/NotificationItem'
-import { Link } from 'react-router-dom'
-import Scrollbars from 'Shared/Scrollbars'
+import {Link} from 'react-router-dom'
+import Scrollbars from 'components/Shared/Scrollbars'
 import subscription from './subscription'
-import { formatBody } from 'Chat/ConversationMessage'
-import { connect } from 'react-redux'
-import { openConversation } from 'actions'
+import {formatBody} from 'components/Chat/ConversationMessage'
+import {connect} from 'react-redux'
+import {openConversation} from 'actions'
 
 class ConversationMenu extends Component {
   constructor(props) {
@@ -18,7 +18,7 @@ class ConversationMenu extends Component {
   }
 
   renderConversation(c) {
-    const { openConversation } = this.props
+    const {openConversation} = this.props
 
     const click = e => {
       e && e.preventDefault && e.preventDefault()
@@ -38,7 +38,7 @@ class ConversationMenu extends Component {
         title={
           <span>
             <strong>{user.name}</strong>
-            <br />
+            <br/>
             {formatBody(c.lastMessage, true)}
           </span>
         }
@@ -55,7 +55,7 @@ class ConversationMenu extends Component {
   }
 
   render() {
-    const { conversations = [], loading = false, refetch } = this.props
+    const {conversations = [], loading = false, refetch} = this.props
 
     const unreadCount = conversations.filter(c => c.unreadCount > 0).length
 
@@ -98,7 +98,7 @@ ConversationMenu.propTypes = {
   conversations: PropTypes.array,
 }
 
-const mapStateToProps = ({ conversations }, props) => ({
+const mapStateToProps = ({conversations}, props) => ({
   openConversations: conversations.openConversations,
   ...props,
 })
@@ -109,6 +109,6 @@ const mapDispatchToProps = {
 
 const connected = connect(mapStateToProps, mapDispatchToProps)(ConversationMenu)
 
-export { connected as ConversationMenu }
+export {connected as ConversationMenu}
 
 export default subscription(connected)

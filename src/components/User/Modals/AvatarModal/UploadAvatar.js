@@ -1,14 +1,17 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import { withTranslation } from 'react-i18next'
+import {withTranslation} from 'react-i18next'
 import compose from 'utils/compose'
-import { H1 } from 'Styled/Headings'
-import { DirectUploadProvider } from 'react-activestorage-provider'
-import { TextInput, Button, Row, Col, ProgressBar } from 'react-materialize'
-import Muted, { MutedAnchor } from '../../../Styled/Muted'
-import { withMutations } from '../../../../utils/compose'
-import setUserAvatarBlob from './setUserAvatarBlob.graphql'
+import {H1} from 'components/Styled/Headings'
+import {DirectUploadProvider} from 'react-activestorage-provider'
+import {TextInput, Button, Row, Col, ProgressBar} from 'react-materialize'
+import Muted, {MutedAnchor} from '../../../Styled/Muted'
+import {withMutations} from '../../../../utils/compose'
+import {loader} from 'graphql.macro'
+
 import * as M from 'materialize-css'
+
+const setUserAvatarBlob = loader('./setUserAvatarBlob.graphql');
 
 class UploadAvatar extends Component {
   constructor(props) {
@@ -22,12 +25,12 @@ class UploadAvatar extends Component {
   }
 
   handleFileChange(e) {
-    this.setState({ file: e.currentTarget.files[0] })
+    this.setState({file: e.currentTarget.files[0]})
   }
 
   handleSubmit(e, handleUpload) {
     e.preventDefault()
-    this.setState({ loading: true })
+    this.setState({loading: true})
     handleUpload([this.state.file])
   }
 
@@ -36,8 +39,8 @@ class UploadAvatar extends Component {
     this.handleSuccess([])
   }
 
-  renderInput({ handleUpload, uploads, ready }) {
-    const { t, id, user } = this.props
+  renderInput({handleUpload, uploads, ready}) {
+    const {t, id, user} = this.props
 
     return (
       <form
@@ -65,7 +68,7 @@ class UploadAvatar extends Component {
                   <Muted className={'right'}>{upload.state}</Muted>
                   {upload.file.name}
                 </p>
-                <ProgressBar progress={(upload.progress || 0) * 100} />
+                <ProgressBar progress={(upload.progress || 0) * 100}/>
               </Col>
             ))}
           </Row>
@@ -75,7 +78,7 @@ class UploadAvatar extends Component {
           <Row className={'margin-top--large'}>
             <Col s={12}>
               <p>Finishing up...</p>
-              <ProgressBar />
+              <ProgressBar/>
             </Col>
           </Row>
         )}
@@ -114,7 +117,7 @@ class UploadAvatar extends Component {
 
   handleSuccess(blobs) {
     const blob = blobs[0]
-    const { setUserAvatarBlob, user = {}, onSave, onClose } = this.props
+    const {setUserAvatarBlob, user = {}, onSave, onClose} = this.props
 
     setUserAvatarBlob({
       wrapped: true,
@@ -123,7 +126,7 @@ class UploadAvatar extends Component {
         id: user.id,
       },
     })
-      .then(({ data: { setUserAvatarBlob } }) => {
+      .then(({data: {setUserAvatarBlob}}) => {
         M.toast({
           html: 'Avatar updated!',
           displayLength: 3000,
@@ -132,13 +135,13 @@ class UploadAvatar extends Component {
         onSave && onSave(setUserAvatarBlob)
         onClose && onClose()
       })
-      .catch(({ errorString }) => {
-        this.setState({ error: errorString, loading: false })
+      .catch(({errorString}) => {
+        this.setState({error: errorString, loading: false})
       })
   }
 
   render() {
-    const { t } = this.props
+    const {t} = this.props
 
     return (
       <DirectUploadProvider
@@ -156,5 +159,5 @@ UploadAvatar.propTypes = {
 
 export default compose(
   withTranslation('common'),
-  withMutations({ setUserAvatarBlob })
+  withMutations({setUserAvatarBlob})
 )(UploadAvatar)

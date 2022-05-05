@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import { withTranslation } from 'react-i18next'
+import {withTranslation} from 'react-i18next'
 import compose from 'utils/compose'
-import { H1 } from 'Styled/Headings'
+import {H1} from 'components/Styled/Headings'
 import styled from 'styled-components'
-import { withRouter } from 'react-router'
+import {withRouter} from 'react-router'
 import FormUtils from '../../../utils/FormUtils'
 import LinkUtils from '../../../utils/LinkUtils'
 
@@ -27,19 +27,19 @@ class SearchForm extends Component {
     e.preventDefault()
 
     const {
-      forum: { slug: forumId },
+      forum: {slug: forumId},
       history,
     } = this.props
     const {
-      search: { query: q },
+      search: {query: q},
     } = this.state
 
-    const path = LinkUtils.forumPath({ forumId }, { q })
+    const path = LinkUtils.forumPath({forumId}, {q})
     history.push(path)
   }
 
   render() {
-    const { t } = this.props
+    const {t} = this.props
 
     return (
       <form

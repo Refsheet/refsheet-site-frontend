@@ -1,14 +1,16 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import { Row, Col, Icon, TextInput, Switch, Tabs, Tab } from 'react-materialize'
-import { withTranslation } from 'react-i18next'
-import compose, { withMutations } from '../../../../utils/compose'
+import {Row, Col, Icon, TextInput, Switch, Tabs, Tab} from 'react-materialize'
+import {withTranslation} from 'react-i18next'
+import compose, {withMutations} from '../../../../utils/compose'
 import ColorTheme from '../../../../utils/ColorTheme'
-import Modal from 'Styled/Modal'
+import Modal from 'components/Styled/Modal'
 import Input from '../../../../v1/shared/forms/Input'
-import updateColorScheme from './updateColorScheme.graphql'
-import createColorScheme from './createColorScheme.graphql'
 import Flash from '../../../../utils/Flash'
+import {loader} from 'graphql.macro'
+
+const updateColorScheme = loader('./updateColorScheme.graphql');
+const createColorScheme = loader('./createColorScheme.graphql');
 
 // TODO: Move simple / advanced to tabs
 // TODO: Cleanup callback hell.
@@ -68,7 +70,7 @@ class ColorModal extends Component {
   }
 
   theme(colors = this.props.colorSchemeOverride.colors) {
-    return new ColorTheme({ ...colors, base: this.state.base })
+    return new ColorTheme({...colors, base: this.state.base})
   }
 
   extrapolateColors(key, colors) {
@@ -78,7 +80,7 @@ class ColorModal extends Component {
 
   applyBaseColors() {
     const base = this.simpleBase[this.state.base]
-    this.handleColorChanges({ background: base.background, text: base.text })
+    this.handleColorChanges({background: base.background, text: base.text})
   }
 
   handleClose() {
@@ -87,8 +89,8 @@ class ColorModal extends Component {
   }
 
   handleColorChanges(changes) {
-    let theme = { ...this.props.colorSchemeOverride }
-    let colors = { ...theme.colors }
+    let theme = {...this.props.colorSchemeOverride}
+    let colors = {...theme.colors}
 
     Object.keys(changes).map(key => {
       colors[key] = changes[key]
@@ -99,8 +101,8 @@ class ColorModal extends Component {
   }
 
   handleColorChange(key, value) {
-    let theme = { ...this.props.colorSchemeOverride }
-    let colors = { ...theme.colors }
+    let theme = {...this.props.colorSchemeOverride}
+    let colors = {...theme.colors}
     colors[key] = value
     theme.colors = this.extrapolateColors(key, colors)
 
@@ -108,11 +110,11 @@ class ColorModal extends Component {
   }
 
   changeMode(e) {
-    this.setState({ mode: e.target.checked ? 'advanced' : 'simple' })
+    this.setState({mode: e.target.checked ? 'advanced' : 'simple'})
   }
 
   changeBase(e) {
-    this.setState({ base: e.target.checked ? 'light' : 'dark' }, () => {
+    this.setState({base: e.target.checked ? 'light' : 'dark'}, () => {
       this.applyBaseColors()
     })
   }
@@ -124,15 +126,15 @@ class ColorModal extends Component {
 
   handleSubmit(e) {
     e.preventDefault()
-    this.setState({ loading: true })
+    this.setState({loading: true})
 
     const {
       t,
       updateColorScheme,
       createColorScheme,
       characterId,
-      colorScheme: { id },
-      colorSchemeOverride: { colors: colorData },
+      colorScheme: {id},
+      colorSchemeOverride: {colors: colorData},
     } = this.props
 
     let result
@@ -160,7 +162,7 @@ class ColorModal extends Component {
     }
 
     result.catch(console.error).finally(() => {
-      this.setState({ loading: false })
+      this.setState({loading: false})
     })
   }
 
@@ -170,7 +172,7 @@ class ColorModal extends Component {
     const {
       t,
       colorScheme,
-      colorSchemeOverride: { colors },
+      colorSchemeOverride: {colors},
     } = this.props
 
     const color = colors[key] || ''
@@ -196,7 +198,7 @@ class ColorModal extends Component {
         highContrast: true,
       })
     } else {
-      suggestion = this.theme().getSuggestions({ base: 'brand', count: 14 })
+      suggestion = this.theme().getSuggestions({base: 'brand', count: 14})
     }
 
     return (
@@ -216,7 +218,7 @@ class ColorModal extends Component {
   }
 
   render() {
-    const { t } = this.props
+    const {t} = this.props
     const advanced = this.state.mode === 'advanced'
     const light = this.state.base === 'light'
 

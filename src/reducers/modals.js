@@ -1,7 +1,7 @@
 import * as Actions from '../actions'
-import { createReducer } from './index'
+import {createReducer} from './index'
 
-import defaultState from 'App/defaultState.json'
+import defaultState from 'components/App/defaultState.json'
 
 const handlers = {
   [Actions.OPEN_MODAL]: (state, action) => {

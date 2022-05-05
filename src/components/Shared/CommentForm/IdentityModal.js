@@ -1,11 +1,14 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import { Query } from 'react-apollo'
-import { withTranslation } from 'react-i18next'
-import AutocompleteCharacter from 'components/ActivityFeed/autocompleteCharacter.graphql'
-import { setIdentity } from 'actions'
-import { connect } from 'react-redux'
+import {Query} from 'react-apollo'
+import {withTranslation} from 'react-i18next'
+import {loader} from 'graphql.macro'
+
+import {setIdentity} from 'actions'
+import {connect} from 'react-redux'
 import Modal from 'v1/shared/Modal'
+
+const AutocompleteCharacter = loader('../../ActivityFeed/autocompleteCharacter.graphql');
 
 class IdentityModal extends Component {
   constructor(props) {
@@ -26,7 +29,7 @@ class IdentityModal extends Component {
       e.preventDefault()
 
       if (!this.props.temporary) {
-        this.props.setIdentity({ character })
+        this.props.setIdentity({character})
       }
 
       if (this.props.onCharacterSelect) {
@@ -63,16 +66,16 @@ class IdentityModal extends Component {
 
   handleQueryChange(e) {
     e.preventDefault()
-    this.setState({ queryInput: e.target.value })
+    this.setState({queryInput: e.target.value})
   }
 
   handleSearch(e) {
     e.preventDefault()
-    this.setState({ query: this.state.queryInput })
+    this.setState({query: this.state.queryInput})
   }
 
   render() {
-    const { t, title, requireCharacter, allowCreate } = this.props
+    const {t, title, requireCharacter, allowCreate} = this.props
 
     return (
       <Modal
@@ -101,9 +104,9 @@ class IdentityModal extends Component {
 
         <Query
           query={AutocompleteCharacter}
-          variables={{ slug: this.state.query, username: 'me' }}
+          variables={{slug: this.state.query, username: 'me'}}
         >
-          {({ data, loading, errors }) => {
+          {({data, loading, errors}) => {
             if (loading) {
               return (
                 <div className="caption center modal-content">
@@ -153,7 +156,7 @@ IdentityModal.propTypes = {
   temporary: PropTypes.bool,
 }
 
-const mapDispatchToProps = { setIdentity }
+const mapDispatchToProps = {setIdentity}
 
 export default connect(
   undefined,

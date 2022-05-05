@@ -1,21 +1,24 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import Filmstrip from './Filmstrip'
 import UploadForm from './UploadForm'
-import ImageHandler from 'ImageHandler'
-import { clearUpload, closeUploadModal, modifyUpload } from '../../actions'
-import { connect } from 'react-redux'
+import ImageHandler from 'utils/ImageHandler'
+import {clearUpload, closeUploadModal, modifyUpload} from '../../actions'
+import {connect} from 'react-redux'
 import c from 'classnames'
-import { Query } from 'react-apollo'
-import getCharacterForUpload from './getCharacterForUpload.graphql'
+import {Query} from 'react-apollo'
+import {loader} from 'graphql.macro'
+
 import IdentityModal from '../Shared/CommentForm/IdentityModal'
-import { withTranslation } from 'react-i18next'
+import {withTranslation} from 'react-i18next'
 import compose from '../../utils/compose'
 import * as Materialize from 'materialize-css'
 
 import Icon from 'v1/shared/material/Icon'
 import Modal from 'v1/shared/Modal'
-import { withErrorBoundary } from '../Shared/ErrorBoundary'
+import {withErrorBoundary} from '../Shared/ErrorBoundary'
+
+const getCharacterForUpload = loader('./getCharacterForUpload.graphql');
 
 class UploadModal extends Component {
   constructor(props, context) {
@@ -45,7 +48,7 @@ class UploadModal extends Component {
       this.state.activeImageId === null
     ) {
       const activeImageId = this.props.files[0].id
-      this.setState({ activeImageId })
+      this.setState({activeImageId})
     } else if (this.props.files.length < prevProps.files.length) {
       this.selectNextImage()
     }
@@ -55,26 +58,26 @@ class UploadModal extends Component {
     }
 
     if (prevProps.characterId !== this.props.characterId) {
-      this.setCharacter({ id: this.props.characterId })
+      this.setCharacter({id: this.props.characterId})
     }
   }
 
   setCharacter(character) {
-    this.setState({ characterId: character.id, identityModalOpen: false })
+    this.setState({characterId: character.id, identityModalOpen: false})
     console.debug('setCharacter(' + this.state.characterId + ')')
   }
 
   handleChangeCharacterClick(e) {
     e.preventDefault()
-    this.setState({ identityModalOpen: true })
+    this.setState({identityModalOpen: true})
   }
 
   handleIdentityClose() {
-    this.setState({ identityModalOpen: false })
+    this.setState({identityModalOpen: false})
   }
 
   setActiveImage(activeImageId) {
-    this.setState({ activeImageId })
+    this.setState({activeImageId})
   }
 
   getActiveImage() {
@@ -142,8 +145,8 @@ class UploadModal extends Component {
 
   renderPending(images) {
     const imageArray = images.map(image => {
-      const { state, progress } = image
-      return { src: image.preview, id: image.id, state, progress }
+      const {state, progress} = image
+      return {src: image.preview, id: image.id, state, progress}
     })
 
     return (
@@ -160,7 +163,7 @@ class UploadModal extends Component {
     if (!image) return null
 
     return (
-      <div className="image-preview" style={{ display: 'flex' }}>
+      <div className="image-preview" style={{display: 'flex'}}>
         <div
           className="image-container"
           style={{
@@ -173,7 +176,7 @@ class UploadModal extends Component {
           <img
             src={image.preview}
             height={300}
-            style={{ display: 'inline-block', verticalAlign: 'middle' }}
+            style={{display: 'inline-block', verticalAlign: 'middle'}}
           />
           {image.state === 'error' && (
             <div className="upload-error red darken-4 white-text padding--small">
@@ -201,8 +204,8 @@ class UploadModal extends Component {
     }
 
     return (
-      <div className={'modal-content'} style={{ textAlign: 'center' }}>
-        <i className={'material-icons'} style={{ fontSize: '3rem' }}>
+      <div className={'modal-content'} style={{textAlign: 'center'}}>
+        <i className={'material-icons'} style={{fontSize: '3rem'}}>
           cloud_upload
         </i>
         <p className={'caption'}>Drag & Drop to upload files.</p>
@@ -218,7 +221,7 @@ class UploadModal extends Component {
   }
 
   renderCharacterTarget(character, loading, error) {
-    const { t } = this.props
+    const {t} = this.props
 
     let characterName = t(
       'identity.no_character_selected',
@@ -233,7 +236,7 @@ class UploadModal extends Component {
 
     return (
       <div
-        className={c('modal-notice', 'character-select', { alert: !character })}
+        className={c('modal-notice', 'character-select', {alert: !character})}
       >
         {t('actions.upload_to', 'Upload To')}: <strong>{characterName}</strong>
         {error && (
@@ -264,7 +267,7 @@ class UploadModal extends Component {
   }
 
   render() {
-    const { t } = this.props
+    const {t} = this.props
 
     const activeImage = this.getActiveImage()
 
@@ -277,7 +280,7 @@ class UploadModal extends Component {
         status = t(
           'actions.uploading_with_progress',
           'Uploading {{progress}}%',
-          { progress: activeImage.progress }
+          {progress: activeImage.progress}
         )
       }
 
@@ -287,9 +290,9 @@ class UploadModal extends Component {
     return (
       <Query
         query={getCharacterForUpload}
-        variables={{ id: this.state.characterId }}
+        variables={{id: this.state.characterId}}
       >
-        {({ data, loading, error, ...props }) => {
+        {({data, loading, error, ...props}) => {
           const getCharacter = data && data.getCharacter
 
           return (
@@ -335,7 +338,7 @@ UploadModal.contextTypes = {
   getDropzone: PropTypes.func,
 }
 
-const mapStateToProps = ({ uploads }, props) => ({
+const mapStateToProps = ({uploads}, props) => ({
   files: uploads.files,
   characterId: uploads.characterId,
   modalOpen: uploads.modalOpen,
@@ -351,7 +354,7 @@ const mapDispatchToProps = {
 }
 
 const Wrapped = props => {
-  const { alwaysOpen = false, modalOpen = false } = props
+  const {alwaysOpen = false, modalOpen = false} = props
 
   if (!alwaysOpen && !modalOpen) {
     return null
@@ -362,6 +365,6 @@ const Wrapped = props => {
 
 export default compose(
   withErrorBoundary,
-  connect(mapStateToProps, mapDispatchToProps, null, { pure: false }),
+  connect(mapStateToProps, mapDispatchToProps, null, {pure: false}),
   withTranslation('common')
 )(Wrapped)

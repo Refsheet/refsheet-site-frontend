@@ -7,6 +7,7 @@ import Input from './Input'
 import $ from 'jquery'
 import ObjectPath from '../../utils/ObjectPath'
 import Flash from '../../../utils/Flash'
+import {host} from "../../../services/ApplicationService"
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
@@ -35,7 +36,7 @@ export default Form = createReactClass({
 
   getInitialState() {
     return {
-      model: { ...this.props.model },
+      model: {...this.props.model},
       errors: this.props.errors || {},
       dirty: false,
       submitting: false,
@@ -46,7 +47,7 @@ export default Form = createReactClass({
   UNSAFE_componentWillReceiveProps(newProps) {
     if (newProps.model !== this.props.model) {
       return this.setState({
-        model: { ...newProps.model },
+        model: {...newProps.model},
         errors: newProps.errors || {},
         submitting: false,
         dirty: false,
@@ -56,7 +57,7 @@ export default Form = createReactClass({
 
   reload() {
     return this.setState({
-      model: { ...this.props.model },
+      model: {...this.props.model},
       errors: this.props.errors || {},
       submitting: false,
       dirty: false,
@@ -73,7 +74,7 @@ export default Form = createReactClass({
 
   reset() {
     this.setState({
-      model: { ...this.props.model },
+      model: {...this.props.model},
       dirty: false,
       submitting: false,
     })
@@ -90,7 +91,7 @@ export default Form = createReactClass({
     if (dirty == null) {
       dirty = true
     }
-    return this.setState({ model: { ...data }, dirty }, () => {
+    return this.setState({model: {...data}, dirty}, () => {
       if (this.props.onDirty) {
         this.props.onDirty(dirty)
       }
@@ -104,9 +105,9 @@ export default Form = createReactClass({
   },
 
   _handleInputChange(name, value) {
-    const newModel = { ...this.state.model }
+    const newModel = {...this.state.model}
     newModel[name] = value
-    const errors = { ...this.state.errors }
+    const errors = {...this.state.errors}
     errors[name] = undefined
     let dirty = false
     let invalid = false
@@ -123,7 +124,7 @@ export default Form = createReactClass({
       }
     }
 
-    this.setState({ model: newModel, dirty, invalid, errors })
+    this.setState({model: newModel, dirty, invalid, errors})
     if (this.props.onUpdate) {
       this.props.onUpdate(newModel)
     }
@@ -150,16 +151,16 @@ export default Form = createReactClass({
       ...(this.props.extraData || {}),
     })
 
-    this.setState({ submitting: true })
+    this.setState({submitting: true})
     const _this = this
 
     $.ajax({
-      url: this.props.action,
+      url: `${host}${this.props.action}`,
       type: this.props.method || 'POST',
       data,
       dataType: 'json',
       success: data => {
-        this.setState({ dirty: false, errors: {} })
+        this.setState({dirty: false, errors: {}})
         if (this.props.onChange) {
           this.props.onChange(data)
         }
@@ -205,7 +206,7 @@ export default Form = createReactClass({
       },
 
       complete: () => {
-        _this.setState({ submitting: false })
+        _this.setState({submitting: false})
       },
     })
   },
@@ -235,7 +236,7 @@ export default Form = createReactClass({
             disabled: this.state.submitting || child.props.disabled,
           }
         } else {
-          childProps = { key: child.props.id }
+          childProps = {key: child.props.id}
         }
       }
 

@@ -1,11 +1,14 @@
 import request from 'superagent'
 import client from 'services/ApplicationService'
 import xmljs from 'xml-js'
-// TODO: Make this a mutation too, it deserves it.
-import getImageUploadToken from 'graphql/queries/getImageUploadToken.graphql'
-import uploadImage from 'graphql/mutations/uploadImage.graphql'
-import getCharacterImages from 'graphql/fragments/getCharacterImages.graphql'
+import {loader} from 'graphql.macro'
+
 import * as Sentry from '@sentry/browser'
+
+// TODO: Make this a mutation too, it deserves it.
+const getCharacterImages = loader('../graph/fragments/getCharacterImages.graphql');
+const getImageUploadToken = loader('../graph/queries/getImageUploadToken.graphql');
+const uploadImage = loader('../graph/mutations/uploadImage.graphql');
 
 class ImageHandler {
   static upload(image, characterId, onChange) {
@@ -38,8 +41,8 @@ class ImageHandler {
   }
 
   getS3Token() {
-    const variables = { characterId: this.characterId }
-    return client.query({ query: getImageUploadToken, variables })
+    const variables = {characterId: this.characterId}
+    return client.query({query: getImageUploadToken, variables})
   }
 
   postToS3(response) {
@@ -56,7 +59,7 @@ class ImageHandler {
       })
     }
 
-    const { url, __typename, ...awsHeaders } = token
+    const {url, __typename, ...awsHeaders} = token
 
     console.debug(`Posting file to ${url}`)
 
@@ -77,7 +80,7 @@ class ImageHandler {
         this.onChange(this.image)
       })
       .then(response => {
-        const data = xmljs.xml2js(response.text, { compact: true })
+        const data = xmljs.xml2js(response.text, {compact: true})
         const obj = data && data.PostResponse
 
         return (
@@ -92,7 +95,7 @@ class ImageHandler {
   }
 
   updateImageRecord(response) {
-    const { title, folder, nsfw } = this.image
+    const {title, folder, nsfw} = this.image
 
     const variables = {
       ...response,
@@ -109,7 +112,7 @@ class ImageHandler {
       variables,
       update: (store, result) => {
         const {
-          data: { uploadImage },
+          data: {uploadImage},
         } = result
 
         let data
@@ -158,7 +161,7 @@ class ImageHandler {
 
     const image = response.data && response.data.uploadImage
 
-    const { id, ...imageData } = image
+    const {id, ...imageData} = image
 
     const final = {
       ...this.image,

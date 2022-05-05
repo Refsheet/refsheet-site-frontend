@@ -5,10 +5,10 @@
  */
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Row, Col } from 'react-materialize'
-import { Sticky, StickyContainer } from 'react-sticky'
+import {Row, Col} from 'react-materialize'
+import {Sticky, StickyContainer} from 'react-sticky'
 import c from 'classnames'
-import EditableHeader from 'Shared/EditableHeader'
+import EditableHeader from 'components/Shared/EditableHeader'
 import styled from 'styled-components'
 import Icon from 'v1/shared/material/Icon'
 
@@ -29,19 +29,19 @@ const SectionTitle = styled.div`
 `
 
 const Section = function ({
-  id,
-  className,
-  titleClassName,
-  title,
-  tabs,
-  container,
-  onTabClick,
-  buttons,
-  children,
-  editable,
-  onTitleChange,
-}) {
-  const renderTitle = function ({ style, isSticky }) {
+                            id,
+                            className,
+                            titleClassName,
+                            title,
+                            tabs,
+                            container,
+                            onTabClick,
+                            buttons,
+                            children,
+                            editable,
+                            onTitleChange,
+                          }) {
+  const renderTitle = function ({style, isSticky}) {
     let titleStyle
     if (isSticky) {
       style = {
@@ -57,8 +57,8 @@ const Section = function ({
 
     return (
       <div
-        className={c(titleClassName, { container })}
-        style={{ ...style, top: '56px' }}
+        className={c(titleClassName, {container})}
+        style={{...style, top: '56px'}}
       >
         <SectionTitle className="row no-margin" style={titleStyle}>
           <Col m={4}>
@@ -99,7 +99,7 @@ const Section = function ({
       <section id={id} className={c(className)}>
         {(title || editable) && <Sticky topOffset={-66}>{renderTitle}</Sticky>}
 
-        <div className={c({ container })}>{children}</div>
+        <div className={c({container})}>{children}</div>
       </section>
     </StickyContainer>
   )
@@ -114,7 +114,7 @@ const actionHandler = (onClick, id) =>
   }
 
 const renderTab = onTabClick =>
-  function ({ title, id, onClick }) {
+  function ({title, id, onClick}) {
     if (!onClick) {
       onClick = onTabClick
     }
@@ -128,7 +128,7 @@ const renderTab = onTabClick =>
     )
   }
 
-const renderAction = ({ title, id, onClick, icon, hide }, i) => {
+const renderAction = ({title, id, onClick, icon, hide}, i) => {
   if (hide) return null
 
   return (

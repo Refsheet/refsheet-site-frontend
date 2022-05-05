@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import M from 'materialize-css'
 import PropTypes from 'prop-types'
-import TocLink from 'Styled/TocLink'
-import { Icon } from 'react-materialize'
-import { MutedHeader } from 'Styled/Muted'
-import { SidebarLink } from 'Styled/Sidebar'
-import { Sticky, StickyContainer } from 'react-sticky'
-import UserCard from 'User/UserCard'
-import { connect } from 'react-redux'
+import TocLink from 'components/Styled/TocLink'
+import {Icon} from 'react-materialize'
+import {MutedHeader} from 'components/Styled/Muted'
+import {SidebarLink} from 'components/Styled/Sidebar'
+import {Sticky, StickyContainer} from 'react-sticky'
+import UserCard from 'components/User/UserCard'
+import {connect} from 'react-redux'
 import ProfileConvertButton from './ProfileConvertButton'
 
 class Sidebar extends Component {
@@ -67,15 +67,15 @@ class Sidebar extends Component {
     this.props.onEditableChange(!this.props.editable)
   }
 
-  renderSticky({ style }) {
+  renderSticky({style}) {
     const canEdit = this.props.canEdit
     const conversionRequired = this.props.characterVersion === 1
 
     return (
-      <div style={{ ...style, top: this.stickyTop }}>
+      <div style={{...style, top: this.stickyTop}}>
         <div className="margin-bottom--large">
           <MutedHeader>Created By</MutedHeader>
-          <UserCard user={this.props.user} smaller />
+          <UserCard user={this.props.user} smaller/>
         </div>
 
         {canEdit && (
@@ -87,7 +87,7 @@ class Sidebar extends Component {
                   <Icon className={'left red-text text-darken-1'}>warning</Icon>
                   <strong>Profile Conversion Required!</strong>
                 </div>
-                <br className={'clearfix'} />
+                <br className={'clearfix'}/>
                 <p className={'margin-top--none'}>
                   This character profile must be converted to use the new
                   Profile layout. This will cause the old profile view to become

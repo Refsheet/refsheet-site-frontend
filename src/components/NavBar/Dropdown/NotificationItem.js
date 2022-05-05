@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import c from 'classnames'
-import { Link } from 'react-router-dom'
-import { timeDisplay } from 'Chat/ConversationMessage'
-import { Icon } from 'react-materialize'
+import {Link} from 'react-router-dom'
+import {timeDisplay} from 'components/Chat/ConversationMessage'
+import {Icon} from 'react-materialize'
 
 /*
  * For the onClick, onMoreClick, and onDismiss handlers, if a Promise is
@@ -32,7 +32,7 @@ const NotificationItem = props => {
   if (created_at) {
     time = (
       <div
-        className={c('time muted', { right: floatTime })}
+        className={c('time muted', {right: floatTime})}
         title={timeDisplay(created_at, true)}
       >
         {timeDisplay(created_at || 0)}
@@ -114,7 +114,7 @@ const NotificationItem = props => {
       })}
     >
       <Link to={link} onClick={click}>
-        {icon && <img src={icon} className="avatar" />}
+        {icon && <img src={icon} className="avatar"/>}
         <div className="body">
           <div className="message">
             {floatTime && time}
@@ -122,7 +122,7 @@ const NotificationItem = props => {
           </div>
           {floatTime || time}
         </div>
-        {thumbnail && <img src={thumbnail} className="subject" />}
+        {thumbnail && <img src={thumbnail} className="subject"/>}
       </Link>
       <div className="menu">
         {onDismiss && is_unread && (

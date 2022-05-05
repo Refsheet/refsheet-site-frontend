@@ -1,21 +1,21 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 import IdentitySelect from './CommentForm/IdentitySelect'
 import UserAvatar from '../User/UserAvatar'
 import IdentityModal from './CommentForm/IdentityModal'
 import Restrict from './Restrict'
 import MarkdownEditor from './MarkdownEditor'
-import { Row, Col, Button } from 'react-materialize'
+import {Row, Col, Button} from 'react-materialize'
 import compose from 'utils/compose'
-import { withTranslation } from 'react-i18next'
+import {withTranslation} from 'react-i18next'
 import WindowAlert from 'utils/WindowAlert'
-import { div as Card } from '../Styled/Card'
+import {div as Card} from '../Styled/Card'
 import c from 'classnames'
 import Icon from 'v1/shared/material/Icon'
 import Input from 'v1/shared/forms/Input'
 import * as Materialize from 'materialize-css'
-import { createIdentity } from '../../utils/IdentityUtils'
+import {createIdentity} from '../../utils/IdentityUtils'
 
 // TODO: This class has now 3 different styles that it produces,
 //       this should be refactored into a generic wrapper that handles
@@ -45,7 +45,7 @@ class CommentForm extends Component {
   }
 
   handleCommentChange(name, comment) {
-    this.setState({ comment })
+    this.setState({comment})
 
     if (comment !== this.props.value) {
       WindowAlert.dirty(this.getDraftKey(), 'You have a pending comment.')
@@ -57,18 +57,18 @@ class CommentForm extends Component {
   handleCancel(e) {
     e.preventDefault()
 
-    const { draftKey = 'comment-' + name, onCancel } = this.props
+    const {onCancel} = this.props
 
     WindowAlert.clean(this.getDraftKey())
     onCancel && onCancel()
   }
 
   handleIdentityOpen() {
-    this.setState({ identityModalOpen: true })
+    this.setState({identityModalOpen: true})
   }
 
   handleIdentityClose() {
-    this.setState({ identityModalOpen: false })
+    this.setState({identityModalOpen: false})
   }
 
   handleError(error) {
@@ -81,15 +81,13 @@ class CommentForm extends Component {
       message = error.message || '' + error
     }
 
-    this.setState({ submitting: false, error: message })
+    this.setState({submitting: false, error: message})
   }
 
   handleSubmit(e) {
     e.preventDefault()
 
-    const { draftKey = 'comment-' + name } = this.props
-
-    this.setState({ submitting: true })
+    this.setState({submitting: true})
 
     if (!this.state.comment) {
       Materialize.toast({
@@ -108,7 +106,7 @@ class CommentForm extends Component {
         if (data && data.errors) {
           this.handleError(data.errors[0])
         } else {
-          this.setState({ comment: '', submitting: false, error: '' })
+          this.setState({comment: '', submitting: false, error: ''})
           WindowAlert.clean(this.getDraftKey())
 
           if (this.props.onSubmitConfirm) {
@@ -268,7 +266,7 @@ class CommentForm extends Component {
             <div className={'card-footer'}>{submitButton}</div>
 
             {this.state.identityModalOpen && (
-              <IdentityModal onClose={this.handleIdentityClose.bind(this)} />
+              <IdentityModal onClose={this.handleIdentityClose.bind(this)}/>
             )}
           </Card>
         </form>
@@ -302,7 +300,7 @@ class CommentForm extends Component {
         </form>
 
         {this.state.identityModalOpen && (
-          <IdentityModal onClose={this.handleIdentityClose.bind(this)} />
+          <IdentityModal onClose={this.handleIdentityClose.bind(this)}/>
         )}
       </Card>
     )

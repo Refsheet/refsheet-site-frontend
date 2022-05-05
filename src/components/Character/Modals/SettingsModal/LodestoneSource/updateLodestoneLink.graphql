@@ -1,4 +1,4 @@
-#import "fragments/LodestoneCharacterFields.graphql"
+#import "../../../../../graph/fragments/LodestoneCharacterFields.graphql"
 
 mutation updateLodestoneLink($characterId: ID!) {
     updateLodestoneLink(characterId: $characterId) {

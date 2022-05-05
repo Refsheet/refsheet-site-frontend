@@ -2,6 +2,7 @@ import ObjectPath from 'v1/utils/ObjectPath'
 import Model from 'v1/utils/Model'
 import $ from 'jquery'
 import HashUtils from './HashUtils'
+import {host} from "../../services/ApplicationService";
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
@@ -15,26 +16,26 @@ import HashUtils from './HashUtils'
 const StateUtils = {
   page(context, path, page, props) {
     if (props == null) {
-      ;({ props } = context)
+      ;({props} = context)
     }
     if (!page) {
       page = (context.currentPage || 1) + 1
     }
 
     console.debug('[StateUtils] Loading page: ' + page)
-    return this.fetch(context, path, { page }, props)
+    return this.fetch(context, path, {page}, props)
   },
 
   load(context, path, props, callback, options) {
     let elItem
     if (props == null) {
-      ;({ props } = context)
+      ;({props} = context)
     }
     if (options == null) {
       options = {}
     }
-    const { dataPath, paramMap } = context
-    const { eagerLoad } = context.context
+    const {dataPath, paramMap} = context
+    const {eagerLoad} = context.context
     const state = $.extend({}, context.state)
     let fetch = true
 
@@ -85,7 +86,7 @@ const StateUtils = {
       data = {}
     }
     if (props == null) {
-      ;({ props } = context)
+      ;({props} = context)
     }
     const fetchUrl = this.getFetchUrl(context, props)
     const state = $.extend({}, context.state)
@@ -108,7 +109,7 @@ const StateUtils = {
       },
 
       error =>
-        context.setState({ error }, function () {
+        context.setState({error}, function () {
           if (callback) {
             return callback()
           }
@@ -136,7 +137,7 @@ const StateUtils = {
       if (
         (a || b) &&
         (a != null ? a.toUpperCase() : undefined) !==
-          (b != null ? b.toUpperCase() : undefined)
+        (b != null ? b.toUpperCase() : undefined)
       ) {
         fetch = true
         break
@@ -152,7 +153,7 @@ const StateUtils = {
 
   poll(context, path, props) {
     if (props == null) {
-      ;({ props } = context)
+      ;({props} = context)
     }
   },
   //no-op
@@ -169,7 +170,7 @@ const StateUtils = {
   },
 
   updateItems(context, path, items, primaryKey, callback) {
-    let { state } = context
+    let {state} = context
 
     items.map(
       item =>
@@ -208,7 +209,7 @@ const StateUtils = {
     if (typeof stateLink === 'function') {
       stateLink = stateLink()
     }
-    const { dataPath, paramMap } = stateLink
+    const {dataPath, paramMap} = stateLink
 
     const fetchUrl = dataPath.replace(/(:[a-zA-Z]+)/g, function (m) {
       const param = ObjectPath.get(
@@ -218,7 +219,7 @@ const StateUtils = {
       return param || ''
     })
 
-    return fetchUrl.replace(/\/\/+|\/$/g, '')
+    return host + fetchUrl.replace(/\/\/+|\/$/g, '')
   },
 }
 

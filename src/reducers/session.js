@@ -1,4 +1,4 @@
-import { createReducer } from 'reducers'
+import {createReducer} from 'reducers'
 import * as Actions from 'actions'
 import SessionService from '../services/SessionService'
 
@@ -22,6 +22,7 @@ const handlers = {
     if (
       action.nsfwOk &&
       !action.confirmed &&
+      // eslint-disable-next-line no-restricted-globals
       !confirm(
         'By continuing, you assert that you are 18 years or older, and that it is legal for you to view explicit content.'
       )
@@ -29,8 +30,8 @@ const handlers = {
       return state
     }
 
-    SessionService.set({ nsfwOk: action.nsfwOk }).then()
-    return { ...state, nsfwOk: action.nsfwOk }
+    SessionService.set({nsfwOk: action.nsfwOk}).then()
+    return {...state, nsfwOk: action.nsfwOk}
   },
   [Actions.SET_IDENTITY]: (state, action) => {
     let identity

@@ -1,19 +1,21 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import SearchBar from './SearchBar'
 import SiteNav from './SiteNav'
 import UserNav from './UserNav'
 import SessionNav from './SessionNav'
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 import c from 'classnames'
 import styled from 'styled-components'
-import { setCurrentUser, setNsfwMode } from 'actions'
+import {setCurrentUser, setNsfwMode} from 'actions'
 import SessionService from '../../services/SessionService'
 import IdentityModal from '../Shared/CommentForm/IdentityModal'
 import compose from '../../utils/compose'
-import { withErrorBoundary } from '../Shared/ErrorBoundary'
-import { buildShadow } from '../Styled/common'
+import {withErrorBoundary} from '../Shared/ErrorBoundary'
+import {buildShadow} from '../Styled/common'
+
+import RefsheetLogo64 from 'assets/images/logos/RefsheetLogo_64.png'
 
 class NavBar extends Component {
   constructor(props) {
@@ -27,7 +29,7 @@ class NavBar extends Component {
       menuOpen: false,
     }
 
-    this.logoSrc = '/assets/logos/RefsheetLogo_64.png'
+    this.logoSrc = RefsheetLogo64
 
     this.handleLoginClick = this.handleLoginClick.bind(this)
     this.handleLogoutClick = this.handleLogoutClick.bind(this)
@@ -61,48 +63,48 @@ class NavBar extends Component {
 
   handleNsfwClick(e) {
     e.preventDefault()
-    const { nsfwOk } = this.props.session
+    const {nsfwOk} = this.props.session
     this.props.setNsfwMode(!nsfwOk)
   }
 
   handleMenuToggle(e) {
     e.preventDefault()
-    this.setState({ menuOpen: !this.state.menuOpen })
+    this.setState({menuOpen: !this.state.menuOpen})
   }
 
   handleMenuClose(e) {
     e.preventDefault()
-    this.setState({ menuOpen: false })
+    this.setState({menuOpen: false})
   }
 
   handleNoticeClose(e) {
     e.preventDefault()
-    this.setState({ noticeClosed: true })
+    this.setState({noticeClosed: true})
   }
 
   handleIdentityOpen(e) {
     e.preventDefault()
-    this.setState({ identityModalOpen: true })
+    this.setState({identityModalOpen: true})
   }
 
   handleIdentityClose() {
-    this.setState({ identityModalOpen: false })
+    this.setState({identityModalOpen: false})
   }
 
   render() {
     const {
       query,
-      session: { nsfwOk, currentUser, identity },
+      session: {nsfwOk, currentUser, identity},
       className,
     } = this.props
 
-    const { menuOpen } = this.state
+    const {menuOpen} = this.state
 
     return (
       <div
-        className={c('NavBar navbar-fixed user-bar', className, { menuOpen })}
+        className={c('NavBar navbar-fixed user-bar', className, {menuOpen})}
       >
-        <div className="navbar-shroud" onClick={this.handleMenuClose} />
+        <div className="navbar-shroud" onClick={this.handleMenuClose}/>
 
         {!this.state.noticeClosed && this.props.notice && (
           <div
@@ -124,7 +126,7 @@ class NavBar extends Component {
         )}
 
         {this.state.identityModalOpen && (
-          <IdentityModal onClose={this.handleIdentityClose.bind(this)} />
+          <IdentityModal onClose={this.handleIdentityClose.bind(this)}/>
         )}
 
         <nav>
@@ -146,10 +148,10 @@ class NavBar extends Component {
               />
             </Link>
 
-            <SiteNav />
+            <SiteNav/>
 
             <div className="right">
-              <SearchBar query={query} />
+              <SearchBar query={query}/>
 
               {currentUser ? (
                 <UserNav
@@ -186,7 +188,7 @@ NavBar.propTypes = {
   notice: PropTypes.string,
 }
 
-const mapStateToProps = ({ session }, props) => ({
+const mapStateToProps = ({session}, props) => ({
   session,
   ...props,
 })

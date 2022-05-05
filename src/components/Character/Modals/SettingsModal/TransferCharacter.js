@@ -1,14 +1,17 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import compose from 'utils/compose'
-import { Trans, withTranslation } from 'react-i18next'
-import { Row, Col, TextInput } from 'react-materialize'
-import transferCharacter from './transferCharacter.graphql'
-import { withCurrentUser, withMutations } from '../../../../utils/compose'
+import {Trans, withTranslation} from 'react-i18next'
+import {Row, Col, TextInput} from 'react-materialize'
+import {loader} from 'graphql.macro'
+
+import {withCurrentUser, withMutations} from '../../../../utils/compose'
 import authorize from 'policies'
-import validate, { errorProps, isRequired } from '../../../../utils/validate'
+import validate, {errorProps, isRequired} from '../../../../utils/validate'
 
 import * as Materialize from 'materialize-css'
+
+const transferCharacter = loader('./transferCharacter.graphql');
 
 class TransferCharacter extends Component {
   constructor(props) {
@@ -18,14 +21,14 @@ class TransferCharacter extends Component {
       destination: [isRequired],
     }
 
-    this.state = { destination: '', errors: {} }
+    this.state = {destination: '', errors: {}}
   }
 
   handleDestinationChange(e) {
     e.preventDefault()
     const destination = e.target.value
-    const errors = validate({ destination }, this.validations)
-    this.setState({ destination, errors })
+    const errors = validate({destination}, this.validations)
+    this.setState({destination, errors})
   }
 
   handleSubmit(e) {
@@ -35,7 +38,8 @@ class TransferCharacter extends Component {
       character,
       currentUser,
       transferCharacter,
-      onSave = _c => {},
+      onSave = _c => {
+      },
     } = this.props
 
     if (!authorize(character, currentUser, 'transfer')) {
@@ -50,7 +54,7 @@ class TransferCharacter extends Component {
         destination: this.state.destination,
       },
     })
-      .then(({ transferCharacter }) => {
+      .then(({transferCharacter}) => {
         Materialize.toast({
           html: 'Character transfer initiated',
           displayLength: 3000,
@@ -60,7 +64,7 @@ class TransferCharacter extends Component {
         // Update Cache
         onSave(transferCharacter)
       })
-      .catch(({ validationErrors }) => {
+      .catch(({validationErrors}) => {
         this.setState({
           errors: {
             ...validationErrors,
@@ -71,8 +75,8 @@ class TransferCharacter extends Component {
   }
 
   render() {
-    const { t } = this.props
-    const { errors } = this.state
+    const {t} = this.props
+    const {errors} = this.state
 
     return (
       <form
@@ -143,6 +147,6 @@ TransferCharacter.propTypes = {
 
 export default compose(
   withTranslation('common'),
-  withMutations({ transferCharacter }),
+  withMutations({transferCharacter}),
   withCurrentUser()
 )(TransferCharacter)

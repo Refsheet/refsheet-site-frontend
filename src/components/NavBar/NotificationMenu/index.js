@@ -1,15 +1,18 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import DropdownLink from '../DropdownLink'
 import NotificationItem from '../Dropdown/NotificationItem'
-import { Link } from 'react-router-dom'
-import Scrollbars from 'Shared/Scrollbars'
+import {Link} from 'react-router-dom'
+import Scrollbars from 'components/Shared/Scrollbars'
 import subscription from './subscription'
-import markAllNotificationsAsRead from './markAllNotificationsAsRead.graphql'
-import readNotification from './readNotification.graphql'
+import {loader} from 'graphql.macro'
+
 import WindowAlert from '../../../utils/WindowAlert'
-import compose, { withMutations } from '../../../utils/compose'
-import { withTranslation } from 'react-i18next'
+import compose, {withMutations} from '../../../utils/compose'
+import {withTranslation} from 'react-i18next'
+
+const markAllNotificationsAsRead = loader('./markAllNotificationsAsRead.graphql');
+const readNotification = loader('./readNotification.graphql');
 
 class NotificationMenu extends Component {
   constructor(props) {
@@ -27,16 +30,16 @@ class NotificationMenu extends Component {
   }
 
   handleMarkAllClick(e) {
-    const { unreadCount, loading = false, refetch, markAllAsRead } = this.props
+    const {unreadCount, loading = false, refetch, markAllAsRead} = this.props
 
     e.preventDefault()
-    this.setState({ markAllLoading: true })
+    this.setState({markAllLoading: true})
 
     if (unreadCount !== 0 && !loading && markAllAsRead) {
       markAllAsRead()
         .then(_data => {
           if (refetch) refetch()
-          this.setState({ markAllLoading: false })
+          this.setState({markAllLoading: false})
         })
         .catch(console.error)
     }
@@ -116,10 +119,10 @@ NotificationMenu.propTypes = {
   unreadCount: PropTypes.number,
 }
 
-export { NotificationMenu }
+export {NotificationMenu}
 
 export default compose(
   subscription,
   withTranslation('common'),
-  withMutations({ markAllAsRead: markAllNotificationsAsRead, readNotification })
+  withMutations({markAllAsRead: markAllNotificationsAsRead, readNotification})
 )(NotificationMenu)

@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { format } from 'NumberUtils'
+import {format} from 'utils/NumberUtils'
 import Moment from 'react-moment'
 
-const Stats = ({ children }) => <ul className={'stats'}>{children}</ul>
+const Stats = ({children}) => <ul className={'stats'}>{children}</ul>
 
-const Stat = ({ label, value, children, age, numeric, suffix }) => {
+const Stat = ({label, value, children, age, numeric, suffix}) => {
   let formattedValue = value || children
 
   if (numeric) {
@@ -36,4 +36,4 @@ Stat.propTypes = {
 }
 
 export default Stats
-export { Stat }
+export {Stat}

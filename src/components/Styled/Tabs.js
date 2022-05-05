@@ -1,4 +1,4 @@
-import { default as MaterialTabs, Tab as MaterialTab } from 'Shared/Tabs'
+import {default as MaterialTabs, Tab as MaterialTab} from 'components/Shared/Tabs'
 import styled from 'styled-components'
 
 const Tabs = styled(MaterialTabs)`
@@ -27,6 +27,6 @@ const Tabs = styled(MaterialTabs)`
 
 const Tab = styled(MaterialTab)``
 
-export { Tab }
+export {Tab}
 
 export default Tabs

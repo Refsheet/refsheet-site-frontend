@@ -14,21 +14,25 @@
  * DS102: Remove unnecessary code created because of implicit returns
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import View from './View'
-import { Error } from 'Shared'
+import {Error} from 'components/Shared'
 import PropTypes from 'prop-types'
-import { graphql } from 'react-apollo'
-import { getCharacterProfile } from 'queries/getCharacterProfile.graphql'
-import { connect } from 'react-redux'
+import {graphql} from 'react-apollo'
+import {loader} from 'graphql.macro'
+
+import {connect} from 'react-redux'
 import Loading from '../Shared/views/Loading'
+
+const getCharacterProfile = loader('../../graph/queries/getCharacterProfile.graphql');
+console.log({getCharacterProfile})
 
 class Character extends Component {
   constructor(props) {
     super(props)
     this.refetch = this.refetch.bind(this)
 
-    this.state = { editable: false }
+    this.state = {editable: false}
   }
 
   refetch() {
@@ -36,13 +40,13 @@ class Character extends Component {
   }
 
   render() {
-    const { data } = this.props
+    const {data} = this.props
 
     if (data.loading) {
-      return <Loading />
+      return <Loading/>
     } else if (data.error) {
       const message = data.error.graphQLErrors.map(e => e.message).join(', ')
-      return <Error message={message} />
+      return <Error message={message}/>
     } else {
       return (
         <View
@@ -55,7 +59,7 @@ class Character extends Component {
   }
 }
 
-const mapStateToProps = ({ uploads }) => ({
+const mapStateToProps = ({uploads}) => ({
   files: uploads.files,
 })
 
@@ -63,6 +67,6 @@ const Connected = connect(mapStateToProps)(Character)
 
 export default graphql(getCharacterProfile, {
   options(props) {
-    return { variables: props.match.params }
+    return {variables: props.match.params}
   },
 })(Connected)

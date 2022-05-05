@@ -1,12 +1,13 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import compose from '../../../utils/compose'
-import { withTranslation } from 'react-i18next'
+import {withTranslation} from 'react-i18next'
 import DiscussionLink from './DiscussionLink'
-import { Query } from 'react-apollo'
-import getDiscussions from '../getDiscussions.graphql'
+import {Query} from 'react-apollo'
+import {loader} from 'graphql.macro'
+
 import Error from '../../Shared/Error'
-import { Link } from 'react-router-dom'
-import PostTags, { DropdownTag } from '../shared/PostTags'
+import {Link} from 'react-router-dom'
+import PostTags, {DropdownTag} from '../shared/PostTags'
 import Restrict from '../../Shared/Restrict'
 import c from 'classnames'
 
@@ -14,6 +15,8 @@ import NumberUtils from 'v1/utils/NumberUtils'
 
 import Advertisement from 'v1/shared/advertisement'
 import Loading from '../../Shared/views/Loading'
+
+const getDiscussions = loader('../getDiscussions.graphql');
 
 class Discussions extends Component {
   constructor(props) {
@@ -26,19 +29,19 @@ class Discussions extends Component {
   }
 
   renderDiscussions(props) {
-    const { forum, t, query } = this.props
-    const { data, loading, error } = props
+    const {forum, t, query} = this.props
+    const {data, loading, error} = props
     let content
-    let { totalEntries, offset, count } =
-      (data && data.getForum && data.getForum.discussions) || {}
+    let {totalEntries, offset, count} =
+    (data && data.getForum && data.getForum.discussions) || {}
 
     if (loading) {
-      content = <Loading />
+      content = <Loading/>
     } else if (error) {
-      content = <Error error={error} />
+      content = <Error error={error}/>
     } else {
-      const { discussions, ...rest } = data.getForum.discussions || []
-      console.log({ rest })
+      const {discussions, ...rest} = data.getForum.discussions || []
+      console.log({rest})
 
       if (discussions.length === 0) {
         content = (
@@ -61,7 +64,7 @@ class Discussions extends Component {
       <div>
         <div className="forum-posts--group-name">
           {query
-            ? t('forums.search_posts', 'Search for: {{query}}', { query })
+            ? t('forums.search_posts', 'Search for: {{query}}', {query})
             : t('forums.recent_posts', 'Recent Posts')}
 
           {totalEntries > 0 && (
@@ -81,15 +84,15 @@ class Discussions extends Component {
   handleSortClick(sortBy) {
     return e => {
       e.preventDefault()
-      this.setState({ sort: sortBy })
+      this.setState({sort: sortBy})
     }
   }
 
   render() {
-    const { forum, t, query } = this.props
-    const { page, sort } = this.state
+    const {forum, t, query} = this.props
+    const {page, sort} = this.state
     const {
-      discussions: { discussions, total_entries },
+      discussions: {discussions, total_entries},
     } = forum
 
     const i18nDefaults = {
@@ -125,14 +128,14 @@ class Discussions extends Component {
               >
                 <a
                   href={'#'}
-                  className={c({ active: sort === 'recent_comments' })}
+                  className={c({active: sort === 'recent_comments'})}
                   onClick={this.handleSortClick('recent_comments').bind(this)}
                 >
                   {t('forums.recent_comments', 'Recent Comments')}
                 </a>
                 <a
                   href={'#'}
-                  className={c({ active: sort === 'newest_discussions' })}
+                  className={c({active: sort === 'newest_discussions'})}
                   onClick={this.handleSortClick('newest_discussions').bind(
                     this
                   )}
@@ -141,7 +144,7 @@ class Discussions extends Component {
                 </a>
                 <a
                   href={'#'}
-                  className={c({ active: sort === 'top_rated' })}
+                  className={c({active: sort === 'top_rated'})}
                   onClick={this.handleSortClick('top_rated').bind(this)}
                 >
                   {t('forums.top_rated', 'Top Rated')}
@@ -181,7 +184,7 @@ class Discussions extends Component {
         </main>
 
         <aside className={'sidebar left-pad'}>
-          {typeof Advertisement != 'undefined' && <Advertisement />}
+          {typeof Advertisement != 'undefined' && <Advertisement/>}
         </aside>
       </div>
     )

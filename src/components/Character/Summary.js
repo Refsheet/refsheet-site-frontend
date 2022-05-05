@@ -1,20 +1,23 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import { div as Card } from 'Styled/Card'
-import { H1, H2 } from 'Styled/Headings'
+import {div as Card} from 'components/Styled/Card'
+import {H1, H2} from 'components/Styled/Headings'
 import EditableHeader from '../Shared/EditableHeader'
-import { Mutation } from 'react-apollo'
-import updateCharacter from './updateCharacter.graphql'
+import {Mutation} from 'react-apollo'
+import {loader} from 'graphql.macro'
+
 import * as M from 'materialize-css'
 import WindowAlert from '../../utils/WindowAlert'
 
 import AttributeTable from 'v1/shared/attributes/attribute_table'
 import Attribute from 'v1/shared/attributes/attribute'
 import Attributes from 'v1/views/characters/_attributes'
-import { Caption } from '../Styled/Caption'
+import {Caption} from '../Styled/Caption'
 import RichText from '../Shared/RichText'
 import MarketplaceBuyModal from './Modals/MarketplaceBuyModal'
 import CharacterSaleButton from './Modals/MarketplaceBuyModal/CharacterSaleButton'
+
+const updateCharacter = loader('./updateCharacter.graphql');
 
 class Summary extends Component {
   constructor(props) {
@@ -38,12 +41,12 @@ class Summary extends Component {
           id: this.props.character.id,
         },
       })
-      .then(({ data, errors }) => {
+      .then(({data, errors}) => {
         if (errors) {
           console.error(errors)
           reject && reject(errors)
           errors.map(e =>
-            M.toast({ html: e.message, classes: 'red', displayLength: 3000 })
+            M.toast({html: e.message, classes: 'red', displayLength: 3000})
           )
         } else {
           done(data.updateCharacter)
@@ -53,25 +56,25 @@ class Summary extends Component {
   }
 
   handleNameChange(name) {
-    this.updateCharacter({ name }, data => {
-      this.setState({ name: data.name })
+    this.updateCharacter({name}, data => {
+      this.setState({name: data.name})
       WindowAlert.add('main', data.name)
     })
   }
 
   handleSpeciesChange(attribute, done) {
-    this.updateCharacter({ species: attribute.value }, data => {
+    this.updateCharacter({species: attribute.value}, data => {
       done()
-      this.setState({ species: data.species })
+      this.setState({species: data.species})
     })
   }
 
-  handleNotesChange({ value }) {
+  handleNotesChange({value}) {
     return new Promise((resolve, reject) => {
       this.updateCharacter(
-        { special_notes: value },
+        {special_notes: value},
         data => {
-          resolve({ value: data.special_notes })
+          resolve({value: data.special_notes})
           this.setState({
             special_notes: data.special_notes,
             special_notes_html: data.special_notes_html,
@@ -82,12 +85,12 @@ class Summary extends Component {
     })
   }
 
-  handleAttributesChange({ custom_attributes: attributes }) {
-    this.setState({ attributes })
+  handleAttributesChange({custom_attributes: attributes}) {
+    this.setState({attributes})
   }
 
   render() {
-    const { character, editable, onAvatarEdit, onMarketplaceBuy } = this.props
+    const {character, editable, onAvatarEdit, onMarketplaceBuy} = this.props
 
     const {
       profile_image,
@@ -137,11 +140,11 @@ class Summary extends Component {
     }
 
     const gravityCrop = {
-      center: { objectPosition: 'center' },
-      north: { objectPosition: 'top' },
-      south: { objectPosition: 'bottom' },
-      east: { objectPosition: 'right' },
-      west: { objectPosition: 'left' },
+      center: {objectPosition: 'center'},
+      north: {objectPosition: 'top'},
+      south: {objectPosition: 'bottom'},
+      east: {objectPosition: 'right'},
+      west: {objectPosition: 'left'},
     }
 
     return (
@@ -187,7 +190,7 @@ class Summary extends Component {
               }
             >
               {staticAttributes.map(a => (
-                <Attribute key={a.id} id={a.id} name={a.name} value={a.value} />
+                <Attribute key={a.id} id={a.id} name={a.name} value={a.value}/>
               ))}
             </AttributeTable>
 
@@ -214,7 +217,7 @@ class Summary extends Component {
         </div>
 
         <div className="character-image">
-          <Card className="slant" />
+          <Card className="slant"/>
           <img
             src={image}
             data-image-id={image.id || 'v2-image'}
@@ -241,8 +244,8 @@ Summary.propTypes = {
 
 const Mutated = props => (
   <Mutation mutation={updateCharacter}>
-    {(update, { data }) => (
-      <Summary {...props} update={update} mutationData={data} />
+    {(update, {data}) => (
+      <Summary {...props} update={update} mutationData={data}/>
     )}
   </Mutation>
 )

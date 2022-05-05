@@ -1,4 +1,4 @@
-#import 'graphql/fragments/ConversationsFields.graphql'
+#import '../../../graph/fragments/ConversationsFields.graphql'
 
 query getConversations {
     getConversations {

@@ -1,17 +1,19 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { Mutation } from 'react-apollo'
-import postReply from './postReply.graphql'
+import {connect} from 'react-redux'
+import {Mutation} from 'react-apollo'
+import {loader} from 'graphql.macro'
+
+const postReply = loader('./postReply.graphql');
 import CommentForm from '../Shared/CommentForm'
-import { withTranslation } from 'react-i18next'
+import {withTranslation} from 'react-i18next'
 
 class LegacyForumReply extends Component {
   constructor(props) {
     super(props)
   }
 
-  handleSubmit({ comment, identity }) {
+  handleSubmit({comment, identity}) {
     return this.props.post({
       variables: {
         content: comment,
@@ -21,7 +23,7 @@ class LegacyForumReply extends Component {
     })
   }
 
-  handleSubmitConfirm({ postReply }) {
+  handleSubmitConfirm({postReply}) {
     this.props.onPost(postReply)
   }
 
@@ -30,7 +32,7 @@ class LegacyForumReply extends Component {
       return null
     }
 
-    const { t } = this.props
+    const {t} = this.props
 
     return (
       <CommentForm
@@ -52,7 +54,7 @@ LegacyForumReply.propTypes = {
 
 const withMutation = props => (
   <Mutation mutation={postReply}>
-    {(post, data) => <LegacyForumReply {...props} post={post} data={data} />}
+    {(post, data) => <LegacyForumReply {...props} post={post} data={data}/>}
   </Mutation>
 )
 

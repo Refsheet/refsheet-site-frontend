@@ -1,14 +1,14 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import { gql } from 'apollo-client-preset'
-import { Icon } from 'react-materialize'
+import {gql} from 'apollo-client-preset'
+import {Icon} from 'react-materialize'
 import Conversations from './Conversations'
 import Conversation from './Conversation'
 import c from 'classnames'
-import { format as f } from 'NumberUtils'
-import WindowAlert from 'WindowAlert'
-import { Query, Subscription } from 'react-apollo'
-import { userClasses } from '../../utils/UserUtils'
+import {format as f} from 'utils/NumberUtils'
+import WindowAlert from 'utils/WindowAlert'
+import {Query, Subscription} from 'react-apollo'
+import {userClasses} from '../../utils/UserUtils'
 
 class Chat extends Component {
   constructor(props) {
@@ -48,7 +48,7 @@ class Chat extends Component {
     })
   }
 
-  handleConversationChange({ id, name, user }) {
+  handleConversationChange({id, name, user}) {
     let activeConversationId = null
 
     if (typeof id !== 'undefined' && id !== null) {
@@ -73,7 +73,7 @@ class Chat extends Component {
       activeConversationUser: user,
     } = this.state
 
-    const { unread } = this.props
+    const {unread} = this.props
 
     let title, body, isUnread
 
@@ -102,12 +102,12 @@ class Chat extends Component {
       )
     } else {
       body = (
-        <Conversations onConversationSelect={this.handleConversationChange} />
+        <Conversations onConversationSelect={this.handleConversationChange}/>
       )
     }
 
     return (
-      <div className={c('chat-popout', { open: isOpen, unread: isUnread })}>
+      <div className={c('chat-popout', {open: isOpen, unread: isUnread})}>
         <div
           className={c(
             'chat-title',
@@ -133,32 +133,32 @@ class Chat extends Component {
 }
 
 const CHAT_COUNT_SUBSCRIPTION = gql`
-  subscription chatCountsChanged {
-    chatCountsChanged {
-      unread
+    subscription chatCountsChanged {
+        chatCountsChanged {
+            unread
+        }
     }
-  }
 `
 
 const CHAT_COUNT_QUERY = gql`
-  query chatCounts {
-    chatCounts {
-      unread
+    query chatCounts {
+        chatCounts {
+            unread
+        }
     }
-  }
 `
 
 const Wrapped = props => {
   return (
     <Subscription subscription={CHAT_COUNT_SUBSCRIPTION}>
-      {({ data: subscriptionData }) => (
+      {({data: subscriptionData}) => (
         <Query query={CHAT_COUNT_QUERY}>
-          {({ data: queryData }) => {
+          {({data: queryData}) => {
             const counts = (subscriptionData &&
-              subscriptionData.chatCountsChanged) ||
-              (queryData && queryData.chatCounts) || { unread: 0 }
+                subscriptionData.chatCountsChanged) ||
+              (queryData && queryData.chatCounts) || {unread: 0}
 
-            return <Chat {...props} unread={counts.unread} />
+            return <Chat {...props} unread={counts.unread}/>
           }}
         </Query>
       )}

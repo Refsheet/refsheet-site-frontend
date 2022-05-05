@@ -1,18 +1,18 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import { Container, Row, Col } from 'react-materialize'
-import { ThemeProvider } from 'styled-components'
+import {Container, Row, Col} from 'react-materialize'
+import {ThemeProvider} from 'styled-components'
 import Header from './Header'
 import Profile from './Profile'
 import Gallery from './Gallery'
 import Sidebar from './Sidebar'
-import { StickyContainer } from 'react-sticky'
-import { ThemedMain } from 'Styled/Global'
+import {StickyContainer} from 'react-sticky'
+import {ThemedMain} from 'components/Styled/Global'
 import SettingsModal from './Modals/SettingsModal'
 import ColorModal from './Modals/ColorModal'
 import compose from '../../utils/compose'
-import { connect } from 'react-redux'
-import { setUploadTarget } from '../../actions'
+import {connect} from 'react-redux'
+import {setUploadTarget} from '../../actions'
 import RevisionModal from './Modals/RevisionModal'
 import AvatarModal from './Modals/AvatarModal'
 import CoverModal from './Modals/CoverModal'
@@ -60,11 +60,11 @@ class View extends Component {
   }
 
   handleColorSchemeOverride(theme, callback) {
-    this.setState({ colorSchemeOverride: theme }, callback)
+    this.setState({colorSchemeOverride: theme}, callback)
   }
 
   handleEditableChange(editable) {
-    this.setState({ editable })
+    this.setState({editable})
 
     if (!editable) {
       this.props.refetch()
@@ -95,10 +95,10 @@ class View extends Component {
    * That's complicated and unnecessary this is fine just let it go.
    */
   render() {
-    const { character, refetch, session } = this.props
+    const {character, refetch, session} = this.props
 
     if (!character) {
-      return <Error error={'Character was not found?'} />
+      return <Error error={'Character was not found?'}/>
     }
 
     const {
@@ -110,8 +110,8 @@ class View extends Component {
       marketplaceBuyOpen,
     } = this.state
 
-    const { colors } =
-      this.state.colorSchemeOverride || this.props.character.theme || {}
+    const {colors} =
+    this.state.colorSchemeOverride || this.props.character.theme || {}
 
     const theme = themes[session.theme] || themes.dark
     console.log(theme, colors)
@@ -239,5 +239,5 @@ const mapDispatchToProps = {
 }
 
 export default compose(
-  connect(({ session }) => ({ session }), mapDispatchToProps)
+  connect(({session}) => ({session}), mapDispatchToProps)
 )(View)

@@ -1,15 +1,18 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import { camelize } from 'utils/ObjectUtils'
-import widgets, { SerializerWidget } from './Widgets'
+import {camelize} from 'utils/ObjectUtils'
+import widgets, {SerializerWidget} from './Widgets'
 import ProfileWidgetHeader from './ProfileWidgetHeader'
-import { Mutation } from 'react-apollo'
-import updateProfileWidget from './updateProfileWidget.graphql'
-import deleteProfileWidget from './deleteProfileWidget.graphql'
+import {Mutation} from 'react-apollo'
+import {loader} from 'graphql.macro'
+
 import * as M from 'materialize-css'
-import { div as Card } from '../Styled/Card'
+import {div as Card} from '../Styled/Card'
 import compose from '../../utils/compose'
-import { withErrorBoundary } from '../Shared/ErrorBoundary'
+import {withErrorBoundary} from '../Shared/ErrorBoundary'
+
+const updateProfileWidget = loader('./updateProfileWidget.graphql');
+const deleteProfileWidget = loader('./deleteProfileWidget.graphql');
 
 class ProfileWidget extends Component {
   constructor(props) {
@@ -23,11 +26,11 @@ class ProfileWidget extends Component {
   }
 
   handleEditStart() {
-    this.setState({ editing: true })
+    this.setState({editing: true})
   }
 
   handleEditStop(save = true) {
-    let state = { editing: false, saving: false }
+    let state = {editing: false, saving: false}
 
     if (!save) {
       state.widgetData = this.props.data
@@ -42,15 +45,15 @@ class ProfileWidget extends Component {
     }
 
     this.props
-      .deleteWidget({ variables: payload })
-      .then(({ data, errors }) => {
+      .deleteWidget({variables: payload})
+      .then(({data, errors}) => {
         if (errors) {
           console.error(errors)
           errors.map(e =>
-            M.toast({ html: e.message, classes: 'red', displayLength: 3000 })
+            M.toast({html: e.message, classes: 'red', displayLength: 3000})
           )
         } else {
-          const { deleteProfileWidget: widgetData } = data
+          const {deleteProfileWidget: widgetData} = data
           this.props.onDelete && this.props.onDelete(widgetData.id)
         }
       })
@@ -71,15 +74,15 @@ class ProfileWidget extends Component {
     }
 
     this.props
-      .update({ variables: payload })
-      .then(({ data, errors }) => {
+      .update({variables: payload})
+      .then(({data, errors}) => {
         if (errors) {
           console.error(errors)
           errors.map(e =>
-            M.toast({ html: e.message, classes: 'red', displayLength: 3000 })
+            M.toast({html: e.message, classes: 'red', displayLength: 3000})
           )
         } else {
-          const { updateProfileWidget: widgetData } = data
+          const {updateProfileWidget: widgetData} = data
           this.props.onChange && this.props.onChange(widgetData)
         }
       })
@@ -93,20 +96,20 @@ class ProfileWidget extends Component {
       title: title,
     }
 
-    this.setState({ saving: true })
+    this.setState({saving: true})
 
     this.props
-      .update({ variables: payload })
-      .then(({ data, errors }) => {
+      .update({variables: payload})
+      .then(({data, errors}) => {
         if (errors) {
           console.error(errors)
           errors.map(e =>
-            M.toast({ html: e.message, classes: 'red', displayLength: 3000 })
+            M.toast({html: e.message, classes: 'red', displayLength: 3000})
           )
         } else {
-          const { updateProfileWidget: widgetData } = data
+          const {updateProfileWidget: widgetData} = data
 
-          this.setState({ saving: false, widgetData: widgetData.data })
+          this.setState({saving: false, widgetData: widgetData.data})
           this.props.onChange && this.props.onChange(widgetData)
           this.handleEditStop()
         }
@@ -183,13 +186,13 @@ ProfileWidget.propTypes = {
 
 const Mutated = props => (
   <Mutation mutation={updateProfileWidget}>
-    {update => <ProfileWidget {...props} update={update} />}
+    {update => <ProfileWidget {...props} update={update}/>}
   </Mutation>
 )
 
 const DeleteMutation = props => (
   <Mutation mutation={deleteProfileWidget}>
-    {deleteWidget => <Mutated {...props} deleteWidget={deleteWidget} />}
+    {deleteWidget => <Mutated {...props} deleteWidget={deleteWidget}/>}
   </Mutation>
 )
 

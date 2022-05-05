@@ -1,17 +1,19 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
-import removeComment from './removeComment.graphql'
-import compose, { withCurrentUser, withMutations } from '../../../utils/compose'
+import {Link} from 'react-router-dom'
+import {loader} from 'graphql.macro'
+import compose, {withCurrentUser, withMutations} from '../../../utils/compose'
 import subscribe from '../../../services/buildSubscriptionRender'
 import CommentForm from '../../Shared/CommentForm'
-import addComment from './addComment.graphql'
-import getComments from './getComments.graphql'
-import subscribeToComments from './subscribeToComments.graphql'
 import Scrollbars from '../../Shared/Scrollbars'
-import { AutoSizer } from 'react-virtualized'
+import {AutoSizer} from 'react-virtualized'
 import Moment from 'react-moment'
 import EmailConfirmationNag from '../../User/EmailConfirmationNag'
+
+const removeComment = loader('./removeComment.graphql');
+const addComment = loader('./addComment.graphql');
+const getComments = loader('./getComments.graphql');
+const subscribeToComments = loader('./subscribeToComments.graphql');
 
 class Comments extends Component {
   constructor(props) {
@@ -33,7 +35,7 @@ class Comments extends Component {
 
     return (
       <div className="card flat with-avatar" key={comment.id}>
-        <img src={comment.user.avatar_url} className="circle avatar" />
+        <img src={comment.user.avatar_url} className="circle avatar"/>
         <div className="card-content">
           <Moment fromNow unix withTitle className={'muted right'}>
             {comment.created_at}
@@ -45,8 +47,8 @@ class Comments extends Component {
     )
   }
 
-  handleSubmit({ comment, identity }) {
-    const { mediaId, addComment } = this.props
+  handleSubmit({comment, identity}) {
+    const {mediaId, addComment} = this.props
 
     const variables = {
       mediaId,
@@ -58,14 +60,14 @@ class Comments extends Component {
     })
   }
 
-  handlePost({ addComment: comment }) {
+  handlePost({addComment: comment}) {
     this.setState({
       pendingComments: [...this.state.pendingComments, comment],
     })
   }
 
   render() {
-    const { comments, count = 0, isManaged, loading, currentUser } = this.props
+    const {comments, count = 0, isManaged, loading, currentUser} = this.props
 
     let renderComments
 
@@ -93,7 +95,7 @@ class Comments extends Component {
       <div className={'flex-vertical comments'}>
         <div className={'flex-content overflow'}>
           <AutoSizer disableWidth>
-            {({ height, width }) => (
+            {({height, width}) => (
               <Scrollbars maxHeight={height}>{renderComments}</Scrollbars>
             )}
           </AutoSizer>
@@ -130,7 +132,7 @@ const mapDataToProps = data => ({
 })
 
 const updateQuery = (prev, data) => {
-  const { newComment } = data
+  const {newComment} = data
 
   return {
     ...prev,
@@ -148,6 +150,6 @@ export default compose(
     mapDataToProps,
     updateQuery,
   }),
-  withMutations({ removeComment, addComment }),
+  withMutations({removeComment, addComment}),
   withCurrentUser()
 )(Comments)

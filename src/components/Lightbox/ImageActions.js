@@ -1,16 +1,20 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import { Icon, Dropdown, Divider } from 'react-materialize'
-import { closeLightbox } from '../../actions'
-import compose, { withMutations } from '../../utils/compose'
-import { withTranslation } from 'react-i18next'
-import { connect } from 'react-redux'
-import deleteMedia from './deleteMedia.graphql'
-import { getCharacterProfile as gcp } from 'queries/getCharacterProfile.graphql'
+import {Icon, Dropdown, Divider} from 'react-materialize'
+import {closeLightbox} from '../../actions'
+import compose, {withMutations} from '../../utils/compose'
+import {withTranslation} from 'react-i18next'
+import {connect} from 'react-redux'
+import {loader} from 'graphql.macro'
+
 import M from 'materialize-css'
 
 import Modal from 'v1/shared/Modal'
 import CacheUtils from '../../utils/CacheUtils'
+
+const deleteMedia = loader('./deleteMedia.graphql');
+
+const gcp = loader('../../graph/queries/getCharacterProfile.graphql');
 
 class ImageActions extends Component {
   constructor(props) {
@@ -42,7 +46,7 @@ class ImageActions extends Component {
         },
         update: CacheUtils.deleteMedia,
       })
-      .then(({ data, errors }) => {
+      .then(({data, errors}) => {
         if (!errors || errors.length === 0) {
           this.props.closeLightbox()
           M.toast({
@@ -81,9 +85,9 @@ class ImageActions extends Component {
   }
 
   render() {
-    const { downloadLink, t } = this.props
+    const {downloadLink, t} = this.props
 
-    const { deleteModalOpen } = this.state
+    const {deleteModalOpen} = this.state
 
     return (
       <div className={'image-actions'}>
@@ -175,5 +179,5 @@ const mapDispatchToProps = {
 export default compose(
   withTranslation('common'),
   connect(undefined, mapDispatchToProps),
-  withMutations({ deleteMedia })
+  withMutations({deleteMedia})
 )(ImageActions)

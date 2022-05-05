@@ -1,4 +1,4 @@
-#import 'fragments/NotificationsFields.graphql'
+#import '../../../graph/fragments/NotificationsFields.graphql'
 
 mutation readNotification($id: ID!) {
     readNotification(id: $id) {

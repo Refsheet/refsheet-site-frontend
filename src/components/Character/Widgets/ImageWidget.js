@@ -1,16 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import ProgressiveImage from 'react-progressive-image'
+import Logo from 'assets/images/logos/RefsheetLogo_White_200.png'
 
-const ImageWidget = ({ imageSrc, alt, caption }) => (
+const ImageWidget = ({imageSrc, alt, caption}) => (
   <div className="image-widget">
     <ProgressiveImage
       src={imageSrc}
-      placeholder="https://assets.refsheet.net/assets/logos/RefsheetLogo_White_200.png"
+      placeholder={Logo}
     >
       {(src, loading) => (
         <img
-          style={{ opacity: loading ? 0.5 : 1 }}
+          style={{opacity: loading ? 0.5 : 1}}
           src={src}
           alt={alt}
           className="responsive-img block"

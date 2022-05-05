@@ -1,20 +1,20 @@
 @import '~materialize-css/sass/components/color-variables';
-@import 'variables.shared.sass';
-@import 'variables.sass';
+@import 'scss/_variables.shared.sass';
+@import 'scss/_variables.sass';
 
-$mde-border-radius:                 0px;
-$mde-white-color:                   white;
-$mde-border-color:                  transparent;
-$mde-button-color:                  $page-text-color;
-$mde-toolbar-color:                 darken($card-bg-color, 1%);
-$mde-selected-color:                $brand-primary;
-$mde-toolbar-padding:               0.5rem;
-$mde-editor-default-min-height:     5rem;
-$mde-editor-padding:                1rem;
-$mde-preview-horizontal-padding:    1rem;
-$mde-preview-padding:               1rem;
-$mde-preview-default-min-height:    $mde-editor-default-min-height;
-$mde-preview-default-height:        auto;
+$mde-border-radius: 0px;
+$mde-white-color: white;
+$mde-border-color: transparent;
+$mde-button-color: $page-text-color;
+$mde-toolbar-color: darken($card-bg-color, 1%);
+$mde-selected-color: $brand-primary;
+$mde-toolbar-padding: 0.5rem;
+$mde-editor-default-min-height: 5rem;
+$mde-editor-padding: 1rem;
+$mde-preview-horizontal-padding: 1rem;
+$mde-preview-padding: 1rem;
+$mde-preview-default-min-height: $mde-editor-default-min-height;
+$mde-preview-default-height: auto;
 
 @import '~react-mde/lib/styles/scss/variables.scss';
 @import '~react-mde/lib/styles/scss/react-mde.scss';

@@ -1,36 +1,36 @@
-import React, { useState } from 'react'
-import { withCurrentUser, withMutations } from '../../utils/compose'
+import React, {useState} from 'react'
+import {withCurrentUser, withMutations} from '../../utils/compose'
 import Button from '../Styled/Button'
 import gql from 'graphql-tag'
 
 const RESEND_EMAIL_CONFIRMATION = gql`
-  mutation resendEmailConfirmation {
-    resendEmailConfirmation {
-      id
-      email_confirmed_at
-      unconfirmed_email
+    mutation resendEmailConfirmation {
+        resendEmailConfirmation {
+            id
+            email_confirmed_at
+            unconfirmed_email
+        }
     }
-  }
 `
 
 const EmailConfirmationNag = ({
-  slim,
-  currentUser,
-  permit,
-  resendEmailConfirmation,
-  notice,
-  nosend = false,
-  children = null,
-}) => {
+                                slim,
+                                currentUser,
+                                permit,
+                                resendEmailConfirmation,
+                                notice,
+                                nosend = false,
+                                children = null,
+                              }) => {
+  let [loading, setLoading] = useState(false)
+  let [sent, setCalled] = useState(false)
+
   if (
     permit ||
     (currentUser.email_confirmed_at && !currentUser.unconfirmed_email)
   ) {
     return children
   }
-
-  let [loading, setLoading] = useState(false)
-  let [sent, setCalled] = useState(false)
   let validation = null
   let message = null
   let style = {}
@@ -77,7 +77,7 @@ const EmailConfirmationNag = ({
   if (!nosend) {
     validation = (
       <>
-        <p className={'margin--none right'} style={{ lineHeight: '2.5rem' }}>
+        <p className={'margin--none right'} style={{lineHeight: '2.5rem'}}>
           We sent a validation email to{' '}
           <strong>{currentUser.unconfirmed_email || currentUser.email}</strong>.
         </p>

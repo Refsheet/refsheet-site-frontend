@@ -1,12 +1,15 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import { withTranslation } from 'react-i18next'
-import sendKarma from './sendKarma.graphql'
-import compose, { withMutations } from '../../../utils/compose'
-import gdQuery from '../getDiscussions.graphql'
-import M from 'materialize-css'
+import {withTranslation} from 'react-i18next'
+import {loader} from 'graphql.macro'
 
+import compose, {withMutations} from '../../../utils/compose'
+import M from 'materialize-css'
 import Icon from 'v1/shared/material/Icon'
+
+const gdQuery = loader('../getDiscussions.graphql');
+
+const sendKarma = loader('./sendKarma.graphql');
 
 class KarmaButton extends Component {
   constructor(props) {
@@ -19,7 +22,7 @@ class KarmaButton extends Component {
 
   handleClick(e) {
     e.preventDefault()
-    const { postId, give, forumId, sendKarma, onLoading } = this.props
+    const {postId, give, forumId, sendKarma, onLoading} = this.props
 
     onLoading(true)
 
@@ -30,8 +33,8 @@ class KarmaButton extends Component {
 
     sendKarma({
       variables,
-      update: (cache, { data: { sendKarma } }) => {
-        const { getForum } = cache.readQuery({
+      update: (cache, {data: {sendKarma}}) => {
+        const {getForum} = cache.readQuery({
           query: gdQuery,
           variables: {
             forumId: forumId,
@@ -45,7 +48,7 @@ class KarmaButton extends Component {
               ...getForum,
               discussions: getForum.discussions.map(d => {
                 if (d.id === sendKarma.id) {
-                  return { ...d, karma_total: sendKarma.karma_total }
+                  return {...d, karma_total: sendKarma.karma_total}
                 } else {
                   return d
                 }
@@ -55,7 +58,7 @@ class KarmaButton extends Component {
         })
       },
     })
-      .then(({ data, errors }) => {
+      .then(({data, errors}) => {
         if (errors) {
           M.toast({
             html: 'Something went wrong sending that karma...',
@@ -70,7 +73,7 @@ class KarmaButton extends Component {
   }
 
   render() {
-    const { t, give, disabled } = this.props
+    const {t, give, disabled} = this.props
     let title, icon
 
     if (give) {
@@ -108,6 +111,6 @@ KarmaButton.propTypes = {
 }
 
 export default compose(
-  withMutations({ sendKarma }),
+  withMutations({sendKarma}),
   withTranslation('common')
 )(KarmaButton)

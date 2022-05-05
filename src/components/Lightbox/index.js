@@ -1,15 +1,18 @@
-import React, { Component } from 'react'
-import { closeLightbox, openLightbox } from '../../actions'
-import { connect } from 'react-redux'
-import { Icon } from 'react-materialize'
-import { Query } from 'react-apollo'
-import getMedia from './getMedia.graphql'
+import React, {Component} from 'react'
+import {closeLightbox, openLightbox} from '../../actions'
+import {connect} from 'react-redux'
+import {Icon} from 'react-materialize'
+import {Query} from 'react-apollo'
+import {loader} from 'graphql.macro'
+
 import View from './View'
 import Silhouette from './Silhouette'
-import { Error, Loading } from './Status'
-import { withRouter } from 'react-router-dom'
+import {Error, Loading} from './Status'
+import {withRouter} from 'react-router-dom'
 import compose from '../../utils/compose'
-import { withErrorBoundary } from '../Shared/ErrorBoundary'
+import {withErrorBoundary} from '../Shared/ErrorBoundary'
+
+const getMedia = loader('./getMedia.graphql');
 
 class Lightbox extends Component {
   constructor(props) {
@@ -72,7 +75,7 @@ class Lightbox extends Component {
   }
 
   UNSAFE_componentWillMount() {
-    const { mediaId, history, closeLightbox } = this.props
+    const {mediaId, history, closeLightbox} = this.props
 
     this.unlisten = history.listen((location, action) => {
       this.previousPath = null
@@ -107,13 +110,13 @@ class Lightbox extends Component {
   }
 
   getGalleryIndex() {
-    const { mediaId, gallery } = this.props
+    const {mediaId, gallery} = this.props
 
     return gallery.indexOf(mediaId)
   }
 
   getNextMediaId() {
-    const { gallery } = this.props
+    const {gallery} = this.props
 
     const index = this.getGalleryIndex()
     if (index < 0 || gallery.length <= 1) {
@@ -128,7 +131,7 @@ class Lightbox extends Component {
   }
 
   getPrevMediaId() {
-    const { gallery } = this.props
+    const {gallery} = this.props
 
     const index = this.getGalleryIndex()
     if (index < 0 || gallery.length <= 1) {
@@ -157,12 +160,12 @@ class Lightbox extends Component {
   }
 
   renderContent() {
-    const { data, loading, error } = this.props
+    const {data, loading, error} = this.props
 
     if (loading) {
       return (
         <Silhouette>
-          <Loading />
+          <Loading/>
         </Silhouette>
       )
     }
@@ -171,7 +174,7 @@ class Lightbox extends Component {
       console.error(this.props)
       return (
         <Silhouette>
-          <Error error={error} />
+          <Error error={error}/>
         </Silhouette>
       )
     }
@@ -212,22 +215,22 @@ class Lightbox extends Component {
 }
 
 const Wrapped = props => {
-  const { mediaId } = props
+  const {mediaId} = props
 
   if (mediaId === null) {
     return null
   }
 
   return (
-    <Query query={getMedia} variables={{ mediaId }}>
-      {({ data, loading, error }) => (
-        <Lightbox {...props} data={data} loading={loading} error={error} />
+    <Query query={getMedia} variables={{mediaId}}>
+      {({data, loading, error}) => (
+        <Lightbox {...props} data={data} loading={loading} error={error}/>
       )}
     </Query>
   )
 }
 
-const mapStateToProps = ({ lightbox }) => ({
+const mapStateToProps = ({lightbox}) => ({
   mediaId: lightbox.mediaId,
   gallery: lightbox.gallery,
 })

@@ -1,9 +1,11 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import { Mutation } from 'react-apollo'
+import {Mutation} from 'react-apollo'
 import * as M from 'materialize-css'
-import createWidget from './createWidget.graphql'
+import {loader} from 'graphql.macro'
 import Modal from 'v1/shared/Modal'
+
+const createWidget = loader('./createWidget.graphql');
 
 class NewWidgetModal extends Component {
   constructor(props) {
@@ -22,14 +24,14 @@ class NewWidgetModal extends Component {
             type: type,
           },
         })
-        .then(({ data, errors }) => {
+        .then(({data, errors}) => {
           if (errors) {
             console.error(errors)
             errors.map(e =>
-              M.toast({ html: e.message, classes: 'red', displayLength: 3000 })
+              M.toast({html: e.message, classes: 'red', displayLength: 3000})
             )
           } else {
-            console.log({ data })
+            console.log({data})
             this.props.onCreate(data.createProfileWidget)
           }
         })
@@ -101,7 +103,7 @@ NewWidgetModal.propTypes = {
 
 const Mutated = props => (
   <Mutation mutation={createWidget}>
-    {(createWidget, { data }) => (
+    {(createWidget, {data}) => (
       <NewWidgetModal
         {...props}
         createWidget={createWidget}

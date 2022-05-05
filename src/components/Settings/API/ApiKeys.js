@@ -1,17 +1,19 @@
 import React from 'react'
-import { div as Card } from '../../Styled/Card'
-import getApiKeys from './getApiKeys.graphql'
-import { Query } from 'react-apollo'
+import {div as Card} from '../../Styled/Card'
+import {loader} from 'graphql.macro'
+
+import {Query} from 'react-apollo'
 import Error from '../../Shared/Error'
 
-const renderKeys = ({ data, error, loading }) => {
-  const { getApiKeys = [] } = data || {}
+const getApiKeys = loader('./getApiKeys.graphql');
+const renderKeys = ({data, error, loading}) => {
+  const {getApiKeys = []} = data || {}
 
-  console.log({ getApiKeys, error, loading })
+  console.log({getApiKeys, error, loading})
   if (loading) {
     return <p className={'caption center'}>Loading...</p>
   } else if (error) {
-    return <Error error={error} />
+    return <Error error={error}/>
   } else if (!getApiKeys || getApiKeys.length === 0) {
     return (
       <p className={'caption center'}>You have not registered any API Keys.</p>

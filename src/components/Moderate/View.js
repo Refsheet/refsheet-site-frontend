@@ -1,22 +1,23 @@
 import React from 'react'
-import Error from 'Shared/Error'
-import { Row, Col } from 'react-materialize'
-import { Mutation } from 'react-apollo'
-import updateModeration from 'graphql/mutations/updateModeration.graphql'
-
+import Error from 'components/Shared/Error'
+import {Row, Col} from 'react-materialize'
+import {Mutation} from 'react-apollo'
+import {loader} from 'graphql.macro'
 import Jumbotron from 'components/Shared/Jumbotron'
 import Main from 'v1/shared/Main'
 import Spinner from 'v1/shared/material/Spinner'
 import Container from 'v1/shared/material/Container'
 
-const Resolution = ({ id, updateModeration, data, loading, error }) => {
+const updateModeration = loader('../../graph/mutations/updateModeration.graphql');
+
+const Resolution = ({id, updateModeration, data, loading, error}) => {
   if (loading) {
-    return <Spinner />
+    return <Spinner/>
   }
 
   const resolve = type => e => {
     e.preventDefault()
-    updateModeration({ variables: { id: id, resolution: type } })
+    updateModeration({variables: {id: id, resolution: type}})
   }
 
   return (
@@ -46,9 +47,9 @@ const Resolution = ({ id, updateModeration, data, loading, error }) => {
   )
 }
 
-const View = ({ moderation, refetch }) => {
+const View = ({moderation, refetch}) => {
   if (!moderation) {
-    return <Error message="No moderation items in queue" />
+    return <Error message="No moderation items in queue"/>
   }
 
   const next = e => {
@@ -65,7 +66,7 @@ const View = ({ moderation, refetch }) => {
       <Container className="margin-top--large">
         <Row>
           <Col s={12} m={8}>
-            <img src={moderation.item.url.medium} className="responsive-img" />
+            <img src={moderation.item.url.medium} className="responsive-img"/>
             <p>{moderation.item.caption}</p>
           </Col>
 

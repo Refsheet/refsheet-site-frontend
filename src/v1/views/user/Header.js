@@ -7,16 +7,16 @@ import $ from 'jquery'
 import Model from '../../utils/Model'
 import * as UserUtils from '../../../utils/UserUtils'
 import AvatarModal from '../../../components/User/Modals/AvatarModal'
-import compose, { withCurrentUser, withMutations } from '../../../utils/compose'
+import compose, {withCurrentUser, withMutations} from '../../../utils/compose'
 import Button from '../../../components/Styled/Button'
-import { Icon as MIcon } from 'react-materialize'
-import { openConversation } from '../../../actions'
-import { connect } from 'react-redux'
-import {
-  blockUser,
-  unblockUser,
-} from '../../../graphql/mutations/blockUser.graphql'
+import {Icon as MIcon} from 'react-materialize'
+import {openConversation} from '../../../actions'
+import {connect} from 'react-redux'
+import {loader} from 'graphql.macro'
 import Flash from '../../../utils/Flash'
+
+const blockUser = loader('../../../graph/mutations/blockUser.graphql');
+const unblockUser = loader('../../../graph/mutations/unblockUser.graphql');
 
 const Header = createReactClass({
   propTypes: {
@@ -63,10 +63,10 @@ const Header = createReactClass({
       $.ajax({
         url: this.props.user.path,
         type: 'PATCH',
-        data: { user: { profile: data.value } },
+        data: {user: {profile: data.value}},
         success: user => {
           this.props.onUserChange(user)
-          return resolve({ value: user.profile_markup })
+          return resolve({value: user.profile_markup})
         },
         error: reject,
       })
@@ -88,16 +88,16 @@ const Header = createReactClass({
 
   handleAvatarClick(e) {
     e.preventDefault()
-    this.setState({ avatarModalOpen: true })
+    this.setState({avatarModalOpen: true})
   },
 
   handleAvatarClose() {
-    this.setState({ avatarModalOpen: false })
+    this.setState({avatarModalOpen: false})
   },
 
   _handleBlockClick(e) {
     e.preventDefault()
-    const { blocked, blockUser, unblockUser } = this.props
+    const {blocked, blockUser, unblockUser} = this.props
 
     Flash.info('Doing Something Important...')
 
@@ -107,7 +107,7 @@ const Header = createReactClass({
         variables: {
           username: this.props.user.username,
         },
-      }).then(({ data: { unblockUser: user } }) => {
+      }).then(({data: {unblockUser: user}}) => {
         console.log(user)
         this.props.onFollow(user.is_followed, user.is_blocked)
       })
@@ -117,7 +117,7 @@ const Header = createReactClass({
         variables: {
           username: this.props.user.username,
         },
-      }).then(({ data: { blockUser: user } }) => {
+      }).then(({data: {blockUser: user}}) => {
         console.log(user)
         this.props.onFollow(user.is_followed, user.is_blocked)
       })
@@ -126,7 +126,7 @@ const Header = createReactClass({
 
   _handleMessageClick(e) {
     e.preventDefault()
-    this.props.openConversation({ username: this.props.user.username })
+    this.props.openConversation({username: this.props.user.username})
   },
 
   render() {
@@ -157,11 +157,11 @@ const Header = createReactClass({
     const userBgColor = UserUtils.userBgColor(this.props)
 
     if (userColor) {
-      imageStyle = { boxShadow: `${userColor} 0px 0px 3px 1px` }
+      imageStyle = {boxShadow: `${userColor} 0px 0px 3px 1px`}
     }
 
     return (
-      <div className="user-header" style={{ backgroundColor: userBgColor }}>
+      <div className="user-header" style={{backgroundColor: userBgColor}}>
         {this.state.avatarModalOpen && (
           <AvatarModal
             user={this.props.currentUser}
@@ -192,7 +192,7 @@ const Header = createReactClass({
           </div>
           <div className="user-data">
             <div className="avatar-shift">
-              <h1 className="name" style={{ color: userColor }}>
+              <h1 className="name" style={{color: userColor}}>
                 {this.props.user.name}
               </h1>
               <div className="username">
@@ -204,7 +204,7 @@ const Header = createReactClass({
                   >
                     <i
                       className="material-icons"
-                      style={{ color: UserUtils.USER_FG_COLOR.admin }}
+                      style={{color: UserUtils.USER_FG_COLOR.admin}}
                     >
                       security
                     </i>
@@ -213,7 +213,7 @@ const Header = createReactClass({
                 {this.props.user.is_patron && (
                   <span className="user-badge patron-badge" title="Site Patron">
                     <img
-                      src="/assets/third_party/patreon_logo.png"
+                      src={require("assets/images/third_party/patreon_logo.png")}
                       alt="Patreon"
                     />
                   </span>
@@ -225,7 +225,7 @@ const Header = createReactClass({
                   >
                     <i
                       className="material-icons"
-                      style={{ color: UserUtils.USER_FG_COLOR.supporter }}
+                      style={{color: UserUtils.USER_FG_COLOR.supporter}}
                     >
                       star
                     </i>
@@ -246,7 +246,7 @@ const Header = createReactClass({
               )}
             </div>
           </div>
-          <div className={'user-actions'} style={{ width: 200 }}>
+          <div className={'user-actions'} style={{width: 200}}>
             {canFollow && (
               <Button
                 className="btn-muted btn-flat btn-block margin-bottom--medium"
@@ -255,7 +255,7 @@ const Header = createReactClass({
                 <span className="hide-on-med-and-down">
                   {this.props.followed ? 'Following' : 'Follow'}
                 </span>
-                <Icon style={{ color: followColor }} className="right">
+                <Icon style={{color: followColor}} className="right">
                   person_add
                 </Icon>
               </Button>
@@ -296,5 +296,5 @@ const mapDispatchToProps = {
 export default compose(
   withCurrentUser(),
   connect(undefined, mapDispatchToProps),
-  withMutations({ blockUser, unblockUser })
+  withMutations({blockUser, unblockUser})
 )(Header)

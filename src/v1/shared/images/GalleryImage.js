@@ -1,7 +1,7 @@
 import React from 'react'
 import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 import Icon from 'v1/shared/material/Icon'
 import Model from '../../utils/Model'
 import NumberUtils from '../../utils/NumberUtils'
@@ -32,11 +32,11 @@ const gallery_image = createReactClass({
   },
 
   getInitialState() {
-    return { image: this.props.image }
+    return {image: this.props.image}
   },
 
   load(image) {
-    return this.setState({ image }, this._initialize)
+    return this.setState({image}, this._initialize)
   },
 
   _handleFavoriteClick(e) {
@@ -59,7 +59,7 @@ const gallery_image = createReactClass({
   _handleFavorite(fav) {
     const o = this.state.image
     o.is_favorite = fav
-    this.setState({ image: o })
+    this.setState({image: o})
     return $(document).trigger('app:image:update', o)
   },
 
@@ -67,7 +67,7 @@ const gallery_image = createReactClass({
     const $target = $(e.target)
     if ($target.prop('tagName') === 'IMG') {
       if (this.props.onClick && this.props.onClick(this.state.image)) {
-        true
+        // nop
       } else {
         this.props.dispatch({
           type: 'OPEN_LIGHTBOX',
@@ -76,7 +76,7 @@ const gallery_image = createReactClass({
         })
       }
     } else if (this.state.image.nsfw && !this.props.session.nsfwOk) {
-      this.props.dispatch({ type: 'SET_NSFW_MODE', nsfwOk: true })
+      this.props.dispatch({type: 'SET_NSFW_MODE', nsfwOk: true})
     }
 
     return e.preventDefault()
@@ -142,7 +142,7 @@ const gallery_image = createReactClass({
   },
 
   render() {
-    const { noOverlay } = this.props
+    const {noOverlay} = this.props
 
     let contents
     const classNames = ['gallery-image']
@@ -174,7 +174,7 @@ const gallery_image = createReactClass({
           onClick={this._handleClick}
           href={this.state.image.path}
           data-gallery-image-id={this.state.image.id}
-          style={{ backgroundColor: this.state.image.background_color }}
+          style={{backgroundColor: this.state.image.background_color}}
         >
           {showNsfwWarning && (
             <div className="nsfw-cover">
@@ -223,7 +223,7 @@ const gallery_image = createReactClass({
     } else {
       classNames.push('image-placeholder')
 
-      contents = <div className={classNames.join(' ')} />
+      contents = <div className={classNames.join(' ')}/>
     }
 
     if (this.props.wrapperClassName) {
@@ -276,4 +276,4 @@ const V2ThumbnailWrapper = props => {
 
 export default V2ThumbnailWrapper
 
-export { V1GalleryImage }
+export {V1GalleryImage}

@@ -1,13 +1,16 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import ProfileColumn from './ProfileColumn'
-import Section from 'Shared/Section'
+import Section from 'components/Shared/Section'
 import c from 'classnames'
-import { Mutation } from 'react-apollo'
-import { gql } from 'apollo-client-preset'
+import {Mutation} from 'react-apollo'
+import {gql} from 'apollo-client-preset'
 import NewWidgetModal from './Modals/NewWidgetModal'
-import deleteProfileSection from './deleteProfileSection.graphql'
+import {loader} from 'graphql.macro'
+
 import * as M from 'materialize-css'
+
+const deleteProfileSection = loader('./deleteProfileSection.graphql');
 
 class ProfileSection extends Component {
   constructor(props) {
@@ -36,7 +39,7 @@ class ProfileSection extends Component {
   }
 
   handleNewWidgetClose() {
-    this.setState({ newWidget: null })
+    this.setState({newWidget: null})
   }
 
   handleNewWidgetClick(column) {
@@ -70,14 +73,14 @@ class ProfileSection extends Component {
           id: this.props.id,
         },
       })
-      .then(({ data, errors }) => {
+      .then(({data, errors}) => {
         if (errors) {
           console.error(errors)
           errors.map(e =>
-            M.toast({ html: e.message, classes: 'red', displayLength: 3000 })
+            M.toast({html: e.message, classes: 'red', displayLength: 3000})
           )
         } else {
-          console.log({ data })
+          console.log({data})
           this.props.refetch()
         }
       })
@@ -92,14 +95,14 @@ class ProfileSection extends Component {
           row_order_position: direction,
         },
       })
-      .then(({ data, errors }) => {
+      .then(({data, errors}) => {
         if (errors) {
           console.error(errors)
           errors.map(e =>
-            M.toast({ html: e.message, classes: 'red', displayLength: 3000 })
+            M.toast({html: e.message, classes: 'red', displayLength: 3000})
           )
         } else {
-          console.log({ data })
+          console.log({data})
           this.props.refetch()
         }
       })
@@ -108,7 +111,7 @@ class ProfileSection extends Component {
 
   renderSectionColumns(columns, widgets, editable) {
     const _this = this
-    const { character } = this.props
+    const {character} = this.props
     return columns.map(function (width, id) {
       const columnWidgets = widgets.filter(w => w.column === id)
 
@@ -198,24 +201,24 @@ ProfileSection.propTypes = {
 }
 
 const UPDATE_SECTION_MUTATION = gql`
-  mutation updateProfileSection(
-    $id: ID!
-    $title: String
-    $row_order_position: String
-  ) {
-    updateProfileSection(
-      id: $id
-      title: $title
-      row_order_position: $row_order_position
+    mutation updateProfileSection(
+        $id: ID!
+        $title: String
+        $row_order_position: String
     ) {
-      title
+        updateProfileSection(
+            id: $id
+            title: $title
+            row_order_position: $row_order_position
+        ) {
+            title
+        }
     }
-  }
 `
 
 const Wrapped = props => (
   <Mutation mutation={UPDATE_SECTION_MUTATION}>
-    {(updateSection, { mutationData }) => (
+    {(updateSection, {mutationData}) => (
       <Mutation mutation={deleteProfileSection}>
         {deleteSection => (
           <ProfileSection

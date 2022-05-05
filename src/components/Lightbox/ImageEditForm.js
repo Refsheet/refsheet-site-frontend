@@ -1,7 +1,8 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import compose, { withMutations } from '../../utils/compose'
-import updateImage from './updateImage.graphql'
+import compose, {withMutations} from '../../utils/compose'
+import {loader} from 'graphql.macro'
+
 import {
   Row,
   Col,
@@ -10,8 +11,10 @@ import {
   TextInput,
   Select,
 } from 'react-materialize'
-import { withTranslation } from 'react-i18next'
+import {withTranslation} from 'react-i18next'
 import MarkdownEditor from '../Shared/MarkdownEditor'
+
+const updateImage = loader('./updateImage.graphql');
 
 class ImageEditForm extends Component {
   constructor(props) {
@@ -30,7 +33,7 @@ class ImageEditForm extends Component {
           ...this.state.image,
         },
       })
-      .then(({ data, errors }) => {
+      .then(({data, errors}) => {
         if (errors) {
           console.error(errors)
         } else {
@@ -50,7 +53,7 @@ class ImageEditForm extends Component {
   }
 
   handleInputChange(e) {
-    let image = { ...this.state.image }
+    let image = {...this.state.image}
     let value = e.target.value
     let name = e.target.name
 
@@ -60,17 +63,17 @@ class ImageEditForm extends Component {
     }
 
     image[name] = value
-    this.setState({ image })
+    this.setState({image})
   }
 
   handleCaptionChange(name, caption) {
-    const image = { ...this.state.image, caption }
-    this.setState({ image })
+    const image = {...this.state.image, caption}
+    this.setState({image})
   }
 
   render() {
-    const { t } = this.props
-    const { image } = this.state
+    const {t} = this.props
+    const {image} = this.state
 
     const gravities = [
       'NorthWest',
@@ -212,5 +215,5 @@ ImageEditForm.propTypes = {
 
 export default compose(
   withTranslation('common'),
-  withMutations({ updateImage })
+  withMutations({updateImage})
 )(ImageEditForm)

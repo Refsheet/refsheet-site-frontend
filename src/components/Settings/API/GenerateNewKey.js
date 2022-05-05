@@ -1,15 +1,18 @@
-import React, { useState } from 'react'
-import { div as Card } from '../../Styled/Card'
+import React, {useState} from 'react'
+import {div as Card} from '../../Styled/Card'
 import Button from '../../Styled/Button'
-import { Switch } from 'react-materialize'
+import {Switch} from 'react-materialize'
 import PropTypes from 'prop-types'
 import InputRow from '../shared/InputRow'
-import { withMutations } from '../../../utils/compose'
-import createApiKey from './createApiKey.graphql'
-import getApiKeys from './getApiKeys.graphql'
+import {withMutations} from '../../../utils/compose'
+import {loader} from 'graphql.macro'
+
 import Flash from '../../../utils/Flash'
 
-const GenerateNewKey = ({ createApiKey }) => {
+const createApiKey = loader('./createApiKey.graphql');
+const getApiKeys = loader('./getApiKeys.graphql');
+
+const GenerateNewKey = ({createApiKey}) => {
   const defaultKey = {
     read_only: true,
     name: '',
@@ -25,8 +28,8 @@ const GenerateNewKey = ({ createApiKey }) => {
     createApiKey({
       wrapped: true,
       variables: apiKey,
-      update: (cache, { data: { createApiKey } }) => {
-        const { getApiKeys: apiKeys } = cache.readQuery({
+      update: (cache, {data: {createApiKey}}) => {
+        const {getApiKeys: apiKeys} = cache.readQuery({
           query: getApiKeys,
         })
 
@@ -51,7 +54,7 @@ const GenerateNewKey = ({ createApiKey }) => {
 
   const handleChange = (value, id) => {
     const name = id.replace('api_key_', '')
-    const stateDup = { ...apiKey }
+    const stateDup = {...apiKey}
     stateDup[name] = value
     setApiKey(stateDup)
   }
@@ -96,4 +99,4 @@ GenerateNewKey.propTypes = {
   createApiKey: PropTypes.func.isRequired,
 }
 
-export default withMutations({ createApiKey })(GenerateNewKey)
+export default withMutations({createApiKey})(GenerateNewKey)

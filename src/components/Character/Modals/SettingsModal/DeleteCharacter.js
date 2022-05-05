@@ -1,25 +1,27 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import compose from 'utils/compose'
-import { Trans, withTranslation } from 'react-i18next'
-import { Row, Col, TextInput } from 'react-materialize'
-import archiveCharacter from './archiveCharacter.graphql'
-import { withMutations } from '../../../../utils/compose'
-import { withRouter } from 'react-router'
+import {Trans, withTranslation} from 'react-i18next'
+import {Row, Col, TextInput} from 'react-materialize'
+import {loader} from 'graphql.macro'
+import {withMutations} from '../../../../utils/compose'
+import {withRouter} from 'react-router'
 import M from 'materialize-css'
 import LinkUtils from 'utils/LinkUtils'
+
+const archiveCharacter = loader('./archiveCharacter.graphql');
 
 class DeleteCharacter extends Component {
   constructor(props) {
     super(props)
 
-    this.state = { confirmation: '', errors: {} }
+    this.state = {confirmation: '', errors: {}}
   }
 
   handleConfirmationChange(e) {
     e.preventDefault()
     const confirmation = e.target.value
-    this.setState({ confirmation })
+    this.setState({confirmation})
   }
 
   handleSubmit(e) {
@@ -27,11 +29,11 @@ class DeleteCharacter extends Component {
 
     const {
       archiveCharacter,
-      character: { id, username },
+      character: {id, username},
       t,
       history,
     } = this.props
-    const { confirmation } = this.state
+    const {confirmation} = this.state
 
     archiveCharacter({
       wrapped: true,
@@ -40,7 +42,7 @@ class DeleteCharacter extends Component {
         confirmation,
       },
     })
-      .then(({ data: { archiveCharacter } }) => {
+      .then(({data: {archiveCharacter}}) => {
         M.toast({
           html: t('notice.character_deleted', 'Character deleted.'),
           displayLength: 3000,
@@ -48,15 +50,15 @@ class DeleteCharacter extends Component {
         })
 
         // TODO: The V2 router cannot push routes that would be handled by the V1 router. :thinking:
-        history.push(LinkUtils.userPath({ username }), {})
+        history.push(LinkUtils.userPath({username}), {})
       })
-      .catch(({ validationErrors }) => {
-        this.setState({ errors: validationErrors })
+      .catch(({validationErrors}) => {
+        this.setState({errors: validationErrors})
       })
   }
 
   render() {
-    const { t, character } = this.props
+    const {t, character} = this.props
 
     return (
       <form
@@ -121,6 +123,6 @@ DeleteCharacter.propTypes = {
 
 export default compose(
   withTranslation('common'),
-  withMutations({ archiveCharacter }),
+  withMutations({archiveCharacter}),
   withRouter
 )(DeleteCharacter)

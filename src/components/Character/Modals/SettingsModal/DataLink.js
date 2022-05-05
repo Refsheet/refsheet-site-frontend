@@ -1,14 +1,17 @@
-import React, { Component, Fragment } from 'react'
+import React, {Component, Fragment} from 'react'
 import Restrict from '../../../Shared/Restrict'
 import Button from '../../../Styled/Button'
 import Input from '../../../../v1/shared/forms/Input'
 import Submit from '../../../../v1/shared/forms/Submit'
-import updateLodestoneLink from './LodestoneSource/updateLodestoneLink.graphql'
-import createLodestoneLink from './LodestoneSource/createLodestoneLink.graphql'
-import compose, { withMutations } from '../../../../utils/compose'
+import {loader} from 'graphql.macro'
+
+import compose, {withMutations} from '../../../../utils/compose'
 import Flash from '../../../../utils/Flash'
 import gql from 'graphql-tag'
 import Moment from 'react-moment'
+
+const updateLodestoneLink = loader('./LodestoneSource/updateLodestoneLink.graphql');
+const createLodestoneLink = loader('./LodestoneSource/createLodestoneLink.graphql');
 
 class DataLink extends Component {
   constructor(props) {
@@ -23,10 +26,10 @@ class DataLink extends Component {
   handleLodestoneLink(e) {
     const {
       createLodestoneLink,
-      character: { id },
+      character: {id},
     } = this.props
     e.preventDefault()
-    this.setState({ saving: true })
+    this.setState({saving: true})
 
     createLodestoneLink({
       wrapped: true,
@@ -34,14 +37,14 @@ class DataLink extends Component {
         characterId: id,
         lodestoneId: this.state.lodestoneId,
       },
-      update: (cache, { data: { createLodestoneLink: link } }) => {
+      update: (cache, {data: {createLodestoneLink: link}}) => {
         const fragment = gql`
-          fragment lodestoneLink on Character {
-            id
-            lodestone_character {
-              id
+            fragment lodestoneLink on Character {
+                id
+                lodestone_character {
+                    id
+                }
             }
-          }
         `
 
         const prev = cache.readFragment({
@@ -49,7 +52,7 @@ class DataLink extends Component {
           fragment,
         })
 
-        console.log({ prev, cache, rf: cache.readFragment, fragment })
+        console.log({prev, cache, rf: cache.readFragment, fragment})
 
         cache.writeFragment({
           id: `Character:${id}`,
@@ -63,13 +66,13 @@ class DataLink extends Component {
         })
       },
     })
-      .then(({ data }) => {
-        Flash.info(
-          `Character linked to ${data.createLodestoneLink.name}@${data.createLodestoneLink.server.name}`
-        )
-      })
-      .catch(console.error)
-      .finally(() => this.setState({ saving: false }))
+    .then(({data}) => {
+      Flash.info(
+        `Character linked to ${data.createLodestoneLink.name}@${data.createLodestoneLink.server.name}`
+      )
+    })
+    .catch(console.error)
+    .finally(() => this.setState({saving: false}))
   }
 
   handleInputChange(name, value) {
@@ -81,10 +84,10 @@ class DataLink extends Component {
   handleLodestoneUpdate(e) {
     const {
       updateLodestoneLink,
-      character: { id },
+      character: {id},
     } = this.props
     e.preventDefault()
-    this.setState({ saving: true })
+    this.setState({saving: true})
 
     updateLodestoneLink({
       wrapped: true,
@@ -92,18 +95,18 @@ class DataLink extends Component {
         characterId: id,
       },
     })
-      .then(({ data }) => {
+      .then(({data}) => {
         Flash.info(
           `Character updated from ${data.updateLodestoneLink.name}@${data.updateLodestoneLink.server.name}`
         )
       })
       .catch(console.error)
-      .finally(() => this.setState({ saving: false }))
+      .finally(() => this.setState({saving: false}))
   }
 
   renderLodestone() {
     const {
-      character: { lodestone_character: lodestoneCharacter },
+      character: {lodestone_character: lodestoneCharacter},
     } = this.props
 
     return (
@@ -138,7 +141,7 @@ class DataLink extends Component {
   }
 
   renderLinkOptions() {
-    const { character } = this.props
+    const {character} = this.props
 
     if (character.lodestone_character) {
       return this.renderLodestone(character.lodestone_character)

@@ -1,18 +1,20 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import imageProcessingComplete from './imageProcessingComplete.graphql'
-import { Subscription } from 'react-apollo'
-import { Icon } from 'react-materialize'
-import { connect } from 'react-redux'
-import { openLightbox, setNsfwMode } from '../../actions'
+import {loader} from 'graphql.macro'
+import {Subscription} from 'react-apollo'
+import {Icon} from 'react-materialize'
+import {connect} from 'react-redux'
+import {openLightbox, setNsfwMode} from '../../actions'
 import NumberUtils from '../../v1/utils/NumberUtils'
 import c from 'classnames'
-import compose, { withMutations } from '../../utils/compose'
-import deleteMedia from '../Lightbox/deleteMedia.graphql'
-import updateImage from '../Lightbox/updateImage.graphql'
+import compose, {withMutations} from '../../utils/compose'
 import CacheUtils from '../../utils/CacheUtils'
 import Flash from '../../utils/Flash'
-import { withTranslation } from 'react-i18next'
+import {withTranslation} from 'react-i18next'
+
+const imageProcessingComplete = loader('./imageProcessingComplete.graphql');
+const deleteMedia = loader('../Lightbox/deleteMedia.graphql');
+const updateImage = loader('../Lightbox/updateImage.graphql');
 
 class Thumbnail extends Component {
   constructor(props) {
@@ -28,8 +30,8 @@ class Thumbnail extends Component {
     e.preventDefault()
 
     const {
-      image: { id, nsfw },
-      session: { nsfwOk },
+      image: {id, nsfw},
+      session: {nsfwOk},
       openLightbox,
       gallery,
       t,
@@ -38,6 +40,7 @@ class Thumbnail extends Component {
 
     if (nsfw && !nsfwOk) {
       if (
+        // eslint-disable-next-line no-restricted-globals
         confirm(
           t(
             'confirmations.nsfw_ok',
@@ -57,7 +60,7 @@ class Thumbnail extends Component {
     e.stopPropagation()
 
     const {
-      image: { id },
+      image: {id},
     } = this.props
 
     console.log('Favorite ' + id)
@@ -67,7 +70,7 @@ class Thumbnail extends Component {
     e.preventDefault()
 
     const {
-      image: { id },
+      image: {id},
       updateImage,
     } = this.props
 
@@ -84,10 +87,11 @@ class Thumbnail extends Component {
     e.preventDefault()
 
     const {
-      image: { id, title },
+      image: {id, title},
       deleteMedia,
     } = this.props
 
+    // eslint-disable-next-line no-restricted-globals
     if (confirm(`Really delete ${title}?`)) {
       deleteMedia({
         wrapped: true,
@@ -100,7 +104,7 @@ class Thumbnail extends Component {
           Flash.info('Image deleted.')
         })
         .catch(error => {
-          console.error({ error })
+          console.error({error})
           Flash.error('Something went wrong.')
         })
     }
@@ -137,7 +141,7 @@ class Thumbnail extends Component {
 
   renderImage() {
     const {
-      session: { nsfwOk },
+      session: {nsfwOk},
       image: {
         created_at,
         image_processing,
@@ -159,7 +163,7 @@ class Thumbnail extends Component {
     let src = url[size || 'medium']
 
     if (!src) {
-      console.log({ size, url })
+      console.log({size, url})
       src = url[Object.keys[url][0]]
     }
 
@@ -177,8 +181,8 @@ class Thumbnail extends Component {
         'hourglass_empty',
         'Image processing...',
         'Thumbnails are being generated for this image, and should be available soon. ' +
-          'You might need to reload this page. ' +
-          image_age,
+        'You might need to reload this page. ' +
+        image_age,
         undefined,
         created_at < Date.now() / 1000 - 3600
       )
@@ -199,10 +203,10 @@ class Thumbnail extends Component {
         onClick={this.handleClick}
         href={path}
         data-gallery-image-id={id}
-        style={{ backgroundColor: background_color }}
+        style={{backgroundColor: background_color}}
       >
         {showNsfwWarning && (
-          <div className="nsfw-cover" style={{ padding: '1rem' }}>
+          <div className="nsfw-cover" style={{padding: '1rem'}}>
             <div
               style={{
                 position: 'relative',
@@ -211,7 +215,7 @@ class Thumbnail extends Component {
               }}
             >
               <Icon>remove_circle_outline</Icon>
-              <div className="caption" style={{ paddingTop: '1rem' }}>
+              <div className="caption" style={{paddingTop: '1rem'}}>
                 Click to show NSFW content.
               </div>
             </div>
@@ -237,7 +241,7 @@ class Thumbnail extends Component {
           </div>
         </div>
 
-        <img src={src} alt={title} title={title} />
+        <img src={src} alt={title} title={title}/>
       </a>
     )
   }
@@ -295,14 +299,14 @@ Thumbnail.propTypes = {
   gallery: PropTypes.arrayOf(PropTypes.string),
 }
 
-const renderSubscribed = props => ({ data, loading, error }) => {
+const renderSubscribed = props => ({data, loading, error}) => {
   let image = props.image
 
   if (!loading && data && data.imageProcessingComplete) {
     image = data.imageProcessingComplete
   }
 
-  return <Thumbnail {...props} image={image} />
+  return <Thumbnail {...props} image={image}/>
 }
 
 const Subscribed = props => {
@@ -310,7 +314,7 @@ const Subscribed = props => {
     return (
       <Subscription
         subscription={imageProcessingComplete}
-        variables={{ imageId: props.image.id }}
+        variables={{imageId: props.image.id}}
       >
         {renderSubscribed(props)}
       </Subscription>
@@ -325,12 +329,12 @@ const mapDispatchToProps = {
   setNsfwMode,
 }
 
-const mapStateToProps = ({ session }) => ({
+const mapStateToProps = ({session}) => ({
   session,
 })
 
 export default compose(
-  withMutations({ updateImage, deleteMedia }),
+  withMutations({updateImage, deleteMedia}),
   connect(mapStateToProps, mapDispatchToProps),
   withTranslation('common')
 )(Subscribed)

@@ -1,10 +1,13 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import View from './View'
-import { Query } from 'react-apollo'
-import { getArtists } from './getArtists.graphql'
+import {Query} from 'react-apollo'
+import {loader} from 'graphql.macro'
+
 import Error from '../../Shared/Error'
 import Loading from 'v1/shared/Loading'
+
+const getArtists = loader('./getArtists.graphql');
 
 class Index extends Component {
   render() {
@@ -15,13 +18,13 @@ class Index extends Component {
     return (
       <Query query={getArtists} variables={variables}>
         {props => {
-          console.log({ props })
-          const { data, loading, error, refetch } = props
-          if (loading) return <Loading />
-          else if (error) return <Error error={error} />
+          console.log({props})
+          const {data, loading, error, refetch} = props
+          if (loading) return <Loading/>
+          else if (error) return <Error error={error}/>
           else if (data)
-            return <View data={data.getArtists} refetch={refetch} />
-          else return <Error error={'Something went wrong.'} />
+            return <View data={data.getArtists} refetch={refetch}/>
+          else return <Error error={'Something went wrong.'}/>
         }}
       </Query>
     )

@@ -1,14 +1,16 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import c from 'classnames'
 import ReactMde from 'react-mde'
 import * as Showdown from 'showdown'
-import Autocomplete from './autocomplete.graphql'
+import {loader} from 'graphql.macro'
+
 import client from 'services/ApplicationService'
 import './react-mde-overrides.scss'
 import styled from 'styled-components'
-import { sanitize } from '../../../utils/sanitize'
+import {sanitize} from '../../../utils/sanitize'
 
+const Autocomplete = loader('./autocomplete.graphql');
 const SRM = styled(ReactMde)`
   background-color: ${props => props.theme.cardBackground} !important;
 `
@@ -30,20 +32,20 @@ class MarkdownEditor extends Component {
   }
 
   searchForUser(username) {
-    console.debug('searchForUser', { username })
+    console.debug('searchForUser', {username})
     return new Promise(resolve => {
       client
         .query({
           query: Autocomplete.autocompleteUser,
-          variables: { username },
+          variables: {username},
         })
-        .then(({ data, error }) => {
+        .then(({data, error}) => {
           if (!data) {
             console.error(error)
             resolve([])
           }
 
-          const { autocompleteUser: users } = data
+          const {autocompleteUser: users} = data
 
           resolve(
             (users || []).map(user => ({
@@ -66,21 +68,21 @@ class MarkdownEditor extends Component {
 
   searchForCharacter(text) {
     const [username = '', slug = ''] = text.split('/', 2)
-    console.debug('searchForCharacter', { username, slug })
+    console.debug('searchForCharacter', {username, slug})
 
     return new Promise(resolve => {
       client
         .query({
           query: Autocomplete.autocompleteCharacter,
-          variables: { username, slug },
+          variables: {username, slug},
         })
-        .then(({ data, error }) => {
+        .then(({data, error}) => {
           if (!data) {
             console.error(error)
             resolve([])
           }
 
-          const { autocompleteCharacter: characters } = data
+          const {autocompleteCharacter: characters} = data
           resolve(
             (characters || []).map(character => ({
               preview: (
@@ -103,21 +105,21 @@ class MarkdownEditor extends Component {
   }
 
   searchForHashtag(hashtag) {
-    console.debug('searchForHashtag', { hashtag })
+    console.debug('searchForHashtag', {hashtag})
 
     return new Promise(resolve => {
       client
         .query({
           query: Autocomplete.autocompleteHashtags,
-          variables: { hashtag },
+          variables: {hashtag},
         })
-        .then(({ data, error }) => {
+        .then(({data, error}) => {
           if (!data) {
             console.error(error)
             resolve([])
           }
 
-          const { autocompleteHashtags: hashtags } = data
+          const {autocompleteHashtags: hashtags} = data
           resolve(
             (hashtags || []).map(hashtag => ({
               preview: (
@@ -138,11 +140,11 @@ class MarkdownEditor extends Component {
   }
 
   getSuggestions(text, triggeredBy) {
-    console.debug({ text, triggeredBy })
+    console.debug({text, triggeredBy})
     switch (triggeredBy) {
       case ':':
         return Promise.resolve([
-          { preview: <p>Emoji not support :(</p>, value: ':cry:' },
+          {preview: <p>Emoji not support :(</p>, value: ':cry:'},
         ])
       case '@':
         if (text.match(/\//)) {
@@ -158,7 +160,7 @@ class MarkdownEditor extends Component {
   }
 
   handleTabChange(selectedTab) {
-    this.setState({ selectedTab })
+    this.setState({selectedTab})
   }
 
   render() {
@@ -192,7 +194,7 @@ class MarkdownEditor extends Component {
     }
 
     return (
-      <div style={{ position: 'relative' }}>
+      <div style={{position: 'relative'}}>
         {!content && (
           <div
             className={'placeholder text-light'}

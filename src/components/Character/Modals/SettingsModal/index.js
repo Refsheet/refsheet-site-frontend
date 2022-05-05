@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import EditCharacter from './EditCharacter'
 import TransferCharacter from './TransferCharacter'
-import { withTranslation } from 'react-i18next'
+import {withTranslation} from 'react-i18next'
 import compose from '../../../../utils/compose'
 import DeleteCharacter from './DeleteCharacter'
 
-import Modal from 'Styled/Modal'
-import Tabs, { Tab } from '../../../Styled/Tabs'
+import Modal from 'components/Styled/Modal'
+import Tabs, {Tab} from '../../../Styled/Tabs'
 import DataLink from './DataLink'
 import MarketplaceListing from './MarketplaceListing'
 import Restrict from '../../../Shared/Restrict'
@@ -24,18 +24,18 @@ class SettingsModal extends Component {
   goTo(view) {
     return e => {
       if (e) e.preventDefault()
-      this.setState({ view })
+      this.setState({view})
     }
   }
 
   goToTab(view) {
-    console.log({ view })
-    this.setState({ view })
+    console.log({view})
+    this.setState({view})
   }
 
   getTitle() {
-    const { t } = this.props
-    const { view } = this.state
+    const {t} = this.props
+    const {view} = this.state
     return t(`character.settings.title_${view}`, `Character ${view}`)
   }
 
@@ -94,9 +94,9 @@ class SettingsModal extends Component {
         onClose={this.props.onClose}
       >
         <Tabs onChange={this.goToTab.bind(this)}>
-          <Tab id={'settings'} title={'Settings'} />
-          <Tab id={'dataLink'} title={'Data Link'} />
-          <Tab id={'marketplace'} title={'Marketplace'} />
+          <Tab id={'settings'} title={'Settings'}/>
+          <Tab id={'dataLink'} title={'Data Link'}/>
+          <Tab id={'marketplace'} title={'Marketplace'}/>
         </Tabs>
 
         {this.renderContent()}

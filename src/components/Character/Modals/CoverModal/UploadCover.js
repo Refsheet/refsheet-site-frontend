@@ -1,13 +1,16 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import { withTranslation } from 'react-i18next'
+import {withTranslation} from 'react-i18next'
 import compose from 'utils/compose'
-import { DirectUploadProvider } from 'react-activestorage-provider'
-import { TextInput, Button, Row, Col, ProgressBar } from 'react-materialize'
-import Muted, { MutedAnchor } from '../../../Styled/Muted'
-import { withMutations } from '../../../../utils/compose'
-import setCharacterCoverBlob from './setCharacterCoverBlob.graphql'
+import {DirectUploadProvider} from 'react-activestorage-provider'
+import {TextInput, Button, Row, Col, ProgressBar} from 'react-materialize'
+import Muted, {MutedAnchor} from '../../../Styled/Muted'
+import {withMutations} from '../../../../utils/compose'
+import {loader} from 'graphql.macro'
+
 import * as M from 'materialize-css'
+
+const setCharacterCoverBlob = loader('./setCharacterCoverBlob.graphql');
 
 class UploadCover extends Component {
   constructor(props) {
@@ -21,12 +24,12 @@ class UploadCover extends Component {
   }
 
   handleFileChange(e) {
-    this.setState({ file: e.currentTarget.files[0] })
+    this.setState({file: e.currentTarget.files[0]})
   }
 
   handleSubmit(e, handleUpload) {
     e.preventDefault()
-    this.setState({ loading: true })
+    this.setState({loading: true})
     handleUpload([this.state.file])
   }
 
@@ -35,8 +38,8 @@ class UploadCover extends Component {
     this.handleSuccess([])
   }
 
-  renderInput({ handleUpload, uploads, ready }) {
-    const { t, id, character } = this.props
+  renderInput({handleUpload, uploads, ready}) {
+    const {t, id, character} = this.props
 
     return (
       <form
@@ -64,7 +67,7 @@ class UploadCover extends Component {
                   <Muted className={'right'}>{upload.state}</Muted>
                   {upload.file.name}
                 </p>
-                <ProgressBar progress={(upload.progress || 0) * 100} />
+                <ProgressBar progress={(upload.progress || 0) * 100}/>
               </Col>
             ))}
           </Row>
@@ -74,7 +77,7 @@ class UploadCover extends Component {
           <Row className={'margin-top--large'}>
             <Col s={12}>
               <p>Finishing up...</p>
-              <ProgressBar />
+              <ProgressBar/>
             </Col>
           </Row>
         )}
@@ -113,7 +116,7 @@ class UploadCover extends Component {
 
   handleSuccess(blobs) {
     const blob = blobs[0]
-    const { setCharacterCoverBlob, character, onSave, onClose } = this.props
+    const {setCharacterCoverBlob, character, onSave, onClose} = this.props
 
     setCharacterCoverBlob({
       wrapped: true,
@@ -122,7 +125,7 @@ class UploadCover extends Component {
         id: character.id,
       },
     })
-      .then(({ setCharacterCoverBlob }) => {
+      .then(({setCharacterCoverBlob}) => {
         M.toast({
           html: 'Cover Image updated!',
           displayLength: 3000,
@@ -131,13 +134,13 @@ class UploadCover extends Component {
         onSave && onSave(setCharacterCoverBlob)
         onClose && onClose()
       })
-      .catch(({ errorString }) => {
-        this.setState({ error: errorString, loading: false })
+      .catch(({errorString}) => {
+        this.setState({error: errorString, loading: false})
       })
   }
 
   render() {
-    const { t } = this.props
+    const {t} = this.props
 
     return (
       <DirectUploadProvider
@@ -155,6 +158,6 @@ UploadCover.propTypes = {
 
 export default compose(
   withTranslation('common'),
-  withMutations({ setCharacterCoverBlob })
+  withMutations({setCharacterCoverBlob})
   // TODO: Add HOC bindings here
 )(UploadCover)

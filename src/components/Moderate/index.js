@@ -1,9 +1,11 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import View from './View'
-import { Error } from 'Shared'
-import { Query } from 'react-apollo'
-import { getNextModeration } from 'queries/getNextModeration.graphql'
+import {Error} from 'components/Shared'
+import {Query} from 'react-apollo'
+import {loader} from 'graphql.macro'
 import Loading from 'v1/shared/Loading'
+
+const getNextModeration = loader('../../graph/queries/getNextModeration.graphql');
 
 class Moderate extends Component {
   constructor(props) {
@@ -11,13 +13,13 @@ class Moderate extends Component {
   }
 
   render() {
-    const { data } = this.props
+    const {data} = this.props
 
     if (data.loading) {
-      return <Loading />
+      return <Loading/>
     } else if (data.error) {
       const message = data.error.graphQLErrors.map(e => e.message).join(', ')
-      return <Error message={message} />
+      return <Error message={message}/>
     } else {
       return (
         <View moderation={data.getNextModeration} {...data} {...this.state} />

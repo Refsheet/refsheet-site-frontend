@@ -8,8 +8,8 @@
 import React from 'react'
 import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { openUploadModal, setUploadTarget } from '../../../actions'
+import {connect} from 'react-redux'
+import {openUploadModal, setUploadTarget} from '../../../actions'
 import Section from '../../shared/material/Section'
 import ImageGallery from '../../shared/images/ImageGallery'
 import Column from '../../shared/material/Column'
@@ -35,14 +35,17 @@ import Character from 'components/Character'
 import $ from 'jquery'
 import StateUtils from '../../utils/StateUtils'
 import Gallery from '../../../components/Character/Gallery'
-import { Query } from 'react-apollo'
-import getCharacterImages from './getCharacterImages.graphql'
+import {Query} from 'react-apollo'
+import {loader} from 'graphql.macro'
+
 import Flash from '../../../utils/Flash'
-import { ThemedMain } from '../../../components/Styled/Global'
+import {ThemedMain} from '../../../components/Styled/Global'
 import defaultTheme from '../../../themes/default'
-import { ThemeProvider } from 'styled-components'
+import {ThemeProvider} from 'styled-components'
 import ColorUtils from '../../../utils/ColorUtils'
-import compose, { withCurrentUser } from '../../../utils/compose'
+import compose, {withCurrentUser} from '../../../utils/compose'
+
+const getCharacterImages = loader('./getCharacterImages.graphql');
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
@@ -103,7 +106,7 @@ const Component = createReactClass({
       .on('app:character:update', (e, character) => {
         console.warn('jQuery events are deprecated, find a better way.', e)
         if (this.state.character.id === character.id) {
-          return this.setState({ character })
+          return this.setState({character})
         }
       })
       .on('app:character:profileImage:edit', e => {
@@ -130,7 +133,7 @@ const Component = createReactClass({
           }
           console.debug('[CharacterApp] Reloading character...')
           return $.get(`${newPath}.json`, data => {
-            this.setState({ character: data })
+            this.setState({character: data})
             if (callback != null) {
               return callback(data)
             }
@@ -151,14 +154,14 @@ const Component = createReactClass({
       $.ajax({
         url: this.state.character.path,
         type: 'PATCH',
-        data: { character: { featured_image_guid: imageId } },
+        data: {character: {featured_image_guid: imageId}},
         success: data => {
           Flash.info('Header image updated!')
-          this.setState({ character: data })
+          this.setState({character: data})
           resolve(data)
         },
         error: error => {
-          const { errors } = error.responseJSON
+          const {errors} = error.responseJSON
           if (errors.featured_image && errors.featured_image.length) {
             Flash.error(errors.featured_image.join(', '))
           } else {
@@ -176,15 +179,15 @@ const Component = createReactClass({
       $.ajax({
         url: this.state.character.path,
         type: 'PATCH',
-        data: { character: { profile_image_guid: imageId } },
+        data: {character: {profile_image_guid: imageId}},
         success: data => {
           Flash.info('Profile picture updated!')
-          this.setState({ character: data })
+          this.setState({character: data})
           resolve(data)
         },
         error: error => {
           if (error.responseJSON) {
-            const { errors } = error.responseJSON
+            const {errors} = error.responseJSON
             if (errors.profile_image && errors.profile_image.length) {
               Flash.error(errors.profile_image.join(', '))
             } else {
@@ -193,7 +196,7 @@ const Component = createReactClass({
             }
             reject(errors)
           } else {
-            reject({ error })
+            reject({error})
           }
         },
       })
@@ -204,10 +207,10 @@ const Component = createReactClass({
     return new Promise((resolve, reject) => {
       $.ajax({
         url: this.state.character.path,
-        data: { character: data },
+        data: {character: data},
         type: 'PATCH',
         success: data => {
-          this.setState({ character: data })
+          this.setState({character: data})
           resolve(data)
         },
         error: error => {
@@ -234,7 +237,7 @@ const Component = createReactClass({
   },
 
   _toggleEditable() {
-    return this.setState({ editable: !this.state.editable })
+    return this.setState({editable: !this.state.editable})
   },
 
   _openUploads() {
@@ -244,7 +247,7 @@ const Component = createReactClass({
   },
 
   renderGallery(canEdit) {
-    return ({ data, loading, error }) => {
+    return ({data, loading, error}) => {
       if (error) {
         console.error('renderGallery failed:', error)
       }
@@ -283,11 +286,11 @@ const Component = createReactClass({
     let richTextChange, editable, headerImageEditCallback, showMenu
 
     if (this.state.error != null) {
-      return <NotFound />
+      return <NotFound/>
     }
 
     if (!this.state.character) {
-      return <CharacterViewSilhouette />
+      return <CharacterViewSilhouette/>
     }
 
     if (this.state.character.version === 2) {
@@ -325,7 +328,7 @@ const Component = createReactClass({
     return (
       <ThemeProvider theme={defaultTheme.apply(colors || {})}>
         <ThemedMain title={[this.state.character.name, 'Characters']}>
-          {colors && <PageStylesheet colorData={colors} />}
+          {colors && <PageStylesheet colorData={colors}/>}
           {/*<CharacterEditMenu onEditClick={ this._toggleEditable }
                                 images={ this.state.images }
                                 galleryTitle={ this.state.galleryTitle } <-- THIS SHOULD NOT HAPPEN
@@ -377,7 +380,7 @@ const Component = createReactClass({
               </FixedActionButton>
 
               <CharacterColorSchemeModal
-                colorScheme={{ color_data: colors }}
+                colorScheme={{color_data: colors}}
                 characterPath={this.state.character.path}
                 onChange={data =>
                   this.setState(
@@ -394,16 +397,16 @@ const Component = createReactClass({
                   )
                 }
               />
-              <CharacterDeleteModal character={this.state.character} />
-              <CharacterTransferModal character={this.state.character} />
-              <CharacterSettingsModal character={this.state.character} />
+              <CharacterDeleteModal character={this.state.character}/>
+              <CharacterTransferModal character={this.state.character}/>
+              <CharacterSettingsModal character={this.state.character}/>
             </div>
           )}
           <PageHeader
             backgroundImage={(this.state.character.featured_image || {}).url}
             onHeaderImageEdit={headerImageEditCallback}
           >
-            <CharacterNotice transfer={this.state.character.pending_transfer} />
+            <CharacterNotice transfer={this.state.character.pending_transfer}/>
 
             {showMenu && (
               <div className="button-group">

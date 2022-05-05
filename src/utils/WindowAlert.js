@@ -1,6 +1,6 @@
 import Favico from 'favico.js-slevomat'
-import { Howl, Howler } from 'howler'
-import { captureException } from '@sentry/minimal'
+import {Howl, Howler} from 'howler'
+import {captureException} from '@sentry/minimal'
 
 const CYCLE_ENABLED = true
 
@@ -61,7 +61,7 @@ class WindowAlert {
   static add(key, message, count = 0) {
     if (!window.RS_ALERTS) window.RS_ALERTS = {}
 
-    window.RS_ALERTS[key] = { message, count }
+    window.RS_ALERTS[key] = {message, count}
     WindowAlert.beginCycle()
     WindowAlert.updateFavicon()
   }
@@ -116,7 +116,9 @@ class WindowAlert {
 
   static initSound(options) {
     const notificationDing = new Howl({
-      src: [...options.notificationSoundPaths],
+      src: [
+        require('assets/sounds/woo.mp3')
+      ],
     })
 
     window.RS_SOUND = {

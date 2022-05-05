@@ -1,16 +1,17 @@
 /* global Refsheet */
 
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import compose from '../../utils/compose'
-import { Link } from 'react-router-dom'
-import { Row, Col } from 'react-materialize'
+import {Link} from 'react-router-dom'
+import {Row, Col} from 'react-materialize'
 import Restrict from '../Shared/Restrict'
 import i18n from '../../services/i18n'
 import c from 'classnames'
 import SessionService from '../../services/SessionService'
-import { H3 } from '../Styled/Headings'
+import {H3} from '../Styled/Headings'
 import styled from 'styled-components'
-import { withErrorBoundary } from '../Shared/ErrorBoundary'
+import {withErrorBoundary} from '../Shared/ErrorBoundary'
+import PatreonWhite from 'assets/images/third_party/patreon_white.png'
 
 class _Footer extends Component {
   constructor(props) {
@@ -23,7 +24,7 @@ class _Footer extends Component {
 
   componentDidMount() {
     const apply = locale => {
-      this.setState({ locale })
+      this.setState({locale})
     }
 
     i18n.on('languageChanged', apply.bind(this))
@@ -35,7 +36,7 @@ class _Footer extends Component {
       i18n
         .changeLanguage(locale)
         .then(() => {
-          SessionService.set({ locale }).then(console.log).catch(console.error)
+          SessionService.set({locale}).then(console.log).catch(console.error)
         })
         .catch(console.error)
     }
@@ -113,7 +114,7 @@ class _Footer extends Component {
                 </Col>
               </Row>
 
-              <hr />
+              <hr/>
             </div>
           ) : null}
 
@@ -134,7 +135,7 @@ class _Footer extends Component {
               </p>
             </Col>
 
-            <Col s={12} m={2} />
+            <Col s={12} m={2}/>
 
             <Col s={6} m={2}>
               <ul className="margin-top--none">
@@ -166,7 +167,7 @@ class _Footer extends Component {
                   rel="noopener noreferrer"
                   title={'Follow us on Twitter!'}
                 >
-                  <i className="fab fa-fw fa-twitter" />
+                  <i className="fab fa-fw fa-twitter"/>
                 </a>
                 <a
                   href="mailto:mau@refsheet.net"
@@ -174,7 +175,7 @@ class _Footer extends Component {
                   rel="noopener noreferrer"
                   title={'Send an email'}
                 >
-                  <i className="fa fa-fw fa-envelope" />
+                  <i className="fa fa-fw fa-envelope"/>
                 </a>
                 <a
                   href={'https://discord.gg/nzdEHub'}
@@ -182,7 +183,7 @@ class _Footer extends Component {
                   rel="noopener noreferrer"
                   title={'Join us on Discord!'}
                 >
-                  <i className={'fab fa-fw fa-discord'} />
+                  <i className={'fab fa-fw fa-discord'}/>
                 </a>{' '}
                 <a
                   href="https://www.patreon.com/refsheet"
@@ -191,7 +192,7 @@ class _Footer extends Component {
                   title={'Support us on Patreon!'}
                 >
                   <img
-                    src="/assets/third_party/patreon_white.png"
+                    src={PatreonWhite}
                     alt="Support us on Patreon!"
                   />
                 </a>
@@ -272,7 +273,7 @@ class _Footer extends Component {
             >
               {Refsheet.version.substr(0, 7)}
             </a>
-            <br />
+            <br/>
             Character and user media ownership is subject to the copyright and
             distribution policies of the owner. Use of character and user media
             is granted to Refsheet.net to display and store. Unauthorized

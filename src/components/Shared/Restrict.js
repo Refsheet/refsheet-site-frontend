@@ -2,28 +2,29 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { connect, useSelector } from 'react-redux'
+import {connect, useSelector} from 'react-redux'
 
 const restrict = ({
-  tag = '',
-  admin,
-  patron,
-  user,
-  confirmed,
-  currentUser,
-  hideAll,
-  development,
-  invert,
-  nsfw,
-  nsfwOk,
-}) => {
-  const { currentUser: stateUser } = useSelector(state => state.session)
-  const { is_admin, is_patron, is_supporter, email_confirmed_at } =
-    currentUser || stateUser || {}
+                    tag = '',
+                    admin,
+                    patron,
+                    user,
+                    confirmed,
+                    currentUser,
+                    hideAll,
+                    development,
+                    invert,
+                    nsfw,
+                    nsfwOk,
+                  }) => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const {currentUser: stateUser} = useSelector(state => state.session)
+  const {is_admin, is_patron, is_supporter, email_confirmed_at} =
+  currentUser || stateUser || {}
 
   console.log({
     tag,
-    userFlags: { is_admin, is_patron, is_supporter, email_confirmed_at },
+    userFlags: {is_admin, is_patron, is_supporter, email_confirmed_at},
     restrictFlags: {
       admin,
       patron,
@@ -77,7 +78,7 @@ const restrict = ({
   return !hide
 }
 
-const Restrict = ({ children, ...props }) => {
+const Restrict = ({children, ...props}) => {
   if (restrict(props)) {
     return children
   } else {
@@ -98,5 +99,5 @@ const mapStateToProps = state => ({
   nsfwOk: state.session.nsfwOk,
 })
 
-export { restrict }
+export {restrict}
 export default connect(mapStateToProps)(Restrict)

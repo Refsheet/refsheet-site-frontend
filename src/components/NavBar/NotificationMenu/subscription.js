@@ -1,14 +1,16 @@
-import { subscribe } from 'services/ApplicationService'
-import getNotifications from './getNotifications.graphql'
-import subscribeToNotifications from './subscribeToNotifications.graphql'
+import {subscribe} from 'services/ApplicationService'
+import {loader} from 'graphql.macro'
 
-const mapDataToProps = ({ getNotifications = {} }) => ({
+const getNotifications = loader('./getNotifications.graphql');
+const subscribeToNotifications = loader('./subscribeToNotifications.graphql');
+
+const mapDataToProps = ({getNotifications = {}}) => ({
   notifications: getNotifications.notifications,
   unreadCount: getNotifications.unreadCount,
 })
 
 const updateQuery = (prev, data) => {
-  const { newNotification } = data
+  const {newNotification} = data
 
   const notifications = [
     newNotification,

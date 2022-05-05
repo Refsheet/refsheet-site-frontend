@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import DropdownLink from '../DropdownLink'
 import NotificationItem from '../Dropdown/NotificationItem'
-import { Link } from 'react-router-dom'
-import Scrollbars from 'Shared/Scrollbars'
+import {Link} from 'react-router-dom'
+import Scrollbars from 'components/Shared/Scrollbars'
 import compose from '../../../utils/compose'
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 import WindowAlert from '../../../utils/WindowAlert'
-import { clearAllUploads, clearUpload, openUploadModal } from '../../../actions'
+import {clearAllUploads, clearUpload, openUploadModal} from '../../../actions'
 
 class UploadMenu extends Component {
   handleUploadDismiss(args) {
@@ -15,7 +15,7 @@ class UploadMenu extends Component {
   }
 
   handleUploadClick(args) {
-    console.log({ args })
+    console.log({args})
     this.props.openUploadModal(args.variables.id, null)
   }
 
@@ -50,7 +50,7 @@ class UploadMenu extends Component {
   }
 
   render() {
-    const { uploads = [] } = this.props
+    const {uploads = []} = this.props
 
     const unreadCount = uploads.length
 

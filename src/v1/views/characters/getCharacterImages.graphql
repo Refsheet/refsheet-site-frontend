@@ -1,4 +1,4 @@
-#import 'fragments/GalleryImageFields.graphql'
+#import '../../../graph/fragments/GalleryImageFields.graphql'
 
 query getCharacterImages($username: String!, $slug: String!) {
     getCharacterByUrl(username: $username, slug: $slug) {

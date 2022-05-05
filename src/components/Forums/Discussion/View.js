@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import compose, { withMutations } from '../../../utils/compose'
-import { Trans, withTranslation } from 'react-i18next'
+import React, {Component} from 'react'
+import compose, {withMutations} from '../../../utils/compose'
+import {Trans, withTranslation} from 'react-i18next'
 import KarmaCounter from '../shared/KarmaCounter'
 import Moment from 'react-moment'
 import UserAvatar from '../../User/UserAvatar'
@@ -10,21 +10,24 @@ import DiscussionReply from './DiscussionReply'
 import RichText from '../../Shared/RichText'
 import DiscussionReplyForm from './DiscussionReplyForm'
 import c from 'classnames'
-import Muted, { MutedAnchor } from '../../Styled/Muted'
+import Muted, {MutedAnchor} from '../../Styled/Muted'
 import LinkUtils from 'utils/LinkUtils'
-import { H2 } from '../../Styled/Headings'
+import {H2} from '../../Styled/Headings'
 
 import Advertisement from 'v1/shared/advertisement'
-import { Divider, Dropdown, Icon } from 'react-materialize'
+import {Divider, Dropdown, Icon} from 'react-materialize'
 import Restrict from '../../Shared/Restrict'
 import NewDiscussionForm from '../NewDiscussion/NewDiscussionForm'
-import { openReportModal } from '../../../actions'
-import { connect } from 'react-redux'
+import {openReportModal} from '../../../actions'
+import {connect} from 'react-redux'
 import e from 'utils/e'
-import destroyDiscussion from './destroyDiscussion.graphql'
-import { withRouter } from 'react-router'
+import {loader} from 'graphql.macro'
+
+import {withRouter} from 'react-router'
 import NotFound from '../../Shared/views/NotFound'
 import EmailConfirmationNag from '../../User/EmailConfirmationNag'
+
+const destroyDiscussion = loader('./destroyDiscussion.graphql');
 
 class View extends Component {
   constructor(props) {
@@ -39,24 +42,24 @@ class View extends Component {
 
   handleEditStart(e) {
     e.preventDefault()
-    this.setState({ editing: true })
+    this.setState({editing: true})
   }
 
   handleEditStop() {
-    this.setState({ editing: false })
+    this.setState({editing: false})
   }
 
   handleReplyEditStart() {
-    this.setState({ editingReply: true })
+    this.setState({editingReply: true})
   }
 
   handleReplyEditStop() {
-    this.setState({ editingReply: false })
+    this.setState({editingReply: false})
   }
 
   handleDestroyDiscussion(e) {
     e.preventDefault()
-    this.setState({ pendingAction: true })
+    this.setState({pendingAction: true})
 
     this.props
       .destroyDiscussion({
@@ -67,22 +70,22 @@ class View extends Component {
       })
       .then(() => {
         this.props.history.push(
-          LinkUtils.forumPath({ forumId: this.props.discussion.forum.slug })
+          LinkUtils.forumPath({forumId: this.props.discussion.forum.slug})
         )
       })
       .finally(() => {
-        this.setState({ pendingAction: false })
+        this.setState({pendingAction: false})
       })
   }
 
   render() {
-    const { discussion, forum, t, refetch, openReportModal } = this.props
+    const {discussion, forum, t, refetch, openReportModal} = this.props
 
     if (!discussion || discussion.deleted_at) {
-      return <NotFound />
+      return <NotFound/>
     }
 
-    const { can_edit, can_destroy } = discussion
+    const {can_edit, can_destroy} = discussion
 
     if (this.state.editing) {
       return (
@@ -109,7 +112,7 @@ class View extends Component {
               character={discussion.character}
             />
 
-            <KarmaCounter discussion={discussion} forum={forum} />
+            <KarmaCounter discussion={discussion} forum={forum}/>
 
             <div
               className={c('forum-card card sp', {
@@ -193,7 +196,7 @@ class View extends Component {
                         <span>Make Sticky</span>
                       </a>
                     </Restrict>
-                    <Divider />
+                    <Divider/>
                     <a
                       key="report"
                       href={'#'}
@@ -256,7 +259,7 @@ class View extends Component {
         </main>
 
         <aside className={'sidebar left-pad'}>
-          {typeof Advertisement != 'undefined' && <Advertisement />}
+          {typeof Advertisement != 'undefined' && <Advertisement/>}
         </aside>
       </div>
     )
@@ -265,7 +268,7 @@ class View extends Component {
 
 export default compose(
   withTranslation('common'),
-  connect(undefined, { openReportModal }),
-  withMutations({ destroyDiscussion }),
+  connect(undefined, {openReportModal}),
+  withMutations({destroyDiscussion}),
   withRouter
 )(View)
