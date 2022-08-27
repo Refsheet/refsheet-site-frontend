@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {Icon} from 'react-materialize'
 import {Query} from '@apollo/client/react/components'
-import {gql} from 'apollo-client-preset'
+import {gql} from '@apollo/client'
 import NewMessage from './NewMessage'
 
 class NewConversation extends Component {
@@ -74,16 +74,16 @@ class NewConversation extends Component {
       )
     } else {
       const FIND_USER_QUERY = gql`
-        query findUser($username: String!) {
-          findUser(username: $username) {
-            id
-            name
-            username
-            avatar_url
-            is_admin
-            is_patron
+          query findUser($username: String!) {
+              findUser(username: $username) {
+                  id
+                  name
+                  username
+                  avatar_url
+                  is_admin
+                  is_patron
+              }
           }
-        }
       `
 
       const renderResult = ({loading, data}) => {

@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import {gql} from 'apollo-client-preset'
+import {gql} from '@apollo/client'
 import {Icon} from 'react-materialize'
 import Conversations from './Conversations'
 import Conversation from './Conversation'

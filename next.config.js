@@ -8,7 +8,7 @@ module.exports = {
     config.resolve.modules.push('./public')
 
     config.module.rules.push({
-      test: /\.mp3$/,
+      test: /\.(mp3|png)$/,
       loader: 'file-loader'
     })
 

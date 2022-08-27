@@ -4,7 +4,7 @@ import ProfileColumn from './ProfileColumn'
 import Section from 'components/Shared/Section'
 import c from 'classnames'
 import {Mutation} from '@apollo/client/react/components'
-import {gql} from 'apollo-client-preset'
+import {gql} from '@apollo/client'
 import NewWidgetModal from './Modals/NewWidgetModal'
 //graphql.macro
 // import * as M from 'materialize-css'

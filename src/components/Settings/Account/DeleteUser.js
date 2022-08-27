@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {Input, Row, Col, Button} from 'react-materialize'
 import c from 'classnames'
 import {Mutation} from '@apollo/client/react/components'
-import {gql} from 'apollo-client-preset'
+import {gql} from '@apollo/client'
 import {withRouter} from 'react-router'
 import compose, {withCurrentUser} from '../../../utils/compose'
 
@@ -183,12 +183,12 @@ DeleteUser.propTypes = {
 }
 
 const DELETE_USER_MUTATION = gql`
-  mutation DeleteUser($username: String!, $password: String!) {
-    deleteUser(username: $username, password: $password) {
-      username
-      deleted_at
+    mutation DeleteUser($username: String!, $password: String!) {
+        deleteUser(username: $username, password: $password) {
+            username
+            deleted_at
+        }
     }
-  }
 `
 
 const Wrapped = props => (

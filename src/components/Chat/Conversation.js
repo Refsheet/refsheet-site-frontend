@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {Mutation, Query} from '@apollo/client/react/components'
-import {gql} from 'apollo-client-preset'
+import {gql} from '@apollo/client'
 import _ from 'underscore'
 import ConversationMessage from './ConversationMessage'
 import NewMessage from './NewMessage'
@@ -291,56 +291,56 @@ const renderConversation = props => ({
 }
 
 const MESSAGES_SUBSCRIPTION = gql`
-  subscription onNewMessage($conversationId: ID!) {
-    newMessage(conversationId: $conversationId) {
-      id
-      guid
-      message
-      created_at
-      is_self
-      unread
-      user {
-        name
-      }
+    subscription onNewMessage($conversationId: ID!) {
+        newMessage(conversationId: $conversationId) {
+            id
+            guid
+            message
+            created_at
+            is_self
+            unread
+            user {
+                name
+            }
+        }
     }
-  }
 `
 
 const UPDATE_CONVERSATION_MUTATION = gql`
-  mutation updateConversation($conversationId: ID!) {
-    updateConversation(conversation_id: $conversationId, read: true) {
-      guid
-      unreadCount
+    mutation updateConversation($conversationId: ID!) {
+        updateConversation(conversation_id: $conversationId, read: true) {
+            guid
+            unreadCount
+        }
     }
-  }
 `
 
 const GET_CONVERSATION_QUERY = gql`
-  query getConversation($conversationId: ID!) {
-    getConversation(conversationId: $conversationId) {
-      id
-      guid
-      unreadCount
-      user {
-        name
-        username
-        avatar_url
-        is_admin
-        is_patron
-      }
-      messages {
-        id
-        guid
-        message
-        created_at
-        is_self
-        unread
-        user {
-          name
+    query getConversation($conversationId: ID!) {
+        getConversation(conversationId: $conversationId) {
+            id
+            guid
+            unreadCount
+            user {
+                name
+                username
+                avatar_url
+                is_admin
+                is_patron
+            }
+            messages {
+                id
+                guid
+                message
+                created_at
+                is_self
+                unread
+                user {
+                    name
+                }
+            }
         }
-      }
     }
-  }
 `
 
 const Wrapped = props => (
