@@ -1,8 +1,7 @@
 import {subscribe} from 'services/ApplicationService'
-import {loader} from 'graphql.macro'
-
-const getNotifications = loader('./getNotifications.graphql');
-const subscribeToNotifications = loader('./subscribeToNotifications.graphql');
+//graphql.macro
+const getNotifications = require('./getNotifications.graphql');
+const subscribeToNotifications = require('./subscribeToNotifications.graphql');
 
 const mapDataToProps = ({getNotifications = {}}) => ({
   notifications: getNotifications.notifications,

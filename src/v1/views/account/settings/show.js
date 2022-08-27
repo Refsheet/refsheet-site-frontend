@@ -17,9 +17,8 @@ import Input from '../../../shared/forms/Input'
 import Submit from '../../../shared/forms/Submit'
 import DeleteUser from '../../../../components/Settings/Account/DeleteUser'
 
-import Materialize from 'materialize-css'
 import Error from '../../../../components/Shared/Error'
-import compose, { withCurrentUser } from '../../../../utils/compose'
+import compose, {withCurrentUser} from '../../../../utils/compose'
 import EmailConfirmationNag from '../../../../components/User/EmailConfirmationNag'
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
@@ -40,11 +39,11 @@ class Show extends React.Component {
 
   _handleFormChange(user) {
     this.props.setCurrentUser(user)
-    return Materialize.toast({
+    if (typeof window != 'undefined') import('materialize-css').then((Materialize) => Materialize.toast({
       html: 'Settings Saved',
       displayLength: 3000,
       classes: 'green',
-    })
+    }))
   }
 
   render() {
@@ -61,7 +60,7 @@ class Show extends React.Component {
     }
     return (
       <div className="account-settings">
-        <EmailConfirmationNag />
+        <EmailConfirmationNag/>
         <Form
           action={this.state.user.path}
           className="card sp"
@@ -77,17 +76,17 @@ class Show extends React.Component {
           <div className="card-content padding-bottom--none">
             <Row noMargin>
               <Column m={6}>
-                <Input name="name" type="text" label="Display Name" />
+                <Input name="name" type="text" label="Display Name"/>
               </Column>
 
               <Column m={6}>
-                <Input name="email" type="email" label="Email Address" />
+                <Input name="email" type="email" label="Email Address"/>
               </Column>
             </Row>
 
             <Row noMargin>
               <Column m={6}>
-                <Input name="username" type="text" label="Username" />
+                <Input name="username" type="text" label="Username"/>
               </Column>
 
               <Column m={6}>
@@ -144,7 +143,7 @@ class Show extends React.Component {
           </div>
         </Form>
 
-        <DeleteUser user={this.state.user} />
+        <DeleteUser user={this.state.user}/>
       </div>
     )
   }

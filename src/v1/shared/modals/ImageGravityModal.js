@@ -6,7 +6,7 @@ import Row from 'v1/shared/material/Row'
 import Column from 'v1/shared/material/Column'
 
 import $ from 'jquery'
-import * as Materialize from 'materialize-css'
+//import * as Materialize from 'materialize-css'
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
@@ -27,15 +27,15 @@ export default ImageGravityModal = createReactClass({
 
   handleGravityChange(e) {
     const gravity = $(e.target).closest('[data-gravity]').data('gravity')
-    return this.setState({ gravity })
+    return this.setState({gravity})
   },
 
   handleSave(e) {
-    this.setState({ loading: true })
+    this.setState({loading: true})
     $.ajax({
       url: this.props.image.path,
       type: 'PATCH',
-      data: { image: { gravity: this.state.gravity } },
+      data: {image: {gravity: this.state.gravity}},
       success: data => {
         $(document).trigger('app:image:update', data)
         Materialize.toast({
@@ -44,7 +44,7 @@ export default ImageGravityModal = createReactClass({
           displayLength: 3000,
           classes: 'green',
         })
-        this.setState({ loading: false })
+        this.setState({loading: false})
         return Materialize.Modal.getInstance(
           document.getElementById('image-gravity-modal')
         ).close()
@@ -55,7 +55,7 @@ export default ImageGravityModal = createReactClass({
           displayLength: 3000,
           classes: 'red',
         })
-        this.setState({ loading: false })
+        this.setState({loading: false})
         return console.log(error)
       },
     })
@@ -64,17 +64,17 @@ export default ImageGravityModal = createReactClass({
 
   handleClose(e) {
     $('#image-gravity-modal').modal('close')
-    this.setState({ gravity: this.getInitialState() })
+    this.setState({gravity: this.getInitialState()})
     return e.preventDefault()
   },
 
   render() {
     const gravity_crop = {
-      center: { objectPosition: 'center' },
-      north: { objectPosition: 'top' },
-      south: { objectPosition: 'bottom' },
-      east: { objectPosition: 'right' },
-      west: { objectPosition: 'left' },
+      center: {objectPosition: 'center'},
+      north: {objectPosition: 'top'},
+      south: {objectPosition: 'bottom'},
+      east: {objectPosition: 'right'},
+      west: {objectPosition: 'left'},
     }
 
     return (

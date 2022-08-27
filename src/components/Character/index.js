@@ -19,12 +19,11 @@ import View from './View'
 import {Error} from 'components/Shared'
 import PropTypes from 'prop-types'
 import {graphql} from 'react-apollo'
-import {loader} from 'graphql.macro'
-
+//graphql.macro
 import {connect} from 'react-redux'
 import Loading from '../Shared/views/Loading'
 
-const getCharacterProfile = loader('../../graph/queries/getCharacterProfile.graphql');
+const getCharacterProfile = require('../../graph/queries/getCharacterProfile.graphql');
 console.log({getCharacterProfile})
 
 class Character extends Component {

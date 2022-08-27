@@ -12,7 +12,7 @@ import Attribute from 'v1/shared/attributes/attribute'
 import Tabs from 'v1/shared/tabs/Tabs'
 import Tab from 'v1/shared/tabs/Tab'
 
-import * as Materialize from 'materialize-css'
+//import * as Materialize from 'materialize-css'
 import ColorUtils from '../../../../utils/ColorUtils'
 
 // TODO: This file was created by bulk-decaffeinate.
@@ -67,15 +67,15 @@ export default CharacterColorSchemeModal = createReactClass({
 
     if (typeof obj === 'object') {
       const data = ColorUtils.rejectV1(ColorUtils.convertV1(obj))
-      this.setState({ color_data: data })
+      this.setState({color_data: data})
       return this.refs.form.setModel(obj)
     }
   },
 
   _handleChange(data) {
-    return this.setState({ color_data: data.color_scheme.color_data }, () => {
+    return this.setState({color_data: data.color_scheme.color_data}, () => {
       this.props.onChange &&
-        this.props.onChange(ColorUtils.rejectV1(data.color_scheme.color_data))
+      this.props.onChange(ColorUtils.rejectV1(data.color_scheme.color_data))
 
       Materialize.toast({
         html: 'Color scheme saved.',
@@ -87,12 +87,12 @@ export default CharacterColorSchemeModal = createReactClass({
   },
 
   _handleUpdate(data) {
-    this.setState({ color_data: data })
+    this.setState({color_data: data})
     this.props.onChange && this.props.onChange(ColorUtils.rejectV1(data))
   },
 
   _handleDirty(dirty) {
-    return this.setState({ dirty })
+    return this.setState({dirty})
   },
 
   _handleCancel() {
@@ -160,7 +160,7 @@ export default CharacterColorSchemeModal = createReactClass({
             </Tab>
           </Tabs>
 
-          <div className="divider" />
+          <div className="divider"/>
 
           <Row className="margin-top--large" noMargin>
             <Column m={6}>
@@ -176,8 +176,8 @@ export default CharacterColorSchemeModal = createReactClass({
             <Column m={6}>
               <h2>Lorem Ipsum</h2>
               <AttributeTable>
-                <Attribute name="Name" value="Color Test" />
-                <Attribute name="Personality" value="Very helpful!" />
+                <Attribute name="Name" value="Color Test"/>
+                <Attribute name="Personality" value="Very helpful!"/>
               </AttributeTable>
             </Column>
           </Row>

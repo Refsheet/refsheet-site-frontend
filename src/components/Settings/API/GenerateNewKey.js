@@ -5,12 +5,11 @@ import {Switch} from 'react-materialize'
 import PropTypes from 'prop-types'
 import InputRow from '../shared/InputRow'
 import {withMutations} from '../../../utils/compose'
-import {loader} from 'graphql.macro'
-
+//graphql.macro
 import Flash from '../../../utils/Flash'
 
-const createApiKey = loader('./createApiKey.graphql');
-const getApiKeys = loader('./getApiKeys.graphql');
+const createApiKey = require('./createApiKey.graphql');
+const getApiKeys = require('./getApiKeys.graphql');
 
 const GenerateNewKey = ({createApiKey}) => {
   const defaultKey = {

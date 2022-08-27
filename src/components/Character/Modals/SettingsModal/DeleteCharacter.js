@@ -3,13 +3,12 @@ import PropTypes from 'prop-types'
 import compose from 'utils/compose'
 import {Trans, withTranslation} from 'react-i18next'
 import {Row, Col, TextInput} from 'react-materialize'
-import {loader} from 'graphql.macro'
-import {withMutations} from '../../../../utils/compose'
+//graphql.macroimport {withMutations} from '../../../../utils/compose'
 import {withRouter} from 'react-router'
-import M from 'materialize-css'
+//import M from 'materialize-css'
 import LinkUtils from 'utils/LinkUtils'
 
-const archiveCharacter = loader('./archiveCharacter.graphql');
+const archiveCharacter = require('./archiveCharacter.graphql');
 
 class DeleteCharacter extends Component {
   constructor(props) {

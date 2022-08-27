@@ -21,13 +21,12 @@ import NewDiscussionForm from '../NewDiscussion/NewDiscussionForm'
 import {openReportModal} from '../../../actions'
 import {connect} from 'react-redux'
 import e from 'utils/e'
-import {loader} from 'graphql.macro'
-
+//graphql.macro
 import {withRouter} from 'react-router'
 import NotFound from '../../Shared/views/NotFound'
 import EmailConfirmationNag from '../../User/EmailConfirmationNag'
 
-const destroyDiscussion = loader('./destroyDiscussion.graphql');
+const destroyDiscussion = require('./destroyDiscussion.graphql');
 
 class View extends Component {
   constructor(props) {

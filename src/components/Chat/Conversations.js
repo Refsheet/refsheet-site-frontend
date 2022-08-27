@@ -1,12 +1,10 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {Query} from 'react-apollo'
-import {loader} from 'graphql.macro'
-
-const getConversations = loader('./getConversations.graphql');
-import {loader} from 'graphql.macro'
-
-const subscribeToConversations = loader('./subscribeToConversations.graphql');
+//graphql.macro
+const getConversations = require('./getConversations.graphql');
+//graphql.macro
+const subscribeToConversations = require('./subscribeToConversations.graphql');
 import _ from 'underscore'
 
 import ConversationLink from './ConversationLink'

@@ -3,8 +3,7 @@ import {closeLightbox, openLightbox} from '../../actions'
 import {connect} from 'react-redux'
 import {Icon} from 'react-materialize'
 import {Query} from 'react-apollo'
-import {loader} from 'graphql.macro'
-
+//graphql.macro
 import View from './View'
 import Silhouette from './Silhouette'
 import {Error, Loading} from './Status'
@@ -12,7 +11,7 @@ import {withRouter} from 'react-router-dom'
 import compose from '../../utils/compose'
 import {withErrorBoundary} from '../Shared/ErrorBoundary'
 
-const getMedia = loader('./getMedia.graphql');
+const getMedia = require('./getMedia.graphql');
 
 class Lightbox extends Component {
   constructor(props) {

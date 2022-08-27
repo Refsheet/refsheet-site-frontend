@@ -2,7 +2,7 @@ import React from 'react'
 import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
 import $ from 'jquery'
-import * as Materialize from 'materialize-css'
+//import * as Materialize from 'materialize-css'
 import Button from '../../components/Styled/Button'
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
@@ -133,7 +133,7 @@ export default Modal = createReactClass({
       <div ref="modal" className={classes.join(' ')} id={this.props.id}>
         <div
           className="modal-body"
-          style={{ flexGrow: 1, display: 'flex', height: '100%' }}
+          style={{flexGrow: 1, display: 'flex', height: '100%'}}
         >
           {this.props.title && (
             <div className="modal-header-wrap">

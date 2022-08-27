@@ -1,14 +1,13 @@
 import request from 'superagent'
 import client from 'services/ApplicationService'
 import xmljs from 'xml-js'
-import {loader} from 'graphql.macro'
-
+//graphql.macro
 import * as Sentry from '@sentry/browser'
 
 // TODO: Make this a mutation too, it deserves it.
-const getCharacterImages = loader('../graph/fragments/getCharacterImages.graphql');
-const getImageUploadToken = loader('../graph/queries/getImageUploadToken.graphql');
-const uploadImage = loader('../graph/mutations/uploadImage.graphql');
+const getCharacterImages = require('../graph/fragments/getCharacterImages.graphql');
+const getImageUploadToken = require('../graph/queries/getImageUploadToken.graphql');
+const uploadImage = require('../graph/mutations/uploadImage.graphql');
 
 class ImageHandler {
   static upload(image, characterId, onChange) {

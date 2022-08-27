@@ -19,13 +19,13 @@ import NewCharacterForm from './characters/NewCharacterForm'
 import UserSettingsModal from '../shared/modals/UserSettingsModal'
 
 import $ from 'jquery'
-import * as Materialize from 'materialize-css'
+//import * as Materialize from 'materialize-css'
 import StateUtils from '../utils/StateUtils'
 import HashUtils from '../utils/HashUtils'
 import Characters from './user/Characters'
 import Section from '../../components/Shared/Section'
-import compose, { withCurrentUser } from '../../utils/compose'
-import { withRouter } from 'react-router'
+import compose, {withCurrentUser} from '../../utils/compose'
+import {withRouter} from 'react-router'
 import Error from '../../components/Shared/Error'
 import Icon from 'react-materialize/lib/Icon'
 // TODO: This file was created by bulk-decaffeinate.
@@ -62,7 +62,7 @@ const User = createReactClass({
     const activeGroupId = id || window.location.hash.substring(1).toLowerCase()
 
     if (activeGroupId === '') {
-      this.setState({ activeGroupId: null }, cb)
+      this.setState({activeGroupId: null}, cb)
       return
     }
 
@@ -71,7 +71,7 @@ const User = createReactClass({
       this.state.user.character_groups.map(g => g.slug.toLowerCase())
 
     if (slugs && slugs.indexOf(activeGroupId) !== -1) {
-      this.setState({ activeGroupId }, cb)
+      this.setState({activeGroupId}, cb)
     } else if (cb) {
       cb(this.state)
     }
@@ -96,7 +96,7 @@ const User = createReactClass({
   },
 
   handleUserChange(user) {
-    this.setState({ user: { ...this.state.user, user } })
+    this.setState({user: {...this.state.user, user}})
 
     if (user.username === this.props.currentUser.username) {
       return this.props.setCurrentUser(user)
@@ -104,10 +104,10 @@ const User = createReactClass({
   },
 
   _handleUserFollow(followed, blocked) {
-    const user = { ...this.state.user }
+    const user = {...this.state.user}
     user.followed = followed
     if (blocked !== undefined) user.blocked = blocked
-    return this.setState({ user })
+    return this.setState({user})
   },
 
   //== Schnazzy Fancy Root-level permutation operations!
@@ -176,11 +176,11 @@ const User = createReactClass({
     let actionButtons, editable, editPath, userChangeCallback, blocked
 
     if (this.state.error != null) {
-      return <NotFound />
+      return <NotFound/>
     }
 
     if (this.state.user == null) {
-      return <main />
+      return <main/>
     }
 
     if (

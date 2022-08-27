@@ -2,13 +2,12 @@ import React from 'react'
 import Error from 'components/Shared/Error'
 import {Row, Col} from 'react-materialize'
 import {Mutation} from 'react-apollo'
-import {loader} from 'graphql.macro'
-import Jumbotron from 'components/Shared/Jumbotron'
+//graphql.macroimport Jumbotron from 'components/Shared/Jumbotron'
 import Main from 'v1/shared/Main'
 import Spinner from 'v1/shared/material/Spinner'
 import Container from 'v1/shared/material/Container'
 
-const updateModeration = loader('../../graph/mutations/updateModeration.graphql');
+const updateModeration = require('../../graph/mutations/updateModeration.graphql');
 
 const Resolution = ({id, updateModeration, data, loading, error}) => {
   if (loading) {

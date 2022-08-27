@@ -1,7 +1,7 @@
 import React from 'react'
 import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
-import * as Materialize from 'materialize-css'
+//import * as Materialize from 'materialize-css'
 import $ from 'jquery'
 import c from 'classnames'
 import validate, {
@@ -79,14 +79,14 @@ export default Input = createReactClass({
     }
 
     if (this.props.type === 'color') {
-      this.setState({ showColorPicker: true })
+      this.setState({showColorPicker: true})
     }
   },
 
   handleBlur(e) {
     this._blurTimeout = setTimeout(() => {
       if (this.props.type === 'color') {
-        this.setState({ showColorPicker: false })
+        this.setState({showColorPicker: false})
       }
       // A timeout of 0 might be a problem here. If we see issues where the color picker keeps closing when you click it,
       // this might need to be increased. System specs play a role here.
@@ -113,16 +113,16 @@ export default Input = createReactClass({
     }
 
     if (prevProps.value !== this.props.value) {
-      this.setState({ value: this.props.value || this.props.default })
+      this.setState({value: this.props.value || this.props.default})
     }
 
     if (prevProps.error !== this.props.error) {
-      return this.setState({ error: this.props.error })
+      return this.setState({error: this.props.error})
     }
   },
 
   handleColorClose() {
-    this.setState({ showColorPicker: false })
+    this.setState({showColorPicker: false})
   },
 
   handleColorChange(data) {
@@ -164,7 +164,7 @@ export default Input = createReactClass({
     validators[this.props.name] = validations
     const errors = validate(model, validators)[this.props.name]
 
-    this.setState({ error: null, validationErrors: errors, value, dirty: true })
+    this.setState({error: null, validationErrors: errors, value, dirty: true})
     if (this.props.onChange) {
       return this.props.onChange(this.props.name, value)
     }
@@ -182,8 +182,8 @@ export default Input = createReactClass({
 
   render() {
     let icon, id, inputField
-    let { className } = this.props
-    const { showColorPicker } = this.state
+    let {className} = this.props
+    const {showColorPicker} = this.state
 
     let errors = this.state.validationErrors || []
     let error
@@ -212,7 +212,7 @@ export default Input = createReactClass({
     let inputFieldInsideLabel = false
 
     if (this.props.id) {
-      ;({ id } = this.props)
+      ;({id} = this.props)
     } else if (this.props.modelName) {
       id = `${this.props.modelName}_${this.props.name}`
     } else {
@@ -270,7 +270,7 @@ export default Input = createReactClass({
       )
     } else if (this.props.type === 'color') {
       inputField = (
-        <input {...commonProps} value={this.state.value || ''} type="text" />
+        <input {...commonProps} value={this.state.value || ''} type="text"/>
       )
 
       if (this.props.icon !== '') {
@@ -285,7 +285,7 @@ export default Input = createReactClass({
         icon = (
           <i
             className="material-icons prefix shadow"
-            style={{ color }}
+            style={{color}}
             onClick={this.handleFocus}
           >
             {iconName}

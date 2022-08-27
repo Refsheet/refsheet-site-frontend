@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import M from 'materialize-css'
+//import M from 'materialize-css'
 import PropTypes from 'prop-types'
 import TocLink from 'components/Styled/TocLink'
 import {Icon} from 'react-materialize'

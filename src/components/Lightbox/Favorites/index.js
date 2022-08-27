@@ -4,11 +4,10 @@ import {Icon} from 'react-materialize'
 import {Link} from 'react-router-dom'
 import c from 'classnames'
 import compose, {withMutations} from '../../../utils/compose'
-import {loader} from 'graphql.macro'
-import {connect} from 'react-redux'
+//graphql.macroimport {connect} from 'react-redux'
 
-const addFavorite = loader('./addFavorite.graphql');
-const removeFavorite = loader('./removeFavorite.graphql');
+const addFavorite = require('./addFavorite.graphql');
+const removeFavorite = require('./removeFavorite.graphql');
 
 class Favorites extends Component {
   constructor(props) {

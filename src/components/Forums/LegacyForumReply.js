@@ -2,9 +2,8 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Mutation} from 'react-apollo'
-import {loader} from 'graphql.macro'
-
-const postReply = loader('./postReply.graphql');
+//graphql.macro
+const postReply = require('./postReply.graphql');
 import CommentForm from '../Shared/CommentForm'
 import {withTranslation} from 'react-i18next'
 

@@ -3,15 +3,14 @@ import Restrict from '../../../Shared/Restrict'
 import Button from '../../../Styled/Button'
 import Input from '../../../../v1/shared/forms/Input'
 import Submit from '../../../../v1/shared/forms/Submit'
-import {loader} from 'graphql.macro'
-
+//graphql.macro
 import compose, {withMutations} from '../../../../utils/compose'
 import Flash from '../../../../utils/Flash'
 import gql from 'graphql-tag'
 import Moment from 'react-moment'
 
-const updateLodestoneLink = loader('./LodestoneSource/updateLodestoneLink.graphql');
-const createLodestoneLink = loader('./LodestoneSource/createLodestoneLink.graphql');
+const updateLodestoneLink = require('./LodestoneSource/updateLodestoneLink.graphql');
+const createLodestoneLink = require('./LodestoneSource/createLodestoneLink.graphql');
 
 class DataLink extends Component {
   constructor(props) {

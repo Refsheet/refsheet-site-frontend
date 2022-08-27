@@ -1,15 +1,14 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {withTranslation} from 'react-i18next'
-import {loader} from 'graphql.macro'
-
+//graphql.macro
 import compose, {withMutations} from '../../../utils/compose'
-import M from 'materialize-css'
+//import M from 'materialize-css'
 import Icon from 'v1/shared/material/Icon'
 
-const gdQuery = loader('../getDiscussions.graphql');
+const gdQuery = require('../getDiscussions.graphql');
 
-const sendKarma = loader('./sendKarma.graphql');
+const sendKarma = require('./sendKarma.graphql');
 
 class KarmaButton extends Component {
   constructor(props) {

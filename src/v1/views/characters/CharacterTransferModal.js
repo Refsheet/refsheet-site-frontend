@@ -9,7 +9,7 @@
 import React from 'react'
 import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
-import * as Materialize from 'materialize-css'
+//import * as Materialize from 'materialize-css'
 import Modal from '../../shared/Modal'
 import Form from '../../shared/forms/Form'
 import Row from '../../shared/material/Row'
@@ -48,7 +48,7 @@ export default CharacterTransferModal = createReactClass({
   },
 
   _handleChange(character) {
-    this.setState({ model: { transfer_to_user: null } })
+    this.setState({model: {transfer_to_user: null}})
     $(document).trigger('app:character:update', character)
 
     this._handleModalClose()
@@ -66,7 +66,7 @@ export default CharacterTransferModal = createReactClass({
   },
 
   _handleDirty(dirty) {
-    return this.setState({ dirty })
+    return this.setState({dirty})
   },
 
   render() {

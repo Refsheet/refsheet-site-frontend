@@ -9,7 +9,7 @@ import Input from 'v1/shared/forms/Input'
 import Submit from 'v1/shared/forms/Submit'
 
 import $ from 'jquery'
-import * as Materialize from 'materialize-css'
+//import * as Materialize from 'materialize-css'
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
@@ -26,7 +26,7 @@ export default CharacterSettingsModal = createReactClass({
   },
 
   getInitialState() {
-    return { dirty: false }
+    return {dirty: false}
   },
 
   _handleSettingsClose(e) {
@@ -58,7 +58,7 @@ export default CharacterSettingsModal = createReactClass({
   },
 
   _handleDirty(dirty) {
-    return this.setState({ dirty })
+    return this.setState({dirty})
   },
 
   render() {
@@ -75,13 +75,13 @@ export default CharacterSettingsModal = createReactClass({
         >
           <Row noMargin>
             <Column m={6}>
-              <Input name="name" label="Name" autoFocus />
+              <Input name="name" label="Name" autoFocus/>
             </Column>
             <Column s={6} m={3}>
-              <Input name="nsfw" type="checkbox" label="NSFW" />
+              <Input name="nsfw" type="checkbox" label="NSFW"/>
             </Column>
             <Column s={6} m={3}>
-              <Input name="hidden" type="checkbox" label="Hidden" />
+              <Input name="hidden" type="checkbox" label="Hidden"/>
             </Column>
           </Row>
 
@@ -93,7 +93,7 @@ export default CharacterSettingsModal = createReactClass({
               />
             </Column>
             <Column m={6}>
-              <Input name="shortcode" label="ref.st/" />
+              <Input name="shortcode" label="ref.st/"/>
             </Column>
           </Row>
 

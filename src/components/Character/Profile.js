@@ -3,11 +3,10 @@ import PropTypes from 'prop-types'
 import ProfileSection from './ProfileSection'
 import c from 'classnames'
 import {Mutation} from 'react-apollo'
-import {loader} from 'graphql.macro'
+//graphql.macro
+// import * as M from 'materialize-css'
 
-import * as M from 'materialize-css'
-
-const createProfileSection = loader('./createProfileSection.graphql');
+const createProfileSection = require('./createProfileSection.graphql');
 
 class Profile extends Component {
   handleNewSection(lastSection) {

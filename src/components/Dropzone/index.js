@@ -1,9 +1,10 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import ReactDropzone from 'react-dropzone'
-import { connect } from 'react-redux'
-import { enqueueUploads } from '../../actions'
-import * as Materialize from 'materialize-css'
+import {connect} from 'react-redux'
+import {enqueueUploads} from '../../actions'
+
+//import * as Materialize from 'materialize-css'
 
 class Dropzone extends Component {
   constructor(props) {
@@ -50,7 +51,7 @@ class Dropzone extends Component {
       this.props.enqueueUploads(pending)
     }
 
-    this.setState({ dropzoneActive: false })
+    this.setState({dropzoneActive: false})
 
     rejectedFiles.forEach(file => {
       console.warn('File invalid:', file)
@@ -67,7 +68,7 @@ class Dropzone extends Component {
 
   onDragEnter(e) {
     const {
-      dataTransfer: { types },
+      dataTransfer: {types},
     } = e
 
     if (types.length === 0 || types.indexOf('Files') === -1) {
@@ -89,8 +90,8 @@ class Dropzone extends Component {
     if (!this.props.currentUser) {
       return this.props.children
     } else {
-      const { dropzoneActive } = this.state
-      const { disabled } = this.props
+      const {dropzoneActive} = this.state
+      const {disabled} = this.props
 
       const overlayStyle = {
         position: 'fixed',
@@ -126,7 +127,7 @@ class Dropzone extends Component {
           onDragEnter={this.onDragEnter.bind(this)}
           onDragLeave={this.onDragLeave.bind(this)}
         >
-          {({ getRootProps, getInputProps }) => (
+          {({getRootProps, getInputProps}) => (
             <div {...getRootProps()}>
               {dropzoneActive && (
                 <div style={overlayStyle}>
@@ -150,7 +151,7 @@ Dropzone.childContextTypes = {
   getDropzone: PropTypes.func,
 }
 
-const mapStateToProps = ({ session, uploads }) => {
+const mapStateToProps = ({session, uploads}) => {
   return {
     currentUser: session.currentUser,
     disabled: uploads.dropzoneDisabled,

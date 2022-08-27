@@ -2,13 +2,12 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {Query} from 'react-apollo'
 import {withTranslation} from 'react-i18next'
-import {loader} from 'graphql.macro'
-
+//graphql.macro
 import {setIdentity} from 'actions'
 import {connect} from 'react-redux'
 import Modal from 'v1/shared/Modal'
 
-const AutocompleteCharacter = loader('../../ActivityFeed/autocompleteCharacter.graphql');
+const AutocompleteCharacter = require('../../ActivityFeed/autocompleteCharacter.graphql');
 
 class IdentityModal extends Component {
   constructor(props) {

@@ -4,9 +4,9 @@ import PropTypes from 'prop-types'
 import PasswordResetForm from '../../views/sessions/PasswordResetForm'
 import LoginForm from '../../views/sessions/LoginForm'
 import Modal from '../Modal'
-import * as Materialize from 'materialize-css'
+//import * as Materialize from 'materialize-css'
 import $ from 'jquery'
-import { withErrorBoundary } from '../../../components/Shared/ErrorBoundary'
+import {withErrorBoundary} from '../../../components/Shared/ErrorBoundary'
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
@@ -19,7 +19,7 @@ import { withErrorBoundary } from '../../../components/Shared/ErrorBoundary'
  */
 const SessionModal = createReactClass({
   getInitialState() {
-    return { view: 'login' }
+    return {view: 'login'}
   },
 
   close() {
@@ -30,7 +30,7 @@ const SessionModal = createReactClass({
 
   view(view) {
     return $(this.refs.view).fadeOut(300, () => {
-      return this.setState({ view }, () => {
+      return this.setState({view}, () => {
         return $(this.refs.view).fadeIn(300)
       })
     })

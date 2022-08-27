@@ -9,7 +9,7 @@ import Column from 'v1/shared/material/Column'
 import Input from 'v1/shared/forms/Input'
 import Submit from 'v1/shared/forms/Submit'
 
-import * as Materialize from 'materialize-css'
+//import * as Materialize from 'materialize-css'
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
@@ -41,7 +41,7 @@ export default FeedbackModal = createReactClass({
       displayLength: 3000,
       classes: 'green',
     })
-    return this.setState({ model: { comment: null } })
+    return this.setState({model: {comment: null}})
   },
 
   _handleClose(e) {
@@ -71,7 +71,7 @@ export default FeedbackModal = createReactClass({
               />
             </Column>
             <Column m={6}>
-              <Input type="text" name="email" label="Your Email" />
+              <Input type="text" name="email" label="Your Email"/>
             </Column>
           </Row>
 

@@ -1,6 +1,5 @@
-import {loader} from 'graphql.macro'
-
-const gcp = loader('../graph/queries/getCharacterProfile.graphql');
+//graphql.macro
+const gcp = require('../graph/queries/getCharacterProfile.graphql');
 
 const CacheUtils = {
   deleteMedia: (cache, {data: {deleteMedia}}) => {

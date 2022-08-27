@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import * as Materialize from 'materialize-css'
+//import * as Materialize from 'materialize-css'
 import Bowser from 'bowser'
 import Attribute from 'v1/shared/attributes/attribute'
 import AttributeTable from 'v1/shared/attributes/attribute_table'
 import Model from '../../../utils/Model'
-import compose, { withCurrentUser } from 'utils/compose'
+import compose, {withCurrentUser} from 'utils/compose'
 
 class Notifications extends React.Component {
   constructor(props) {
@@ -20,7 +20,7 @@ class Notifications extends React.Component {
       typeof Notification !== 'undefined' &&
       Notification.permission === 'granted'
 
-    this.state = { browserGranted: bp }
+    this.state = {browserGranted: bp}
   }
 
   _enableBrowserNotifications(e) {
@@ -101,10 +101,10 @@ class Notifications extends React.Component {
 
           return Model.put(
             '/account/notifications/browser_push',
-            { subscription: subscription.toJSON(), nickname: browserName },
+            {subscription: subscription.toJSON(), nickname: browserName},
             data => {
               this.props.setCurrentUser(data)
-              return this.setState({ browserGranted: true }, callback)
+              return this.setState({browserGranted: true}, callback)
             }
           )
         })
@@ -113,7 +113,7 @@ class Notifications extends React.Component {
   }
 
   getVapidSettings() {
-    const { currentUser } = this.props
+    const {currentUser} = this.props
     return (
       (currentUser &&
         currentUser.settings &&
@@ -129,7 +129,7 @@ class Notifications extends React.Component {
         return null
       }
       const value = browser.nickname || browser.auth
-      return <Attribute key={browser.auth} name="Browser" value={value} />
+      return <Attribute key={browser.auth} name="Browser" value={value}/>
     })
   }
 
@@ -159,7 +159,7 @@ class Notifications extends React.Component {
               name="Supported"
               value={browserSupported ? 'Yes' : 'No'}
             />
-            <Attribute name="Granted" value={browserEnabled ? 'Yes' : 'No'} />
+            <Attribute name="Granted" value={browserEnabled ? 'Yes' : 'No'}/>
             <Attribute
               name="Registered"
               value={userRegistered ? 'Yes' : 'No'}

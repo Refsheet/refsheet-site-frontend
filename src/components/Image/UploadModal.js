@@ -7,18 +7,17 @@ import {clearUpload, closeUploadModal, modifyUpload} from '../../actions'
 import {connect} from 'react-redux'
 import c from 'classnames'
 import {Query} from 'react-apollo'
-import {loader} from 'graphql.macro'
-
+//graphql.macro
 import IdentityModal from '../Shared/CommentForm/IdentityModal'
 import {withTranslation} from 'react-i18next'
 import compose from '../../utils/compose'
-import * as Materialize from 'materialize-css'
+//import * as Materialize from 'materialize-css'
 
 import Icon from 'v1/shared/material/Icon'
 import Modal from 'v1/shared/Modal'
 import {withErrorBoundary} from '../Shared/ErrorBoundary'
 
-const getCharacterForUpload = loader('./getCharacterForUpload.graphql');
+const getCharacterForUpload = require('./getCharacterForUpload.graphql');
 
 class UploadModal extends Component {
   constructor(props, context) {

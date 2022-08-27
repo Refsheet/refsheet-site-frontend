@@ -1,11 +1,10 @@
 import React from 'react'
 import {div as Card} from '../../Styled/Card'
-import {loader} from 'graphql.macro'
-
+//graphql.macro
 import {Query} from 'react-apollo'
 import Error from '../../Shared/Error'
 
-const getApiKeys = loader('./getApiKeys.graphql');
+const getApiKeys = require('./getApiKeys.graphql');
 const renderKeys = ({data, error, loading}) => {
   const {getApiKeys = []} = data || {}
 

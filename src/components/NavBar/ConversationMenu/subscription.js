@@ -1,8 +1,7 @@
 import {subscribe} from 'services/ApplicationService'
-import {loader} from 'graphql.macro'
-
-const getConversations = loader('./getConversations.graphql');
-const subscribeToConversations = loader('./subscribeToConversations.graphql');
+//graphql.macro
+const getConversations = require('./getConversations.graphql');
+const subscribeToConversations = require('./subscribeToConversations.graphql');
 
 const mapDataToProps = data => ({
   conversations: data.getConversations,

@@ -6,11 +6,10 @@ import c from 'classnames'
 import {Mutation} from 'react-apollo'
 import {gql} from 'apollo-client-preset'
 import NewWidgetModal from './Modals/NewWidgetModal'
-import {loader} from 'graphql.macro'
+//graphql.macro
+// import * as M from 'materialize-css'
 
-import * as M from 'materialize-css'
-
-const deleteProfileSection = loader('./deleteProfileSection.graphql');
+const deleteProfileSection = require('./deleteProfileSection.graphql');
 
 class ProfileSection extends Component {
   constructor(props) {

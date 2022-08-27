@@ -15,9 +15,9 @@ import Input from '../../shared/forms/Input'
 import Submit from '../../shared/forms/Submit'
 import Row from 'v1/shared/material/Row'
 import Column from 'v1/shared/material/Column'
-import { Link } from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import $ from 'jquery'
-import * as Materialize from 'materialize-css'
+//import * as Materialize from 'materialize-css'
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
@@ -42,13 +42,13 @@ const PasswordResetForm = createReactClass({
 
   _handleCreate(data) {
     return $(this.refs.createForm).fadeOut(300, () => {
-      return this.setState({ email: data.user.email })
+      return this.setState({email: data.user.email})
     })
   },
 
   _handleUpdate(data) {
     return $(this.refs.updateForm).fadeOut(300, () => {
-      return this.setState({ token: true, userPath: data.current_user.path })
+      return this.setState({token: true, userPath: data.current_user.path})
     })
   },
 
@@ -156,7 +156,7 @@ const PasswordResetForm = createReactClass({
             Enter a new password and you should be good to go!
           </p>
 
-          <Input name="password" type="password" label="Password" autoFocus />
+          <Input name="password" type="password" label="Password" autoFocus/>
           <Input
             name="password_confirmation"
             type="password"

@@ -13,9 +13,8 @@ import Main from '../../shared/Main'
 import Section from '../../../components/Shared/Section'
 import Loading from '../../shared/Loading'
 import Button from '../../shared/material/Button'
-import { Link } from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import $ from 'jquery'
-import Materialize from 'materialize-css'
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
@@ -48,7 +47,7 @@ export default BrowseApp = createReactClass({
         !this.state.lastPage &&
         !this.state.searching &&
         $(window).scrollTop() + $(window).height() >
-          $(document).height() - this.scrollOffset
+        $(document).height() - this.scrollOffset
       ) {
         return this._loadMore()
       }
@@ -79,7 +78,7 @@ export default BrowseApp = createReactClass({
       page = 1
     }
     if (page > 1) {
-      s = { searching: true }
+      s = {searching: true}
     } else {
       s = {
         results: null,
@@ -93,7 +92,7 @@ export default BrowseApp = createReactClass({
     return this.setState(s, () => {
       return $.ajax({
         url: '/characters.json',
-        data: { q: query, page },
+        data: {q: query, page},
         success: data => {
           let results = []
           if (page > 1) {
@@ -124,11 +123,11 @@ export default BrowseApp = createReactClass({
             lastPage: true,
             totalResults: 0,
           })
-          return Materialize.toast({
+          if (typeof window != 'undefined') import('materialize-css').then((Materialize) => Materialize.toast({
             html: error.responseText || 'Unknown error.',
             displayLength: 3000,
             classes: 'red',
-          })
+          }))
         },
       })
     })
@@ -178,7 +177,7 @@ export default BrowseApp = createReactClass({
           <div className="row">{results}</div>
 
           {this.state.searching && (
-            <Loading className="margin-top--large" message={false} />
+            <Loading className="margin-top--large" message={false}/>
           )}
 
           {!this.state.searching && !this.state.lastPage && (

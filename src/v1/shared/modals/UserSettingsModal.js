@@ -4,7 +4,7 @@ import Modal from 'v1/shared/Modal'
 import AttributeTable from 'v1/shared/attributes/attribute_table'
 import Attribute from 'v1/shared/attributes/attribute'
 import $ from 'jquery'
-import * as Materialize from 'materialize-css'
+//import * as Materialize from 'materialize-css'
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
@@ -18,7 +18,7 @@ import * as Materialize from 'materialize-css'
 let UserSettingsModal
 export default UserSettingsModal = createReactClass({
   getInitialState() {
-    return { user: this.props.user }
+    return {user: this.props.user}
   },
 
   handleSettingsClose(e) {
@@ -34,11 +34,11 @@ export default UserSettingsModal = createReactClass({
     return $.ajax({
       url: this.state.user.path,
       type: 'PATCH',
-      data: { user: o },
+      data: {user: o},
       success: data => {
-        this.setState({ user: data })
+        this.setState({user: data})
         if (onSuccess != null) {
-          return onSuccess({ value: data[setting.id] })
+          return onSuccess({value: data[setting.id]})
         }
       },
       error: error => {

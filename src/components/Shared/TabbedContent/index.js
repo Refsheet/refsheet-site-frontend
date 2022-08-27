@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import M from 'materialize-css'
+import React, {Component} from 'react'
+//import M from 'materialize-css'
 import PropTypes from 'prop-types'
 
 class TabbedContent extends Component {

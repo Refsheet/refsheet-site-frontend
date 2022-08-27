@@ -9,14 +9,13 @@ import validate, {
   isSlug,
   errorProps,
 } from 'utils/validate'
-import M from 'materialize-css'
+//import M from 'materialize-css'
 import compose, {
   withCurrentUser,
   withMutations,
 } from '../../../../utils/compose'
-import {loader} from 'graphql.macro'
-
-const createFolder = loader('./createFolder.graphql');
+//graphql.macro
+const createFolder = require('./createFolder.graphql');
 
 class NewFolderModal extends Component {
   constructor(props) {

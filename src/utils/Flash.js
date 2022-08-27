@@ -1,4 +1,4 @@
-import * as M from 'materialize-css'
+//import * as M from 'materialize-css'
 
 /**
  * Display Flash messages as Materialize Toast messages.

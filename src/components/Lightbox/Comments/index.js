@@ -1,8 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
-import {loader} from 'graphql.macro'
-import compose, {withCurrentUser, withMutations} from '../../../utils/compose'
+//graphql.macroimport compose, {withCurrentUser, withMutations} from '../../../utils/compose'
 import subscribe from '../../../services/buildSubscriptionRender'
 import CommentForm from '../../Shared/CommentForm'
 import Scrollbars from '../../Shared/Scrollbars'
@@ -10,10 +9,10 @@ import {AutoSizer} from 'react-virtualized'
 import Moment from 'react-moment'
 import EmailConfirmationNag from '../../User/EmailConfirmationNag'
 
-const removeComment = loader('./removeComment.graphql');
-const addComment = loader('./addComment.graphql');
-const getComments = loader('./getComments.graphql');
-const subscribeToComments = loader('./subscribeToComments.graphql');
+const removeComment = require('./removeComment.graphql');
+const addComment = require('./addComment.graphql');
+const getComments = require('./getComments.graphql');
+const subscribeToComments = require('./subscribeToComments.graphql');
 
 class Comments extends Component {
   constructor(props) {

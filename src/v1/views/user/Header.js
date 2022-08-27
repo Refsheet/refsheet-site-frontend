@@ -12,11 +12,10 @@ import Button from '../../../components/Styled/Button'
 import {Icon as MIcon} from 'react-materialize'
 import {openConversation} from '../../../actions'
 import {connect} from 'react-redux'
-import {loader} from 'graphql.macro'
-import Flash from '../../../utils/Flash'
+//graphql.macroimport Flash from '../../../utils/Flash'
 
-const blockUser = loader('../../../graph/mutations/blockUser.graphql');
-const unblockUser = loader('../../../graph/mutations/unblockUser.graphql');
+const blockUser = require('../../../graph/mutations/blockUser.graphql');
+const unblockUser = require('../../../graph/mutations/unblockUser.graphql');
 
 const Header = createReactClass({
   propTypes: {

@@ -1,9 +1,9 @@
 import React from 'react'
-import { Mutation } from 'react-apollo'
-import { connect } from 'react-redux'
-import M from 'materialize-css'
-import { deepRemoveKeys } from './ObjectUtils'
-import { setCurrentUser } from '../actions'
+import {Mutation} from 'react-apollo'
+import {connect} from 'react-redux'
+//import M from 'materialize-css'
+import {deepRemoveKeys} from './ObjectUtils'
+import {setCurrentUser} from '../actions'
 import ConfigContext from '../components/App/ConfigContext'
 
 function compose() {
@@ -76,7 +76,7 @@ function wrapMutation(fn) {
                 M.toast({
                   html: e.message.replace(
                     /[&<>]/g,
-                    c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c])
+                    c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;'}[c])
                   ),
                   classes: 'red',
                   displayLength: 6000,
@@ -120,7 +120,7 @@ function withMutations(mutations) {
       Result = props => (
         <Mutation mutation={mutation}>
           {func => {
-            let newProps = { ...props }
+            let newProps = {...props}
             newProps[mutationName] = wrapMutation(func)
             return <PreviousResult {...newProps} />
           }}
@@ -154,13 +154,13 @@ function withCurrentUser(set = false) {
 function withConfig(Component) {
   const WithContext = props => (
     <ConfigContext.Consumer>
-      {config => <Component {...props} config={config} />}
+      {config => <Component {...props} config={config}/>}
     </ConfigContext.Consumer>
   )
 
   return WithContext
 }
 
-export { withMutations, withCurrentUser, withConfig }
+export {withMutations, withCurrentUser, withConfig}
 
 export default compose

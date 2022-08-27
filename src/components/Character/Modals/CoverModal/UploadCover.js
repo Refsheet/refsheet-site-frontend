@@ -6,11 +6,10 @@ import {DirectUploadProvider} from 'react-activestorage-provider'
 import {TextInput, Button, Row, Col, ProgressBar} from 'react-materialize'
 import Muted, {MutedAnchor} from '../../../Styled/Muted'
 import {withMutations} from '../../../../utils/compose'
-import {loader} from 'graphql.macro'
+//graphql.macro
+//import * as M from 'materialize-css'
 
-import * as M from 'materialize-css'
-
-const setCharacterCoverBlob = loader('./setCharacterCoverBlob.graphql');
+const setCharacterCoverBlob = require('./setCharacterCoverBlob.graphql');
 
 class UploadCover extends Component {
   constructor(props) {

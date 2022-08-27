@@ -7,10 +7,9 @@ import ColorTheme from '../../../../utils/ColorTheme'
 import Modal from 'components/Styled/Modal'
 import Input from '../../../../v1/shared/forms/Input'
 import Flash from '../../../../utils/Flash'
-import {loader} from 'graphql.macro'
-
-const updateColorScheme = loader('./updateColorScheme.graphql');
-const createColorScheme = loader('./createColorScheme.graphql');
+//graphql.macro
+const updateColorScheme = require('./updateColorScheme.graphql');
+const createColorScheme = require('./createColorScheme.graphql');
 
 // TODO: Move simple / advanced to tabs
 // TODO: Cleanup callback hell.

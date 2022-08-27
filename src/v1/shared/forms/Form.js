@@ -2,7 +2,6 @@ import React from 'react'
 import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
 
-import Materialize from 'materialize-css'
 import Input from './Input'
 import $ from 'jquery'
 import ObjectPath from '../../utils/ObjectPath'
@@ -191,17 +190,17 @@ export default Form = createReactClass({
         } else if (
           data.responseJSON != null ? data.responseJSON.error : undefined
         ) {
-          return Materialize.toast({
+          if (typeof window != 'undefined') import('materialize-css').then((Materialize) => Materialize.toast({
             html: data.responseJSON.error || 'Unknown Error',
             displayLength: 3000,
             classes: 'red',
-          })
+          }))
         } else {
-          return Materialize.toast({
+          if (typeof window != 'undefined') import('materialize-css').then((Materialize) => Materialize.toast({
             html: data.responseText || 'Unknown Error',
             displayLength: 3000,
             classes: 'red',
-          })
+          }))
         }
       },
 

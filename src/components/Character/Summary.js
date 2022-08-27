@@ -4,9 +4,8 @@ import {div as Card} from 'components/Styled/Card'
 import {H1, H2} from 'components/Styled/Headings'
 import EditableHeader from '../Shared/EditableHeader'
 import {Mutation} from 'react-apollo'
-import {loader} from 'graphql.macro'
-
-import * as M from 'materialize-css'
+//graphql.macro
+//import * as M from 'materialize-css'
 import WindowAlert from '../../utils/WindowAlert'
 
 import AttributeTable from 'v1/shared/attributes/attribute_table'
@@ -17,7 +16,7 @@ import RichText from '../Shared/RichText'
 import MarketplaceBuyModal from './Modals/MarketplaceBuyModal'
 import CharacterSaleButton from './Modals/MarketplaceBuyModal/CharacterSaleButton'
 
-const updateCharacter = loader('./updateCharacter.graphql');
+const updateCharacter = require('./updateCharacter.graphql');
 
 class Summary extends Component {
   constructor(props) {

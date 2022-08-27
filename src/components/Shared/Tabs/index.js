@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import * as M from 'materialize-css'
+//import * as M from 'materialize-css'
 import Tab from './Tab'
 
 class Tabs extends Component {

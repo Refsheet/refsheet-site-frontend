@@ -7,13 +7,13 @@
 import React from 'react'
 import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
-import * as Materialize from 'materialize-css'
+//import * as Materialize from 'materialize-css'
 import Form from '../../../shared/forms/Form'
 import Input from '../../../shared/forms/Input'
 import Submit from '../../../shared/forms/Submit'
 import Attribute from '../../../shared/attributes/attribute'
 import AttributeTable from '../../../shared/attributes/attribute_table'
-import compose, { withCurrentUser } from '../../../../utils/compose'
+import compose, {withCurrentUser} from '../../../../utils/compose'
 
 class Support extends React.Component {
   constructor(props, context) {
@@ -107,7 +107,7 @@ class Support extends React.Component {
                 If you are sure you pledged, and you are seeing this message,
                 please enter the email address that you used on Patreon below,
                 and we will link your account.
-                <br />
+                <br/>
                 <strong>Bug Alert!</strong> (because of course): This will send
                 you an email confirming the link, to the email address
                 registered with Patreon. After you submit this form, you might

@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import * as Materialize from 'materialize-css'
+//import * as Materialize from 'materialize-css'
 import Input from '../../shared/forms/Input'
 import Modal from '../../shared/Modal'
 import Form from '../../shared/forms/Form'
@@ -8,9 +8,9 @@ import Row from '../../shared/material/Row'
 import Submit from '../../shared/forms/Submit'
 import Column from 'v1/shared/material/Column'
 import StateUtils from '../../utils/StateUtils'
-import compose, { withCurrentUser } from '../../../utils/compose'
-import { closeReportModal } from '../../../actions'
-import { connect } from 'react-redux'
+import compose, {withCurrentUser} from '../../../utils/compose'
+import {closeReportModal} from '../../../actions'
+import {connect} from 'react-redux'
 
 class ReportModal extends React.Component {
   constructor(props) {
@@ -48,7 +48,7 @@ class ReportModal extends React.Component {
 
   render() {
     console.log(this.props)
-    const { open, id, type } = this.props
+    const {open, id, type} = this.props
     if (!open) return null
 
     const violationTypes = []
@@ -120,13 +120,13 @@ class ReportModal extends React.Component {
 
           <Row noMargin>
             <Column>
-              <Input noMargin name="comment" type="textarea" label="Comment" />
+              <Input noMargin name="comment" type="textarea" label="Comment"/>
             </Column>
           </Row>
 
           <Row className="actions right-align">
             <Column>
-              <Submit />
+              <Submit/>
             </Column>
           </Row>
         </Form>
@@ -139,7 +139,7 @@ ReportModal.contextTypes = {
   reportImage: PropTypes.func,
 }
 
-ReportModal.propTypes = { imageId: PropTypes.string }
+ReportModal.propTypes = {imageId: PropTypes.string}
 
 const mapStateToProps = (state, ownProps) => ({
   ...ownProps,
@@ -148,5 +148,5 @@ const mapStateToProps = (state, ownProps) => ({
 
 export default compose(
   withCurrentUser(),
-  connect(mapStateToProps, { closeReportModal })
+  connect(mapStateToProps, {closeReportModal})
 )(ReportModal)

@@ -2,12 +2,10 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import View from './View'
 import {Query} from 'react-apollo'
-import {loader} from 'graphql.macro'
-
 import Error from '../../Shared/Error'
 import Loading from 'v1/shared/Loading'
 
-const getArtists = loader('./getArtists.graphql');
+const getArtists = require('./getArtists.graphql');
 
 class Index extends Component {
   render() {

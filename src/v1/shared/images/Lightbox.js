@@ -1,7 +1,7 @@
 import React from 'react'
 import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
-import * as Materialize from 'materialize-css'
+//import * as Materialize from 'materialize-css'
 import LightboxCharacterBox from './LightboxCharacterBox'
 import RichText from '../../../components/Shared/RichText'
 import Tabs from '../tabs/Tabs'
@@ -23,8 +23,8 @@ import $ from 'jquery'
 import ObjectPath from '../../utils/ObjectPath'
 import StateUtils from '../../utils/StateUtils'
 import HashUtils from '../../utils/HashUtils'
-import compose, { withCurrentUser } from '../../../utils/compose'
-import { withRouter } from 'react-router'
+import compose, {withCurrentUser} from '../../../utils/compose'
+import {withRouter} from 'react-router'
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
@@ -52,9 +52,9 @@ const Lightbox = createReactClass({
     return $.ajax({
       url: this.state.image.path,
       type: 'PATCH',
-      data: { image: { caption: data } },
+      data: {image: {caption: data}},
       success: data => {
-        this.setState({ image: data })
+        this.setState({image: data})
         return onSuccess()
       },
       error: error => {
@@ -67,7 +67,7 @@ const Lightbox = createReactClass({
     $.ajax({
       url: this.state.image.character.path,
       type: 'PATCH',
-      data: { character: { featured_image_guid: this.state.image.id } },
+      data: {character: {featured_image_guid: this.state.image.id}},
       success: data => {
         Materialize.toast({
           html: 'Cover image changed!',
@@ -94,7 +94,7 @@ const Lightbox = createReactClass({
     $.ajax({
       url: this.state.image.character.path,
       type: 'PATCH',
-      data: { character: { profile_image_guid: this.state.image.id } },
+      data: {character: {profile_image_guid: this.state.image.id}},
       success: data => {
         Materialize.toast({
           html: 'Profile image changed!',
@@ -128,7 +128,7 @@ const Lightbox = createReactClass({
       url: this.state.image.path,
       type: 'DELETE',
       success: () => {
-        const { id } = this.state.image
+        const {id} = this.state.image
 
         Materialize.toast({
           html: 'Image deleted.',
@@ -171,7 +171,7 @@ const Lightbox = createReactClass({
       window.history.back()
     }
 
-    return this.setState({ image: null, onChange: null })
+    return this.setState({image: null, onChange: null})
   },
 
   componentDidMount() {
@@ -203,12 +203,12 @@ const Lightbox = createReactClass({
         $.ajax({
           url: `/images/${imageId}.json`,
           success: data => {
-            this.setState({ image: data, onChange, onDelete })
+            this.setState({image: data, onChange, onDelete})
             return window.history.pushState({}, '', data.path)
           },
 
           error: error => {
-            return this.setState({ error: `Image ${error.statusText}` })
+            return this.setState({error: `Image ${error.statusText}`})
           },
         })
       } else {
@@ -233,12 +233,12 @@ const Lightbox = createReactClass({
       displayLength: 3000,
       classes: 'green',
     })
-    return this.setState({ image }, this._callback)
+    return this.setState({image}, this._callback)
   },
 
   _handleUpdate(image) {
     if (image.background_color) {
-      return this.setState({ image })
+      return this.setState({image})
     }
   },
 
@@ -336,7 +336,7 @@ const Lightbox = createReactClass({
                 </a>
               </li>
 
-              <li className="divider" />
+              <li className="divider"/>
 
               <li>
                 <a href="#image-gravity-modal" className="modal-trigger">
@@ -345,7 +345,7 @@ const Lightbox = createReactClass({
                 </a>
               </li>
 
-              <li className="divider" />
+              <li className="divider"/>
 
               <li>
                 <a
@@ -391,9 +391,9 @@ const Lightbox = createReactClass({
         <div className="lightbox">
           <div
             className="image-content"
-            style={{ backgroundColor: this.state.image.background_color }}
+            style={{backgroundColor: this.state.image.background_color}}
           >
-            <img src={this.state.image.url} />
+            <img src={this.state.image.url}/>
           </div>
 
           <div className="image-details-container">
@@ -490,7 +490,7 @@ const Lightbox = createReactClass({
                     changeEvent="app:image:update"
                     method="PATCH"
                   >
-                    <Input name="title" label="Title" />
+                    <Input name="title" label="Title"/>
                     <Input
                       name="source_url"
                       label="Source URL"
@@ -506,10 +506,10 @@ const Lightbox = createReactClass({
 
                     <Row noMargin>
                       <Column s={6}>
-                        <Input name="nsfw" type="checkbox" label="NSFW" />
+                        <Input name="nsfw" type="checkbox" label="NSFW"/>
                       </Column>
                       <Column s={6}>
-                        <Input name="hidden" type="checkbox" label="Hidden" />
+                        <Input name="hidden" type="checkbox" label="Hidden"/>
                       </Column>
                     </Row>
 
@@ -536,7 +536,7 @@ const Lightbox = createReactClass({
     } else {
       lightbox = (
         <div className="loader center padding--large">
-          {this.state.error ? <h1>{this.state.error}</h1> : <Spinner />}
+          {this.state.error ? <h1>{this.state.error}</h1> : <Spinner/>}
         </div>
       )
     }
@@ -574,7 +574,7 @@ const Lightbox = createReactClass({
           </Modal>
         )}
 
-        {editable && <ImageGravityModal image={this.state.image} />}
+        {editable && <ImageGravityModal image={this.state.image}/>}
 
         <Modal
           className="lightbox-modal"

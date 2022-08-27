@@ -1,8 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {graphql} from 'react-apollo'
-import {loader} from 'graphql.macro'
-
+//graphql.macro
 import Error from '../../Shared/Error'
 import View from './View'
 import compose from '../../../utils/compose'
@@ -10,7 +9,7 @@ import {withRouter} from 'react-router'
 
 import Loading from 'v1/shared/Loading'
 
-const getDiscussion = loader('./getDiscussion.graphql');
+const getDiscussion = require('./getDiscussion.graphql');
 
 class Discussion extends Component {
   render() {

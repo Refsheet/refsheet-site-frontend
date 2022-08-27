@@ -2,10 +2,10 @@ import React from 'react'
 import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
 import Modal from 'v1/shared/Modal'
-import * as Materialize from 'materialize-css'
+//import * as Materialize from 'materialize-css'
 import $ from 'jquery'
 import compose from '../../../../utils/compose'
-import { withRouter } from 'react-router'
+import {withRouter} from 'react-router'
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*

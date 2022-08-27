@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import { Icon } from 'react-materialize'
-import { Mutation } from 'react-apollo'
-import { gql } from 'apollo-client-preset'
-import * as M from 'materialize-css'
+import {Icon} from 'react-materialize'
+import {Mutation} from 'react-apollo'
+import {gql} from 'apollo-client-preset'
+//import * as M from 'materialize-css'
 import EmailConfirmationNag from '../User/EmailConfirmationNag'
 
 class NewMessage extends Component {
@@ -24,13 +24,13 @@ class NewMessage extends Component {
 
   handleMessageChange(e) {
     e.preventDefault()
-    this.setState({ message: e.target.value })
+    this.setState({message: e.target.value})
   }
 
   handleSubmit(e) {
     e.preventDefault()
 
-    const { nonce } = this
+    const {nonce} = this
     this.nonce += 1
 
     if (this.props.onCreate) {
@@ -53,8 +53,8 @@ class NewMessage extends Component {
           nonce: nonce,
         },
       })
-      .then(({ data, errors }) => {
-        const { onConversationStart } = this.props
+      .then(({data, errors}) => {
+        const {onConversationStart} = this.props
 
         const guid =
           data &&
@@ -110,7 +110,7 @@ class NewMessage extends Component {
         }
       })
 
-    this.setState({ message: '' })
+    this.setState({message: ''})
   }
 
   handleClose(e) {
@@ -174,8 +174,8 @@ const MESSAGE_MUTATION = gql`
 const Wrapped = props => (
   <EmailConfirmationNag slim>
     <Mutation mutation={MESSAGE_MUTATION}>
-      {(send, { mutationData }) => (
-        <NewMessage {...props} send={send} mutationData={mutationData} />
+      {(send, {mutationData}) => (
+        <NewMessage {...props} send={send} mutationData={mutationData}/>
       )}
     </Mutation>
   </EmailConfirmationNag>

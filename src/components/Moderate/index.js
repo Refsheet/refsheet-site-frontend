@@ -2,10 +2,9 @@ import React, {Component} from 'react'
 import View from './View'
 import {Error} from 'components/Shared'
 import {Query} from 'react-apollo'
-import {loader} from 'graphql.macro'
-import Loading from 'v1/shared/Loading'
+//graphql.macroimport Loading from 'v1/shared/Loading'
 
-const getNextModeration = loader('../../graph/queries/getNextModeration.graphql');
+const getNextModeration = require('../../graph/queries/getNextModeration.graphql');
 
 class Moderate extends Component {
   constructor(props) {

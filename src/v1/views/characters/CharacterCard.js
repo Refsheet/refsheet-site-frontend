@@ -7,7 +7,7 @@
 import React from 'react'
 import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
-import * as Materialize from 'materialize-css'
+//import * as Materialize from 'materialize-css'
 import Attribute from '../../shared/attributes/attribute'
 import RichText from '../../../components/Shared/RichText'
 import Follow from 'v1/views/user/Follow'
@@ -28,17 +28,19 @@ import Flash from '../../../utils/Flash'
 let CharacterCard
 export default CharacterCard = createReactClass({
   getInitialState() {
-    return { character: this.props.character }
+    return {character: this.props.character}
   },
 
   UNSAFE_componentWillUpdate(newProps) {
     if (newProps.character !== this.props.character) {
-      return this.setState({ character: newProps.character })
+      return this.setState({character: newProps.character})
     }
   },
 
-  handleAttributeChange(data, onSuccess = () => {}, onError = () => {}) {
-    const postData = { character: {} }
+  handleAttributeChange(data, onSuccess = () => {
+  }, onError = () => {
+  }) {
+    const postData = {character: {}}
     postData.character[data.id] = data.value
 
     return $.ajax({
@@ -46,7 +48,7 @@ export default CharacterCard = createReactClass({
       type: 'PATCH',
       data: postData,
       success: data => {
-        this.setState({ character: data })
+        this.setState({character: data})
         return onSuccess()
       },
       error: error => {
@@ -68,9 +70,9 @@ export default CharacterCard = createReactClass({
       $.ajax({
         url: this.state.character.path,
         type: 'PATCH',
-        data: { character: data },
+        data: {character: data},
         success: data => {
-          this.setState({ character: data })
+          this.setState({character: data})
           resolve(data)
         },
 
@@ -105,7 +107,7 @@ export default CharacterCard = createReactClass({
     if (this.props.onChange) {
       this.props.onChange(char)
     }
-    return this.setState({ character: char })
+    return this.setState({character: char})
   },
 
   render() {
@@ -173,15 +175,15 @@ export default CharacterCard = createReactClass({
     }
 
     const gravity_crop = {
-      center: { objectPosition: 'center' },
-      north: { objectPosition: 'top' },
-      south: { objectPosition: 'bottom' },
-      east: { objectPosition: 'right' },
-      west: { objectPosition: 'left' },
+      center: {objectPosition: 'center'},
+      north: {objectPosition: 'top'},
+      south: {objectPosition: 'bottom'},
+      east: {objectPosition: 'right'},
+      west: {objectPosition: 'left'},
     }
 
     return (
-      <div className="character-card" style={{ minHeight: 400 }}>
+      <div className="character-card" style={{minHeight: 400}}>
         <div className="character-details">
           <div className="heading">
             <div className="right">
@@ -211,7 +213,7 @@ export default CharacterCard = createReactClass({
         </div>*/}
 
         <div className="character-image" onClick={this.handleImageClick}>
-          <div className="slant" />
+          <div className="slant"/>
           <img
             src={this.state.character.profile_image.medium}
             data-image-id={this.state.character.profile_image.id}

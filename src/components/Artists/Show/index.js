@@ -2,11 +2,10 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import View from './View'
 import {Query} from 'react-apollo'
-import {loader} from 'graphql.macro'
-import Error from '../../Shared/Error'
+//graphql.macroimport Error from '../../Shared/Error'
 import Loading from 'v1/shared/Loading'
 
-const getArtist = loader('./getArtist.graphql');
+const getArtist = require('./getArtist.graphql');
 
 class Show extends Component {
   render() {

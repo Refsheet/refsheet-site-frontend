@@ -5,14 +5,13 @@ import NotificationItem from '../Dropdown/NotificationItem'
 import {Link} from 'react-router-dom'
 import Scrollbars from 'components/Shared/Scrollbars'
 import subscription from './subscription'
-import {loader} from 'graphql.macro'
-
+//graphql.macro
 import WindowAlert from '../../../utils/WindowAlert'
 import compose, {withMutations} from '../../../utils/compose'
 import {withTranslation} from 'react-i18next'
 
-const markAllNotificationsAsRead = loader('./markAllNotificationsAsRead.graphql');
-const readNotification = loader('./readNotification.graphql');
+const markAllNotificationsAsRead = require('./markAllNotificationsAsRead.graphql');
+const readNotification = require('./readNotification.graphql');
 
 class NotificationMenu extends Component {
   constructor(props) {

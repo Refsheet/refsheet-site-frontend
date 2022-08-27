@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import {loader} from 'graphql.macro'
-import {Subscription} from 'react-apollo'
+//graphql.macroimport {Subscription} from 'react-apollo'
 import {Icon} from 'react-materialize'
 import {connect} from 'react-redux'
 import {openLightbox, setNsfwMode} from '../../actions'
@@ -12,9 +11,9 @@ import CacheUtils from '../../utils/CacheUtils'
 import Flash from '../../utils/Flash'
 import {withTranslation} from 'react-i18next'
 
-const imageProcessingComplete = loader('./imageProcessingComplete.graphql');
-const deleteMedia = loader('../Lightbox/deleteMedia.graphql');
-const updateImage = loader('../Lightbox/updateImage.graphql');
+const imageProcessingComplete = require('./imageProcessingComplete.graphql');
+const deleteMedia = require('../Lightbox/deleteMedia.graphql');
+const updateImage = require('../Lightbox/updateImage.graphql');
 
 class Thumbnail extends Component {
   constructor(props) {

@@ -7,9 +7,9 @@
 import React from 'react'
 import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
-import * as Materialize from 'materialize-css'
+//import * as Materialize from 'materialize-css'
 import $ from 'jquery'
-import compose, { withCurrentUser } from '../../../utils/compose'
+import compose, {withCurrentUser} from '../../../utils/compose'
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
@@ -25,17 +25,17 @@ const CharacterNotice = createReactClass({
   },
 
   getInitialState() {
-    return { transfer: this.props != null ? this.props.transfer : undefined }
+    return {transfer: this.props != null ? this.props.transfer : undefined}
   },
 
   UNSAFE_componentWillReceiveProps(newProps) {
-    return this.setState({ transfer: newProps.transfer })
+    return this.setState({transfer: newProps.transfer})
   },
 
   _handleAcceptTransfer(e) {
     $.ajax({
       url: this.state.transfer.path,
-      data: { status: 'claimed' },
+      data: {status: 'claimed'},
       type: 'PATCH',
       success: data => {
         return $(document).trigger(
@@ -66,10 +66,10 @@ const CharacterNotice = createReactClass({
   _handleRejectTransfer(e) {
     $.ajax({
       url: this.state.transfer.path,
-      data: { status: 'rejected' },
+      data: {status: 'rejected'},
       type: 'PATCH',
       success: data => {
-        this.setState({ transfer: null })
+        this.setState({transfer: null})
         return Materialize.toast({
           html: 'Transfer rejected.',
           displayLength: 3000,
@@ -94,9 +94,9 @@ const CharacterNotice = createReactClass({
       (this.state.transfer != null
         ? this.state.transfer.destination_username
         : undefined) ===
-        (this.props.currentUser != null
-          ? this.props.currentUser.username
-          : undefined)
+      (this.props.currentUser != null
+        ? this.props.currentUser.username
+        : undefined)
     ) {
       return (
         <div className="character-notice">

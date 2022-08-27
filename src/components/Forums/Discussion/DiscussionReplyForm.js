@@ -2,15 +2,14 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import compose from 'utils/compose'
 import {withCurrentUser, withMutations} from '../../../utils/compose'
-import M from 'materialize-css'
+//import M from 'materialize-css'
 import CommentForm from '../../Shared/CommentForm'
 import {Row, Col} from 'react-materialize'
-import {loader} from 'graphql.macro'
-import Muted from '../../Styled/Muted'
+//graphql.macroimport Muted from '../../Styled/Muted'
 
-const postReply = loader('./postReply.graphql');
-const editReply = loader('./editReply.graphql');
-const createDiscussion = loader('../NewDiscussion/createDiscussion.graphql');
+const postReply = require('./postReply.graphql');
+const editReply = require('./editReply.graphql');
+const createDiscussion = require('../NewDiscussion/createDiscussion.graphql');
 
 class DiscussionReplyForm extends Component {
   constructor(props) {

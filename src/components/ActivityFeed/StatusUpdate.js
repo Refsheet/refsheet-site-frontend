@@ -1,11 +1,10 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import CommentForm from '../Shared/CommentForm'
-import {loader} from 'graphql.macro'
 import {Mutation} from 'react-apollo'
 import {withTranslation} from 'react-i18next'
 
-const CreateActivity = loader('./createActivity.graphql');
+const CreateActivity = require('./createActivity.graphql');
 
 class StatusUpdate extends Component {
   handleSubmit({comment, identity}) {

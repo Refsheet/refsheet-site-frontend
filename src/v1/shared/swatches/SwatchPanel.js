@@ -5,7 +5,6 @@ import Attribute from 'v1/shared/attributes/attribute'
 import AttributeTable from 'v1/shared/attributes/attribute_table'
 
 import $ from 'jquery'
-import * as Materialize from 'materialize-css'
 import Flash from '../../../utils/Flash'
 
 // TODO: This file was created by bulk-decaffeinate.
@@ -23,7 +22,7 @@ export default SwatchPanel = createReactClass({
   collapsible: undefined,
 
   getInitialState() {
-    return { swatches: this.props.swatches }
+    return {swatches: this.props.swatches}
   },
 
   swatchParams(data) {
@@ -50,7 +49,7 @@ export default SwatchPanel = createReactClass({
       data: this.swatchParams(data),
       type: 'PATCH',
       success: _data => {
-        this.setState({ swatches: _data })
+        this.setState({swatches: _data})
         if (onSuccess != null) {
           return onSuccess(_data)
         }
@@ -59,7 +58,7 @@ export default SwatchPanel = createReactClass({
         if (error.responseJSON) {
           const d = error.responseJSON.errors
           if (onFail != null) {
-            return onFail({ value: d.color, name: d.name, notes: d.notes })
+            return onFail({value: d.color, name: d.name, notes: d.notes})
           }
         } else {
           Flash.error('An unknown error occurred saving this value.')
@@ -76,7 +75,7 @@ export default SwatchPanel = createReactClass({
       data: this.swatchParams(data),
       type: 'POST',
       success: _data => {
-        this.setState({ swatches: _data })
+        this.setState({swatches: _data})
         if (onSuccess != null) {
           return onSuccess(_data)
         }
@@ -85,7 +84,7 @@ export default SwatchPanel = createReactClass({
         if (error.responseJSON) {
           const d = error.responseJSON.errors
           if (onFail != null) {
-            return onFail({ value: d.color, name: d.name, notes: d.notes })
+            return onFail({value: d.color, name: d.name, notes: d.notes})
           }
         } else {
           Flash.error('An unknown error occurred saving this value.')
@@ -101,29 +100,33 @@ export default SwatchPanel = createReactClass({
       url: '/swatches/' + key,
       type: 'DELETE',
       success: _data => {
-        return this.setState({ swatches: _data })
+        return this.setState({swatches: _data})
       },
     })
   },
 
   componentDidMount() {
-    Materialize.Collapsible.init(this.collapsible)
-    this.tooltipped.map(tooltip => {
-      if (!tooltip) return
-      Materialize.Tooltip.init(tooltip, {
-        html: tooltip.dataset.tooltip,
-        position: tooltip.dataset.position,
+    if (typeof window != 'undefined') import('materialize-css').then((Materialize) => {
+      Materialize.Collapsible.init(this.collapsible)
+      this.tooltipped.map(tooltip => {
+        if (!tooltip) return
+        Materialize.Tooltip.init(tooltip, {
+          html: tooltip.dataset.tooltip,
+          position: tooltip.dataset.position,
+        })
       })
     })
   },
 
   componentDidUpdate() {
-    Materialize.Collapsible.init(this.collapsible)
-    this.tooltipped.map(tooltip => {
-      if (!tooltip) return
-      Materialize.Tooltip.init(tooltip, {
-        html: tooltip.dataset.tooltip,
-        position: tooltip.dataset.position,
+    if (typeof window != 'undefined') import('materialize-css').then((Materialize) => {
+      Materialize.Collapsible.init(this.collapsible)
+      this.tooltipped.map(tooltip => {
+        if (!tooltip) return
+        Materialize.Tooltip.init(tooltip, {
+          html: tooltip.dataset.tooltip,
+          position: tooltip.dataset.position,
+        })
       })
     })
   },
@@ -134,7 +137,7 @@ export default SwatchPanel = createReactClass({
       <div
         className="swatch tooltipped"
         key={swatch.id}
-        style={{ backgroundColor: swatch.color }}
+        style={{backgroundColor: swatch.color}}
         ref={r => this.tooltipped.push(r)}
         data-tooltip={swatch.name + ' - ' + swatch.color}
         data-position="top"

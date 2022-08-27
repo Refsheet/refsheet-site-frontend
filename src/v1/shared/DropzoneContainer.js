@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 import Spinner from 'v1/shared/material/Spinner'
 import $ from 'jquery'
-import * as Materialize from 'materialize-css'
+//import * as Materialize from 'materialize-css'
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
@@ -44,27 +44,28 @@ export default DropzoneContainer = createReactClass({
         paramName: this.props.paramName || 'image[image]',
 
         addedfile: file => {
-          return this.setState({ uploading: true })
+          return this.setState({uploading: true})
         },
 
-        thumbnail(file, dataUrl) {},
+        thumbnail(file, dataUrl) {
+        },
         // Display the image in your file.previewElement
 
         uploadprogress: (file, progress, bytesSent) => {
           console.log(progress)
-          return this.setState({ uploadPercent: progress })
+          return this.setState({uploadPercent: progress})
         },
 
         success: () => {
-          return this.setState({ uploading: false, uploadPercent: 0 })
+          return this.setState({uploading: false, uploadPercent: 0})
         },
 
         error: () => {
-          return this.setState({ uploading: false, uploadPercent: 0 })
+          return this.setState({uploading: false, uploadPercent: 0})
         },
 
         init() {
-          ___this.setState({ initialized: true })
+          ___this.setState({initialized: true})
 
           this.on('error', function (_, error) {
             if (error.errors != null ? error.errors.image : undefined) {
@@ -124,7 +125,7 @@ export default DropzoneContainer = createReactClass({
       dropZoneContent = (
         <div className="container">
           <h1 className="white-text">Uploading...</h1>
-          <Spinner />
+          <Spinner/>
           <p className="flow-text">{statusMessage}</p>
         </div>
       )

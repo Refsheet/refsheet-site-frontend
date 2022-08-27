@@ -4,15 +4,14 @@ import {camelize} from 'utils/ObjectUtils'
 import widgets, {SerializerWidget} from './Widgets'
 import ProfileWidgetHeader from './ProfileWidgetHeader'
 import {Mutation} from 'react-apollo'
-import {loader} from 'graphql.macro'
-
-import * as M from 'materialize-css'
+//graphql.macro
+// import * as M from 'materialize-css'
 import {div as Card} from '../Styled/Card'
 import compose from '../../utils/compose'
 import {withErrorBoundary} from '../Shared/ErrorBoundary'
 
-const updateProfileWidget = loader('./updateProfileWidget.graphql');
-const deleteProfileWidget = loader('./deleteProfileWidget.graphql');
+const updateProfileWidget = require('./updateProfileWidget.graphql');
+const deleteProfileWidget = require('./deleteProfileWidget.graphql');
 
 class ProfileWidget extends Component {
   constructor(props) {

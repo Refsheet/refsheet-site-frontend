@@ -27,7 +27,7 @@ import ImageGalleryModal from '../../shared/modals/ImageGalleryModal'
 import FixedActionButton from '../../shared/FixedActionButton'
 import PageStylesheet from '../../shared/PageStylesheet'
 import NotFound from '../static/NotFound'
-import * as Materialize from 'materialize-css'
+//import * as Materialize from 'materialize-css'
 import Main from '../../shared/Main'
 import CharacterViewSilhouette from './CharacterViewSilhouette'
 import RichText from '../../../components/Shared/RichText'
@@ -36,8 +36,7 @@ import $ from 'jquery'
 import StateUtils from '../../utils/StateUtils'
 import Gallery from '../../../components/Character/Gallery'
 import {Query} from 'react-apollo'
-import {loader} from 'graphql.macro'
-
+//graphql.macro
 import Flash from '../../../utils/Flash'
 import {ThemedMain} from '../../../components/Styled/Global'
 import defaultTheme from '../../../themes/default'
@@ -45,7 +44,7 @@ import {ThemeProvider} from 'styled-components'
 import ColorUtils from '../../../utils/ColorUtils'
 import compose, {withCurrentUser} from '../../../utils/compose'
 
-const getCharacterImages = loader('./getCharacterImages.graphql');
+const getCharacterImages = require('./getCharacterImages.graphql');
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*

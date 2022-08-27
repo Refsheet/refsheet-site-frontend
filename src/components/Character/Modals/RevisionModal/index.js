@@ -7,13 +7,12 @@ import TimelineEntry from '../../../Shared/Timeline/TimelineEntry'
 import {Loading} from '../../../Lightbox/Status'
 import Error from '../../../Shared/Error'
 import {Query} from 'react-apollo'
-import {loader} from 'graphql.macro'
-
+//graphql.macro
 
 import Modal from 'v1/shared/Modal'
-import * as Materialize from 'materialize-css'
+//import * as Materialize from 'materialize-css'
 
-const getCharacterVersions = loader('./getCharacterVersions.graphql');
+const getCharacterVersions = require('./getCharacterVersions.graphql');
 
 class RevisionModal extends Component {
   constructor(props) {

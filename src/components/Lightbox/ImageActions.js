@@ -5,16 +5,15 @@ import {closeLightbox} from '../../actions'
 import compose, {withMutations} from '../../utils/compose'
 import {withTranslation} from 'react-i18next'
 import {connect} from 'react-redux'
-import {loader} from 'graphql.macro'
-
-import M from 'materialize-css'
+//graphql.macro
+//import M from 'materialize-css'
 
 import Modal from 'v1/shared/Modal'
 import CacheUtils from '../../utils/CacheUtils'
 
-const deleteMedia = loader('./deleteMedia.graphql');
+const deleteMedia = require('./deleteMedia.graphql');
 
-const gcp = loader('../../graph/queries/getCharacterProfile.graphql');
+const gcp = require('../../graph/queries/getCharacterProfile.graphql');
 
 class ImageActions extends Component {
   constructor(props) {

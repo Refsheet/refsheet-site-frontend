@@ -1,11 +1,10 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {Mutation} from 'react-apollo'
-import * as M from 'materialize-css'
-import {loader} from 'graphql.macro'
-import Modal from 'v1/shared/Modal'
+//import * as M from 'materialize-css'
+//graphql.macroimport Modal from 'v1/shared/Modal'
 
-const createWidget = loader('./createWidget.graphql');
+const createWidget = require('./createWidget.graphql');
 
 class NewWidgetModal extends Component {
   constructor(props) {

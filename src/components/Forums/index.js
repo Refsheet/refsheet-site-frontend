@@ -1,13 +1,12 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {graphql} from 'react-apollo'
-import {loader} from 'graphql.macro'
-
+//graphql.macro
 import Error from '../Shared/Error'
 import View from './index/View'
 import Loading from '../Shared/views/Loading'
 
-const getForums = loader('./getForums.graphql');
+const getForums = require('./getForums.graphql');
 
 class Forums extends Component {
   render() {

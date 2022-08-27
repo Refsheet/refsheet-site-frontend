@@ -3,11 +3,11 @@ import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
 
 import Spinner from 'v1/shared/material/Spinner'
-import { V1GalleryImage } from 'v1/shared/images/GalleryImage'
+import {V1GalleryImage} from 'v1/shared/images/GalleryImage'
 import GalleryFeature from 'v1/shared/images/GalleryFeature'
 
 import ArrayUtils from 'v1/utils/ArrayUtils'
-import * as Materialize from 'materialize-css'
+//import * as Materialize from 'materialize-css'
 import $ from 'jquery'
 import StateUtils from 'v1/utils/StateUtils'
 
@@ -45,7 +45,7 @@ export default ImageGallery = createReactClass({
     if (sendCallback == null) {
       sendCallback = true
     }
-    const s = { images: data }
+    const s = {images: data}
 
     if (this.state.images > 0 && data.length > 0) {
       const new_ids = ArrayUtils.pluck(data, 'id')
@@ -105,7 +105,7 @@ export default ImageGallery = createReactClass({
     return $.ajax({
       url: '/images/' + source,
       type: 'PATCH',
-      data: { image: { swap_target_image_id: target } },
+      data: {image: {swap_target_image_id: target}},
       success: data => {
         Materialize.toast({
           html: 'Image moved!',
@@ -211,7 +211,7 @@ export default ImageGallery = createReactClass({
 
     opts = $.extend({}, opts, this._getJgRowHeight())
     // $(this.refs.gallery).justifiedGallery(opts)
-    return this.setState({ append: true })
+    return this.setState({append: true})
   },
 
   render() {
@@ -221,13 +221,13 @@ export default ImageGallery = createReactClass({
     let wrapperClassName = ''
     const _this = this
 
-    const { noOverlay } = this.props
+    const {noOverlay} = this.props
 
     const imageIds =
       this.state.images != null ? this.state.images.map(i => i.id) : undefined
 
     if (this.state.images == null) {
-      return <Spinner />
+      return <Spinner/>
     }
 
     if (this.props.editable) {

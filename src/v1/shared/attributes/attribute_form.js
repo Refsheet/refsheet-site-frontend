@@ -2,7 +2,6 @@ import React from 'react'
 import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
 
-import Materialize from 'materialize-css'
 import Input from '../forms/Input'
 import $ from 'jquery'
 // TODO: This file was created by bulk-decaffeinate.
@@ -37,15 +36,15 @@ export default AttributeForm = createReactClass({
         if (this.props.onCancel != null) {
           return this.props.onCancel()
         } else {
-          this.setState({ errors: {} })
+          this.setState({errors: {}})
           if (this.props.id == null) {
-            return this.setState({ name: '', value: '', notes: '' })
+            return this.setState({name: '', value: '', notes: ''})
           }
         }
       },
       data => {
         console.log(data)
-        return this.setState({ errors: data })
+        return this.setState({errors: data})
       }
     )
 
@@ -59,7 +58,7 @@ export default AttributeForm = createReactClass({
   },
 
   colorPicker(e) {
-    return this.setState({ value: e.target.value })
+    return this.setState({value: e.target.value})
   },
 
   colorPickerClick(e) {
@@ -81,8 +80,12 @@ export default AttributeForm = createReactClass({
   },
 
   UNSAFE_componentWillUpdate() {
-    if (Materialize.updateTextFields != null) {
-      return Materialize.updateTextFields()
+    if (typeof window !== 'undefined') {
+      import('materialize-css').then((Materialize) => {
+        if (Materialize.updateTextFields != null) {
+          return Materialize.updateTextFields()
+        }
+      })
     }
   },
 

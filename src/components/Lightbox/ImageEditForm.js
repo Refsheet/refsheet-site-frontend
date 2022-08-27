@@ -1,8 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import compose, {withMutations} from '../../utils/compose'
-import {loader} from 'graphql.macro'
-
+//graphql.macro
 import {
   Row,
   Col,
@@ -14,7 +13,7 @@ import {
 import {withTranslation} from 'react-i18next'
 import MarkdownEditor from '../Shared/MarkdownEditor'
 
-const updateImage = loader('./updateImage.graphql');
+const updateImage = require('./updateImage.graphql');
 
 class ImageEditForm extends Component {
   constructor(props) {

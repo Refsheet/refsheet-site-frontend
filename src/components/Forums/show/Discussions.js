@@ -3,8 +3,7 @@ import compose from '../../../utils/compose'
 import {withTranslation} from 'react-i18next'
 import DiscussionLink from './DiscussionLink'
 import {Query} from 'react-apollo'
-import {loader} from 'graphql.macro'
-
+//graphql.macro
 import Error from '../../Shared/Error'
 import {Link} from 'react-router-dom'
 import PostTags, {DropdownTag} from '../shared/PostTags'
@@ -16,7 +15,7 @@ import NumberUtils from 'v1/utils/NumberUtils'
 import Advertisement from 'v1/shared/advertisement'
 import Loading from '../../Shared/views/Loading'
 
-const getDiscussions = loader('../getDiscussions.graphql');
+const getDiscussions = require('../getDiscussions.graphql');
 
 class Discussions extends Component {
   constructor(props) {

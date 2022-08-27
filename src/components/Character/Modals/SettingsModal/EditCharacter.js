@@ -4,14 +4,14 @@ import compose from 'utils/compose'
 import {Trans, withTranslation} from 'react-i18next'
 import {TextInput, Row, Col, Checkbox} from 'react-materialize'
 import {withCurrentUser, withMutations} from '../../../../utils/compose'
-import {loader} from 'graphql.macro'
-import M from 'materialize-css'
+//graphql.macro
+//import M from 'materialize-css'
 import {withRouter} from 'react-router'
 import {Authorized} from '../../../../policies'
 import validate, {isRequired, isSluggable, isSlug} from 'utils/validate'
 import {errorProps} from '../../../../utils/validate'
 
-const updateSettings = loader('./updateSettings.graphql');
+const updateSettings = require('./updateSettings.graphql');
 
 class EditCharacter extends Component {
   constructor(props) {

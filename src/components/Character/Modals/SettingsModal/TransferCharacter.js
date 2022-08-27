@@ -3,15 +3,14 @@ import PropTypes from 'prop-types'
 import compose from 'utils/compose'
 import {Trans, withTranslation} from 'react-i18next'
 import {Row, Col, TextInput} from 'react-materialize'
-import {loader} from 'graphql.macro'
-
+//graphql.macro
 import {withCurrentUser, withMutations} from '../../../../utils/compose'
 import authorize from 'policies'
 import validate, {errorProps, isRequired} from '../../../../utils/validate'
 
-import * as Materialize from 'materialize-css'
+//import * as Materialize from 'materialize-css'
 
-const transferCharacter = loader('./transferCharacter.graphql');
+const transferCharacter = require('./transferCharacter.graphql');
 
 class TransferCharacter extends Component {
   constructor(props) {
