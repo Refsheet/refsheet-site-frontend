@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-//graphql.macroimport {Subscription} from 'react-apollo'
+//graphql.macroimport {Subscription} from '@apollo/client/react/components'
 import {Icon} from 'react-materialize'
 import {connect} from 'react-redux'
 import {openLightbox, setNsfwMode} from '../../actions'

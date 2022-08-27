@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {closeLightbox, openLightbox} from '../../actions'
 import {connect} from 'react-redux'
 import {Icon} from 'react-materialize'
-import {Query} from 'react-apollo'
+import {Query} from '@apollo/client/react/components'
 //graphql.macro
 import View from './View'
 import Silhouette from './Silhouette'

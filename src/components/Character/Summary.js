@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {div as Card} from 'components/Styled/Card'
 import {H1, H2} from 'components/Styled/Headings'
 import EditableHeader from '../Shared/EditableHeader'
-import {Mutation} from 'react-apollo'
+import {Mutation} from '@apollo/client/react/components'
 //graphql.macro
 //import * as M from 'materialize-css'
 import WindowAlert from '../../utils/WindowAlert'

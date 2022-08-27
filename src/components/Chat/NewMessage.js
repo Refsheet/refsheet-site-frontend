@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {Icon} from 'react-materialize'
-import {Mutation} from 'react-apollo'
+import {Mutation} from '@apollo/client/react/components'
 import {gql} from 'apollo-client-preset'
 //import * as M from 'materialize-css'
 import EmailConfirmationNag from '../User/EmailConfirmationNag'

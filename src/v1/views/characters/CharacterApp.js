@@ -35,7 +35,7 @@ import Character from 'components/Character'
 import $ from 'jquery'
 import StateUtils from '../../utils/StateUtils'
 import Gallery from '../../../components/Character/Gallery'
-import {Query} from 'react-apollo'
+import {Query} from '@apollo/client/react/components'
 //graphql.macro
 import Flash from '../../../utils/Flash'
 import {ThemedMain} from '../../../components/Styled/Global'

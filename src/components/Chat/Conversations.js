@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import {Query} from 'react-apollo'
+import {Query} from '@apollo/client/react/components'
 //graphql.macro
 const getConversations = require('./getConversations.graphql');
 //graphql.macro

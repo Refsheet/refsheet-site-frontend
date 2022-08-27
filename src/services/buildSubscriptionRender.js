@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { Query } from 'react-apollo'
+import {Query} from '@apollo/client/react/components'
 import React from 'react'
 
 const defaultMapDataToProps = data => data
@@ -15,24 +15,24 @@ export default function buildSubscriptionRender(args) {
     mapPropsToVariables = defaultMapPropsToVariables,
   } = args
 
-  const render = ({ Component, ...props }) => ({
-    loading,
-    data,
-    subscribeToMore,
-    ...more
-  }) => {
+  const render = ({Component, ...props}) => ({
+                                               loading,
+                                               data,
+                                               subscribeToMore,
+                                               ...more
+                                             }) => {
     const subscribe = () => {
       if (loading || !data) return null
 
       const variables = mapPropsToVariables(props)
 
-      console.debug('Subscription info: ', { variables, subscription })
+      console.debug('Subscription info: ', {variables, subscription})
 
       subscribeToMore({
         document: subscription,
         variables,
-        updateQuery: (prev, { subscriptionData }) => {
-          console.log({ prev, subscriptionData })
+        updateQuery: (prev, {subscriptionData}) => {
+          console.log({prev, subscriptionData})
           if (!subscriptionData.data) return prev
           return updateQuery(prev, subscriptionData.data)
         },

@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import {Mutation} from 'react-apollo'
+import {Mutation} from '@apollo/client/react/components'
 //import * as M from 'materialize-css'
 //graphql.macroimport Modal from 'v1/shared/Modal'
 

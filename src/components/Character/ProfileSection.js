@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import ProfileColumn from './ProfileColumn'
 import Section from 'components/Shared/Section'
 import c from 'classnames'
-import {Mutation} from 'react-apollo'
+import {Mutation} from '@apollo/client/react/components'
 import {gql} from 'apollo-client-preset'
 import NewWidgetModal from './Modals/NewWidgetModal'
 //graphql.macro

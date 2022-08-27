@@ -7,7 +7,7 @@ import Conversation from './Conversation'
 import c from 'classnames'
 import {format as f} from 'utils/NumberUtils'
 import WindowAlert from 'utils/WindowAlert'
-import {Query, Subscription} from 'react-apollo'
+import {Query, Subscription} from '@apollo/client/react/components'
 import {userClasses} from '../../utils/UserUtils'
 
 class Chat extends Component {

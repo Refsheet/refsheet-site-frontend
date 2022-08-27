@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {Mutation} from 'react-apollo'
+import {Mutation} from '@apollo/client/react/components'
 //graphql.macro
 const postReply = require('./postReply.graphql');
 import CommentForm from '../Shared/CommentForm'

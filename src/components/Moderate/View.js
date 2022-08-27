@@ -1,7 +1,7 @@
 import React from 'react'
 import Error from 'components/Shared/Error'
 import {Row, Col} from 'react-materialize'
-import {Mutation} from 'react-apollo'
+import {Mutation} from '@apollo/client/react/components'
 //graphql.macroimport Jumbotron from 'components/Shared/Jumbotron'
 import Main from 'v1/shared/Main'
 import Spinner from 'v1/shared/material/Spinner'

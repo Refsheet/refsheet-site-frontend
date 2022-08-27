@@ -1,5 +1,5 @@
 import React from 'react'
-import {Mutation} from 'react-apollo'
+import {Mutation} from '@apollo/client/react/components'
 import {connect} from 'react-redux'
 //import M from 'materialize-css'
 import {deepRemoveKeys} from './ObjectUtils'

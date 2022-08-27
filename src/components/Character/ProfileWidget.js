@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {camelize} from 'utils/ObjectUtils'
 import widgets, {SerializerWidget} from './Widgets'
 import ProfileWidgetHeader from './ProfileWidgetHeader'
-import {Mutation} from 'react-apollo'
+import {Mutation} from '@apollo/client/react/components'
 //graphql.macro
 // import * as M from 'materialize-css'
 import {div as Card} from '../Styled/Card'

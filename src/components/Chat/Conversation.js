@@ -1,16 +1,16 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import { Mutation, Query } from 'react-apollo'
-import { gql } from 'apollo-client-preset'
+import {Mutation, Query} from '@apollo/client/react/components'
+import {gql} from 'apollo-client-preset'
 import _ from 'underscore'
 import ConversationMessage from './ConversationMessage'
 import NewMessage from './NewMessage'
-import { Icon } from 'react-materialize'
+import {Icon} from 'react-materialize'
 import c from 'classnames'
-import { userClasses } from '../../utils/UserUtils'
-import { closeConversation } from '../../actions'
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import {userClasses} from '../../utils/UserUtils'
+import {closeConversation} from '../../actions'
+import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 
 class Conversation extends Component {
   constructor(props) {
@@ -54,7 +54,7 @@ class Conversation extends Component {
     if (toUnread && this.unreadBookmark) {
       this.unreadBookmark.scrollIntoView()
       if (this.state.isAtBottom !== this.isAtBottom())
-        this.setState({ isAtBottom: this.isAtBottom() })
+        this.setState({isAtBottom: this.isAtBottom()})
     } else if (this.endOfMessages) {
       this.endOfMessages.scrollIntoView()
     }
@@ -63,7 +63,7 @@ class Conversation extends Component {
   isAtBottom() {
     if (!this.messageWindow) return false
 
-    const { scrollHeight, scrollTop, clientHeight } = this.messageWindow
+    const {scrollHeight, scrollTop, clientHeight} = this.messageWindow
 
     return Math.floor(scrollHeight - scrollTop) <= clientHeight
   }
@@ -73,7 +73,7 @@ class Conversation extends Component {
     const focus = document.hasFocus()
     this.userLockedScroll = !bottom || !!this.unreadBookmark
 
-    if (bottom !== this.state.isAtBottom) this.setState({ isAtBottom: bottom })
+    if (bottom !== this.state.isAtBottom) this.setState({isAtBottom: bottom})
 
     if (bottom && focus && this.unreadBookmark) {
       this.markAsRead()
@@ -91,10 +91,10 @@ class Conversation extends Component {
         if (e.errors) {
           e.errors.map(console.error)
         } else {
-          const { messages } = this.props
+          const {messages} = this.props
           if (messages) {
             const lastMessage = messages[messages.length - 1]
-            this.setState({ lastReadMessage: lastMessage.id })
+            this.setState({lastReadMessage: lastMessage.id})
           }
         }
       })
@@ -107,11 +107,11 @@ class Conversation extends Component {
   handleOpenClose(e) {
     e.preventDefault()
     const isOpen = !this.state.isOpen
-    this.setState({ isOpen })
+    this.setState({isOpen})
   }
 
   handlePendingMessage(message) {
-    const { nonce } = message
+    const {nonce} = message
     const messages = [...this.state.pendingMessages]
     const i = messages.map(e => e.nonce).indexOf(nonce)
 
@@ -134,9 +134,9 @@ class Conversation extends Component {
   }
 
   render() {
-    const { messages = [], id: conversationId, user } = this.props
+    const {messages = [], id: conversationId, user} = this.props
 
-    const { isOpen } = this.state
+    const {isOpen} = this.state
 
     this.unreadBookmark = null
 
@@ -245,24 +245,24 @@ class Conversation extends Component {
 }
 
 const renderConversation = props => ({
-  loading,
-  data,
-  error,
-  subscribeToMore,
-}) => {
+                                       loading,
+                                       data,
+                                       error,
+                                       subscribeToMore,
+                                     }) => {
   if (loading) {
     return <div className="chat-loading">Loading...</div>
   } else if (!data) {
-    console.error({ error })
+    console.error({error})
     return <div className="chat-loading error red-text">{error.message}</div>
   } else {
     const subscribe = () => {
       subscribeToMore({
         document: MESSAGES_SUBSCRIPTION,
-        variables: { conversationId: props.id },
-        updateQuery: (prev, { subscriptionData }) => {
+        variables: {conversationId: props.id},
+        updateQuery: (prev, {subscriptionData}) => {
           if (!subscriptionData.data) return prev
-          const { newMessage } = subscriptionData.data
+          const {newMessage} = subscriptionData.data
 
           return Object.assign({}, prev, {
             getConversation: {
@@ -276,7 +276,7 @@ const renderConversation = props => ({
 
     return (
       <Mutation mutation={UPDATE_CONVERSATION_MUTATION}>
-        {(updateConversation, { mutationData }) => (
+        {(updateConversation, {mutationData}) => (
           <Conversation
             {...data.getConversation}
             {...props}

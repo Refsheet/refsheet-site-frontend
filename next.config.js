@@ -27,4 +27,7 @@ module.exports = {
   },
 
   output: 'standalone',
+  future: {
+    webpack5: true,
+  }
 }

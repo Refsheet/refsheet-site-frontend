@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import { Input, Row, Col, Button } from 'react-materialize'
+import {Input, Row, Col, Button} from 'react-materialize'
 import c from 'classnames'
-import { Mutation } from 'react-apollo'
-import { gql } from 'apollo-client-preset'
-import { withRouter } from 'react-router'
-import compose, { withCurrentUser } from '../../../utils/compose'
+import {Mutation} from '@apollo/client/react/components'
+import {gql} from 'apollo-client-preset'
+import {withRouter} from 'react-router'
+import compose, {withCurrentUser} from '../../../utils/compose'
 
 class DeleteUser extends Component {
   constructor(props) {
@@ -27,25 +27,25 @@ class DeleteUser extends Component {
 
   toggleOpen(e) {
     e.preventDefault()
-    this.setState({ isOpen: !this.state.isOpen })
+    this.setState({isOpen: !this.state.isOpen})
   }
 
   handleUserChange(e) {
     e.preventDefault()
     const username = e.target.value
-    this.setState({ username })
+    this.setState({username})
   }
 
   handlePasswordChange(e) {
     e.preventDefault()
     const password = e.target.value
-    this.setState({ password })
+    this.setState({password})
   }
 
   handleFormSubmit(e) {
     e.preventDefault()
 
-    this.setState({ isSubmitting: true })
+    this.setState({isSubmitting: true})
 
     this.props
       .deleteUser({
@@ -55,10 +55,10 @@ class DeleteUser extends Component {
         },
       })
       .then(response => {
-        const { data, errors } = response
+        const {data, errors} = response
 
         if (errors && errors.length) {
-          this.setState({ errors })
+          this.setState({errors})
         } else {
           this.props.setCurrentUser(null)
         }
@@ -67,17 +67,17 @@ class DeleteUser extends Component {
       .catch(data => console.error(data))
 
       .finally(() => {
-        this.setState({ isSubmitting: false })
+        this.setState({isSubmitting: false})
       })
   }
 
   render() {
     const {
       first,
-      user: { username },
+      user: {username},
     } = this.props
 
-    const { username: usernameConfirm, password, isOpen, errors } = this.state
+    const {username: usernameConfirm, password, isOpen, errors} = this.state
 
     const disabled = usernameConfirm !== username || !password
 
@@ -154,14 +154,14 @@ class DeleteUser extends Component {
 
     return (
       <form
-        className={c('card sp', { 'margin-top--large': !first })}
+        className={c('card sp', {'margin-top--large': !first})}
         method="POST"
         onSubmit={this.handleFormSubmit}
       >
         <div
           className="card-header"
           onClick={this.toggleOpen}
-          style={{ cursor: 'pointer' }}
+          style={{cursor: 'pointer'}}
         >
           <h2 className="red-text">
             {this.state.isSubmitting ? 'Deleting Account...' : 'Delete Account'}
@@ -193,11 +193,11 @@ const DELETE_USER_MUTATION = gql`
 
 const Wrapped = props => (
   <Mutation mutation={DELETE_USER_MUTATION}>
-    {(send, { mutationData }) => (
-      <DeleteUser {...props} deleteUser={send} deleteResult={mutationData} />
+    {(send, {mutationData}) => (
+      <DeleteUser {...props} deleteUser={send} deleteResult={mutationData}/>
     )}
   </Mutation>
 )
 
-export { DeleteUser }
+export {DeleteUser}
 export default compose(withRouter, withCurrentUser(true))(Wrapped)

@@ -1,7 +1,7 @@
 import React from 'react'
 import {div as Card} from '../../Styled/Card'
 //graphql.macro
-import {Query} from 'react-apollo'
+import {Query} from '@apollo/client/react/components'
 import Error from '../../Shared/Error'
 
 const getApiKeys = require('./getApiKeys.graphql');

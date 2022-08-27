@@ -1,11 +1,9 @@
-import ApolloClient from 'apollo-client'
-import {ApolloLink} from 'apollo-link'
-import {HttpLink} from 'apollo-link-http'
-import {setContext} from 'apollo-link-context'
+import ApolloClient, {ApolloLink, HttpLink} from '@apollo/client'
+import {setContext} from '@apollo/client/link/context'
 import {
   InMemoryCache,
   IntrospectionFragmentMatcher,
-} from 'apollo-cache-inmemory'
+} from '@apollo/client/cache'
 import fetch from 'node-fetch'
 import {createConsumer} from '@rails/actioncable'
 import ActionCableLink from 'graphql-ruby-client/subscriptions/ActionCableLink'

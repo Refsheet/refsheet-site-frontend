@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import { Icon } from 'react-materialize'
-import { Query } from 'react-apollo'
-import { gql } from 'apollo-client-preset'
+import {Icon} from 'react-materialize'
+import {Query} from '@apollo/client/react/components'
+import {gql} from 'apollo-client-preset'
 import NewMessage from './NewMessage'
 
 class NewConversation extends Component {
@@ -23,17 +23,17 @@ class NewConversation extends Component {
 
   handleUsernameChange(e) {
     e.preventDefault()
-    this.setState({ username: e.target.value })
+    this.setState({username: e.target.value})
   }
 
   handleReset(e) {
     if (e && e.preventDefault) e.preventDefault()
-    this.setState({ username: '', doSearch: false })
+    this.setState({username: '', doSearch: false})
   }
 
   handleSubmit(e) {
     e.preventDefault()
-    if (this.state.username !== '') this.setState({ doSearch: true })
+    if (this.state.username !== '') this.setState({doSearch: true})
   }
 
   handleClose(e) {
@@ -48,7 +48,7 @@ class NewConversation extends Component {
   }
 
   render() {
-    const { doSearch, username } = this.state
+    const {doSearch, username} = this.state
 
     if (!doSearch) {
       return (
@@ -86,7 +86,7 @@ class NewConversation extends Component {
         }
       `
 
-      const renderResult = ({ loading, data }) => {
+      const renderResult = ({loading, data}) => {
         if (loading) {
           return (
             <div className="chat-footer">
@@ -94,7 +94,7 @@ class NewConversation extends Component {
             </div>
           )
         } else {
-          const { findUser: user } = data
+          const {findUser: user} = data
 
           if (user) {
             return (
@@ -126,7 +126,7 @@ class NewConversation extends Component {
       }
 
       return (
-        <Query query={FIND_USER_QUERY} variables={{ username }}>
+        <Query query={FIND_USER_QUERY} variables={{username}}>
           {renderResult}
         </Query>
       )

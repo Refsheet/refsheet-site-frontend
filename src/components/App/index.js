@@ -1,19 +1,19 @@
-import React, { Component, createContext } from 'react'
+import React, {Component, createContext} from 'react'
 import PropTypes from 'prop-types'
 
 // Providers
-import { ApolloProvider } from 'react-apollo'
-import { Provider as ReduxProvider } from 'react-redux'
+import {ApolloProvider} from '@apollo/client/react/components'
+import {Provider as ReduxProvider} from 'react-redux'
 import DropzoneProvider from '../Dropzone'
-import { I18nextProvider } from 'react-i18next'
-import { HTML5Backend as Backend } from 'react-dnd-html5-backend'
-import { DndProvider } from 'react-dnd'
+import {I18nextProvider} from 'react-i18next'
+import {HTML5Backend as Backend} from 'react-dnd-html5-backend'
+import {DndProvider} from 'react-dnd'
 
 // Initialization
-import { createStore } from 'redux'
+import {createStore} from 'redux'
 import rootReducer from 'reducers'
-import client, { host } from 'services/ApplicationService'
-import { createBrowserHistory } from 'history'
+import client, {host} from 'services/ApplicationService'
+import {createBrowserHistory} from 'history'
 import i18n from '../../services/i18n.js'
 
 // Utilities
@@ -29,8 +29,8 @@ import ConfigContext from './ConfigContext'
 
 // Children
 import Layout from '../Layout'
-import { Router as BrowserRouter } from 'react-router-dom'
-import { withErrorBoundary } from '../Shared/ErrorBoundary'
+import {Router as BrowserRouter} from 'react-router-dom'
+import {withErrorBoundary} from '../Shared/ErrorBoundary'
 
 class App extends Component {
   constructor(props) {
@@ -51,7 +51,7 @@ class App extends Component {
     if (props.gaPropertyID && typeof ReactGA !== 'undefined') {
       ReactGA.initialize(this.props.gaPropertyID)
 
-      ReactGA.set({ page: window.location.pathname })
+      ReactGA.set({page: window.location.pathname})
       ReactGA.pageview(window.location.pathname)
     }
 
@@ -59,7 +59,7 @@ class App extends Component {
   }
 
   initWindowAlert() {
-    const { assets } = this.props
+    const {assets} = this.props
 
     WindowAlert.initSound({
       notificationSoundPaths: assets.notificationSoundPaths,
@@ -88,7 +88,7 @@ class App extends Component {
       },
     }
 
-    console.log({ newState })
+    console.log({newState})
 
     if (!newState.session.identity.name && newState.session.currentUser) {
       newState.session.identity = {
@@ -158,7 +158,7 @@ class App extends Component {
     }
 
     // Clear Eager Load
-    this.setState({ eagerLoad: null })
+    this.setState({eagerLoad: null})
   }
 
   render() {
@@ -173,7 +173,7 @@ class App extends Component {
                     history={this.history}
                     onUpdate={this.handleRouteUpdate}
                   >
-                    <Layout />
+                    <Layout/>
                   </BrowserRouter>
                 </DndProvider>
               </DropzoneProvider>

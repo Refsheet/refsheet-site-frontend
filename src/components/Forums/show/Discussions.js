@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import compose from '../../../utils/compose'
 import {withTranslation} from 'react-i18next'
 import DiscussionLink from './DiscussionLink'
-import {Query} from 'react-apollo'
+import {Query} from '@apollo/client/react/components'
 //graphql.macro
 import Error from '../../Shared/Error'
 import {Link} from 'react-router-dom'

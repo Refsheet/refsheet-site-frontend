@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
-import { format as n } from '../../utils/NumberUtils'
+import React, {Component} from 'react'
+import {format as n} from '../../utils/NumberUtils'
 import c from 'classnames'
 import Moment from 'moment'
-import { gql } from 'apollo-client-preset/lib/index'
-import { Subscription } from 'react-apollo'
-import { formatBody } from './ConversationMessage'
-import { userClasses } from '../../utils/UserUtils'
+import {gql} from 'apollo-client-preset/lib/index'
+import {Subscription} from '@apollo/client/react/components'
+import {formatBody} from './ConversationMessage'
+import {userClasses} from '../../utils/UserUtils'
 
 class ConversationLink extends Component {
   constructor(props) {
@@ -14,20 +14,20 @@ class ConversationLink extends Component {
   }
 
   render() {
-    const { subscriptionData, conversation, onClick } = this.props
+    const {subscriptionData, conversation, onClick} = this.props
 
     const data = subscriptionData.data || {}
 
-    console.debug({ subscriptionData })
+    console.debug({subscriptionData})
 
-    const { guid, unreadCount, lastMessage, user } =
-      data.conversationChanged || conversation
+    const {guid, unreadCount, lastMessage, user} =
+    data.conversationChanged || conversation
 
     const isUnread = unreadCount > 0
 
     const handleClick = e => {
       e.preventDefault()
-      onClick({ id: guid, name: user.name, user: user })
+      onClick({id: guid, name: user.name, user: user})
     }
 
     const usernameDisplay = `@${user.username}`
@@ -46,7 +46,7 @@ class ConversationLink extends Component {
     }
 
     return (
-      <li className={c('chat-conversation', { unread: isUnread })}>
+      <li className={c('chat-conversation', {unread: isUnread})}>
         <a href="#" onClick={handleClick}>
           <img
             src={user.avatar_url}
@@ -101,7 +101,7 @@ class Wrapped extends Component {
     return (
       <Subscription
         subscription={CONVERSATION_SUBSCRIPTION}
-        variables={{ conversationId: this.props.conversation.guid }}
+        variables={{conversationId: this.props.conversation.guid}}
       >
         {subscriptionData => (
           <ConversationLink

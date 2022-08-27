@@ -6,7 +6,7 @@ import Diff from 'react-stylable-diff'
 import TimelineEntry from '../../../Shared/Timeline/TimelineEntry'
 import {Loading} from '../../../Lightbox/Status'
 import Error from '../../../Shared/Error'
-import {Query} from 'react-apollo'
+import {Query} from '@apollo/client/react/components'
 //graphql.macro
 
 import Modal from 'v1/shared/Modal'

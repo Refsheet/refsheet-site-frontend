@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import ProfileSection from './ProfileSection'
 import c from 'classnames'
-import {Mutation} from 'react-apollo'
+import {Mutation} from '@apollo/client/react/components'
 //graphql.macro
 // import * as M from 'materialize-css'
 

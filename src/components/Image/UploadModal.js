@@ -6,7 +6,7 @@ import ImageHandler from 'utils/ImageHandler'
 import {clearUpload, closeUploadModal, modifyUpload} from '../../actions'
 import {connect} from 'react-redux'
 import c from 'classnames'
-import {Query} from 'react-apollo'
+import {Query} from '@apollo/client/react/components'
 //graphql.macro
 import IdentityModal from '../Shared/CommentForm/IdentityModal'
 import {withTranslation} from 'react-i18next'

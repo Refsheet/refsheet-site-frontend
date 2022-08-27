@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import View from './View'
-import {Query} from 'react-apollo'
+import {Query} from '@apollo/client/react/components'
 import Error from '../../Shared/Error'
 import Loading from 'v1/shared/Loading'
 
