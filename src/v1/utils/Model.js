@@ -9,7 +9,13 @@
  * DS208: Avoid top-level this
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
-//import * as Materialize from 'materialize-css'
+import dynamic from 'next/dynamic'
+
+let Materialize = null;
+if (typeof window !== 'undefined') {
+  Materialize = require('materialize-css');
+}
+
 import $ from 'jquery'
 
 const Model = {

@@ -1,22 +1,22 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import { Icon } from 'react-materialize'
-import ImageLoader from 'react-load-image'
-import { Loading, Error } from './Status'
+import {Icon} from 'react-materialize'
+import ProgressiveImage from 'Components/Shared/ProgressiveImage'
+import {Loading, Error} from './Status'
 import CharacterBox from './CharacterBox'
 import ImageMeta from './ImageMeta'
 import Comments from './Comments'
 import Favorites from './Favorites'
 import ImageActions from './ImageActions'
 import ImageEditForm from './ImageEditForm'
-import { withTranslation } from 'react-i18next'
+import {withTranslation} from 'react-i18next'
 import compose from '../../utils/compose'
 import Restrict from '../Shared/Restrict'
 import ImageTagForm from './ImageTags/ImageTagForm'
 import c from 'classnames'
 import ImageTags from './ImageTags'
-import { setNsfwMode } from '../../actions'
-import { connect } from 'react-redux'
+import {setNsfwMode} from '../../actions'
+import {connect} from 'react-redux'
 
 class View extends Component {
   constructor(props) {
@@ -50,24 +50,24 @@ class View extends Component {
   }
 
   handleEditStart() {
-    this.setState({ editing: true })
+    this.setState({editing: true})
   }
 
   handleEditEnd() {
-    this.setState({ editing: false })
+    this.setState({editing: false})
   }
 
   handleTagStart(e) {
     e.preventDefault()
-    this.setState({ tagging: true })
+    this.setState({tagging: true})
   }
 
   handleTagEnd() {
-    this.setState({ tagging: false })
+    this.setState({tagging: false})
   }
 
   handleMediaUpdate() {
-    this.setState({ editing: false })
+    this.setState({editing: false})
   }
 
   handleNsfwClick(e) {
@@ -78,7 +78,7 @@ class View extends Component {
   handleImageClick(e) {
     e.preventDefault()
 
-    const { top, left } = e.target.getBoundingClientRect()
+    const {top, left} = e.target.getBoundingClientRect()
     const x = e.pageX - left - window.pageXOffset
     const y = e.pageY - top - window.pageYOffset
 
@@ -99,7 +99,7 @@ class View extends Component {
       },
     ]
 
-    this.setState({ tags })
+    this.setState({tags})
   }
 
   renderDetails() {
@@ -142,7 +142,7 @@ class View extends Component {
                 mediaId={this.props.media.id}
               />
             )}
-            <CharacterBox {...character} createdAt={created_at} />
+            <CharacterBox {...character} createdAt={created_at}/>
             <ImageMeta {...this.props.media} />
           </div>
 
@@ -167,18 +167,18 @@ class View extends Component {
       t,
       media: {
         title,
-        url: { large: imageSrc },
+        url: {large: imageSrc},
         nsfw,
       },
       nextMediaId,
       prevMediaId,
     } = this.props
 
-    const { tags } = this.state
+    const {tags} = this.state
 
     return (
       <div className={'lightbox-content'}>
-        <div className={c('image-content', { tagging: this.state.tagging })}>
+        <div className={c('image-content', {tagging: this.state.tagging})}>
           {prevMediaId && (
             <a
               className={'image-prev image-nav'}
@@ -234,11 +234,11 @@ class View extends Component {
           </div>
 
           <Restrict nsfw={nsfw}>
-            <ImageLoader src={imageSrc}>
-              <img alt={title} title={title} onClick={this.handleImageClick} />
-              <Error />
-              <Loading />
-            </ImageLoader>
+            <ProgressiveImage src={imageSrc}>
+              <img alt={title} title={title} onClick={this.handleImageClick}/>
+              <Error/>
+              <Loading/>
+            </ProgressiveImage>
           </Restrict>
           <Restrict invert nsfw={nsfw}>
             <a className="nsfw-cover" onClick={this.handleNsfwClick}>
@@ -247,7 +247,7 @@ class View extends Component {
             </a>
           </Restrict>
 
-          <ImageTags tags={this.state.tags} tagging={this.state.tagging} />
+          <ImageTags tags={this.state.tags} tagging={this.state.tagging}/>
         </div>
 
         {this.renderDetails()}

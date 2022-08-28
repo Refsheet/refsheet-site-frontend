@@ -1,11 +1,11 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
-//graphql.macroimport compose, {withCurrentUser, withMutations} from '../../../utils/compose'
+//graphql.macro
+import compose, {withCurrentUser, withMutations} from '../../../utils/compose'
 import subscribe from '../../../services/buildSubscriptionRender'
 import CommentForm from '../../Shared/CommentForm'
 import Scrollbars from '../../Shared/Scrollbars'
-import {AutoSizer} from 'react-virtualized'
 import Moment from 'react-moment'
 import EmailConfirmationNag from '../../User/EmailConfirmationNag'
 
@@ -93,11 +93,7 @@ class Comments extends Component {
     return (
       <div className={'flex-vertical comments'}>
         <div className={'flex-content overflow'}>
-          <AutoSizer disableWidth>
-            {({height, width}) => (
-              <Scrollbars maxHeight={height}>{renderComments}</Scrollbars>
-            )}
-          </AutoSizer>
+          <Scrollbars maxHeight={150}>{renderComments}</Scrollbars>
         </div>
 
         {currentUser && (

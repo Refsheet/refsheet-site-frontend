@@ -7,8 +7,13 @@ import {Row, Col, TextInput} from 'react-materialize'
 import {withCurrentUser, withMutations} from '../../../../utils/compose'
 import authorize from 'policies'
 import validate, {errorProps, isRequired} from '../../../../utils/validate'
+import dynamic from 'next/dynamic'
 
-//import * as Materialize from 'materialize-css'
+let Materialize = null;
+if (typeof window !== 'undefined') {
+  Materialize = require('materialize-css');
+}
+
 
 const transferCharacter = require('./transferCharacter.graphql');
 

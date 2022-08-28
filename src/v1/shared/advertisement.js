@@ -3,7 +3,6 @@ import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
 import StateUtils from 'v1/utils/StateUtils'
 import GoogleAd from '../../components/Shared/GoogleAd'
-import ahoy from 'ahoy.js'
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
@@ -18,7 +17,7 @@ export default Advertisement = createReactClass({
   dataPath: '/our_friends/next',
 
   getInitialState() {
-    return { campaign: null }
+    return {campaign: null}
   },
 
   componentDidMount() {
@@ -34,9 +33,6 @@ export default Advertisement = createReactClass({
   },
 
   _handleLinkClick(e) {
-    return ahoy.track('advertisement.click', {
-      advertisement_id: this.state.campaign.id,
-    })
   },
 
   _generateLink() {
@@ -47,7 +43,7 @@ export default Advertisement = createReactClass({
     if (!this.state.campaign) {
       return null
     }
-    const { title, caption, link, image_url } = this.state.campaign
+    const {title, caption, link, image_url} = this.state.campaign
 
     const imageSrc = image_url.medium + '?c=' + Math.floor(Date.now() / 1000)
 

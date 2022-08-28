@@ -1,6 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-//import * as Materialize from 'materialize-css'
+import dynamic from 'next/dynamic'
+
+let Materialize = null;
+if (typeof window !== 'undefined') {
+  Materialize = require('materialize-css');
+}
+
 import Bowser from 'bowser'
 import Attribute from 'v1/shared/attributes/attribute'
 import AttributeTable from 'v1/shared/attributes/attribute_table'

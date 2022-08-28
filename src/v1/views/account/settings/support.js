@@ -7,7 +7,13 @@
 import React from 'react'
 import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
-//import * as Materialize from 'materialize-css'
+import dynamic from 'next/dynamic'
+
+let Materialize = null;
+if (typeof window !== 'undefined') {
+  Materialize = require('materialize-css');
+}
+
 import Form from '../../../shared/forms/Form'
 import Input from '../../../shared/forms/Input'
 import Submit from '../../../shared/forms/Submit'

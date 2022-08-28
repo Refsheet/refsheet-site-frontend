@@ -4,7 +4,7 @@ import {withTranslation} from 'react-i18next'
 import compose from 'utils/compose'
 import {H1} from 'components/Styled/Headings'
 import styled from 'styled-components'
-import {withRouter} from 'react-router'
+import {withRouter} from 'utils/withRouter'
 import FormUtils from '../../../utils/FormUtils'
 import LinkUtils from '../../../utils/LinkUtils'
 

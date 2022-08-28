@@ -4,7 +4,13 @@ import PropTypes from 'prop-types'
 import PasswordResetForm from '../../views/sessions/PasswordResetForm'
 import LoginForm from '../../views/sessions/LoginForm'
 import Modal from '../Modal'
-//import * as Materialize from 'materialize-css'
+import dynamic from 'next/dynamic'
+
+let Materialize = null;
+if (typeof window !== 'undefined') {
+  Materialize = require('materialize-css');
+}
+
 import $ from 'jquery'
 import {withErrorBoundary} from '../../../components/Shared/ErrorBoundary'
 

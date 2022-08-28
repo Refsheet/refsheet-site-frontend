@@ -1,6 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-//import * as Materialize from 'materialize-css'
+import dynamic from 'next/dynamic'
+
+let Materialize = null;
+if (typeof window !== 'undefined') {
+  Materialize = require('materialize-css');
+}
+
 import Input from '../../shared/forms/Input'
 import Modal from '../../shared/Modal'
 import Form from '../../shared/forms/Form'

@@ -8,7 +8,7 @@ module.exports = {
     config.resolve.modules.push('./public')
 
     config.module.rules.push({
-      test: /\.(mp3|png)$/,
+      test: /\.(mp3)$/,
       loader: 'file-loader'
     })
 
@@ -27,7 +27,4 @@ module.exports = {
   },
 
   output: 'standalone',
-  future: {
-    webpack5: true,
-  }
 }

@@ -9,10 +9,9 @@ import React from 'react'
 import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
 import UserCharacterGroupForm from './UserCharacterGroupForm'
-import { Link } from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 import $ from 'jquery'
-import 'jquery-ui/ui/widgets/droppable'
 import Model from '../../../../utils/Model'
 import NumberUtils from '../../../../utils/NumberUtils'
 // TODO: This file was created by bulk-decaffeinate.
@@ -61,12 +60,12 @@ export default UserCharacterGroupLink = createReactClass({
       accept: '.character-drag',
       over: (_, ui) => {
         $(ui.draggable).siblings('.drop-target').hide()
-        return this.setState({ dropOver: true })
+        return this.setState({dropOver: true})
       },
 
       out: (_, ui) => {
         $(ui.draggable).siblings('.drop-target').show()
-        return this.setState({ dropOver: false })
+        return this.setState({dropOver: false})
       },
 
       drop: (event, ui) => {
@@ -74,25 +73,25 @@ export default UserCharacterGroupLink = createReactClass({
         $source.addClass('dropped')
         const sourceId = $source.data('character-id')
         this._handleDrop(sourceId)
-        return this.setState({ dropOver: false })
+        return this.setState({dropOver: false})
       },
     })
   },
 
   _handleEdit(e) {
-    this.setState({ edit: true })
+    this.setState({edit: true})
     return e.preventDefault()
   },
 
   _handleChange(data) {
-    this.setState({ edit: false })
+    this.setState({edit: false})
     return this.props.onChange(data)
   },
 
   _handleDrop(characterId) {
     return Model.post(
       this.props.group.path + '/characters',
-      { id: characterId },
+      {id: characterId},
       data => {
         return this.props.onChange(data, characterId)
       }
@@ -100,7 +99,7 @@ export default UserCharacterGroupLink = createReactClass({
   },
 
   render() {
-    const { editable, active } = this.props
+    const {editable, active} = this.props
 
     if (this.state.edit) {
       return (

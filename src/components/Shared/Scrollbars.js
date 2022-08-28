@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Scrollbars as CustomScrollbars } from 'react-custom-scrollbars'
-import { withTheme } from 'styled-components'
+import {Scrollbars as CustomScrollbars} from 'react-custom-scrollbars-2'
+import {withTheme} from 'styled-components'
 
-const Scrollbars = ({ children, theme, maxHeight, ...otherProps }) => {
-  const renderThumb = ({ style, ...props }) => (
+const Scrollbars = ({children, theme, maxHeight, ...otherProps}) => {
+  const renderThumb = ({style, ...props}) => (
     <div
       {...props}
       style={{
@@ -17,7 +17,7 @@ const Scrollbars = ({ children, theme, maxHeight, ...otherProps }) => {
     />
   )
 
-  const renderTrack = ({ style, ...props }) => (
+  const renderTrack = ({style, ...props}) => (
     <div
       {...props}
       style={{

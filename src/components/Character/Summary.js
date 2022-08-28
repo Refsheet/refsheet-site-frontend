@@ -5,7 +5,13 @@ import {H1, H2} from 'components/Styled/Headings'
 import EditableHeader from '../Shared/EditableHeader'
 import {Mutation} from '@apollo/client/react/components'
 //graphql.macro
-//import * as M from 'materialize-css'
+import dynamic from 'next/dynamic'
+
+let M = null;
+if (typeof window !== 'undefined') {
+  M = require('materialize-css');
+}
+
 import WindowAlert from '../../utils/WindowAlert'
 
 import AttributeTable from 'v1/shared/attributes/attribute_table'

@@ -6,7 +6,10 @@ import compose, {withMutations} from '../../utils/compose'
 import {withTranslation} from 'react-i18next'
 import {connect} from 'react-redux'
 //graphql.macro
-//import M from 'materialize-css'
+let M = null;
+if (typeof window !== 'undefined') {
+  M = require('materialize-css');
+}
 
 import Modal from 'v1/shared/Modal'
 import CacheUtils from '../../utils/CacheUtils'

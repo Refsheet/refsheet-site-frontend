@@ -7,7 +7,13 @@ import {V1GalleryImage} from 'v1/shared/images/GalleryImage'
 import GalleryFeature from 'v1/shared/images/GalleryFeature'
 
 import ArrayUtils from 'v1/utils/ArrayUtils'
-//import * as Materialize from 'materialize-css'
+import dynamic from 'next/dynamic'
+
+let Materialize = null;
+if (typeof window !== 'undefined') {
+  Materialize = require('materialize-css');
+}
+
 import $ from 'jquery'
 import StateUtils from 'v1/utils/StateUtils'
 

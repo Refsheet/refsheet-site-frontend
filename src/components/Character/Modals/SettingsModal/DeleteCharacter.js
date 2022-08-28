@@ -3,9 +3,14 @@ import PropTypes from 'prop-types'
 import compose from 'utils/compose'
 import {Trans, withTranslation} from 'react-i18next'
 import {Row, Col, TextInput} from 'react-materialize'
-//graphql.macroimport {withMutations} from '../../../../utils/compose'
-import {withRouter} from 'react-router'
-//import M from 'materialize-css'
+//graphql.macro
+import {withMutations} from '../../../../utils/compose'
+import {withRouter} from 'utils/withRouter'
+
+let M = null;
+if (typeof window !== 'undefined') {
+  M = require('materialize-css');
+}
 import LinkUtils from 'utils/LinkUtils'
 
 const archiveCharacter = require('./archiveCharacter.graphql');

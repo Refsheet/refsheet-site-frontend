@@ -1,16 +1,24 @@
-import ApolloClient, {ApolloLink, HttpLink} from '@apollo/client'
+import {ApolloClient, ApolloLink, HttpLink} from '@apollo/client'
 import {setContext} from '@apollo/client/link/context'
 import {
   InMemoryCache,
-  IntrospectionFragmentMatcher,
 } from '@apollo/client/cache'
 import fetch from 'node-fetch'
-import {createConsumer} from '@rails/actioncable'
 import ActionCableLink from 'graphql-ruby-client/subscriptions/ActionCableLink'
-import introspectionQueryResultData from '../config/fragmentTypes.json'
+import introspectionQueryResultData from '../config/possibleTypes.json'
 import Cookies from 'js-cookie'
 
-const cable = createConsumer()
+// https://github.com/rails/rails/pull/39543#issuecomment-639804635
+// Package maintainers have the right to maintain their package however they please, but @rails/actioncable
+// is not a small package and community feedback as well as currently accepted best practices should be taken
+// into account here. Just because it's a no-op on a server doesn't mean you should assume it won't be run there.
+
+let cable = null;
+
+if (typeof window !== 'undefined') {
+  const {createConsumer} = require('@rails/actioncable');
+  cable = createConsumer();
+}
 
 export const csrf = function () {
   const token = Cookies.get('CSRF_TOKEN')
@@ -29,10 +37,6 @@ const HOST =
   'https://kube.refsheet.net' ||
   (window && window.location && window.location.origin) ||
   'http://localhost:5000'
-
-const fragmentMatcher = new IntrospectionFragmentMatcher({
-  introspectionQueryResultData,
-})
 
 const httpLink = new HttpLink({
   uri: `${HOST}/graphql`,
@@ -78,7 +82,7 @@ const defaultOptions = {
 }
 
 const cache = new InMemoryCache({
-  fragmentMatcher,
+  possibleTypes: introspectionQueryResultData,
 })
 
 export const client = new ApolloClient({

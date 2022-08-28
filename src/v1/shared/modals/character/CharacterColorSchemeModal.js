@@ -12,7 +12,13 @@ import Attribute from 'v1/shared/attributes/attribute'
 import Tabs from 'v1/shared/tabs/Tabs'
 import Tab from 'v1/shared/tabs/Tab'
 
-//import * as Materialize from 'materialize-css'
+import dynamic from 'next/dynamic'
+
+let Materialize = null;
+if (typeof window !== 'undefined') {
+  Materialize = require('materialize-css');
+}
+
 import ColorUtils from '../../../../utils/ColorUtils'
 
 // TODO: This file was created by bulk-decaffeinate.

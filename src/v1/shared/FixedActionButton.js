@@ -3,7 +3,13 @@ import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
 
 import ActionButton from 'v1/shared/ActionButton'
-//import * as Materialize from 'materialize-css'
+import dynamic from 'next/dynamic'
+
+let Materialize = null;
+if (typeof window !== 'undefined') {
+  Materialize = require('materialize-css');
+}
+
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*

@@ -5,8 +5,11 @@ import {Trans, withTranslation} from 'react-i18next'
 import {TextInput, Row, Col, Checkbox} from 'react-materialize'
 import {withCurrentUser, withMutations} from '../../../../utils/compose'
 //graphql.macro
-//import M from 'materialize-css'
-import {withRouter} from 'react-router'
+let M = null;
+if (typeof window !== 'undefined') {
+  M = require('materialize-css');
+}
+import {withRouter} from 'utils/withRouter'
 import {Authorized} from '../../../../policies'
 import validate, {isRequired, isSluggable, isSlug} from 'utils/validate'
 import {errorProps} from '../../../../utils/validate'

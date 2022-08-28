@@ -12,12 +12,13 @@ import Main from '../../shared/Main'
 import Form from '../../shared/forms/Form'
 import Input from '../../shared/forms/Input'
 import Submit from '../../shared/forms/Submit'
-import { Link, withRouter } from 'react-router-dom'
+import {Link} from 'react-router-dom';
+import {withRouter} from 'utils/withRouter'
 
 import $ from 'jquery'
-import { setCurrentUser } from '../../../actions'
+import {setCurrentUser} from '../../../actions'
 import compose from '../../../utils/compose'
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
@@ -91,8 +92,8 @@ const LoginView = createReactClass({
               onError={this._handleError}
               onChange={this._handleLogin}
             >
-              <Input name="username" label="Username" autoFocus />
-              <Input name="password" type="password" label="Password" />
+              <Input name="username" label="Username" autoFocus/>
+              <Input name="password" type="password" label="Password"/>
 
               <Input
                 type="checkbox"
@@ -103,7 +104,7 @@ const LoginView = createReactClass({
               <div className="margin-top--medium">
                 <Link
                   to="/register"
-                  query={{ username: this.state.username }}
+                  query={{username: this.state.username}}
                   className="btn grey darken-3"
                 >
                   Register
@@ -119,7 +120,7 @@ const LoginView = createReactClass({
   },
 })
 
-const mapStateToProps = ({ session }) => ({
+const mapStateToProps = ({session}) => ({
   session,
 })
 

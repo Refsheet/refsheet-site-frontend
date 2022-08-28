@@ -1,17 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 import Main from '../../shared/Main'
 import Container from '../../shared/material/Container'
 import UserCard from './_user_card'
 import SideNav from './_side_nav'
 import Advertisement from '../../shared/advertisement'
 import Suggestions from './_suggestions'
-import compose, { withCurrentUser } from '../../../utils/compose'
-import { withRouter } from 'react-router'
+import compose, {withCurrentUser} from '../../../utils/compose'
+import {withRouter} from 'utils/withRouter'
 import Button from '../../../components/Styled/Button'
-import { openNewCharacterModal } from '../../../actions'
-import { withTranslation } from 'react-i18next'
+import {openNewCharacterModal} from '../../../actions'
+import {withTranslation} from 'react-i18next'
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
@@ -53,7 +53,7 @@ class Layout extends React.Component {
   }
 
   render() {
-    const { currentUser, openNewCharacterModal, t } = this.props
+    const {currentUser, openNewCharacterModal, t} = this.props
 
     if (!currentUser) {
       return <span>Signed out, redirecting...</span>
@@ -67,7 +67,7 @@ class Layout extends React.Component {
       >
         <Container flex className="activity-feed">
           <div className="sidebar">
-            <UserCard user={currentUser} />
+            <UserCard user={currentUser}/>
             <Button
               className={'margin-top--medium'}
               small
@@ -76,14 +76,14 @@ class Layout extends React.Component {
               <i className={'material-icons left'}>note_add</i>
               <span>{t('actions.new_character', 'New Character')}</span>
             </Button>
-            <SideNav />
+            <SideNav/>
           </div>
 
           <div className="content">{this.props.children}</div>
 
           <div className="sidebar aside transparent">
-            <Advertisement />
-            <Suggestions />
+            <Advertisement/>
+            <Suggestions/>
           </div>
         </Container>
       </Main>
@@ -95,5 +95,5 @@ export default compose(
   withCurrentUser(),
   withRouter,
   withTranslation('common'),
-  connect(undefined, { openNewCharacterModal })
+  connect(undefined, {openNewCharacterModal})
 )(Layout)

@@ -15,6 +15,8 @@ const ArrayUtils = {
   },
 }
 
-window.ArrayUtils = ArrayUtils
+if (typeof window !== 'undefined') {
+  window.ArrayUtils = ArrayUtils
+}
 
 export default ArrayUtils

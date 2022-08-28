@@ -22,7 +22,7 @@ import {openReportModal} from '../../../actions'
 import {connect} from 'react-redux'
 import e from 'utils/e'
 //graphql.macro
-import {withRouter} from 'react-router'
+import {withRouter} from 'utils/withRouter'
 import NotFound from '../../Shared/views/NotFound'
 import EmailConfirmationNag from '../../User/EmailConfirmationNag'
 

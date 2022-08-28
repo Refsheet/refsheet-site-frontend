@@ -25,7 +25,13 @@ import BrowseApp from './views/browse/BrowseApp'
 import Forums from './views/Forums'
 import ImageApp from './views/images/ImageApp'
 import CharacterApp from './views/characters/CharacterApp'
-//import * as Materialize from 'materialize-css'
+import dynamic from 'next/dynamic'
+
+let Materialize = null;
+if (typeof window !== 'undefined') {
+  Materialize = require('materialize-css');
+}
+
 import User from './views/User'
 
 import $ from 'jquery'

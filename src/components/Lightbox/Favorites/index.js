@@ -4,7 +4,8 @@ import {Icon} from 'react-materialize'
 import {Link} from 'react-router-dom'
 import c from 'classnames'
 import compose, {withMutations} from '../../../utils/compose'
-//graphql.macroimport {connect} from 'react-redux'
+//graphql.macro
+import {connect} from 'react-redux'
 
 const addFavorite = require('./addFavorite.graphql');
 const removeFavorite = require('./removeFavorite.graphql');

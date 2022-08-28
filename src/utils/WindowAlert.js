@@ -1,6 +1,6 @@
 import Favico from 'favico.js-slevomat'
 import {Howl, Howler} from 'howler'
-import {captureException} from '@sentry/minimal'
+import {captureException} from '@sentry/browser'
 
 const CYCLE_ENABLED = true
 

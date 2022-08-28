@@ -1,7 +1,13 @@
 import React from 'react'
 import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
-//import * as Materialize from 'materialize-css'
+import dynamic from 'next/dynamic'
+
+let Materialize = null;
+if (typeof window !== 'undefined') {
+  Materialize = require('materialize-css');
+}
+
 import LightboxCharacterBox from './LightboxCharacterBox'
 import RichText from '../../../components/Shared/RichText'
 import Tabs from '../tabs/Tabs'
@@ -9,7 +15,6 @@ import Tab from '../tabs/Tab'
 import Form from '../forms/Form'
 import Input from '../forms/Input'
 import Row from '../material/Row'
-import Column from 'react-virtualized/dist/commonjs/Table/Column'
 import Submit from '../forms/Submit'
 import Modal from '../Modal'
 import ImageGravityModal from '../modals/ImageGravityModal'
@@ -24,7 +29,8 @@ import ObjectPath from '../../utils/ObjectPath'
 import StateUtils from '../../utils/StateUtils'
 import HashUtils from '../../utils/HashUtils'
 import compose, {withCurrentUser} from '../../../utils/compose'
-import {withRouter} from 'react-router'
+import {withRouter} from 'utils/withRouter'
+import Column from "../material/Column";
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.

@@ -4,7 +4,13 @@ import ReactDropzone from 'react-dropzone'
 import {connect} from 'react-redux'
 import {enqueueUploads} from '../../actions'
 
-//import * as Materialize from 'materialize-css'
+import dynamic from 'next/dynamic'
+
+let Materialize = null;
+if (typeof window !== 'undefined') {
+  Materialize = require('materialize-css');
+}
+
 
 class Dropzone extends Component {
   constructor(props) {

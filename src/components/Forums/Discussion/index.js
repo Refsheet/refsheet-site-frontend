@@ -1,11 +1,11 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import {graphql} from '@apollo/client/react/components'
+import {graphql} from '@apollo/client/react/hoc'
 //graphql.macro
 import Error from '../../Shared/Error'
 import View from './View'
 import compose from '../../../utils/compose'
-import {withRouter} from 'react-router'
+import {withRouter} from 'utils/withRouter'
 
 import Loading from 'v1/shared/Loading'
 

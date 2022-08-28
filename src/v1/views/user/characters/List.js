@@ -12,7 +12,6 @@ import StringUtils from '../../../../utils/StringUtils'
 import CharacterLinkCard from 'v1/views/characters/CharacterLinkCard'
 
 import $ from 'jquery'
-import 'jquery-ui/ui/widgets/sortable'
 import Model from '../../../utils/Model'
 
 // TODO: This file was created by bulk-decaffeinate.
@@ -74,7 +73,7 @@ export default List = createReactClass({
 
     return Model.put(
       character.path,
-      { character: { row_order_position: position } },
+      {character: {row_order_position: position}},
       data => {
         return this.props.onSort(data, position)
       }

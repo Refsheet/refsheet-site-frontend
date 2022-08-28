@@ -2,7 +2,13 @@ import React from 'react'
 import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
 import $ from 'jquery'
-//import * as Materialize from 'materialize-css'
+import dynamic from 'next/dynamic'
+
+let Materialize = null;
+if (typeof window !== 'undefined') {
+  Materialize = require('materialize-css');
+}
+ 
 import Button from '../../components/Styled/Button'
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import * as ReactGA from 'react-ga'
 import Main from '../../shared/Main'
@@ -7,11 +7,11 @@ import Input from '../../shared/forms/Input'
 import Submit from '../../shared/forms/Submit'
 import $ from 'jquery'
 import Flash from '../../../utils/Flash'
-import { Link } from 'react-router-dom'
-import compose, { withConfig, withCurrentUser } from '../../../utils/compose'
+import {Link} from 'react-router-dom'
+import compose, {withConfig, withCurrentUser} from '../../../utils/compose'
 import ReCAPTCHA from 'react-google-recaptcha'
-import { withRouter } from 'react-router'
-import { Checkbox } from 'react-materialize'
+import {withRouter} from 'react-router'
+import {Checkbox} from 'react-materialize'
 
 class RegisterView extends Component {
   constructor(props) {
@@ -83,7 +83,7 @@ class RegisterView extends Component {
   }
 
   render() {
-    const { config } = this.props
+    const {config} = this.props
 
     return (
       <Main title="Register" className="modal-page-content shaded-background">
@@ -169,7 +169,7 @@ class RegisterView extends Component {
               <div className="form-actions margin-top--large">
                 <Link
                   to="/login"
-                  query={{ username: this.state.username }}
+                  query={{username: this.state.username}}
                   className="btn grey darken-3"
                 >
                   Log In
@@ -191,6 +191,5 @@ class RegisterView extends Component {
 
 export default compose(
   withCurrentUser(true),
-  withRouter,
   withConfig
 )(RegisterView)

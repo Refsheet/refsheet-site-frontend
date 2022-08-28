@@ -4,7 +4,13 @@ import Modal from 'v1/shared/Modal'
 import AttributeTable from 'v1/shared/attributes/attribute_table'
 import Attribute from 'v1/shared/attributes/attribute'
 import $ from 'jquery'
-//import * as Materialize from 'materialize-css'
+import dynamic from 'next/dynamic'
+
+let Materialize = null;
+if (typeof window !== 'undefined') {
+  Materialize = require('materialize-css');
+}
+
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.

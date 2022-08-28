@@ -2,7 +2,8 @@ import React, {Component} from 'react'
 import View from './View'
 import {Error} from 'components/Shared'
 import {Query} from '@apollo/client/react/components'
-//graphql.macroimport Loading from 'v1/shared/Loading'
+//graphql.macro
+import Loading from 'v1/shared/Loading'
 
 const getNextModeration = require('../../graph/queries/getNextModeration.graphql');
 

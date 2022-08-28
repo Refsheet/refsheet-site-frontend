@@ -3,7 +3,13 @@ import PropTypes from 'prop-types'
 import {Icon} from 'react-materialize'
 import {Mutation} from '@apollo/client/react/components'
 import {gql} from '@apollo/client'
-//import * as M from 'materialize-css'
+import dynamic from 'next/dynamic'
+
+let M = null;
+if (typeof window !== 'undefined') {
+  M = require('materialize-css');
+}
+
 import EmailConfirmationNag from '../User/EmailConfirmationNag'
 
 class NewMessage extends Component {

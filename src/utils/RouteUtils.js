@@ -1,6 +1,6 @@
 import React from 'react'
 import qs from 'querystring'
-import { withRouter } from 'react-router'
+import {withRouter} from 'utils/withRouter'
 
 /**
  * Like +withRouter+ but adds a `query` param.
@@ -9,7 +9,7 @@ function withQuery(Component) {
   const Wrapped = props => {
     const search = (props.history.location.search || '?').replace(/^\?/, '')
     const query = qs.parse(search)
-    return React.createElement(Component, { ...props, query })
+    return React.createElement(Component, {...props, query})
   }
 
   Wrapped.displayName = `withQuery(${
@@ -19,4 +19,4 @@ function withQuery(Component) {
   return withRouter(Wrapped)
 }
 
-export { withQuery }
+export {withQuery}

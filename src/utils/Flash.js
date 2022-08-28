@@ -1,4 +1,10 @@
-//import * as M from 'materialize-css'
+import dynamic from 'next/dynamic'
+
+let M = null;
+if (typeof window !== 'undefined') {
+  M = require('materialize-css');
+}
+
 
 /**
  * Display Flash messages as Materialize Toast messages.

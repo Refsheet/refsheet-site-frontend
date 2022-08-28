@@ -11,12 +11,10 @@ import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
 import UserCharacterGroupLink from './groups/UserCharacterGroupLink'
 import UserCharacterGroupTrash from './groups/UserCharacterGroupTrash'
-import { Link } from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import UserCharacterGroupForm from './groups/UserCharacterGroupForm'
 
 import $ from 'jquery'
-import 'jquery-ui/ui/widgets/droppable'
-import 'jquery-ui/ui/widgets/sortable'
 import Model from '../../../utils/Model'
 import NumberUtils from '../../../utils/NumberUtils'
 
@@ -43,7 +41,7 @@ export default Groups = createReactClass({
   },
 
   getInitialState() {
-    return { dragging: false }
+    return {dragging: false}
   },
 
   componentDidMount() {
@@ -62,15 +60,15 @@ export default Groups = createReactClass({
       placeholder: 'drop-target',
       forcePlaceholderSize: true,
       start: () => {
-        return this.setState({ dragging: true })
+        return this.setState({dragging: true})
       },
 
       stop: (_, el) => {
-        return this.setState({ dragging: false })
+        return this.setState({dragging: false})
       },
 
       update: (_, el) => {
-        this.setState({ dragging: false })
+        this.setState({dragging: false})
         if ($(el.item[0]).hasClass('dropped')) {
           $(el.item[0]).removeClass('dropped')
           return $list.sortable('cancel')
@@ -91,7 +89,7 @@ export default Groups = createReactClass({
 
     return Model.put(
       group.path,
-      { character_group: { row_order_position: position } },
+      {character_group: {row_order_position: position}},
       data => {
         return this.props.onSort(data, position)
       }
@@ -100,7 +98,7 @@ export default Groups = createReactClass({
 
   render() {
     let groups
-    const { onChange, editable } = this.props
+    const {onChange, editable} = this.props
     const dragging = false
 
     if (this.props.groups.length) {
@@ -145,10 +143,10 @@ export default Groups = createReactClass({
                 activeGroupId={this.props.activeGroupId}
               />
             ) : (
-              <UserCharacterGroupForm onChange={this.props.onChange} />
+              <UserCharacterGroupForm onChange={this.props.onChange}/>
             )}
 
-            {dragging && <UserCharacterGroupTrash />}
+            {dragging && <UserCharacterGroupTrash/>}
           </ul>
         )}
 

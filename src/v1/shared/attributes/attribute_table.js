@@ -6,7 +6,6 @@ import AttributeForm from './attribute_form'
 import Attribute from './attribute'
 
 import $ from 'jquery'
-import 'jquery-ui/ui/widgets/sortable'
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
@@ -27,7 +26,7 @@ export default AttributeTable = createReactClass({
   },
 
   clearEditor() {
-    return this.setState({ activeEditor: null })
+    return this.setState({activeEditor: null})
   },
 
   componentDidMount() {
@@ -50,7 +49,7 @@ export default AttributeTable = createReactClass({
   },
 
   _triggerAppend(e) {
-    this.setState({ appendMode: true })
+    this.setState({appendMode: true})
     return e.preventDefault()
   },
 
@@ -76,11 +75,11 @@ export default AttributeTable = createReactClass({
         hideNotesForm: this.props.hideNotesForm,
 
         onEditStart: () => {
-          return this.setState({ activeEditor: child.key, appendMode: false })
+          return this.setState({activeEditor: child.key, appendMode: false})
         },
 
         onEditStop: () => {
-          return this.setState({ activeEditor: null })
+          return this.setState({activeEditor: null})
         },
       })
     })

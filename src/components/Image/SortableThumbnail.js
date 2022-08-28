@@ -1,10 +1,10 @@
-import React, { Component, createRef } from 'react'
+import React, {Component, createRef, useEffect, useState} from 'react'
 import PropTypes from 'prop-types'
-import { DragPreviewImage, DragSource, DropTarget } from 'react-dnd'
+import {DragPreviewImage, DragSource, DropTarget, useDrag, useDrop} from 'react-dnd'
 import Thumbnail from './Thumbnail'
 import compose from '../../utils/compose'
-import { connect } from 'react-redux'
-import { disableDropzone, enableDropzone } from '../../actions'
+import {connect} from 'react-redux'
+import {disableDropzone, enableDropzone} from '../../actions'
 import styled from 'styled-components'
 import Spinner from '../../v1/shared/material/Spinner'
 
@@ -66,91 +66,66 @@ const DragPlaceholder = styled.div`
  * Sortable wrapper around the standard image Thumbnail component. Works well in
  * JustifiedLayout galleries.
  */
-class SortableThumbnail extends Component {
-  constructor(props) {
-    super(props)
+const SortableThumbnail = (props) => {
+  const [dropBefore, setDropBefore] = useState(false);
 
-    this.state = {
-      dropBefore: false,
+  const [collected, drag, dragPreview] = useDrag(() => ({
+    type: Types.THUMBNAIL,
+    item: {id}
+  }));
+
+  const [collectedProps, drop] = useDrop(() => ({
+    accept: Types.THUMBNAIL
+  }));
+
+  const {image: {id, url}, style: propsStyle = {}} = props;
+
+  useEffect(() => {
+    if (collected.isDragging) {
+      disableDropzone()
+    } else {
+      enableDropzone()
     }
-
-    this.thumbRef = createRef()
-  }
-
-  componentDidUpdate(oldProps) {
-    const { isDragging } = this.props
-
-    if (oldProps.isDragging !== isDragging) {
-      if (isDragging) {
-        disableDropzone()
-      } else {
-        enableDropzone()
-      }
-    }
-  }
+  }, [collected.isDragging]);
 
   /**
    * Try not to use this inappropriately. It exists so that the drag/drop helpers can update the
    * state within hover().
    * @param dropBefore
    */
-  setDropBefore(dropBefore) {
-    if (dropBefore === this.state.dropBefore) return
-    this.setState({ dropBefore })
-  }
+    // setDropBefore(dropBefore) {
+    //   if (dropBefore === this.state.dropBefore) return
+    //   this.setState({ dropBefore })
+    // }
 
-  render() {
-    const { dropBefore } = this.state
-
-    // Obtain a copy of our child params
-    const {
-      image: { id, url },
-      style: propsStyle = {},
-    } = this.props
-
-    // Splice out non-child params and collect the rest
-    const {
-      isDragging,
-      clientOffset,
-      isOver,
-      canDrop,
-      moving,
-      connectDragSource,
-      connectDropTarget,
-      connectDragPreview,
-      ...thumbnailProps
-    } = this.props
-
-    const style = {
+  const style = {
       ...propsStyle,
-      opacity: isDragging ? 0.5 : 1,
+      opacity: collected.isDragging ? 0.5 : 1,
     }
 
-    const connector = c => connectDragSource(connectDropTarget(c))
+  const {...thumbnailProps} = props;
 
-    return (
-      <Thumbnail
-        {...thumbnailProps}
-        style={style}
-        connectorFunc={connector}
-        innerRef={this.thumbRef}
-      >
-        {isOver && canDrop && (
-          <DragPlaceholder className={dropBefore ? 'before' : 'after'} />
-        )}
-        {moving && (
-          <SavingOverlay>
-            <Spinner />
-          </SavingOverlay>
-        )}
-        <DragPreviewImage
-          src={url.thumbnail || url.small_square}
-          data-image-id={id}
-          connect={connectDragPreview}
-        />
-      </Thumbnail>
-    )
-  }
+  return (
+    <Thumbnail
+      {...thumbnailProps}
+      style={style}
+      innerRef={drag}
+    >
+      {collected.isOver && collected.canDrop && (
+        <DragPlaceholder className={dropBefore ? 'before' : 'after'}/>
+      )}
+      {collected.moving && (
+        <SavingOverlay>
+          <Spinner/>
+        </SavingOverlay>
+      )}
+      <img
+        src={url.thumbnail || url.small_square}
+        data-image-id={id}
+        ref={dragPreview}
+      />
+    </Thumbnail>
+  )
 }
 
 /**
@@ -158,12 +133,12 @@ class SortableThumbnail extends Component {
  */
 const DragHelpers = {
   dragSource: {
-    beginDrag({ image, disableDropzone }) {
+    beginDrag({image, disableDropzone}) {
       disableDropzone()
-      return { id: image.id, type: Types.THUMBNAIL }
+      return {id: image.id, type: Types.THUMBNAIL}
     },
 
-    endDrag({ enableDropzone }, monitor, component) {
+    endDrag({enableDropzone}, monitor, component) {
       enableDropzone()
       if (!monitor.didDrop()) {
         return
@@ -187,8 +162,8 @@ const DragHelpers = {
       const item = monitor.getItem()
 
       if (thumbRef.current && clientOffset) {
-        const { x } = clientOffset
-        const { left, width } = thumbRef.current.getBoundingClientRect()
+        const {x} = clientOffset
+        const {left, width} = thumbRef.current.getBoundingClientRect()
         const dropBefore = x < left + width / 2
         item.dropBefore = dropBefore
         component.setDropBefore(dropBefore)
@@ -200,7 +175,7 @@ const DragHelpers = {
         return
       }
 
-      const { image, onImageSort } = props
+      const {image, onImageSort} = props
 
       // Obtain the dragged item
       const item = monitor.getItem()
@@ -226,7 +201,7 @@ const DragHelpers = {
     return {
       connectDropTarget: connect.dropTarget(),
       isOver: monitor.isOver(),
-      isOverCurrent: monitor.isOver({ shallow: true }),
+      isOverCurrent: monitor.isOver({shallow: true}),
       canDrop: monitor.canDrop(),
       itemType: monitor.getItemType(),
     }
@@ -260,6 +235,4 @@ const mapDispatchToProps = {
 // Export the wrapped version
 export default compose(
   connect(undefined, mapDispatchToProps),
-  DragSource(Types.THUMBNAIL, DragHelpers.dragSource, DragHelpers.dragCollect),
-  DropTarget(Types.THUMBNAIL, DragHelpers.dropTarget, DragHelpers.dropCollect)
 )(SortableThumbnail)

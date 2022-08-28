@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import compose from 'utils/compose'
 import {Trans, withTranslation} from 'react-i18next'
-import Diff from 'react-stylable-diff'
+// import Diff from 'react-stylable-diff'
 import TimelineEntry from '../../../Shared/Timeline/TimelineEntry'
 import {Loading} from '../../../Lightbox/Status'
 import Error from '../../../Shared/Error'
@@ -10,7 +10,13 @@ import {Query} from '@apollo/client/react/components'
 //graphql.macro
 
 import Modal from 'v1/shared/Modal'
-//import * as Materialize from 'materialize-css'
+import dynamic from 'next/dynamic'
+
+let Materialize = null;
+if (typeof window !== 'undefined') {
+  Materialize = require('materialize-css');
+}
+
 
 const getCharacterVersions = require('./getCharacterVersions.graphql');
 

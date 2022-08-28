@@ -9,7 +9,13 @@ import Input from 'v1/shared/forms/Input'
 import Submit from 'v1/shared/forms/Submit'
 
 import $ from 'jquery'
-//import * as Materialize from 'materialize-css'
+import dynamic from 'next/dynamic'
+
+let Materialize = null;
+if (typeof window !== 'undefined') {
+  Materialize = require('materialize-css');
+}
+
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.

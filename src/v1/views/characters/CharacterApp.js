@@ -27,7 +27,13 @@ import ImageGalleryModal from '../../shared/modals/ImageGalleryModal'
 import FixedActionButton from '../../shared/FixedActionButton'
 import PageStylesheet from '../../shared/PageStylesheet'
 import NotFound from '../static/NotFound'
-//import * as Materialize from 'materialize-css'
+import dynamic from 'next/dynamic'
+
+let Materialize = null;
+if (typeof window !== 'undefined') {
+  Materialize = require('materialize-css');
+}
+
 import Main from '../../shared/Main'
 import CharacterViewSilhouette from './CharacterViewSilhouette'
 import RichText from '../../../components/Shared/RichText'

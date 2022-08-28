@@ -4,7 +4,13 @@ import PropTypes from 'prop-types'
 
 import Spinner from 'v1/shared/material/Spinner'
 import $ from 'jquery'
-//import * as Materialize from 'materialize-css'
+import dynamic from 'next/dynamic'
+
+let Materialize = null;
+if (typeof window !== 'undefined') {
+  Materialize = require('materialize-css');
+}
+
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*

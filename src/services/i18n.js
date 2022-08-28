@@ -43,6 +43,8 @@ i18n.on('languageChanged', function (locale) {
   moment.locale(locale)
 })
 
-window.__I18N = i18n
+if (typeof window !== 'undefined') {
+  window.__I18N = i18n
+}
 
 export default i18n

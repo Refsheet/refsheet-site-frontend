@@ -9,7 +9,6 @@ import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
 
 import $ from 'jquery'
-import 'jquery-ui/ui/widgets/droppable'
 import Model from '../../../../utils/Model'
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
@@ -29,7 +28,7 @@ export default UserCharacterGroupTrash = createReactClass({
   },
 
   getInitialState() {
-    return { dropOver: false }
+    return {dropOver: false}
   },
 
   componentDidMount() {
@@ -43,7 +42,7 @@ export default UserCharacterGroupTrash = createReactClass({
         if ($source.hasClass('character-drag')) {
           $source.siblings('.drop-target').hide()
         }
-        return this.setState({ dropOver: true })
+        return this.setState({dropOver: true})
       },
 
       out: (_, ui) => {
@@ -51,7 +50,7 @@ export default UserCharacterGroupTrash = createReactClass({
         if ($source.hasClass('character-drag')) {
           $source.siblings('.drop-target').show()
         }
-        return this.setState({ dropOver: false })
+        return this.setState({dropOver: false})
       },
 
       drop: (event, ui) => {
@@ -68,7 +67,7 @@ export default UserCharacterGroupTrash = createReactClass({
           this._handleGroupDrop(sourceId, () => $source.remove)
         }
 
-        return this.setState({ dropOver: false })
+        return this.setState({dropOver: false})
       },
     })
   },

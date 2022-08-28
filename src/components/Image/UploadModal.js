@@ -11,7 +11,13 @@ import {Query} from '@apollo/client/react/components'
 import IdentityModal from '../Shared/CommentForm/IdentityModal'
 import {withTranslation} from 'react-i18next'
 import compose from '../../utils/compose'
-//import * as Materialize from 'materialize-css'
+import dynamic from 'next/dynamic'
+
+let Materialize = null;
+if (typeof window !== 'undefined') {
+  Materialize = require('materialize-css');
+}
+
 
 import Icon from 'v1/shared/material/Icon'
 import Modal from 'v1/shared/Modal'

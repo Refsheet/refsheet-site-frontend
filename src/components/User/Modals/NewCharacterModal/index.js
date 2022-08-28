@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import { withTranslation } from 'react-i18next'
+import {withTranslation} from 'react-i18next'
 import compose from 'utils/compose'
 import Modal from '../../../Styled/Modal'
-import { withCurrentUser } from '../../../../utils/compose'
+import {withCurrentUser} from '../../../../utils/compose'
 import NewCharacterForm from '../../../../v1/views/characters/NewCharacterForm'
-import { connect } from 'react-redux'
-import { closeNewCharacterModal } from '../../../../actions'
-import { withRouter } from 'react-router'
+import {connect} from 'react-redux'
+import {closeNewCharacterModal} from '../../../../actions'
+import {withRouter} from 'utils/withRouter'
 import Flash from '../../../../utils/Flash'
 
 class NewCharacterModal extends Component {
@@ -16,15 +16,15 @@ class NewCharacterModal extends Component {
   }
 
   handleCreate(data) {
-    const { t, history, closeNewCharacterModal } = this.props
-    const { link } = data
+    const {t, history, closeNewCharacterModal} = this.props
+    const {link} = data
     Flash.info(t('flash.character_created', 'Character created!'))
     closeNewCharacterModal()
     history.push(link)
   }
 
   render() {
-    const { t, open, closeNewCharacterModal, currentUser } = this.props
+    const {t, open, closeNewCharacterModal, currentUser} = this.props
     if (!open || !currentUser) return null
 
     return (
@@ -51,7 +51,7 @@ NewCharacterModal.propTypes = {
   currentUser: PropTypes.object,
 }
 
-const mapStateToProps = ({ modals: { newCharacter } }, props) => ({
+const mapStateToProps = ({modals: {newCharacter}}, props) => ({
   ...props,
   open: newCharacter.open,
 })

@@ -19,13 +19,19 @@ import NewCharacterForm from './characters/NewCharacterForm'
 import UserSettingsModal from '../shared/modals/UserSettingsModal'
 
 import $ from 'jquery'
-//import * as Materialize from 'materialize-css'
+import dynamic from 'next/dynamic'
+
+let Materialize = null;
+if (typeof window !== 'undefined') {
+  Materialize = require('materialize-css');
+}
+
 import StateUtils from '../utils/StateUtils'
 import HashUtils from '../utils/HashUtils'
 import Characters from './user/Characters'
 import Section from '../../components/Shared/Section'
 import compose, {withCurrentUser} from '../../utils/compose'
-import {withRouter} from 'react-router'
+import {withRouter} from 'utils/withRouter'
 import Error from '../../components/Shared/Error'
 import Icon from 'react-materialize/lib/Icon'
 // TODO: This file was created by bulk-decaffeinate.

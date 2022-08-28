@@ -14,8 +14,8 @@ import LoadingOverlay from '../shared/LoadingOverlay'
 import SessionModal from '../shared/modals/SessionModal'
 import Lightbox from '../shared/images/Lightbox'
 import Footer from '../../components/Layout/Footer'
-import { setCurrentUser } from '../../actions'
-import { connect } from 'react-redux'
+import {setCurrentUser} from '../../actions'
+import {connect} from 'react-redux'
 import Views from 'v1/views/_views'
 import UploadModal from '../../components/Image/UploadModal'
 import NavBar from '../../components/NavBar'
@@ -59,7 +59,7 @@ const LegacyApp = createReactClass({
   },
 
   componentDidMount() {
-    this.setState({ eagerLoad: null })
+    this.setState({eagerLoad: null})
     console.debug('[App] Mount complete, clearing eager load.')
 
     return $(document)
@@ -76,20 +76,20 @@ const LegacyApp = createReactClass({
         if (val <= 0) {
           val = 1
         }
-        return this.setState({ loading: val })
+        return this.setState({loading: val})
       })
       .on('app:loading:done', () => {
         let val = this.state.loading - 1
         if (val < 0) {
           val = 0
         }
-        return this.setState({ loading: val })
+        return this.setState({loading: val})
       })
   },
 
   _onLogin(user, callback) {
     this.props.setCurrentUser(user)
-    return ReactGA.set({ userId: user != null ? user.id : undefined })
+    return ReactGA.set({userId: user != null ? user.id : undefined})
   },
 
   _reportImage(e) {
@@ -101,7 +101,7 @@ const LegacyApp = createReactClass({
     }
 
     console.debug(`Reporting: ${imageId}`)
-    return this.setState({ reportImageId: imageId })
+    return this.setState({reportImageId: imageId})
   },
 
   render() {
@@ -109,15 +109,15 @@ const LegacyApp = createReactClass({
 
     return (
       <div id="RefsheetApp">
-        {this.state.loading > 0 && <LoadingOverlay />}
+        {this.state.loading > 0 && <LoadingOverlay/>}
 
-        <Chat />
-        <NewLightbox />
-        <UploadModal />
+        <Chat/>
+        <NewLightbox/>
+        <UploadModal/>
 
-        <SessionModal />
-        <Views.Images.ReportModal imageId={this.state.reportImageId} />
-        <Lightbox currentUser={currentUser} history={this.props.history} />
+        <SessionModal/>
+        <Views.Images.ReportModal imageId={this.state.reportImageId}/>
+        <Lightbox currentUser={currentUser} history={this.props.history}/>
 
         <NavBar
           query={this.props.location.query.q}
@@ -127,7 +127,7 @@ const LegacyApp = createReactClass({
 
         {this.props.children}
 
-        <Footer />
+        <Footer/>
 
         {/*<FeedbackModal name={ currentUser && currenUser.name } />*/}
         {/*<a className='btn modal-trigger feedback-btn' href='#feedback-modal'>Feedback</a>*/}
@@ -154,9 +154,11 @@ const mapStateToProps = state => ({
   session: state.session,
 })
 
-const mapDispatchToProps = { setCurrentUser }
+const mapDispatchToProps = {setCurrentUser}
 
-window.React = React
+if (typeof window !== 'undefined') {
+  window.React = React
+}
 
 const App = connect(mapStateToProps, mapDispatchToProps)(LegacyApp)
 export default App

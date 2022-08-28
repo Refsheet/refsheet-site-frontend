@@ -1,10 +1,10 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
-import { withRouter } from 'react-router'
-import { withTranslation } from 'react-i18next'
+import {NavLink} from 'react-router-dom'
+import {withRouter} from 'utils/withRouter'
+import {withTranslation} from 'react-i18next'
 import Restrict from '../Shared/Restrict'
 
-const SiteNav = ({ t }) => {
+const SiteNav = ({t}) => {
   return (
     <ul className="site-nav visible-on-med-and-up">
       <li>

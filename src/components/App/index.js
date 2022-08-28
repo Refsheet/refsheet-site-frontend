@@ -2,7 +2,7 @@ import React, {Component, createContext} from 'react'
 import PropTypes from 'prop-types'
 
 // Providers
-import {ApolloProvider} from '@apollo/client/react/components'
+import {ApolloProvider} from '@apollo/client/react'
 import {Provider as ReduxProvider} from 'react-redux'
 import DropzoneProvider from '../Dropzone'
 import {I18nextProvider} from 'react-i18next'
@@ -51,8 +51,8 @@ class App extends Component {
     if (props.gaPropertyID && typeof ReactGA !== 'undefined') {
       ReactGA.initialize(this.props.gaPropertyID)
 
-      ReactGA.set({page: window.location.pathname})
-      ReactGA.pageview(window.location.pathname)
+      // ReactGA.set({page: window.location.pathname})
+      // ReactGA.pageview(window.location.pathname)
     }
 
     this.initWindowAlert()
@@ -60,6 +60,8 @@ class App extends Component {
 
   initWindowAlert() {
     const {assets} = this.props
+
+    if (!assets) return;
 
     WindowAlert.initSound({
       notificationSoundPaths: assets.notificationSoundPaths,
@@ -109,17 +111,17 @@ class App extends Component {
   buildHistory() {
     const history = createBrowserHistory()
 
-    const addLocationQuery = hist => {
-      hist.location = Object.assign(hist.location, {
-        query: qs.parse(hist.location.search),
-      })
-    }
-
-    addLocationQuery(history)
-
-    history.listen(() => {
-      addLocationQuery(history)
-    })
+    // const addLocationQuery = hist => {
+    //   hist.location = Object.assign(hist.location, {
+    //     query: qs.parse(hist.location.search),
+    //   })
+    // }
+    //
+    // addLocationQuery(history)
+    //
+    // history.listen(() => {
+    //   addLocationQuery(history)
+    // })
 
     return history
   }
@@ -127,10 +129,10 @@ class App extends Component {
   handleRouteUpdate() {
     if (this.props.gaPropertyID && typeof ReactGA !== 'undefined') {
       ReactGA.set({
-        page: window.location.pathname,
+        // page: window.location.pathname,
       })
 
-      ReactGA.pageview(window.location.pathname)
+      // ReactGA.pageview(window.location.pathname)
     }
   }
 

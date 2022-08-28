@@ -4,7 +4,13 @@ import ProfileSection from './ProfileSection'
 import c from 'classnames'
 import {Mutation} from '@apollo/client/react/components'
 //graphql.macro
-// import * as M from 'materialize-css'
+import dynamic from 'next/dynamic'
+
+let M = null;
+if (typeof window !== 'undefined') {
+  M = require('materialize-css');
+}
+
 
 const createProfileSection = require('./createProfileSection.graphql');
 

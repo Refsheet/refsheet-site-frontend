@@ -12,7 +12,8 @@ import Button from '../../../components/Styled/Button'
 import {Icon as MIcon} from 'react-materialize'
 import {openConversation} from '../../../actions'
 import {connect} from 'react-redux'
-//graphql.macroimport Flash from '../../../utils/Flash'
+//graphql.macro
+import Flash from '../../../utils/Flash'
 
 const blockUser = require('../../../graph/mutations/blockUser.graphql');
 const unblockUser = require('../../../graph/mutations/unblockUser.graphql');

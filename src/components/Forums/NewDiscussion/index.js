@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import compose from 'utils/compose'
-import { withCurrentUser } from '../../../utils/compose'
-import { withTranslation } from 'react-i18next'
-import { Row, Col, TextInput, Checkbox } from 'react-materialize'
+import {withCurrentUser} from '../../../utils/compose'
+import {withTranslation} from 'react-i18next'
+import {Row, Col, TextInput, Checkbox} from 'react-materialize'
 import DiscussionReplyForm from '../Discussion/DiscussionReplyForm'
 import FormUtils from 'utils/FormUtils'
 import LinkUtils from 'utils/LinkUtils'
-import { withRouter } from 'react-router'
+import {withRouter} from 'utils/withRouter'
 import Restrict from '../../Shared/Restrict'
 
 import Advertisement from 'v1/shared/advertisement'
@@ -28,14 +28,14 @@ class NewDiscussion extends Component {
     this.handleInputChange = FormUtils.handleInputChange('post').bind(this)
   }
 
-  handleSubmit({ slug: discussionId, forum: { slug: forumId } }) {
-    const { history } = this.props
-    const path = LinkUtils.forumDiscussionPath({ discussionId, forumId })
+  handleSubmit({slug: discussionId, forum: {slug: forumId}}) {
+    const {history} = this.props
+    const path = LinkUtils.forumDiscussionPath({discussionId, forumId})
     history.push(path)
   }
 
   render() {
-    const { forum, t } = this.props
+    const {forum, t} = this.props
 
     return (
       <div className={'container container-flex'}>
@@ -87,7 +87,7 @@ class NewDiscussion extends Component {
         </main>
 
         <aside className={'sidebar left-pad'}>
-          {typeof Advertisement != 'undefined' && <Advertisement />}
+          {typeof Advertisement != 'undefined' && <Advertisement/>}
         </aside>
       </div>
     )

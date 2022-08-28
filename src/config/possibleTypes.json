@@ -1,0 +1,51 @@
+{
+  "ApplicationRecord": [
+    "Activity",
+    "ApiKey",
+    "Artist",
+    "Character",
+    "Conversation",
+    "Forum",
+    "ForumDiscussion",
+    "ForumPost",
+    "Image",
+    "Lodestone_Character",
+    "Lodestone_ClassJob",
+    "Lodestone_Race",
+    "Lodestone_Server",
+    "MarketplaceListing",
+    "MediaComment",
+    "MediaFavorite",
+    "MediaFolder",
+    "MediaHashtag",
+    "MediaTag",
+    "Message",
+    "Moderation",
+    "Notification",
+    "NotificationCollection",
+    "Swatch",
+    "Theme",
+    "Transfer",
+    "User",
+    "Version"
+  ],
+  "ModerationItem": [
+    "Image"
+  ],
+  "Paginated": [
+    "ArtistsCollection",
+    "ForumDiscussionCollection",
+    "ForumPostsCollection",
+    "MediaCommentCollection",
+    "UsersCollection"
+  ],
+  "Policy": [
+    "ForumDiscussion",
+    "ForumPost"
+  ],
+  "WidgetData": [
+    "RichText",
+    "Json",
+    "Youtube"
+  ]
+}

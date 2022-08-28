@@ -7,7 +7,13 @@ import {Mutation} from '@apollo/client/react/components'
 import {gql} from '@apollo/client'
 import NewWidgetModal from './Modals/NewWidgetModal'
 //graphql.macro
-// import * as M from 'materialize-css'
+import dynamic from 'next/dynamic'
+
+let M = null;
+if (typeof window !== 'undefined') {
+  M = require('materialize-css');
+}
+
 
 const deleteProfileSection = require('./deleteProfileSection.graphql');
 

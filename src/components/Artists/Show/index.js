@@ -2,7 +2,8 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import View from './View'
 import {Query} from '@apollo/client/react/components'
-//graphql.macroimport Error from '../../Shared/Error'
+//graphql.macro
+import Error from '../../Shared/Error'
 import Loading from 'v1/shared/Loading'
 
 const getArtist = require('./getArtist.graphql');

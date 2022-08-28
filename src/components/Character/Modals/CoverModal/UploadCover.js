@@ -2,12 +2,18 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {withTranslation} from 'react-i18next'
 import compose from 'utils/compose'
-import {DirectUploadProvider} from 'react-activestorage-provider'
+import {DirectUploadProvider} from 'Components/Shared/DirectUploadProvider'
 import {TextInput, Button, Row, Col, ProgressBar} from 'react-materialize'
 import Muted, {MutedAnchor} from '../../../Styled/Muted'
 import {withMutations} from '../../../../utils/compose'
 //graphql.macro
-//import * as M from 'materialize-css'
+import dynamic from 'next/dynamic'
+
+let M = null;
+if (typeof window !== 'undefined') {
+  M = require('materialize-css');
+}
+
 
 const setCharacterCoverBlob = require('./setCharacterCoverBlob.graphql');
 

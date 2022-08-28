@@ -18,7 +18,7 @@ import React, {Component} from 'react'
 import View from './View'
 import {Error} from 'components/Shared'
 import PropTypes from 'prop-types'
-import {graphql} from '@apollo/client/react/components'
+import {graphql} from '@apollo/client/react/hoc'
 //graphql.macro
 import {connect} from 'react-redux'
 import Loading from '../Shared/views/Loading'

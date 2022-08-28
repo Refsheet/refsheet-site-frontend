@@ -1,10 +1,10 @@
 import React from 'react'
 import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import Icon from 'v1/shared/material/Icon'
 import * as ReactRouter from 'react-router'
-import { withRouter } from 'react-router'
+import {withRouter} from 'utils/withRouter'
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
@@ -26,7 +26,7 @@ const NavLink = createReactClass({
 
   render() {
     let active, currentPath
-    let { to } = this.props
+    let {to} = this.props
 
     if (to[0] === '?') {
       to = '/' + to

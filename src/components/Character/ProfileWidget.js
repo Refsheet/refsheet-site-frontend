@@ -5,7 +5,13 @@ import widgets, {SerializerWidget} from './Widgets'
 import ProfileWidgetHeader from './ProfileWidgetHeader'
 import {Mutation} from '@apollo/client/react/components'
 //graphql.macro
-// import * as M from 'materialize-css'
+import dynamic from 'next/dynamic'
+
+let M = null;
+if (typeof window !== 'undefined') {
+  M = require('materialize-css');
+}
+
 import {div as Card} from '../Styled/Card'
 import compose from '../../utils/compose'
 import {withErrorBoundary} from '../Shared/ErrorBoundary'
