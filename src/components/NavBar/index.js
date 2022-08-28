@@ -146,7 +146,6 @@ class NavBar extends Component {
                 alt="Refsheet.net"
                 width="32"
                 height="32"
-                placeholder="blur"
               />
             </Link>
 

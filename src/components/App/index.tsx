@@ -26,7 +26,7 @@ import ConfigContext from './ConfigContext'
 
 // Children
 import Layout from '../Layout'
-import {Router as HistoryRouter} from 'react-router-dom'
+import {BrowserRouter} from 'react-router-dom'
 import {withErrorBoundary} from '../Shared/ErrorBoundary'
 
 export interface IAppProps {
@@ -74,43 +74,15 @@ const buildStore = (state) => {
     return store
 }
 
-const buildHistory = () => {
-    const history = createBrowserHistory()
-
-    // const addLocationQuery = hist => {
-    //   hist.location = Object.assign(hist.location, {
-    //     query: qs.parse(hist.location.search),
-    //   })
-    // }
-    //
-    // addLocationQuery(history)
-    //
-    // history.listen(() => {
-    //   addLocationQuery(history)
-    // })
-
-    return history
-}
-
 const App: React.FC<IAppProps> = (props) => {
+    console.log("PROPS: ", props);
+
     const [eagerLoad, setEagerLoad] = useState(props.eagerLoad);
     const [config, setConfig] = useState(props.config);
     const [loading, setLoading] = useState<boolean>(false);
 
     const state = buildState(eagerLoad, props.state || {});
     const store = buildStore(state);
-    const history = buildHistory();
-
-    // Set Google Analytics
-    if (props.gaPropertyID && typeof ReactGA !== 'undefined') {
-        ReactGA.initialize(props.gaPropertyID)
-
-        // ReactGA.set({page: window.location.pathname})
-        // ReactGA.pageview(window.location.pathname)
-    }
-
-    // Init Window Alerts
-    WindowAlert.initSound();
 
     const handleRouteUpdate = () => {
         if (props.gaPropertyID && typeof ReactGA !== 'undefined') {
@@ -123,7 +95,15 @@ const App: React.FC<IAppProps> = (props) => {
     }
 
     useEffect(() => {
-        history.listen(handleRouteUpdate)
+        // Set Google Analytics
+        if (props.gaPropertyID && typeof ReactGA !== 'undefined') {
+            ReactGA.initialize(props.gaPropertyID)
+            // ReactGA.set({page: window.location.pathname})
+            // ReactGA.pageview(window.location.pathname)
+        }
+
+        // Init Window Alerts
+        WindowAlert.initSound();
 
         // Fade Out Loader
         const loader = document.getElementById('rootAppLoader')
@@ -147,17 +127,15 @@ const App: React.FC<IAppProps> = (props) => {
     }, []);
 
     return (
-        <ConfigContext.Provider value={state.config}>
+        <ConfigContext.Provider value={config}>
             <I18nextProvider i18n={i18n}>
                 <ApolloProvider client={client}>
                     <ReduxProvider store={store}>
                         <DropzoneProvider>
                             <DndProvider backend={Backend}>
-                                <HistoryRouter
-                                    history={history}
-                                >
+                                <BrowserRouter>
                                     <Layout/>
-                                </HistoryRouter>
+                                </BrowserRouter>
                             </DndProvider>
                         </DropzoneProvider>
                     </ReduxProvider>

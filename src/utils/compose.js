@@ -6,11 +6,11 @@ import {deepRemoveKeys} from './ObjectUtils'
 import {setCurrentUser} from '../actions'
 import ConfigContext from '../components/App/ConfigContext'
 
-function compose() {
+function compose(...composers) {
   return component => {
     let func = component
 
-    Array.from(arguments)
+    composers
       .reverse()
       .map(arg => {
         func = arg(func)

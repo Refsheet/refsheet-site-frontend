@@ -240,6 +240,7 @@ export default Input = createReactClass({
       onChange: this._handleInputChange,
       className,
       noValidate: true,
+      autocomplete: this.props.autocomplete
     }
 
     if (this.props.type === 'textarea') {

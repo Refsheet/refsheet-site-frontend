@@ -16,6 +16,11 @@
     max-width: 350px
     margin: 0 auto
 
+    @media(min-width: 992px)
+
+      &.responsive
+        max-width: 700px
+
   h1
     @extend .thin
     font-size: 2.5rem
@@ -31,7 +36,7 @@
     text-align: left
 
   &.shaded-background form
-    background-color: rgba(0,0,0,0.4)
+    background-color: rgba(0, 0, 0, 0.4)
 
 .progress
   background-color: transparent
