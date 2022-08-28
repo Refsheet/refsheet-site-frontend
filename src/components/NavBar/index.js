@@ -15,6 +15,7 @@ import compose from '../../utils/compose'
 import {withErrorBoundary} from '../Shared/ErrorBoundary'
 import {buildShadow} from '../Styled/common'
 
+import Image from 'next/image'
 import RefsheetLogo64 from 'assets/images/logos/RefsheetLogo_64.png'
 
 class NavBar extends Component {
@@ -140,11 +141,12 @@ class NavBar extends Component {
             </ul>
 
             <Link to="/" className="logo left">
-              <img
+              <Image
                 src={this.logoSrc}
                 alt="Refsheet.net"
                 width="32"
                 height="32"
+                placeholder="blur"
               />
             </Link>
 

@@ -11,7 +11,9 @@ import SessionService from '../../services/SessionService'
 import {H3} from '../Styled/Headings'
 import styled from 'styled-components'
 import {withErrorBoundary} from '../Shared/ErrorBoundary'
+
 import PatreonWhite from 'assets/images/third_party/patreon_white.png'
+import Image from 'next/image'
 
 class _Footer extends Component {
   constructor(props) {
@@ -191,7 +193,8 @@ class _Footer extends Component {
                   rel="noopener noreferrer"
                   title={'Support us on Patreon!'}
                 >
-                  <img
+                  <Image
+                    placeholder='blur'
                     src={PatreonWhite}
                     alt="Support us on Patreon!"
                   />

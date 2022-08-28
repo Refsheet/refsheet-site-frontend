@@ -1,0 +1,12 @@
+.plxContainer {
+  overflow: hidden;
+  position: relative;
+  height: 500px;
+
+  .plx {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+}

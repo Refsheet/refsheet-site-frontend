@@ -7,11 +7,19 @@ import Jumbotron from '../../../components/Shared/Jumbotron'
 import Section from '../../../components/Shared/Section'
 import Row from '../../shared/material/Row'
 import Column from '../../shared/material/Column'
-import PageHeader from '../../shared/PageHeader'
+import PageHeader from 'v1/shared/PageHeader'
 import Attribute from '../../shared/attributes/attribute'
 import SwatchPanel from '../../shared/swatches/SwatchPanel'
 import Views from '../../views/_views'
 import AttributeTable from '../../shared/attributes/attribute_table'
+import Image from 'next/image'
+
+import Typewriter from 'assets/images/unsplash/typewriter.jpg'
+import FeatureProfile from 'assets/images/marketing/feature_profile.png'
+import FeatureColorPalette from "assets/images/marketing/feature_color_palette.png"
+import FeatureGallery from 'assets/images/marketing/feature_gallery.png'
+import Bamboo from 'assets/images/unsplash/bamboo.jpg'
+import Yawn from 'assets/images/unsplash/yawn.jpg'
 
 const cHome = createReactClass({
   componentDidMount() {
@@ -33,7 +41,7 @@ const cHome = createReactClass({
 
     return (
       <Main title="Refsheet.net: Your Characters, Organized.">
-        <Jumbotron backgroundImage="https://assets.refsheet.net/assets/unsplash/typewriter.jpg">
+        <Jumbotron backgroundImage={Typewriter}>
           <h1>
             Your characters, <strong>organized.</strong>
           </h1>
@@ -56,10 +64,10 @@ const cHome = createReactClass({
               <Column s={12} m={4}>
                 <div className="card card-light">
                   <div className="card-image">
-                    <img
-                      src={require("assets/images/marketing/feature_profile.png")}
+                    <Image
+                      placeholder='blur'
+                      src={FeatureProfile}
                       alt="Character Profiles"
-                      className="materialboxed"
                     />
                   </div>
                   <div className="card-content">
@@ -76,10 +84,10 @@ const cHome = createReactClass({
               <Column s={12} m={4}>
                 <div className="card card-light">
                   <div className="card-image">
-                    <img
-                      src="https://assets.refsheet.net/assets/marketing/feature_color_palette.png"
+                    <Image
+                      placeholder='blur'
+                      src={FeatureColorPalette}
                       alt="Color Palettes"
-                      className="materialboxed"
                     />
                   </div>
                   <div className="card-content">
@@ -96,8 +104,9 @@ const cHome = createReactClass({
               <Column s={12} m={4}>
                 <div className="card card-light">
                   <div className="card-image">
-                    <img
-                      src="https://assets.refsheet.net/assets/marketing/feature_gallery.png"
+                    <Image
+                      placeholder='blur'
+                      src={FeatureGallery}
                       alt="Art Galleries"
                       className="materialboxed"
                     />
@@ -115,7 +124,7 @@ const cHome = createReactClass({
           </div>
         </Section>
 
-        <PageHeader backgroundImage="https://assets.refsheet.net/assets/unsplash/bamboo.jpg">
+        <PageHeader backgroundImage={Bamboo}>
           <div className="character-card">
             <div className="character-details">
               <h1 className="real-name">Beautiful Presentation</h1>
@@ -135,7 +144,7 @@ const cHome = createReactClass({
             </div>
             <div className="character-image">
               <div className="slant"/>
-              <img src="https://assets.refsheet.net/assets/unsplash/yawn.jpg"/>
+              <Image placeholder="blur" src={Yawn} layout='fill'/>
             </div>
           </div>
         </PageHeader>
