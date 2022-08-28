@@ -31,20 +31,20 @@ export default AttributeTable = createReactClass({
 
   componentDidMount() {
     if (this.props.onAttributeUpdate != null) {
-      return $(this.refs.table).sortable({
-        items: 'li:not(.attribute-form)',
-        placeholder: 'drop-target',
-        forcePlaceholderSize: true,
-        stop: (_, el) => {
-          const $item = $(el.item[0])
-          const position = $item.parent().children().index($item)
-
-          return this.props.onAttributeUpdate({
-            id: $item.data('attribute-id'),
-            rowOrderPosition: position,
-          })
-        },
-      })
+      // return $(this.refs.table).sortable({
+      //   items: 'li:not(.attribute-form)',
+      //   placeholder: 'drop-target',
+      //   forcePlaceholderSize: true,
+      //   stop: (_, el) => {
+      //     const $item = $(el.item[0])
+      //     const position = $item.parent().children().index($item)
+      //
+      //     return this.props.onAttributeUpdate({
+      //       id: $item.data('attribute-id'),
+      //       rowOrderPosition: position,
+      //     })
+      //   },
+      // })
     }
   },
 

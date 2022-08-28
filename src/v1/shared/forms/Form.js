@@ -7,6 +7,11 @@ import $ from 'jquery'
 import ObjectPath from '../../utils/ObjectPath'
 import Flash from '../../../utils/Flash'
 import {host} from "../../../services/ApplicationService"
+
+let Materialize = null;
+if (typeof window !== 'undefined') {
+  Materialize = require('materialize-css');
+}
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
