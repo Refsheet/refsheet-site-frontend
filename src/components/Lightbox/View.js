@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {Icon} from 'react-materialize'
-import ProgressiveImage from 'Components/Shared/ProgressiveImage'
+import ProgressiveImage from 'components/Shared/ProgressiveImage'
 import {Loading, Error} from './Status'
 import CharacterBox from './CharacterBox'
 import ImageMeta from './ImageMeta'

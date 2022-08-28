@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import ProgressiveImage from 'Components/Shared/ProgressiveImage'
+import ProgressiveImage from 'components/Shared/ProgressiveImage'
 import Logo from 'assets/images/logos/RefsheetLogo_White_200.png'
 
 const ImageWidget = ({imageSrc, alt, caption}) => (
