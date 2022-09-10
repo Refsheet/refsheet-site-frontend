@@ -119,7 +119,7 @@ export default Groups = createReactClass({
       <div>
         <ul className="character-group-list margin-bottom--none" ref="list">
           <li
-            className={'all fixed' + (!window.location.hash ? ' active' : '')}
+            className={'all fixed'}
           >
             <i className="material-icons left folder">person</i>
             <Link to={this.props.userLink} className="name">

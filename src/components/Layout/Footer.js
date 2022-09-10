@@ -14,6 +14,7 @@ import {withErrorBoundary} from '../Shared/ErrorBoundary'
 
 import PatreonWhite from 'assets/images/third_party/patreon_white.png'
 import Image from 'next/image'
+import Refsheet from 'services/Refsheet'
 
 class _Footer extends Component {
   constructor(props) {

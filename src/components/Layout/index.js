@@ -47,7 +47,7 @@ class Layout extends Component {
             notice={notice}
           />
 
-          <Routes/>
+          {this.props.children}
           <Footer/>
 
           <Chat/>

@@ -44,28 +44,41 @@ import Icon from 'react-materialize/lib/Icon'
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
 
-const User = createReactClass({
-  contextTypes: {
+class User extends React.Component {
+  static contextTypes = {
     eagerLoad: PropTypes.object,
-  },
+  };
 
-  dataPath: '/users/:userId',
+  static dataPath = '/users/:userId';
 
-  paramMap: {
+  static paramMap = {
     userId: 'username',
-  },
+  };
+
+  getGroupName() {
+    if (typeof window !== 'undefined') {
+      return window.location.hash.substring(1).toLowerCase();
+    } else {
+      return '';
+    }
+  };
 
   getInitialState() {
     return {
       user: null,
       error: null,
-      activeGroupId: window.location.hash.substring(1).toLowerCase(),
+      activeGroupId: this.getGroupName(),
       characterName: null,
     }
-  },
+  };
+
+  constructor(props) {
+    super(props);
+    this.state = this.getInitialState();
+  };
 
   setActiveGroupId(id, cb) {
-    const activeGroupId = id || window.location.hash.substring(1).toLowerCase()
+    const activeGroupId = id || this.getGroupName()
 
     if (activeGroupId === '') {
       this.setState({activeGroupId: null}, cb)
@@ -81,17 +94,17 @@ const User = createReactClass({
     } else if (cb) {
       cb(this.state)
     }
-  },
+  };
 
   componentDidMount() {
     StateUtils.load(this, 'user', undefined, this.setActiveGroupId)
-  },
+  };
 
   UNSAFE_componentWillReceiveProps(newProps) {
     this.setActiveGroupId(undefined, () => {
       StateUtils.reload(this, 'user', newProps)
     })
-  },
+  };
 
   goToCharacter(character) {
     const el = document.getElementById('character-form')
@@ -99,7 +112,7 @@ const User = createReactClass({
       Materialize.Modal.getInstance(el).close()
     }
     return this.props.history.push(character.link)
-  },
+  };
 
   handleUserChange(user) {
     this.setState({user: {...this.state.user, user}})
@@ -107,14 +120,14 @@ const User = createReactClass({
     if (user.username === this.props.currentUser.username) {
       return this.props.setCurrentUser(user)
     }
-  },
+  };
 
   _handleUserFollow(followed, blocked) {
     const user = {...this.state.user}
     user.followed = followed
     if (blocked !== undefined) user.blocked = blocked
     return this.setState({user})
-  },
+  };
 
   //== Schnazzy Fancy Root-level permutation operations!
 
@@ -143,14 +156,14 @@ const User = createReactClass({
         }
       }
     )
-  },
+  };
 
   _handleGroupDelete(groupId) {
     if (groupId === this.state.activeGroupId) {
       this.props.history.push(this.state.user.link)
     }
     return StateUtils.removeItem(this, 'user.character_groups', groupId, 'slug')
-  },
+  };
 
   _handleGroupSort(group, position) {
     return StateUtils.sortItem(
@@ -160,7 +173,7 @@ const User = createReactClass({
       position,
       'slug'
     )
-  },
+  };
 
   _handleCharacterSort(character, position) {
     return StateUtils.sortItem(
@@ -170,11 +183,11 @@ const User = createReactClass({
       position,
       'slug'
     )
-  },
+  };
 
   _handleGroupCharacterDelete(group) {
     return this._handleGroupChange(group)
-  },
+  };
 
   //== Render
 
@@ -296,7 +309,7 @@ const User = createReactClass({
         </Section>
       </Main>
     )
-  },
-})
+  };
+}
 
 export default compose(withCurrentUser(true), withRouter)(User)

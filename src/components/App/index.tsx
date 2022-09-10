@@ -26,8 +26,9 @@ import ConfigContext from './ConfigContext'
 
 // Children
 import Layout from '../Layout'
-import {BrowserRouter} from 'react-router-dom'
 import {withErrorBoundary} from '../Shared/ErrorBoundary'
+import {StaticRouter, BrowserRouter} from "react-router-dom";
+import {useRouter} from "next/router";
 
 export interface IAppProps {
     eagerLoad: any;
@@ -74,7 +75,17 @@ const buildStore = (state) => {
     return store
 }
 
-const App: React.FC<IAppProps> = (props) => {
+const Router: React.FC<React.PropsWithChildren> = ({children}) => {
+    if (typeof window === 'undefined') {
+        const router = useRouter();
+        console.log("STATIC -------> " + router.asPath);
+        return <StaticRouter location={router.asPath}>{children}</StaticRouter>;
+    } else {
+        return <BrowserRouter>{children}</BrowserRouter>;
+    }
+}
+
+const App: React.FC<React.PropsWithChildren<IAppProps>> = ({children, ...props}) => {
     console.log("PROPS: ", props);
 
     const [eagerLoad, setEagerLoad] = useState(props.eagerLoad);
@@ -133,9 +144,9 @@ const App: React.FC<IAppProps> = (props) => {
                     <ReduxProvider store={store}>
                         <DropzoneProvider>
                             <DndProvider backend={Backend}>
-                                <BrowserRouter>
-                                    <Layout/>
-                                </BrowserRouter>
+                                <Router>
+                                    {children}
+                                </Router>
                             </DndProvider>
                         </DropzoneProvider>
                     </ReduxProvider>

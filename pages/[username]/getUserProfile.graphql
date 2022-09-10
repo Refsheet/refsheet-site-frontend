@@ -1,0 +1,5 @@
+query getUserProfile($username: String!) {
+    getUser(username: $username) {
+        name
+    }
+}

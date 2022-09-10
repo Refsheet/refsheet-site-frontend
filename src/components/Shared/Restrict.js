@@ -3,6 +3,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect, useSelector} from 'react-redux'
+import Refsheet from 'services/Refsheet'
 
 const restrict = ({
                     tag = '',
@@ -43,7 +44,6 @@ const restrict = ({
 
   if (
     development &&
-    typeof Refsheet !== 'undefined' &&
     Refsheet.environment !== 'development'
   ) {
     hide = true

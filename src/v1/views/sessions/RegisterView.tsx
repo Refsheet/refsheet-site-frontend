@@ -101,7 +101,7 @@ const RegisterView: React.FC<IRegisterViewProps> = ({setCurrentUser, config}) =>
                                     name="username"
                                     value={userData.username}
                                     label="Username"
-                                    autocomplete="username"
+                                    autoComplete="username"
                                     autoFocus
                                 />
 
@@ -117,7 +117,7 @@ const RegisterView: React.FC<IRegisterViewProps> = ({setCurrentUser, config}) =>
                                     value={userData.password}
                                     type="password"
                                     label="Password"
-                                    autocomplete="new-password"
+                                    autoComplete="new-password"
                                 />
 
                                 <Input
@@ -125,7 +125,7 @@ const RegisterView: React.FC<IRegisterViewProps> = ({setCurrentUser, config}) =>
                                     value={userData.password_confirmation}
                                     type="password"
                                     label="Confirm Password"
-                                    autocomplete="new-password"
+                                    autoComplete="new-password"
                                 />
 
                                 <Row>

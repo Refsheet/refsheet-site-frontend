@@ -25,9 +25,8 @@ import ColorPicker from '../../../components/Shared/ColorPicker'
  * DS208: Avoid top-level this
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
-let Input
-export default Input = createReactClass({
-  propTypes: {
+class Input extends React.Component {
+  static propTypes = {
     name: PropTypes.string,
     id: PropTypes.string,
     onChange: PropTypes.func,
@@ -55,7 +54,7 @@ export default Input = createReactClass({
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
 
     error: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
-  },
+  };
 
   getInitialState() {
     return {
@@ -68,13 +67,25 @@ export default Input = createReactClass({
       dirty: false,
       showColorPicker: false,
     }
-  },
+  };
+
+  constructor(props) {
+    super(props);
+    this.state = this.getInitialState();
+
+    this._handleKeyPress = this._handleKeyPress.bind(this);
+    this._handleInputChange = this._handleInputChange.bind(this);
+    this.handleFocus = this.handleFocus.bind(this);
+    this.handleColorClose = this.handleColorClose.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
+    this.handleColorChange = this.handleColorChange.bind(this);
+  }
 
   componentDidMount() {
     if (this.props.type === 'textarea') {
       Materialize.textareaAutoResize(this.inputRef)
     }
-  },
+  };
 
   handleFocus(e) {
     clearTimeout(this._blurTimeout)
@@ -87,7 +98,7 @@ export default Input = createReactClass({
     if (this.props.type === 'color') {
       this.setState({showColorPicker: true})
     }
-  },
+  };
 
   handleBlur(e) {
     this._blurTimeout = setTimeout(() => {
@@ -97,7 +108,7 @@ export default Input = createReactClass({
       // A timeout of 0 might be a problem here. If we see issues where the color picker keeps closing when you click it,
       // this might need to be increased. System specs play a role here.
     }, 0)
-  },
+  };
 
   componentDidUpdate(prevProps, prevState) {
     if (
@@ -125,11 +136,11 @@ export default Input = createReactClass({
     if (prevProps.error !== this.props.error) {
       return this.setState({error: this.props.error})
     }
-  },
+  };
 
   handleColorClose() {
     this.setState({showColorPicker: false})
-  },
+  };
 
   handleColorChange(data) {
     this._handleInputChange({
@@ -137,7 +148,7 @@ export default Input = createReactClass({
         value: data.hex,
       },
     })
-  },
+  };
 
   _handleInputChange(e) {
     let value
@@ -174,7 +185,7 @@ export default Input = createReactClass({
     if (this.props.onChange) {
       return this.props.onChange(this.props.name, value)
     }
-  },
+  };
 
   _handleKeyPress(e) {
     switch (false) {
@@ -184,7 +195,7 @@ export default Input = createReactClass({
         }
         break
     }
-  },
+  };
 
   render() {
     let icon, id, inputField
@@ -240,7 +251,7 @@ export default Input = createReactClass({
       onChange: this._handleInputChange,
       className,
       noValidate: true,
-      autocomplete: this.props.autocomplete
+      autoComplete: this.props.autoComplete
     }
 
     if (this.props.type === 'textarea') {
@@ -342,9 +353,10 @@ export default Input = createReactClass({
             htmlFor={id}
             className={c({
               active:
-                this.state.value ||
-                commonProps.placeholder ||
-                commonProps.default,
+                this.props.type !== 'radio' && this.props.type !== 'checkbox' && (
+                  this.state.value ||
+                  commonProps.placeholder ||
+                  commonProps.default),
             })}
           >
             {inputFieldInsideLabel && inputField}
@@ -370,5 +382,7 @@ export default Input = createReactClass({
         )}
       </div>
     )
-  },
-})
+  };
+}
+
+export default Input
