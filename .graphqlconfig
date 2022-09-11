@@ -1,0 +1,10 @@
+{
+  "schemaPath": "schema.graphql",
+  "extensions": {
+    "endpoints": {
+      "development": "http://localhost:5000/graphql",
+      "staging": "https://kube.refsheet.net/graphql",
+      "production": "https://refsheet.net/graphql"
+    }
+  }
+}
