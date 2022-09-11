@@ -1,3 +1,5 @@
+import React from 'react';
+
 export function CharacterProfile() {
     return (
         <div>
@@ -5,3 +7,5 @@ export function CharacterProfile() {
         </div>
     );
 }
+
+export default CharacterProfile;
