@@ -10,7 +10,7 @@ import compose, {withConfig, withCurrentUser} from '../../../utils/compose'
 import ReCAPTCHA from 'react-google-recaptcha'
 import {useHistory} from 'react-router'
 import {Checkbox, Row, Col, Select} from 'react-materialize'
-import {useSearchParams} from "../../../utils/useSearchParams";
+import {useSearchParams} from "../../../hooks/useSearchParams";
 
 export interface IRegisterViewProps {
     setCurrentUser: (any) => void;

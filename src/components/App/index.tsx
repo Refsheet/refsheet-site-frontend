@@ -86,8 +86,6 @@ const Router: React.FC<React.PropsWithChildren> = ({children}) => {
 }
 
 const App: React.FC<React.PropsWithChildren<IAppProps>> = ({children, ...props}) => {
-    console.log("PROPS: ", props);
-
     const [eagerLoad, setEagerLoad] = useState(props.eagerLoad);
     const [config, setConfig] = useState(props.config);
     const [loading, setLoading] = useState<boolean>(false);
@@ -122,6 +120,7 @@ const App: React.FC<React.PropsWithChildren<IAppProps>> = ({children, ...props})
             loader.style.opacity = '1.0';
 
             function fadeLoader() {
+                if (!loader) return;
                 const opacity = parseFloat(loader.style.opacity) - 0.1;
                 if (opacity < 0) {
                     loader.style.display = 'none';
@@ -133,6 +132,15 @@ const App: React.FC<React.PropsWithChildren<IAppProps>> = ({children, ...props})
 
             fadeLoader();
         }
+
+        fetch("https://kube.refsheet.net/session", {
+            credentials: "include",
+            mode: "cors",
+        })
+            .then((body) => body.json())
+            .then((session) => {
+                console.log({session});
+            });
 
         setEagerLoad({});
     }, []);

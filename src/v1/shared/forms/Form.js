@@ -223,7 +223,7 @@ export default Form = createReactClass({
         return child
       }
 
-      if (child.type.displayName === 'Input') {
+      if (child.type.name === Input.name) {
         if (child.props.name) {
           const errorKey = child.props.errorPath
             ? child.props.errorPath + '.' + child.props.name

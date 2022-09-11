@@ -23,21 +23,21 @@ const restrict = ({
   const {is_admin, is_patron, is_supporter, email_confirmed_at} =
   currentUser || stateUser || {}
 
-  console.log({
-    tag,
-    userFlags: {is_admin, is_patron, is_supporter, email_confirmed_at},
-    restrictFlags: {
-      admin,
-      patron,
-      user,
-      confirmed,
-      hideAll,
-      development,
-      invert,
-      nsfw,
-      nsfwOk,
-    },
-  })
+  // console.log({
+  //   tag,
+  //   userFlags: {is_admin, is_patron, is_supporter, email_confirmed_at},
+  //   restrictFlags: {
+  //     admin,
+  //     patron,
+  //     user,
+  //     confirmed,
+  //     hideAll,
+  //     development,
+  //     invert,
+  //     nsfw,
+  //     nsfwOk,
+  //   },
+  // })
 
   let hide = false
   if (hideAll) return false

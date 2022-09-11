@@ -57,7 +57,7 @@ class ConversationMenu extends Component {
   render() {
     const {conversations = [], loading = false, refetch} = this.props
 
-    const unreadCount = conversations.filter(c => c.unreadCount > 0).length
+    const unreadCount = conversations?.filter(c => c.unreadCount > 0).length
 
     const tryRefetch = () => {
       if (refetch) refetch()
@@ -76,9 +76,9 @@ class ConversationMenu extends Component {
           </div>
           <Scrollbars>
             <ul>
-              {conversations.map(this.renderConversation)}
+              {conversations?.map(this.renderConversation)}
               {loading && <li className="empty-item">Loading...</li>}
-              {conversations.length > 0 || (
+              {conversations?.length > 0 || (
                 <li className="empty-item">No new conversations.</li>
               )}
             </ul>

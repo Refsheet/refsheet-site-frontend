@@ -1,7 +1,7 @@
 import React, {useRef} from 'react'
 import Image, {ImageProps} from 'next/image'
 import styles from './PageHeader.module.scss'
-import {useScrollPosition} from "../../utils/useScrollPosition";
+import {useScrollPosition} from "../../hooks/useScrollPosition";
 
 // let PageHeader
 // export default PageHeader = createReactClass({
