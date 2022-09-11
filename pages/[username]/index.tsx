@@ -22,7 +22,7 @@ const UserProfile: React.FC<UserProfileProps> = ({user}) => {
 export const getServerSideProps: GetServerSideProps<UserProfileProps, UserProfileParams> = async ({params}) => {
     const {data} = await client.query({
         query: getUserProfile,
-        variables: {username: params.username}
+        variables: {username: params?.username}
     });
 
     return {
