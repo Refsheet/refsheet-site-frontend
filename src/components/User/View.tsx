@@ -4,6 +4,8 @@ import React from "react";
 import {extractRoles, IUserRoles} from "../../utils/UserUtils";
 import UserProfileHeader from "./UserProfileHeader";
 import {GetUserProfileQuery} from "../../../@types/schema";
+import Link from "next/link";
+import NumberUtils from "../../v1/utils/NumberUtils";
 
 export interface IUserViewProps {
     user: NonNullable<GetUserProfileQuery['getUser']>
@@ -25,8 +27,31 @@ const UserView: React.FC<IUserViewProps> = ({user}) => {
             />
 
             <Section container className="margin-top--large padding-bottom--none">
-                {JSON.stringify(user.character_groups)}
-                ( characters )
+                <div className="sidebar-container">
+                    <div className="sidebar">
+                        <ul className="character-group-list margin-bottom--none">
+                            <li className="all fixed">
+                                <i className="material-icons left folder">person</i>
+                                <Link href={`/${user.username}`} className="name">All Characters</Link>
+                                <span className="count">
+                                    {NumberUtils.format(999999)}
+                                </span>
+                            </li>
+
+                            {user.character_groups?.map((group) => group && (
+                                <li className="something">
+                                    <i className="material-icons left folder">folder</i>
+                                    <Link href={`/${user.username}#${group.slug}`}>{group.name}</Link>
+                                    <span className="count">{NumberUtils.format(group.characters_count)}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    <div className="main-content">
+                        ( characters )
+                    </div>
+                </div>
             </Section>
         </Main>
     );

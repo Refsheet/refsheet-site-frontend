@@ -78,17 +78,11 @@ const UserProfileHeader: React.FC<IUserProfileHeaderProps> = ({
                         <div className="username">
                             @{username}
                             {roles.admin && (
-                                <span
-                                    className="user-badge admin-badge"
-                                    title="Site administrator"
-                                >
-                                    <i
-                                        className="material-icons"
-                                        style={{color: UserUtils.USER_FG_COLOR.admin}}
-                                    >
+                                <span className="user-badge admin-badge" title="Site administrator">
+                                    <i className="material-icons" style={{color: UserUtils.USER_FG_COLOR.admin}}>
                                       security
                                     </i>
-                              </span>
+                                </span>
                             )}
                             {roles.patron && (
                                 <span className="user-badge patron-badge" title="Site Patron">
@@ -101,17 +95,11 @@ const UserProfileHeader: React.FC<IUserProfileHeaderProps> = ({
                                 </span>
                             )}
                             {roles.supporter && (
-                                <span
-                                    className="user-badge supporter-badge"
-                                    title="Site Supporter"
-                                >
-                                    <i
-                                        className="material-icons"
-                                        style={{color: UserUtils.USER_FG_COLOR.supporter}}
-                                    >
+                                <span className="user-badge supporter-badge" title="Site Supporter">
+                                    <i className="material-icons" style={{color: UserUtils.USER_FG_COLOR.supporter}}>
                                       star
                                     </i>
-                              </span>
+                                </span>
                             )}
                         </div>
                     </div>
