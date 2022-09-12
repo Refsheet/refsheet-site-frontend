@@ -6,6 +6,7 @@ import {IUserRoles} from "../../utils/UserUtils";
 import {useCurrentUser} from "../../hooks/useCurrentUser";
 import PatreonLogo from "assets/images/third_party/patreon_logo.png";
 import Image from 'next/future/image';
+import ReactMarkdown from "react-markdown";
 
 export interface IUserProfileHeaderProps {
     avatarUrl: string;
@@ -117,12 +118,7 @@ const UserProfileHeader: React.FC<IUserProfileHeaderProps> = ({
 
                     <div className="user-bio">
                         {!blocked && (
-                            <RichText
-                                content={profile}
-                                onChange={handleProfileChange}
-                                title={'About ' + displayName}
-                                titleComponent={'p'}
-                            />
+                            <ReactMarkdown children={profile}/>
                         )}
                     </div>
                 </div>

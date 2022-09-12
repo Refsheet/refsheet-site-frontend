@@ -71,6 +71,7 @@
     "react-i18next": "^11.18.5",
     "react-is": "^18.2.0",
     "react-justified-layout": "^0.1.0",
+    "react-markdown": "^8.0.3",
     "react-materialize": "^3.10.0",
     "react-mde": "^11.5.0",
     "react-measure": "^2.5.2",

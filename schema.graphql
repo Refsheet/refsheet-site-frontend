@@ -132,6 +132,20 @@ type Character implements ApplicationRecord {
     versions: [Version]
 }
 
+type CharacterGroup implements ApplicationRecord {
+    characters: [Character]
+    characters_count: Int!
+    created_at: Int
+    deleted_at: Int
+    hidden_characters_count: Int!
+    id: ID
+    name: String!
+    row_order: Int!
+    slug: ID!
+    updated_at: Int
+    visible_characters_count: Int!
+}
+
 type CharactersCollection {
     characters: [Character]!
     count: Int
@@ -699,13 +713,14 @@ type User implements ApplicationRecord {
     apiKeys: [ApiKey]
     avatar_url(style: String): String
     blocks: Boolean
-    characters: [Character]
+    character_groups: [CharacterGroup]
+    characters(group_id: ID): [Character]
     characters_count: String
     created_at: Int
     deleted_at: Int
     email: String
     email_confirmed_at: Int
-    id: ID
+    id: ID!
     is_admin: Boolean
     is_blocked: Boolean
     is_followed: Boolean

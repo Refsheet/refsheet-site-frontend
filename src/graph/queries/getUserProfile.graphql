@@ -1,5 +1,6 @@
 query getUserProfile($username: String!) {
     getUser(username: $username) {
+        id
         name
         username
         created_at
@@ -15,5 +16,10 @@ query getUserProfile($username: String!) {
         is_moderator
         is_supporter
         is_patron
+
+        character_groups {
+            name
+            characters_count
+        }
     }
 }

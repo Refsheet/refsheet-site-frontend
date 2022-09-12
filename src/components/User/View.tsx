@@ -3,27 +3,10 @@ import Main from "../Shared/Main";
 import React from "react";
 import {extractRoles, IUserRoles} from "../../utils/UserUtils";
 import UserProfileHeader from "./UserProfileHeader";
-
-export interface IUserProfile {
-    name: string;
-    username: string;
-    created_at: string;
-    profile: string;
-    profile_html: string;
-    profile_image_url: string;
-
-    blocks: boolean;
-    is_blocked: boolean;
-    is_followed: boolean;
-    is_admin: boolean;
-    is_managed: boolean;
-    is_moderator: boolean;
-    is_supporter: boolean;
-    is_patron: boolean;
-}
+import {GetUserProfileQuery} from "../../../@types/schema";
 
 export interface IUserViewProps {
-    user: IUserProfile
+    user: NonNullable<GetUserProfileQuery['getUser']>
 }
 
 const UserView: React.FC<IUserViewProps> = ({user}) => {
@@ -32,16 +15,17 @@ const UserView: React.FC<IUserViewProps> = ({user}) => {
     return (
         <Main title={[user.name, 'Users']}>
             <UserProfileHeader
-                username={user.username}
+                username={user.username || 'deleted-' + user.id}
                 roles={roles}
-                profile={user.profile}
-                avatarUrl={user.profile_image_url}
-                displayName={user.name}
-                blocked={user.is_blocked}
-                followed={user.is_followed}
+                profile={user.profile || ''}
+                avatarUrl={user.profile_image_url || ''}
+                displayName={user.name || 'Deleted User [' + user.id + ']'}
+                blocked={user.is_blocked || false}
+                followed={user.is_followed || false}
             />
 
             <Section container className="margin-top--large padding-bottom--none">
+                {JSON.stringify(user.character_groups)}
                 ( characters )
             </Section>
         </Main>

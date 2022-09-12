@@ -17,17 +17,17 @@ export const USER_BG_COLOR = {
 }
 
 export interface IUserRoles {
-    admin?: boolean;
-    patron?: boolean;
-    supporter?: boolean;
-    moderator?: boolean;
+    admin?: boolean | null;
+    patron?: boolean | null;
+    supporter?: boolean | null;
+    moderator?: boolean | null;
 }
 
 export interface IUserRolesLegacy {
-    is_admin?: boolean;
-    is_patron?: boolean;
-    is_supporter?: boolean;
-    is_moderator?: boolean;
+    is_admin?: boolean | null;
+    is_patron?: boolean | null;
+    is_supporter?: boolean | null;
+    is_moderator?: boolean | null;
 }
 
 export type TUserRoles = IUserRoles | IUserRolesLegacy;
