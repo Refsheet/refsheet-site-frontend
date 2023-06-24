@@ -41,7 +41,7 @@ const UserView: React.FC<IUserViewProps> = ({user}) => {
                             {user.character_groups?.map((group) => group && (
                                 <li className="something">
                                     <i className="material-icons left folder">folder</i>
-                                    <Link href={`/${user.username}#${group.slug}`}>{group.name}</Link>
+                                    <Link href={`/${user.username}#${group.name}`}>{group.name}</Link>
                                     <span className="count">{NumberUtils.format(group.characters_count)}</span>
                                 </li>
                             ))}
