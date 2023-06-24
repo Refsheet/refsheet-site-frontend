@@ -20,7 +20,7 @@ const Show = createReactClass({
   render() {
     return (
       <Views.Account.Layout {...this.props}>
-        <Views.Account.Activity filter={this.props.location.query.feed} />
+        <Views.Account.Activity filter={undefined}/>
       </Views.Account.Layout>
     )
   },

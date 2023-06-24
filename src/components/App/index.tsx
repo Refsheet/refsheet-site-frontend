@@ -25,10 +25,16 @@ import defaultState from './defaultState.json'
 import ConfigContext from './ConfigContext'
 
 // Children
-import Layout from '../Layout'
 import {withErrorBoundary} from '../Shared/ErrorBoundary'
 import {StaticRouter, BrowserRouter} from "react-router-dom";
 import {useRouter} from "next/router";
+import {GetSessionQuery} from '../../../@types/schema'
+import getSession from 'graph/queries/GetSession.graphql'
+
+
+export interface IAppServerProps {
+    session: GetSessionQuery['getSession']
+}
 
 export interface IAppProps {
     eagerLoad: any;
@@ -85,13 +91,15 @@ const Router: React.FC<React.PropsWithChildren> = ({children}) => {
     }
 }
 
-const App: React.FC<React.PropsWithChildren<IAppProps>> = ({children, ...props}) => {
+const App: React.FC<React.PropsWithChildren<IAppProps & IAppServerProps>> = ({children, session, ...props}) => {
     const [eagerLoad, setEagerLoad] = useState(props.eagerLoad);
     const [config, setConfig] = useState(props.config);
     const [loading, setLoading] = useState<boolean>(false);
 
     const state = buildState(eagerLoad, props.state || {});
     const store = buildStore(state);
+
+    console.log({session});
 
     const handleRouteUpdate = () => {
         if (props.gaPropertyID && typeof ReactGA !== 'undefined') {
@@ -132,15 +140,21 @@ const App: React.FC<React.PropsWithChildren<IAppProps>> = ({children, ...props})
 
             fadeLoader();
         }
+        //
+        // fetch("https://kube.refsheet.net/session", {
+        //     credentials: "include",
+        //     mode: "cors",
+        // })
+        //     .then((body) => body.json())
+        //     .then((session) => {
+        //         console.log({session});
+        //     });
 
-        fetch("https://kube.refsheet.net/session", {
-            credentials: "include",
-            mode: "cors",
-        })
-            .then((body) => body.json())
-            .then((session) => {
-                console.log({session});
-            });
+        client.query<GetSessionQuery>({
+            query: getSession,
+        }).then(({data}) => {
+            console.log({data});
+        });
 
         setEagerLoad({});
     }, []);

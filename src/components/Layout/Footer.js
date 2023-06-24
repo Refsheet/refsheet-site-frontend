@@ -55,76 +55,50 @@ class _Footer extends Component {
     return (
       <footer className={'page-footer ' + this.props.className}>
         <div className="container margin-top--large">
-          {Refsheet.environment !== 'test' ? (
-            <div>
-              <Row>
-                <Col s={12}>
-                  <H3 className="center">
-                    Would you like to support Refsheet.net?
-                  </H3>
-                  <p>
-                    It seems you like this website (or you like scrolling to the
-                    bottom of pages)! Did you know that this whole site is
-                    developed by <strong>one person</strong> with a tiny army of
-                    helpful people? I love making this site possible, but I
-                    could use your help.{' '}
-                    <strong>Here are 3 really easy ways to help out:</strong>
-                  </p>
-                  <ul className="browser-default">
-                    <li className="padding-bottom--small">
-                      <strong>
-                        <a
-                          href="https://patreon.com/refsheet"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="primary-text"
-                        >
-                          Patreon!
-                        </a>
-                      </strong>{' '}
-                      Recurring monthly donations help cover the costs of
-                      running the website, and one day might pay for other
-                      people to help develop, too!
-                    </li>
-                    <li className="padding-bottom--small">
-                      <strong>
-                        <a
-                          href="https://ko-fi.com/refsheet"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="primary-text"
-                        >
-                          Buy a Coffee!
-                        </a>
-                      </strong>{' '}
-                      One-time donations through Ko-fi really help, and are a
-                      great way to show your appreciation!
-                    </li>
-                    <li>
-                      <strong className="white-text">Spread the word!</strong>{' '}
-                      This website is free to use, and spreading the word is a
-                      great free way to invite your friends and followers to
-                      join. Bonus points if you share our Patreon or Ko-fi links
-                      around!
-                    </li>
-                  </ul>
-                  <p>
-                    Honestly, without the help and donations I've received so
-                    far, this site wouldn't be possible. If you like what you
-                    see, and want to see more, I'd really appreciate some help
-                    any way you can.
-                  </p>
-                </Col>
-              </Row>
-
-              <hr/>
-            </div>
-          ) : null}
-
           <Row>
             <Col s={12} m={4}>
-              <div className="caption white-text">Refsheet.net</div>
-              <p>
+              <div className="caption white-text">
+                <div className="social-links" style={{float: "right"}}>
+                  <a
+                    href="https://twitter.com/Refsheet"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={'Follow us on Twitter!'}
+                  >
+                    <i className="fab fa-fw fa-twitter"/>
+                  </a>
+                  <a
+                    href="mailto:mau@refsheet.net"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={'Send an email'}
+                  >
+                    <i className="fa fa-fw fa-envelope"/>
+                  </a>
+                  <a
+                    href={'https://discord.gg/nzdEHub'}
+                    target={'_blank'}
+                    rel="noopener noreferrer"
+                    title={'Join us on Discord!'}
+                  >
+                    <i className={'fab fa-fw fa-discord'}/>
+                  </a>{' '}
+                  <a
+                    href="https://www.patreon.com/refsheet"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={'Support us on Patreon!'}
+                  >
+                    <Image
+                      placeholder='blur'
+                      src={PatreonWhite}
+                      alt="Support us on Patreon!"
+                    />
+                  </a>
+                </div>
+                <span>Refsheet.net</span>
+              </div>
+              <p style={{clear: "both"}}>
                 A new, convenient way to organize your character designs, art
                 and world. All of this supported by{' '}
                 <a
@@ -163,46 +137,7 @@ class _Footer extends Component {
             </Col>
 
             <Col s={6} m={3}>
-              <div className="social-links">
-                <a
-                  href="https://twitter.com/Refsheet"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title={'Follow us on Twitter!'}
-                >
-                  <i className="fab fa-fw fa-twitter"/>
-                </a>
-                <a
-                  href="mailto:mau@refsheet.net"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title={'Send an email'}
-                >
-                  <i className="fa fa-fw fa-envelope"/>
-                </a>
-                <a
-                  href={'https://discord.gg/nzdEHub'}
-                  target={'_blank'}
-                  rel="noopener noreferrer"
-                  title={'Join us on Discord!'}
-                >
-                  <i className={'fab fa-fw fa-discord'}/>
-                </a>{' '}
-                <a
-                  href="https://www.patreon.com/refsheet"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title={'Support us on Patreon!'}
-                >
-                  <Image
-                    placeholder='blur'
-                    src={PatreonWhite}
-                    alt="Support us on Patreon!"
-                  />
-                </a>
-              </div>
-
-              <ul>
+              <ul className="margin-top--none">
                 <li>
                   <Link to="/terms">Terms</Link>
                 </li>
@@ -261,15 +196,26 @@ class _Footer extends Component {
                     Русский
                   </a>
                 </li>
+                <li>
+                  <a
+                    className={c(
+                      this.state.locale === 'ja' ? 'white-text' : 'grey-text'
+                    )}
+                    href="/?locale=ja"
+                    onClick={this.setLocale('ja').bind(this)}
+                  >
+                    日本語
+                  </a>
+                </li>
               </ul>
             </Col>
           </Row>
 
           <div className="smaller center margin-bottom--large">
-            Copyright &copy;2017-2020 Refsheet.net &bull; Version:{' '}
+            Copyright &copy;2017-2023 Refsheet.net &bull; Version:{' '}
             <a
               href={
-                'https://github.com/Refsheet/refsheet-site/tree/' +
+                'https://github.com/Refsheet/refsheet-site-frontend/tree/' +
                 Refsheet.version
               }
               target={'_blank'}
@@ -278,12 +224,14 @@ class _Footer extends Component {
               {Refsheet.version.substr(0, 7)}
             </a>
             <br/>
-            Character and user media ownership is subject to the copyright and
-            distribution policies of the owner. Use of character and user media
-            is granted to Refsheet.net to display and store. Unauthorized
-            uploads and media usage may be reported to{' '}
-            <a href="mailto:mau@refsheet.net">mau@refsheet.net</a>. See{' '}
-            <Link to="/terms">Terms</Link> for more details.
+            <div className="smaller container margin-top--small">
+              Character and user media ownership is subject to the copyright and
+              distribution policies of the owner.<br/> Use of character and user media
+              is granted to Refsheet.net to display and store.<br/> Unauthorized
+              uploads and media usage may be reported to{' '}
+              <a href="mailto:mau@refsheet.net">mau@refsheet.net</a>. See{' '}
+              <Link to="/terms">Terms</Link> for more details.
+            </div>
           </div>
         </div>
       </footer>

@@ -12,14 +12,16 @@ export interface IModal {
     open: boolean;
 }
 
+export interface ISession {
+    currentUser: ISessionUser | null;
+    nsfwOk: boolean;
+    timeZone: string | null;
+    locale: string | null;
+    identity: ISessionIdentity | null;
+}
+
 export interface GlobalState {
-    session: {
-        currentUser: ISessionUser | null;
-        nsfwOk: boolean;
-        timeZone: string | null;
-        locale: string | null;
-        identity: ISessionIdentity | null;
-    };
+    session: ISession;
 
     theme: {
         id: string | null;

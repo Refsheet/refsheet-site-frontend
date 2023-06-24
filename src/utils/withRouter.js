@@ -1,6 +1,6 @@
 import {
   useLocation,
-  useParams
+  useParams, useRouteMatch
 } from "react-router-dom";
 
 import qs from 'query-string';
@@ -11,6 +11,7 @@ function withRouter(Component) {
     let location = useLocation();
     let params = useParams();
     const history = useHistory();
+    const match = useRouteMatch();
 
     location = {
       ...location,
@@ -23,6 +24,7 @@ function withRouter(Component) {
         location={location}
         params={params}
         history={history}
+        match={match}
       />
     );
   }

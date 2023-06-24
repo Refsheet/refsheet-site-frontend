@@ -1849,6 +1849,11 @@ export type UploadImageMutationVariables = Exact<{
 
 export type UploadImageMutation = { __typename?: 'Mutation', uploadImage?: { __typename?: 'Image', id?: string | null, created_at?: number | null, title?: string | null, nsfw?: boolean | null, hidden?: boolean | null, background_color?: string | null, aspect_ratio?: number | null, comments_count?: number | null, favorites_count?: number | null, image_processing?: boolean | null, image_processing_error?: string | null, is_favorite?: boolean | null, is_managed?: boolean | null, width?: number | null, height?: number | null, character?: { __typename?: 'Character', id?: string | null } | null, url?: { __typename?: 'ImageUrl', thumbnail?: string | null, small?: string | null, medium?: string | null, large?: string | null } | null, size?: { __typename?: 'ImageSize', small?: { __typename?: 'Geometry', width: number, height: number } | null, small_square?: { __typename?: 'Geometry', width: number, height: number } | null, medium?: { __typename?: 'Geometry', width: number, height: number } | null } | null } | null };
 
+export type GetSessionQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetSessionQuery = { __typename?: 'Query', getSession?: { __typename?: 'Session', sessionId?: string | null, currentUser?: { __typename?: 'User', name?: string | null, username?: string | null, is_admin?: boolean | null } | null } | null };
+
 export type GetCharacterProfileQueryVariables = Exact<{
   username: Scalars['String'];
   slug: Scalars['String'];
@@ -4765,6 +4770,45 @@ export function useUploadImageMutation(baseOptions?: Apollo.MutationHookOptions<
 export type UploadImageMutationHookResult = ReturnType<typeof useUploadImageMutation>;
 export type UploadImageMutationResult = Apollo.MutationResult<UploadImageMutation>;
 export type UploadImageMutationOptions = Apollo.BaseMutationOptions<UploadImageMutation, UploadImageMutationVariables>;
+export const GetSessionDocument = gql`
+    query getSession {
+  getSession {
+    sessionId
+    currentUser {
+      name
+      username
+      is_admin
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetSessionQuery__
+ *
+ * To run a query within a React component, call `useGetSessionQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetSessionQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetSessionQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetSessionQuery(baseOptions?: Apollo.QueryHookOptions<GetSessionQuery, GetSessionQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetSessionQuery, GetSessionQueryVariables>(GetSessionDocument, options);
+      }
+export function useGetSessionLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetSessionQuery, GetSessionQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetSessionQuery, GetSessionQueryVariables>(GetSessionDocument, options);
+        }
+export type GetSessionQueryHookResult = ReturnType<typeof useGetSessionQuery>;
+export type GetSessionLazyQueryHookResult = ReturnType<typeof useGetSessionLazyQuery>;
+export type GetSessionQueryResult = Apollo.QueryResult<GetSessionQuery, GetSessionQueryVariables>;
 export const GetCharacterProfileDocument = gql`
     query getCharacterProfile($username: String!, $slug: String!) {
   getCharacterByUrl(username: $username, slug: $slug) {
@@ -5685,6 +5729,15 @@ declare module '*/uploadImage.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const uploadImage: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/GetSession.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const getSession: DocumentNode;
 
   export default defaultDocument;
 }

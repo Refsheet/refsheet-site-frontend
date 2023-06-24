@@ -1,7 +1,7 @@
 const fetch = require('cross-fetch');
 const fs = require('fs');
 
-const API_HOST = "https://refsheet.net";
+const API_HOST = "https://kube.refsheet.net";
 
 fetch(`${API_HOST}/graphql`, {
   method: 'POST',

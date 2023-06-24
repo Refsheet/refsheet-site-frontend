@@ -3,7 +3,7 @@ import Main from "../Shared/Main";
 import React from "react";
 import {extractRoles, IUserRoles} from "../../utils/UserUtils";
 import UserProfileHeader from "./UserProfileHeader";
-import {GetUserProfileQuery} from "../../../@types/schema";
+import {GetUserProfileQuery} from "../../@types/schema";
 import Link from "next/link";
 import NumberUtils from "../../v1/utils/NumberUtils";
 
