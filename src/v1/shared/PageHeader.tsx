@@ -22,7 +22,7 @@ import {useScrollPosition} from "../../hooks/useScrollPosition";
 
 export interface IPageHeaderProps {
     backgroundImage: ImageProps['src'];
-    onHeaderImageEdit: (any) => void;
+    onHeaderImageEdit?: (any) => void;
 }
 
 const PageHeader: React.FC<React.PropsWithChildren<IPageHeaderProps>> = ({

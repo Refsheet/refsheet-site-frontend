@@ -10,7 +10,6 @@ import Moderate from '../Moderate'
 import Forums from '../Forums'
 import Forum from '../Forums/Forum'
 import Artists from '../Artists'
-import Home from '../../v1/views/static/Home'
 import LoginView from '../../v1/views/sessions/LoginView'
 import RegisterView from '../../v1/views/sessions/RegisterView'
 import BrowseApp from '../../v1/views/browse/BrowseApp'
@@ -29,8 +28,6 @@ const staticPaths = ['privacy', 'terms', 'support'].map(path => (
 
 const Routes = () => (
     <Switch>
-        <Route exact path="/" component={Home} title="Home"/>
-
         {/** Forums **/}
         <Redirect from={'/v2/forums/:id'} to={'/forums/:id'}/>
         <Redirect from={'/v2/forums'} to={'/forums'}/>
