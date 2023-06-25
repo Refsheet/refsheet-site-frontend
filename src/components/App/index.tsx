@@ -157,6 +157,7 @@ const App: React.FC<React.PropsWithChildren<IAppProps & IAppServerProps>> = ({ch
         // }).then(({data}) => {
         //     console.log({data});
         // });
+        // todo: kill redux and add a session provider.
 
         setEagerLoad({});
     }, []);
