@@ -1,8 +1,6 @@
 import {ApolloClient, ApolloLink, HttpLink} from '@apollo/client'
 import {setContext} from '@apollo/client/link/context'
-import {
-  InMemoryCache,
-} from '@apollo/client/cache'
+import {InMemoryCache,} from '@apollo/client/cache'
 import fetch from 'node-fetch'
 import ActionCableLink from 'graphql-ruby-client/subscriptions/ActionCableLink'
 import introspectionQueryResultData from '../config/possibleTypes.json'

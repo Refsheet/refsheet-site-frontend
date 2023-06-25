@@ -215,6 +215,10 @@ export default compose(
     li > a {
       color: ${props => props.theme.text} !important;
 
+      &:active, &.active {
+        color: ${props => props.theme.primary} !important;
+      }
+
       &:hover {
         color: ${props => props.theme.text} !important;
       }
