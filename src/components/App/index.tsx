@@ -140,21 +140,21 @@ const App: React.FC<React.PropsWithChildren<IAppProps & IAppServerProps>> = ({ch
 
             fadeLoader();
         }
-        //
-        // fetch("https://kube.refsheet.net/session", {
-        //     credentials: "include",
-        //     mode: "cors",
-        // })
-        //     .then((body) => body.json())
-        //     .then((session) => {
-        //         console.log({session});
-        //     });
 
-        client.query<GetSessionQuery>({
-            query: getSession,
-        }).then(({data}) => {
-            console.log({data});
-        });
+        fetch("https://kube.refsheet.net/session", {
+            credentials: "include",
+            mode: "cors",
+        })
+            .then((body) => body.json())
+            .then((session) => {
+                console.log({fetch: "Pre", session});
+            });
+
+        // client.query<GetSessionQuery>({
+        //     query: getSession,
+        // }).then(({data}) => {
+        //     console.log({data});
+        // });
 
         setEagerLoad({});
     }, []);
