@@ -30,6 +30,7 @@ import {StaticRouter, BrowserRouter} from "react-router-dom";
 import {useRouter} from "next/router";
 import {GetSessionQuery} from '../../../@types/schema'
 import getSession from 'graph/queries/GetSession.graphql'
+import {setCurrentUser} from 'actions'
 
 
 export interface IAppServerProps {
@@ -148,6 +149,7 @@ const App: React.FC<React.PropsWithChildren<IAppProps & IAppServerProps>> = ({ch
             .then((body) => body.json())
             .then((session) => {
                 console.log({fetch: "Pre", session});
+                store.dispatch(setCurrentUser(session.current_user));
             });
 
         // client.query<GetSessionQuery>({
