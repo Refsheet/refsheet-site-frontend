@@ -11,10 +11,11 @@ import useCurrentCharacterGroup from "./useCurrentCharacterGroup";
 
 export interface IUserViewProps {
     characterGroups: readonly CharacterGroup[];
+    numCharacters: number;
     user: NonNullable<GetUserProfileQuery['getUser']>
 }
 
-const UserView: React.FC<IUserViewProps> = ({ characterGroups, user }) => {
+const UserView: React.FC<IUserViewProps> = ({ characterGroups, numCharacters, user }) => {
     const roles: IUserRoles = extractRoles(user);
     const currentCharacterGroupId = useCurrentCharacterGroup();
 
@@ -36,6 +37,7 @@ const UserView: React.FC<IUserViewProps> = ({ characterGroups, user }) => {
                         <CharacterGroupList
                             currentGroupId={currentCharacterGroupId}
                             groups={characterGroups}
+                            numCharacters={numCharacters}
                             username={user.username || "deleted-" + user.id}
                         />
                     </div>

@@ -6,14 +6,15 @@ import type { CharacterGroup } from "./types";
 interface ComponentProps {
     currentGroupId: string | null;
     groups: readonly CharacterGroup[];
+    numCharacters: number;
     username: string;
 }
 
-function CharacterGroupList({ currentGroupId, groups, username }: ComponentProps): React.ReactElement {
+function CharacterGroupList({ currentGroupId, groups, numCharacters, username }: ComponentProps): React.ReactElement {
     return (
         <ul className="character-group-list margin-bottom--none">
             <CharacterGroupListItem
-                count={999999}
+                count={numCharacters}
                 icon="person"
                 id={null}
                 isActive={!currentGroupId}

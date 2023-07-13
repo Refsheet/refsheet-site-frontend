@@ -4,6 +4,7 @@ query getUserProfile($username: String!) {
         name
         username
         created_at
+        characters_count
         profile
         profile_html
         profile_image_url

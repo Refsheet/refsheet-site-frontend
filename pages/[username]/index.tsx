@@ -7,12 +7,13 @@ import type { GsspParams, GsspResult } from '@refsheet/types';
 import type { CharacterGroup } from "@refsheet/components/User/types";
 
 export interface UserProfileProps {
-    characterGroups: readonly CharacterGroup[]; 
+    characterGroups: readonly CharacterGroup[];
+    numCharacters: number;
     user: NonNullable<GetUserProfileQuery['getUser']>;
 }
 
-const UserProfile: React.FC<UserProfileProps> = ({ characterGroups, user}) => {
-    return <UserView characterGroups={characterGroups} user={user}/>;
+const UserProfile: React.FC<UserProfileProps> = ({ characterGroups, numCharacters, user}) => {
+    return <UserView characterGroups={characterGroups} numCharacters={numCharacters} user={user}/>;
 }
 
 export async function getServerSideProps({params}: GsspParams<{ username: string }>): GsspResult<UserProfileProps> {
@@ -40,6 +41,7 @@ export async function getServerSideProps({params}: GsspParams<{ username: string
                     name: group.name,
                 }
             }).filter((x): x is CharacterGroup => !!x) ?? [],
+            numCharacters: parseInt(data.getUser.characters_count ?? "0", 10),
             user: data.getUser
         }
     }
