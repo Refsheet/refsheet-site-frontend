@@ -4,13 +4,15 @@ import getUserProfile from '../../src/graph/queries/getUserProfile.graphql';
 import UserView from 'components/User/View';
 import {GetUserProfileQuery} from "../../@types/schema";
 import type { GsspParams, GsspResult } from '@refsheet/types';
+import type { CharacterGroup } from "@refsheet/components/User/types";
 
 export interface UserProfileProps {
+    characterGroups: readonly CharacterGroup[]; 
     user: NonNullable<GetUserProfileQuery['getUser']>;
 }
 
-const UserProfile: React.FC<UserProfileProps> = ({user}) => {
-    return <UserView user={user}/>;
+const UserProfile: React.FC<UserProfileProps> = ({ characterGroups, user}) => {
+    return <UserView characterGroups={characterGroups} user={user}/>;
 }
 
 export async function getServerSideProps({params}: GsspParams<{ username: string }>): GsspResult<UserProfileProps> {
@@ -27,6 +29,17 @@ export async function getServerSideProps({params}: GsspParams<{ username: string
 
     return {
         props: {
+            characterGroups: data.getUser.character_groups?.map((group): CharacterGroup | null => {
+                if (!group || !group.id) {
+                    return null;
+                }
+
+                return {
+                    id: group.id,
+                    characterCount: group.characters_count,
+                    name: group.name,
+                }
+            }).filter((x): x is CharacterGroup => !!x) ?? [],
             user: data.getUser
         }
     }

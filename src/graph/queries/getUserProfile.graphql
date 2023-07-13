@@ -18,6 +18,7 @@ query getUserProfile($username: String!) {
         is_patron
 
         character_groups {
+            id
             name
             characters_count
         }

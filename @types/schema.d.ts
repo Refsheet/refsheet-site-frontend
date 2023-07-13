@@ -1886,7 +1886,7 @@ export type GetUserProfileQueryVariables = Exact<{
 }>;
 
 
-export type GetUserProfileQuery = { __typename?: 'Query', getUser?: { __typename?: 'User', id: string, name?: string | null, username?: string | null, created_at?: number | null, profile?: string | null, profile_html?: string | null, profile_image_url?: string | null, blocks?: boolean | null, is_blocked?: boolean | null, is_followed?: boolean | null, is_admin?: boolean | null, is_managed?: boolean | null, is_moderator?: boolean | null, is_supporter?: boolean | null, is_patron?: boolean | null, character_groups?: Array<{ __typename?: 'CharacterGroup', name: string, characters_count: number } | null> | null } | null };
+export type GetUserProfileQuery = { __typename?: 'Query', getUser?: { __typename?: 'User', id: string, name?: string | null, username?: string | null, created_at?: number | null, profile?: string | null, profile_html?: string | null, profile_image_url?: string | null, blocks?: boolean | null, is_blocked?: boolean | null, is_followed?: boolean | null, is_admin?: boolean | null, is_managed?: boolean | null, is_moderator?: boolean | null, is_supporter?: boolean | null, is_patron?: boolean | null, character_groups?: Array<{ __typename?: 'CharacterGroup', id?: string | null, name: string, characters_count: number } | null> | null } | null };
 
 export type GetCharacterImagesQueryVariables = Exact<{
   username: Scalars['String'];
@@ -5000,6 +5000,7 @@ export const GetUserProfileDocument = gql`
     is_supporter
     is_patron
     character_groups {
+      id
       name
       characters_count
     }
