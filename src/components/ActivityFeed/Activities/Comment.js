@@ -4,12 +4,12 @@
     react/no-deprecated,
     react/react-in-jsx-scope,
 */
-import React from 'react'
-import createReactClass from 'create-react-class'
-import PropTypes from 'prop-types'
-import Row from 'v1/shared/material/Row'
-import Column from 'v1/shared/material/Column'
-import GalleryImage from 'v1/shared/images/GalleryImage'
+import React from "react";
+import createReactClass from "create-react-class";
+import PropTypes from "prop-types";
+import Row from "v1/shared/material/Row";
+import Column from "v1/shared/material/Column";
+import GalleryImage from "v1/shared/images/GalleryImage";
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
@@ -18,14 +18,14 @@ import GalleryImage from 'v1/shared/images/GalleryImage'
  * DS208: Avoid top-level this
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
-let Comment
+let Comment;
 export default Comment = createReactClass({
   propTypes: {
     comments: PropTypes.array.isRequired,
   },
 
   render() {
-    const comments = this.props.comments.map(comment => {
+    const comments = this.props.comments.map((comment) => {
       return (
         <Row key={comment.id} noMargin className="padding-top--small">
           <Column s={6} m={4}>
@@ -37,9 +37,9 @@ export default Comment = createReactClass({
             </div>
           </Column>
         </Row>
-      )
-    })
+      );
+    });
 
-    return <div className="activity shift-up">{comments}</div>
+    return <div className="activity shift-up">{comments}</div>;
   },
-})
+});

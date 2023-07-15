@@ -4,36 +4,36 @@
     react/no-deprecated,
     react/react-in-jsx-scope,
 */
-import React from 'react'
-import PropTypes from 'prop-types'
-import createReactClass from 'create-react-class'
+import React from "react";
+import PropTypes from "prop-types";
+import createReactClass from "create-react-class";
 
-import Header from './user/Header'
-import NotFound from './static/NotFound'
-import FixedActionButton from '../shared/FixedActionButton'
-import ActionButton from '../shared/ActionButton'
-import Main from '../shared/Main'
-import DropzoneContainer from '../shared/DropzoneContainer'
-import Modal from '../shared/Modal'
-import NewCharacterForm from './characters/NewCharacterForm'
-import UserSettingsModal from '../shared/modals/UserSettingsModal'
+import Header from "./user/Header";
+import NotFound from "./static/NotFound";
+import FixedActionButton from "../shared/FixedActionButton";
+import ActionButton from "../shared/ActionButton";
+import Main from "../shared/Main";
+import DropzoneContainer from "../shared/DropzoneContainer";
+import Modal from "../shared/Modal";
+import NewCharacterForm from "./characters/NewCharacterForm";
+import UserSettingsModal from "../shared/modals/UserSettingsModal";
 
-import $ from 'jquery'
-import dynamic from 'next/dynamic'
+import $ from "jquery";
+import dynamic from "next/dynamic";
 
 let Materialize = null;
-if (typeof window !== 'undefined') {
-  Materialize = require('materialize-css');
+if (typeof window !== "undefined") {
+  Materialize = require("materialize-css");
 }
 
-import StateUtils from '../utils/StateUtils'
-import HashUtils from '../utils/HashUtils'
-import Characters from './user/Characters'
-import Section from '../../components/Shared/Section'
-import compose, {withCurrentUser} from '../../utils/compose'
-import {withRouter} from 'utils/withRouter'
-import Error from '../../components/Shared/Error'
-import Icon from 'react-materialize/lib/Icon'
+import StateUtils from "../utils/StateUtils";
+import HashUtils from "../utils/HashUtils";
+import Characters from "./user/Characters";
+import Section from "../../components/Shared/Section";
+import compose, { withCurrentUser } from "../../utils/compose";
+import { withRouter } from "utils/withRouter";
+import Error from "../../components/Shared/Error";
+import Icon from "react-materialize/lib/Icon";
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
@@ -49,19 +49,19 @@ class User extends React.Component {
     eagerLoad: PropTypes.object,
   };
 
-  static dataPath = '/users/:userId';
+  static dataPath = "/users/:userId";
 
   static paramMap = {
-    userId: 'username',
+    userId: "username",
   };
 
   getGroupName() {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       return window.location.hash.substring(1).toLowerCase();
     } else {
-      return '';
+      return "";
     }
-  };
+  }
 
   getInitialState() {
     return {
@@ -69,137 +69,142 @@ class User extends React.Component {
       error: null,
       activeGroupId: this.getGroupName(),
       characterName: null,
-    }
-  };
+    };
+  }
 
   constructor(props) {
     super(props);
     this.state = this.getInitialState();
-  };
+  }
 
   setActiveGroupId(id, cb) {
-    const activeGroupId = id || this.getGroupName()
+    const activeGroupId = id || this.getGroupName();
 
-    if (activeGroupId === '') {
-      this.setState({activeGroupId: null}, cb)
-      return
+    if (activeGroupId === "") {
+      this.setState({ activeGroupId: null }, cb);
+      return;
     }
 
     const slugs =
       this.state.user &&
-      this.state.user.character_groups.map(g => g.slug.toLowerCase())
+      this.state.user.character_groups.map((g) => g.slug.toLowerCase());
 
     if (slugs && slugs.indexOf(activeGroupId) !== -1) {
-      this.setState({activeGroupId}, cb)
+      this.setState({ activeGroupId }, cb);
     } else if (cb) {
-      cb(this.state)
+      cb(this.state);
     }
-  };
+  }
 
   componentDidMount() {
-    StateUtils.load(this, 'user', undefined, this.setActiveGroupId)
-  };
+    StateUtils.load(this, "user", undefined, this.setActiveGroupId);
+  }
 
   UNSAFE_componentWillReceiveProps(newProps) {
     this.setActiveGroupId(undefined, () => {
-      StateUtils.reload(this, 'user', newProps)
-    })
-  };
+      StateUtils.reload(this, "user", newProps);
+    });
+  }
 
   goToCharacter(character) {
-    const el = document.getElementById('character-form')
+    const el = document.getElementById("character-form");
     if (el) {
-      Materialize.Modal.getInstance(el).close()
+      Materialize.Modal.getInstance(el).close();
     }
-    return this.props.history.push(character.link)
-  };
+    return this.props.history.push(character.link);
+  }
 
   handleUserChange(user) {
-    this.setState({user: {...this.state.user, user}})
+    this.setState({ user: { ...this.state.user, user } });
 
     if (user.username === this.props.currentUser.username) {
-      return this.props.setCurrentUser(user)
+      return this.props.setCurrentUser(user);
     }
-  };
+  }
 
   _handleUserFollow(followed, blocked) {
-    const user = {...this.state.user}
-    user.followed = followed
-    if (blocked !== undefined) user.blocked = blocked
-    return this.setState({user})
-  };
+    const user = { ...this.state.user };
+    user.followed = followed;
+    if (blocked !== undefined) user.blocked = blocked;
+    return this.setState({ user });
+  }
 
   //== Schnazzy Fancy Root-level permutation operations!
 
   _handleGroupChange(group, character) {
     return StateUtils.updateItem(
       this,
-      'user.character_groups',
+      "user.character_groups",
       group,
-      'slug',
+      "slug",
       function () {
         if (character) {
           return HashUtils.findItem(
             this.state.user.characters,
             character,
-            'slug',
-            c => {
-              const i = c.group_ids && c.group_ids.indexOf(group.slug)
+            "slug",
+            (c) => {
+              const i = c.group_ids && c.group_ids.indexOf(group.slug);
               if (i >= 0) {
-                c.group_ids.splice(i, 1)
+                c.group_ids.splice(i, 1);
               } else {
-                c.group_ids.push(group.slug)
+                c.group_ids.push(group.slug);
               }
-              return StateUtils.updateItem(this, 'user.characters', c, 'slug')
-            }
-          )
+              return StateUtils.updateItem(this, "user.characters", c, "slug");
+            },
+          );
         }
-      }
-    )
-  };
+      },
+    );
+  }
 
   _handleGroupDelete(groupId) {
     if (groupId === this.state.activeGroupId) {
-      this.props.history.push(this.state.user.link)
+      this.props.history.push(this.state.user.link);
     }
-    return StateUtils.removeItem(this, 'user.character_groups', groupId, 'slug')
-  };
+    return StateUtils.removeItem(
+      this,
+      "user.character_groups",
+      groupId,
+      "slug",
+    );
+  }
 
   _handleGroupSort(group, position) {
     return StateUtils.sortItem(
       this,
-      'user.character_groups',
+      "user.character_groups",
       group,
       position,
-      'slug'
-    )
-  };
+      "slug",
+    );
+  }
 
   _handleCharacterSort(character, position) {
     return StateUtils.sortItem(
       this,
-      'user.characters',
+      "user.characters",
       character,
       position,
-      'slug'
-    )
-  };
+      "slug",
+    );
+  }
 
   _handleGroupCharacterDelete(group) {
-    return this._handleGroupChange(group)
-  };
+    return this._handleGroupChange(group);
+  }
 
   //== Render
 
   render() {
-    let actionButtons, editable, editPath, userChangeCallback, blocked
+    let actionButtons, editable, editPath, userChangeCallback, blocked;
 
     if (this.state.error != null) {
-      return <NotFound/>
+      return <NotFound />;
     }
 
     if (this.state.user == null) {
-      return <main/>
+      return <main />;
     }
 
     if (
@@ -230,17 +235,17 @@ class User extends React.Component {
             id="action-settings"
           />
         </FixedActionButton>
-      )
+      );
 
-      userChangeCallback = this.handleUserChange
-      editable = true
-      editPath = this.state.user.path
+      userChangeCallback = this.handleUserChange;
+      editable = true;
+      editPath = this.state.user.path;
     }
 
-    blocked = this.state.user.blocked || this.state.user.blocks
+    blocked = this.state.user.blocked || this.state.user.blocks;
 
     return (
-      <Main title={[this.state.user.name, 'Users']}>
+      <Main title={[this.state.user.name, "Users"]}>
         {editable && (
           <Modal id="character-form" title="New Character">
             <p>
@@ -249,12 +254,12 @@ class User extends React.Component {
             </p>
             <NewCharacterForm
               onCancel={function (e) {
-                $('#character-form').modal('close')
-                e.preventDefault()
+                $("#character-form").modal("close");
+                e.preventDefault();
               }}
               onCreate={this.goToCharacter}
               className="margin-top--large"
-              newCharacterPath={this.state.user.path + '/characters'}
+              newCharacterPath={this.state.user.path + "/characters"}
             />
           </Modal>
         )}
@@ -295,21 +300,21 @@ class User extends React.Component {
           )}
 
           {blocked && (
-            <div className={'caption center'}>
-              <Icon large className={'grey-text text-darken-1'}>
+            <div className={"caption center"}>
+              <Icon large className={"grey-text text-darken-1"}>
                 block
               </Icon>
-              <div className={'margin-top--large'}>
+              <div className={"margin-top--large"}>
                 {this.state.user.blocks
-                  ? 'This, apparently, is not the profile you are looking for.'
-                  : 'You have blocked this user.'}
+                  ? "This, apparently, is not the profile you are looking for."
+                  : "You have blocked this user."}
               </div>
             </div>
           )}
         </Section>
       </Main>
-    )
-  };
+    );
+  }
 }
 
-export default compose(withCurrentUser(true), withRouter)(User)
+export default compose(withCurrentUser(true), withRouter)(User);

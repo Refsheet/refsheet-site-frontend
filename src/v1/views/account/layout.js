@@ -1,17 +1,17 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
-import Main from '../../shared/Main'
-import Container from '../../shared/material/Container'
-import UserCard from './_user_card'
-import SideNav from './_side_nav'
-import Advertisement from '../../shared/advertisement'
-import Suggestions from './_suggestions'
-import compose, {withCurrentUser} from '../../../utils/compose'
-import {withRouter} from 'utils/withRouter'
-import Button from '../../../components/Styled/Button'
-import {openNewCharacterModal} from '../../../actions'
-import {withTranslation} from 'react-i18next'
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import Main from "../../shared/Main";
+import Container from "../../shared/material/Container";
+import UserCard from "./_user_card";
+import SideNav from "./_side_nav";
+import Advertisement from "../../shared/advertisement";
+import Suggestions from "./_suggestions";
+import compose, { withCurrentUser } from "../../../utils/compose";
+import { withRouter } from "utils/withRouter";
+import Button from "../../../components/Styled/Button";
+import { openNewCharacterModal } from "../../../actions";
+import { withTranslation } from "react-i18next";
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
@@ -26,74 +26,74 @@ import {withTranslation} from 'react-i18next'
 
 class Layout extends React.Component {
   _findTitle(inProps) {
-    let c, props
-    props = inProps
+    let c, props;
+    props = inProps;
 
     if (!props) {
-      props = this.props
+      props = this.props;
     }
 
     if (props.children && props.children.props) {
-      c = this._findTitle(props.children.props)
+      c = this._findTitle(props.children.props);
     }
 
-    return c || (props.route != null ? props.route.title : undefined)
+    return c || (props.route != null ? props.route.title : undefined);
   }
 
   componentDidMount() {
     if (!this.props.currentUser) {
-      this.props.history.push('/')
+      this.props.history.push("/");
     }
   }
 
   UNSAFE_componentWillReceiveProps(newProps) {
     if (!newProps.currentUser) {
-      return this.props.history.push('/')
+      return this.props.history.push("/");
     }
   }
 
   render() {
-    const {currentUser, openNewCharacterModal, t} = this.props
+    const { currentUser, openNewCharacterModal, t } = this.props;
 
     if (!currentUser) {
-      return <span>Signed out, redirecting...</span>
+      return <span>Signed out, redirecting...</span>;
     }
 
     return (
       <Main
-        title={this._findTitle() || 'Refsheet.net: Your Characters, Organized.'}
+        title={this._findTitle() || "Refsheet.net: Your Characters, Organized."}
         flex
         className="with-sidebar"
       >
         <Container flex className="activity-feed">
           <div className="sidebar">
-            <UserCard user={currentUser}/>
+            <UserCard user={currentUser} />
             <Button
-              className={'margin-top--medium'}
+              className={"margin-top--medium"}
               small
               onClick={openNewCharacterModal}
             >
-              <i className={'material-icons left'}>note_add</i>
-              <span>{t('actions.new_character', 'New Character')}</span>
+              <i className={"material-icons left"}>note_add</i>
+              <span>{t("actions.new_character", "New Character")}</span>
             </Button>
-            <SideNav/>
+            <SideNav />
           </div>
 
           <div className="content">{this.props.children}</div>
 
           <div className="sidebar aside transparent">
-            <Advertisement/>
-            <Suggestions/>
+            <Advertisement />
+            <Suggestions />
           </div>
         </Container>
       </Main>
-    )
+    );
   }
 }
 
 export default compose(
   withCurrentUser(),
   withRouter,
-  withTranslation('common'),
-  connect(undefined, {openNewCharacterModal})
-)(Layout)
+  withTranslation("common"),
+  connect(undefined, { openNewCharacterModal }),
+)(Layout);

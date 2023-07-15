@@ -1,16 +1,15 @@
-import React from 'react'
-import createReactClass from 'create-react-class'
-import Modal from 'v1/shared/Modal'
-import AttributeTable from 'v1/shared/attributes/attribute_table'
-import Attribute from 'v1/shared/attributes/attribute'
-import $ from 'jquery'
-import dynamic from 'next/dynamic'
+import React from "react";
+import createReactClass from "create-react-class";
+import Modal from "v1/shared/Modal";
+import AttributeTable from "v1/shared/attributes/attribute_table";
+import Attribute from "v1/shared/attributes/attribute";
+import $ from "jquery";
+import dynamic from "next/dynamic";
 
 let Materialize = null;
-if (typeof window !== 'undefined') {
-  Materialize = require('materialize-css');
+if (typeof window !== "undefined") {
+  Materialize = require("materialize-css");
 }
-
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
@@ -21,43 +20,43 @@ if (typeof window !== 'undefined') {
  * DS208: Avoid top-level this
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
-let UserSettingsModal
+let UserSettingsModal;
 export default UserSettingsModal = createReactClass({
   getInitialState() {
-    return {user: this.props.user}
+    return { user: this.props.user };
   },
 
   handleSettingsClose(e) {
     return Materialize.Modal.getInstance(
-      document.getElementById('user-settings-modal')
-    ).close()
+      document.getElementById("user-settings-modal"),
+    ).close();
   },
 
   handleSettingsChange(setting, onSuccess, onError) {
-    const o = {}
-    o[setting.id] = setting.value
+    const o = {};
+    o[setting.id] = setting.value;
 
     return $.ajax({
       url: this.state.user.path,
-      type: 'PATCH',
-      data: {user: o},
-      success: data => {
-        this.setState({user: data})
+      type: "PATCH",
+      data: { user: o },
+      success: (data) => {
+        this.setState({ user: data });
         if (onSuccess != null) {
-          return onSuccess({value: data[setting.id]})
+          return onSuccess({ value: data[setting.id] });
         }
       },
-      error: error => {
+      error: (error) => {
         if (onError != null) {
           return onError({
             value:
               error.responseJSON != null
                 ? error.responseJSON.errors[setting.id]
                 : undefined,
-          })
+          });
         }
       },
-    })
+    });
   },
 
   render() {
@@ -109,6 +108,6 @@ export default UserSettingsModal = createReactClass({
           </a>
         </div>
       </Modal>
-    )
+    );
   },
-})
+});

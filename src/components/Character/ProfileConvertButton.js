@@ -1,58 +1,58 @@
-import React from 'react'
-import {Mutation} from '@apollo/client/react/components'
-import {gql} from '@apollo/client'
+import React from "react";
+import { Mutation } from "@apollo/client/react/components";
+import { gql } from "@apollo/client";
 
-const Button = ({id, convert, onConvert, data}) => {
-  const handleConvert = e => {
-    e.preventDefault()
+const Button = ({ id, convert, onConvert, data }) => {
+  const handleConvert = (e) => {
+    e.preventDefault();
     convert({
-      variables: {id},
+      variables: { id },
     })
-      .then(data => {
-        console.log(data)
-        onConvert(data)
+      .then((data) => {
+        console.log(data);
+        onConvert(data);
       })
-      .catch(console.error)
-  }
+      .catch(console.error);
+  };
 
   if (data.loading) {
     return (
       <a
         className={
-          'btn btn-block margin-bottom--medium grey darken-4 grey-text text-lighten-1 disabled'
+          "btn btn-block margin-bottom--medium grey darken-4 grey-text text-lighten-1 disabled"
         }
       >
         Converting...
       </a>
-    )
+    );
   }
 
   return (
     <a
       className={
-        'btn btn-block margin-bottom--medium grey darken-4 grey-text text-lighten-3'
+        "btn btn-block margin-bottom--medium grey darken-4 grey-text text-lighten-3"
       }
       onClick={handleConvert}
     >
       Convert Now
     </a>
-  )
-}
+  );
+};
 
 const CONVERT_PROFILE_MUTATION = gql`
-    mutation convertCharacter($id: ID!) {
-        convertCharacter(id: $id) {
-            version
-        }
+  mutation convertCharacter($id: ID!) {
+    convertCharacter(id: $id) {
+      version
     }
-`
+  }
+`;
 
-const ProfileConvertButton = props => {
+const ProfileConvertButton = (props) => {
   return (
     <Mutation mutation={CONVERT_PROFILE_MUTATION}>
-      {(convert, data) => <Button {...props} convert={convert} data={data}/>}
+      {(convert, data) => <Button {...props} convert={convert} data={data} />}
     </Mutation>
-  )
-}
+  );
+};
 
-export default ProfileConvertButton
+export default ProfileConvertButton;

@@ -1,27 +1,27 @@
-import React, {Component} from 'react'
-import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
-import IdentitySelect from './CommentForm/IdentitySelect'
-import UserAvatar from '../User/UserAvatar'
-import IdentityModal from './CommentForm/IdentityModal'
-import Restrict from './Restrict'
-import MarkdownEditor from './MarkdownEditor'
-import {Row, Col, Button} from 'react-materialize'
-import compose from 'utils/compose'
-import {withTranslation} from 'react-i18next'
-import WindowAlert from 'utils/WindowAlert'
-import {div as Card} from '../Styled/Card'
-import c from 'classnames'
-import Icon from 'v1/shared/material/Icon'
-import Input from 'v1/shared/forms/Input'
-import dynamic from 'next/dynamic'
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import IdentitySelect from "./CommentForm/IdentitySelect";
+import UserAvatar from "../User/UserAvatar";
+import IdentityModal from "./CommentForm/IdentityModal";
+import Restrict from "./Restrict";
+import MarkdownEditor from "./MarkdownEditor";
+import { Row, Col, Button } from "react-materialize";
+import compose from "utils/compose";
+import { withTranslation } from "react-i18next";
+import WindowAlert from "utils/WindowAlert";
+import { div as Card } from "../Styled/Card";
+import c from "classnames";
+import Icon from "v1/shared/material/Icon";
+import Input from "v1/shared/forms/Input";
+import dynamic from "next/dynamic";
 
 let Materialize = null;
-if (typeof window !== 'undefined') {
-  Materialize = require('materialize-css');
+if (typeof window !== "undefined") {
+  Materialize = require("materialize-css");
 }
 
-import {createIdentity} from '../../utils/IdentityUtils'
+import { createIdentity } from "../../utils/IdentityUtils";
 
 // TODO: This class has now 3 different styles that it produces,
 //       this should be refactored into a generic wrapper that handles
@@ -36,71 +36,71 @@ import {createIdentity} from '../../utils/IdentityUtils'
 //
 class CommentForm extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       comment: this.props.value,
-      error: '',
+      error: "",
       identityModalOpen: false,
       submitting: false,
-    }
+    };
   }
 
   getDraftKey() {
-    return this.props.draftKey || 'comment-' + this.props.name
+    return this.props.draftKey || "comment-" + this.props.name;
   }
 
   handleCommentChange(name, comment) {
-    this.setState({comment})
+    this.setState({ comment });
 
     if (comment !== this.props.value) {
-      WindowAlert.dirty(this.getDraftKey(), 'You have a pending comment.')
+      WindowAlert.dirty(this.getDraftKey(), "You have a pending comment.");
     } else {
-      WindowAlert.clean(this.getDraftKey())
+      WindowAlert.clean(this.getDraftKey());
     }
   }
 
   handleCancel(e) {
-    e.preventDefault()
+    e.preventDefault();
 
-    const {onCancel} = this.props
+    const { onCancel } = this.props;
 
-    WindowAlert.clean(this.getDraftKey())
-    onCancel && onCancel()
+    WindowAlert.clean(this.getDraftKey());
+    onCancel && onCancel();
   }
 
   handleIdentityOpen() {
-    this.setState({identityModalOpen: true})
+    this.setState({ identityModalOpen: true });
   }
 
   handleIdentityClose() {
-    this.setState({identityModalOpen: false})
+    this.setState({ identityModalOpen: false });
   }
 
   handleError(error) {
-    console.error(error)
-    let message = ''
+    console.error(error);
+    let message = "";
 
     if (error.map) {
-      message = error.map(e => e.message).join(', ')
+      message = error.map((e) => e.message).join(", ");
     } else {
-      message = error.message || '' + error
+      message = error.message || "" + error;
     }
 
-    this.setState({submitting: false, error: message})
+    this.setState({ submitting: false, error: message });
   }
 
   handleSubmit(e) {
-    e.preventDefault()
+    e.preventDefault();
 
-    this.setState({submitting: true})
+    this.setState({ submitting: true });
 
     if (!this.state.comment) {
       Materialize.toast({
-        html: 'Please enter a comment!',
+        html: "Please enter a comment!",
         displayLength: 3000,
-        classes: 'red',
-      })
+        classes: "red",
+      });
     }
 
     this.props
@@ -108,19 +108,19 @@ class CommentForm extends Component {
         comment: this.state.comment,
         identity: this.props.identity,
       })
-      .then(data => {
+      .then((data) => {
         if (data && data.errors) {
-          this.handleError(data.errors[0])
+          this.handleError(data.errors[0]);
         } else {
-          this.setState({comment: '', submitting: false, error: ''})
-          WindowAlert.clean(this.getDraftKey())
+          this.setState({ comment: "", submitting: false, error: "" });
+          WindowAlert.clean(this.getDraftKey());
 
           if (this.props.onSubmitConfirm) {
-            this.props.onSubmitConfirm(data.data || data)
+            this.props.onSubmitConfirm(data.data || data);
           }
         }
       })
-      .catch(this.handleError.bind(this))
+      .catch(this.handleError.bind(this));
   }
 
   render() {
@@ -133,26 +133,26 @@ class CommentForm extends Component {
       onCancel,
       children,
       t,
-    } = this.props
+    } = this.props;
 
     const identity = createIdentity({
       user: this.props.currentUser,
       identity: this.props.identity,
-    })
+    });
 
-    const placeholder = (this.props.placeholder || '').replace(
+    const placeholder = (this.props.placeholder || "").replace(
       /%n/,
-      identity.name
-    )
+      identity.name,
+    );
 
-    let submitButton, input
+    let submitButton, input;
 
     if (slim) {
       submitButton = (
-        <div className={'send'}>
+        <div className={"send"}>
           <Button
-            type={'submit'}
-            className={'btn right flat'}
+            type={"submit"}
+            className={"btn right flat"}
             disabled={!this.state.comment || this.state.submitting}
           >
             {this.state.submitting ? (
@@ -164,12 +164,12 @@ class CommentForm extends Component {
             )}
           </Button>
         </div>
-      )
+      );
 
       input = (
         <Input
-          type={'textarea'}
-          name={'comment'}
+          type={"textarea"}
+          name={"comment"}
           browserDefault
           autoGrow
           noMargin
@@ -178,19 +178,19 @@ class CommentForm extends Component {
           value={this.state.comment}
           onChange={this.handleCommentChange.bind(this)}
         />
-      )
+      );
     } else {
       submitButton = (
-        <Row className={'no-margin'}>
+        <Row className={"no-margin"}>
           <Col s={8}>
             {onCancel && (
               <Button
-                type={'cancel'}
+                type={"cancel"}
                 onClick={this.handleCancel.bind(this)}
-                className={'btn btn-secondary left margin-right--small'}
+                className={"btn btn-secondary left margin-right--small"}
                 disabled={this.state.submitting}
               >
-                {this.props.cancelText || t('actions.cancel', 'Cancel')}
+                {this.props.cancelText || t("actions.cancel", "Cancel")}
               </Button>
             )}
 
@@ -203,7 +203,7 @@ class CommentForm extends Component {
           </Col>
           <Col s={4}>
             <Button
-              type={'submit'}
+              type={"submit"}
               onClick={this.handleSubmit.bind(this)}
               className="btn right"
               disabled={!this.state.comment || this.state.submitting}
@@ -214,12 +214,12 @@ class CommentForm extends Component {
             </Button>
           </Col>
         </Row>
-      )
+      );
 
       if (richText) {
         input = (
           <MarkdownEditor
-            name={'comment'}
+            name={"comment"}
             readOnly={this.state.submitting}
             placeholder={placeholder}
             content={this.state.comment}
@@ -227,11 +227,11 @@ class CommentForm extends Component {
             hashtags={hashtags}
             onChange={this.handleCommentChange.bind(this)}
           />
-        )
+        );
       } else {
         input = (
           <Input
-            type={'textarea'}
+            type={"textarea"}
             name="comment"
             browserDefault
             noMargin
@@ -240,14 +240,14 @@ class CommentForm extends Component {
             value={this.state.comment}
             onChange={this.handleCommentChange.bind(this)}
           />
-        )
+        );
       }
     }
 
     if (this.props.v2Style) {
       return (
         <form
-          className={'v2-reply-box'}
+          className={"v2-reply-box"}
           onSubmit={this.handleSubmit.bind(this)}
         >
           <UserAvatar
@@ -256,36 +256,36 @@ class CommentForm extends Component {
             onIdentityChangeClick={this.handleIdentityOpen.bind(this)}
           />
 
-          <Card className={'reply-content card sp'}>
+          <Card className={"reply-content card sp"}>
             {children}
 
-            <div className={'reply-content card-content padding--none'}>
+            <div className={"reply-content card-content padding--none"}>
               {input}
             </div>
 
             {this.state.error && (
-              <div className={'error card-footer red-text smaller'}>
+              <div className={"error card-footer red-text smaller"}>
                 {this.state.error}
               </div>
             )}
 
-            <div className={'card-footer'}>{submitButton}</div>
+            <div className={"card-footer"}>{submitButton}</div>
 
             {this.state.identityModalOpen && (
-              <IdentityModal onClose={this.handleIdentityClose.bind(this)}/>
+              <IdentityModal onClose={this.handleIdentityClose.bind(this)} />
             )}
           </Card>
         </form>
-      )
+      );
     }
 
     return (
-      <Card className={'comment-form'}>
+      <Card className={"comment-form"}>
         <form
-          className={c('card reply-box margin-top--none sp with-avatar')}
+          className={c("card reply-box margin-top--none sp with-avatar")}
           onSubmit={this.handleSubmit.bind(this)}
         >
-          <Card className={c('card reply-box margin-top--none sp with-avatar')}>
+          <Card className={c("card reply-box margin-top--none sp with-avatar")}>
             <UserAvatar
               user={this.props.currentUser}
               identity={identity}
@@ -296,7 +296,7 @@ class CommentForm extends Component {
               {children}
               {input}
               {this.state.error && (
-                <span className={'error red-text smaller'}>
+                <span className={"error red-text smaller"}>
                   {this.state.error}
                 </span>
               )}
@@ -306,10 +306,10 @@ class CommentForm extends Component {
         </form>
 
         {this.state.identityModalOpen && (
-          <IdentityModal onClose={this.handleIdentityClose.bind(this)}/>
+          <IdentityModal onClose={this.handleIdentityClose.bind(this)} />
         )}
       </Card>
-    )
+    );
   }
 }
 
@@ -325,15 +325,15 @@ CommentForm.propTypes = {
   slim: PropTypes.bool,
   hashtags: PropTypes.bool,
   emoji: PropTypes.bool,
-}
+};
 
 const mapStateToProps = (state, props) => ({
   ...props,
   currentUser: state.session.currentUser,
   identity: state.session.identity,
-})
+});
 
 export default compose(
   connect(mapStateToProps),
-  withTranslation('common')
-)(CommentForm)
+  withTranslation("common"),
+)(CommentForm);

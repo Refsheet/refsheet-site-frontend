@@ -1,18 +1,18 @@
-import React from 'react'
-import createReactClass from 'create-react-class'
-import PropTypes from 'prop-types'
-import PasswordResetForm from '../../views/sessions/PasswordResetForm'
-import LoginForm from '../../views/sessions/LoginForm'
-import Modal from '../Modal'
-import dynamic from 'next/dynamic'
+import React from "react";
+import createReactClass from "create-react-class";
+import PropTypes from "prop-types";
+import PasswordResetForm from "../../views/sessions/PasswordResetForm";
+import LoginForm from "../../views/sessions/LoginForm";
+import Modal from "../Modal";
+import dynamic from "next/dynamic";
 
 let Materialize = null;
-if (typeof window !== 'undefined') {
-  Materialize = require('materialize-css');
+if (typeof window !== "undefined") {
+  Materialize = require("materialize-css");
 }
 
-import $ from 'jquery'
-import {withErrorBoundary} from '../../../components/Shared/ErrorBoundary'
+import $ from "jquery";
+import { withErrorBoundary } from "../../../components/Shared/ErrorBoundary";
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
@@ -25,42 +25,42 @@ import {withErrorBoundary} from '../../../components/Shared/ErrorBoundary'
  */
 const SessionModal = createReactClass({
   getInitialState() {
-    return {view: 'login'}
+    return { view: "login" };
   },
 
   close() {
     return Materialize.Modal.getInstance(
-      document.getElementById('session-modal')
-    ).close()
+      document.getElementById("session-modal"),
+    ).close();
   },
 
   view(view) {
     return $(this.refs.view).fadeOut(300, () => {
-      return this.setState({view}, () => {
-        return $(this.refs.view).fadeIn(300)
-      })
-    })
+      return this.setState({ view }, () => {
+        return $(this.refs.view).fadeIn(300);
+      });
+    });
   },
 
   _handleHelpClick(e) {
-    this.view('help')
-    return e.preventDefault()
+    this.view("help");
+    return e.preventDefault();
   },
 
   _handleComplete() {
-    return this.view('login')
+    return this.view("login");
   },
 
   render() {
     const view = (() => {
       switch (this.state.view) {
-        case 'help':
+        case "help":
           return (
             <PasswordResetForm
               onComplete={this.close}
               onSignInClick={this._handleComplete}
             />
-          )
+          );
 
         default:
           return (
@@ -71,9 +71,9 @@ const SessionModal = createReactClass({
                 </a>
               </div>
             </LoginForm>
-          )
+          );
       }
-    })()
+    })();
 
     return (
       <Modal
@@ -86,8 +86,8 @@ const SessionModal = createReactClass({
           {view}
         </div>
       </Modal>
-    )
+    );
   },
-})
+});
 
-export default withErrorBoundary(SessionModal)
+export default withErrorBoundary(SessionModal);

@@ -1,35 +1,35 @@
-import React from 'react'
-import createReactClass from 'create-react-class'
-import PropTypes from 'prop-types'
-import dynamic from 'next/dynamic'
+import React from "react";
+import createReactClass from "create-react-class";
+import PropTypes from "prop-types";
+import dynamic from "next/dynamic";
 
 let Materialize = null;
-if (typeof window !== 'undefined') {
-  Materialize = require('materialize-css');
+if (typeof window !== "undefined") {
+  Materialize = require("materialize-css");
 }
 
-import LightboxCharacterBox from './LightboxCharacterBox'
-import RichText from '../../../components/Shared/RichText'
-import Tabs from '../tabs/Tabs'
-import Tab from '../tabs/Tab'
-import Form from '../forms/Form'
-import Input from '../forms/Input'
-import Row from '../material/Row'
-import Submit from '../forms/Submit'
-import Modal from '../Modal'
-import ImageGravityModal from '../modals/ImageGravityModal'
+import LightboxCharacterBox from "./LightboxCharacterBox";
+import RichText from "../../../components/Shared/RichText";
+import Tabs from "../tabs/Tabs";
+import Tab from "../tabs/Tab";
+import Form from "../forms/Form";
+import Input from "../forms/Input";
+import Row from "../material/Row";
+import Submit from "../forms/Submit";
+import Modal from "../Modal";
+import ImageGravityModal from "../modals/ImageGravityModal";
 
-import FavoriteButton from 'v1/views/favorites/_button'
-import Comments from 'v1/views/comments'
-import Favorites from 'v1/views/favorites'
-import Spinner from 'v1/shared/material/Spinner'
+import FavoriteButton from "v1/views/favorites/_button";
+import Comments from "v1/views/comments";
+import Favorites from "v1/views/favorites";
+import Spinner from "v1/shared/material/Spinner";
 
-import $ from 'jquery'
-import ObjectPath from '../../utils/ObjectPath'
-import StateUtils from '../../utils/StateUtils'
-import HashUtils from '../../utils/HashUtils'
-import compose, {withCurrentUser} from '../../../utils/compose'
-import {withRouter} from 'utils/withRouter'
+import $ from "jquery";
+import ObjectPath from "../../utils/ObjectPath";
+import StateUtils from "../../utils/StateUtils";
+import HashUtils from "../../utils/HashUtils";
+import compose, { withCurrentUser } from "../../../utils/compose";
+import { withRouter } from "utils/withRouter";
 import Column from "../material/Column";
 
 // TODO: This file was created by bulk-decaffeinate.
@@ -51,274 +51,274 @@ const Lightbox = createReactClass({
       image: null,
       error: null,
       directLoad: false,
-    }
+    };
   },
 
   handleCaptionChange(data, onSuccess, onError) {
     return $.ajax({
       url: this.state.image.path,
-      type: 'PATCH',
-      data: {image: {caption: data}},
-      success: data => {
-        this.setState({image: data})
-        return onSuccess()
+      type: "PATCH",
+      data: { image: { caption: data } },
+      success: (data) => {
+        this.setState({ image: data });
+        return onSuccess();
       },
-      error: error => {
-        return onError(error)
+      error: (error) => {
+        return onError(error);
       },
-    })
+    });
   },
 
   setFeaturedImage(e) {
     $.ajax({
       url: this.state.image.character.path,
-      type: 'PATCH',
-      data: {character: {featured_image_guid: this.state.image.id}},
-      success: data => {
+      type: "PATCH",
+      data: { character: { featured_image_guid: this.state.image.id } },
+      success: (data) => {
         Materialize.toast({
-          html: 'Cover image changed!',
+          html: "Cover image changed!",
           displayLength: 3000,
-          classes: 'green',
-        })
-        return $(document).trigger('app:character:update', data)
+          classes: "green",
+        });
+        return $(document).trigger("app:character:update", data);
       },
 
-      error: error => {
-        console.log(error)
+      error: (error) => {
+        console.log(error);
         return Materialize.toast({
-          html: 'Error?',
+          html: "Error?",
           displayLength: 3000,
-          classes: 'red',
-        })
+          classes: "red",
+        });
       },
-    })
+    });
 
-    return e.preventDefault()
+    return e.preventDefault();
   },
 
   setProfileImage(e) {
     $.ajax({
       url: this.state.image.character.path,
-      type: 'PATCH',
-      data: {character: {profile_image_guid: this.state.image.id}},
-      success: data => {
+      type: "PATCH",
+      data: { character: { profile_image_guid: this.state.image.id } },
+      success: (data) => {
         Materialize.toast({
-          html: 'Profile image changed!',
+          html: "Profile image changed!",
           displayLength: 3000,
-          classes: 'green',
-        })
-        return $(document).trigger('app:character:update', data)
+          classes: "green",
+        });
+        return $(document).trigger("app:character:update", data);
       },
 
-      error: error => {
-        console.error(error)
+      error: (error) => {
+        console.error(error);
         return Materialize.toast({
-          html: 'Error?',
+          html: "Error?",
           displayLength: 3000,
-          classes: 'red',
-        })
+          classes: "red",
+        });
       },
-    })
+    });
 
-    return e.preventDefault()
+    return e.preventDefault();
   },
 
   handleDelete(e) {
-    const $el = $(e.target)
-    if ($el.hasClass('disabled')) {
-      return
+    const $el = $(e.target);
+    if ($el.hasClass("disabled")) {
+      return;
     }
-    $el.addClass('disabled')
-    $el.text('Deleting...')
+    $el.addClass("disabled");
+    $el.text("Deleting...");
     $.ajax({
       url: this.state.image.path,
-      type: 'DELETE',
+      type: "DELETE",
       success: () => {
-        const {id} = this.state.image
+        const { id } = this.state.image;
 
         Materialize.toast({
-          html: 'Image deleted.',
+          html: "Image deleted.",
           displayLength: 3000,
-          classes: 'green',
-        })
-        $(document).trigger('app:image:delete', id)
+          classes: "green",
+        });
+        $(document).trigger("app:image:delete", id);
         if (this.state.onDelete) {
-          this.state.onDelete(id)
+          this.state.onDelete(id);
         }
         if (this.props.onDelete) {
-          this.props.onDelete(id)
+          this.props.onDelete(id);
         }
         Materialize.Modal.getInstance(
-          document.getElementById('lightbox-delete-form')
-        ).close()
+          document.getElementById("lightbox-delete-form"),
+        ).close();
         return Materialize.Modal.getInstance(
-          document.getElementById('lightbox')
-        ).close()
+          document.getElementById("lightbox"),
+        ).close();
       },
       error: () => {
         return Materialize.toast({
-          html: 'Could not delete that for some reason.',
+          html: "Could not delete that for some reason.",
           displayLength: 3000,
-          classes: 'red',
-        })
+          classes: "red",
+        });
       },
-    })
-    return e.preventDefault()
+    });
+    return e.preventDefault();
   },
 
   handleClose(e) {
     if (!this.state.image) {
-      return
+      return;
     }
 
     if (this.state.directLoad) {
-      this.props.history.push(this.state.image.character.link)
+      this.props.history.push(this.state.image.character.link);
     } else {
-      window.history.back()
+      window.history.back();
     }
 
-    return this.setState({image: null, onChange: null})
+    return this.setState({ image: null, onChange: null });
   },
 
   componentDidMount() {
-    $('#lightbox').modal({
-      starting_top: '4%',
-      ending_top: '10%',
+    $("#lightbox").modal({
+      starting_top: "4%",
+      ending_top: "10%",
       ready() {
-        $(this).find('.autofocus').focus()
-        return $(document).trigger('materialize:modal:ready')
+        $(this).find(".autofocus").focus();
+        return $(document).trigger("materialize:modal:ready");
       },
-      complete: e => {
-        return this.handleClose(e)
+      complete: (e) => {
+        return this.handleClose(e);
       },
-    })
+    });
 
-    return $(document).on('app:lightbox', (e, imageId, onChange, onDelete) => {
+    return $(document).on("app:lightbox", (e, imageId, onChange, onDelete) => {
       console.debug(
-        '[Lightbox] Launching from event with:',
+        "[Lightbox] Launching from event with:",
         imageId,
         onChange,
-        onDelete
-      )
+        onDelete,
+      );
 
-      if (typeof imageId === 'object' && !imageId.comments) {
-        imageId = imageId.id
+      if (typeof imageId === "object" && !imageId.comments) {
+        imageId = imageId.id;
       }
 
-      if (typeof imageId !== 'object') {
+      if (typeof imageId !== "object") {
         $.ajax({
           url: `/images/${imageId}.json`,
-          success: data => {
-            this.setState({image: data, onChange, onDelete})
-            return window.history.pushState({}, '', data.path)
+          success: (data) => {
+            this.setState({ image: data, onChange, onDelete });
+            return window.history.pushState({}, "", data.path);
           },
 
-          error: error => {
-            return this.setState({error: `Image ${error.statusText}`})
+          error: (error) => {
+            return this.setState({ error: `Image ${error.statusText}` });
           },
-        })
+        });
       } else {
         this.setState({
           image: imageId,
           directLoad: imageId.directLoad,
           onChange,
           onDelete,
-        })
-        window.history.pushState({}, '', imageId.path)
+        });
+        window.history.pushState({}, "", imageId.path);
       }
 
       return Materialize.Modal.getInstance(
-        document.getElementById('lightbox')
-      ).open()
-    })
+        document.getElementById("lightbox"),
+      ).open();
+    });
   },
 
   _handleChange(image) {
     Materialize.toast({
-      html: 'Image saved!',
+      html: "Image saved!",
       displayLength: 3000,
-      classes: 'green',
-    })
-    return this.setState({image}, this._callback)
+      classes: "green",
+    });
+    return this.setState({ image }, this._callback);
   },
 
   _handleUpdate(image) {
     if (image.background_color) {
-      return this.setState({image})
+      return this.setState({ image });
     }
   },
 
   _handleComment(comment) {
-    if (typeof comment.map !== 'undefined') {
+    if (typeof comment.map !== "undefined") {
       return StateUtils.updateItems(
         this,
-        'image.comments',
+        "image.comments",
         comment,
-        'id',
-        this._callback
-      )
+        "id",
+        this._callback,
+      );
     } else {
       return StateUtils.updateItem(
         this,
-        'image.comments',
+        "image.comments",
         comment,
-        'id',
-        this._callback
-      )
+        "id",
+        this._callback,
+      );
     }
   },
 
   _handleFavorite(favorite, set) {
     if (set == null) {
-      set = true
+      set = true;
     }
     if (set) {
       return StateUtils.updateItem(
         this,
-        'image.favorites',
+        "image.favorites",
         favorite,
-        'id',
-        this._callback
-      )
+        "id",
+        this._callback,
+      );
     } else {
       return StateUtils.removeItem(
         this,
-        'image.favorites',
+        "image.favorites",
         favorite,
-        'id',
-        this._callback
-      )
+        "id",
+        this._callback,
+      );
     }
   },
 
   _callback() {
     if (!this.state.image) {
-      return
+      return;
     }
     const image = HashUtils.set(
       this.state.image,
-      'comments_count',
-      this.state.image.comments.length
-    )
-    ObjectPath.set(image, 'favorites_count', this.state.image.favorites.length)
-    console.debug('[Lightbox] Callback with', image)
+      "comments_count",
+      this.state.image.comments.length,
+    );
+    ObjectPath.set(image, "favorites_count", this.state.image.favorites.length);
+    console.debug("[Lightbox] Callback with", image);
     if (this.state.onChange) {
-      return this.state.onChange(image)
+      return this.state.onChange(image);
     }
   },
 
   componentDidUpdate() {
-    return $('.dropdown-trigger').dropdown({
+    return $(".dropdown-trigger").dropdown({
       constrain_width: false,
-    })
+    });
   },
 
   render() {
-    let editable, lightbox
-    const poll = true
+    let editable, lightbox;
+    const poll = true;
 
     if (this.state.image != null) {
-      let captionCallback, imgActionMenu
+      let captionCallback, imgActionMenu;
       if (
         this.state.image.user_id ===
         (this.props.currentUser != null
@@ -342,7 +342,7 @@ const Lightbox = createReactClass({
                 </a>
               </li>
 
-              <li className="divider"/>
+              <li className="divider" />
 
               <li>
                 <a href="#image-gravity-modal" className="modal-trigger">
@@ -351,11 +351,11 @@ const Lightbox = createReactClass({
                 </a>
               </li>
 
-              <li className="divider"/>
+              <li className="divider" />
 
               <li>
                 <a
-                  href={this.state.image.path + '/full'}
+                  href={this.state.image.path + "/full"}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -385,21 +385,21 @@ const Lightbox = createReactClass({
               <i className="material-icons">more_vert</i>
             </a>
           </div>
-        )
+        );
 
-        captionCallback = this.handleCaptionChange
-        editable = true
+        captionCallback = this.handleCaptionChange;
+        editable = true;
       }
 
-      console.log(this.state.image)
+      console.log(this.state.image);
 
       lightbox = (
         <div className="lightbox">
           <div
             className="image-content"
-            style={{backgroundColor: this.state.image.background_color}}
+            style={{ backgroundColor: this.state.image.background_color }}
           >
-            <img src={this.state.image.url}/>
+            <img src={this.state.image.url} />
           </div>
 
           <div className="image-details-container">
@@ -496,7 +496,7 @@ const Lightbox = createReactClass({
                     changeEvent="app:image:update"
                     method="PATCH"
                   >
-                    <Input name="title" label="Title"/>
+                    <Input name="title" label="Title" />
                     <Input
                       name="source_url"
                       label="Source URL"
@@ -512,10 +512,10 @@ const Lightbox = createReactClass({
 
                     <Row noMargin>
                       <Column s={6}>
-                        <Input name="nsfw" type="checkbox" label="NSFW"/>
+                        <Input name="nsfw" type="checkbox" label="NSFW" />
                       </Column>
                       <Column s={6}>
-                        <Input name="hidden" type="checkbox" label="Hidden"/>
+                        <Input name="hidden" type="checkbox" label="Hidden" />
                       </Column>
                     </Row>
 
@@ -538,13 +538,13 @@ const Lightbox = createReactClass({
             </Tabs>
           </div>
         </div>
-      )
+      );
     } else {
       lightbox = (
         <div className="loader center padding--large">
-          {this.state.error ? <h1>{this.state.error}</h1> : <Spinner/>}
+          {this.state.error ? <h1>{this.state.error}</h1> : <Spinner />}
         </div>
-      )
+      );
     }
 
     return (
@@ -569,8 +569,8 @@ const Lightbox = createReactClass({
                   href="#"
                   className="btn"
                   onClick={function (e) {
-                    $('#lightbox-delete-form').modal('close')
-                    e.preventDefault()
+                    $("#lightbox-delete-form").modal("close");
+                    e.preventDefault();
                   }}
                 >
                   Cancel
@@ -580,7 +580,7 @@ const Lightbox = createReactClass({
           </Modal>
         )}
 
-        {editable && <ImageGravityModal image={this.state.image}/>}
+        {editable && <ImageGravityModal image={this.state.image} />}
 
         <Modal
           className="lightbox-modal"
@@ -591,8 +591,8 @@ const Lightbox = createReactClass({
           {lightbox}
         </Modal>
       </div>
-    )
+    );
   },
-})
+});
 
-export default compose(withCurrentUser(), withRouter)(Lightbox)
+export default compose(withCurrentUser(), withRouter)(Lightbox);

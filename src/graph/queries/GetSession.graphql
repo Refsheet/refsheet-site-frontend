@@ -1,10 +1,10 @@
 query getSession {
-    getSession {
-        sessionId,
-        currentUser {
-            name,
-            username,
-            is_admin
-        }
+  getSession {
+    sessionId
+    currentUser {
+      name
+      username
+      is_admin
     }
+  }
 }

@@ -5,15 +5,15 @@
     react/no-string-refs,
     react/react-in-jsx-scope,
 */
-import React from 'react'
-import createReactClass from 'create-react-class'
-import PropTypes from 'prop-types'
-import UserCharacterGroupForm from './UserCharacterGroupForm'
-import {Link} from 'react-router-dom'
+import React from "react";
+import createReactClass from "create-react-class";
+import PropTypes from "prop-types";
+import UserCharacterGroupForm from "./UserCharacterGroupForm";
+import { Link } from "react-router-dom";
 
-import $ from 'jquery'
-import Model from '../../../../utils/Model'
-import NumberUtils from '../../../../utils/NumberUtils'
+import $ from "jquery";
+import Model from "../../../../utils/Model";
+import NumberUtils from "../../../../utils/NumberUtils";
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
@@ -22,7 +22,7 @@ import NumberUtils from '../../../../utils/NumberUtils'
  * DS208: Avoid top-level this
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
-let UserCharacterGroupLink
+let UserCharacterGroupLink;
 export default UserCharacterGroupLink = createReactClass({
   propTypes() {
     return {
@@ -30,76 +30,76 @@ export default UserCharacterGroupLink = createReactClass({
       editable: PropTypes.bool,
       onChange: PropTypes.func,
       active: PropTypes.bool,
-    }
+    };
   },
 
   getInitialState() {
     return {
       edit: false,
       dropOver: false,
-    }
+    };
   },
 
   componentDidMount() {
-    return this._initialize()
+    return this._initialize();
   },
 
   componentDidUpdate() {
-    return this._initialize()
+    return this._initialize();
   },
 
   _initialize() {
     if (!this.props.editable) {
-      return
+      return;
     }
 
-    const $link = $(this.refs.link)
+    const $link = $(this.refs.link);
 
     return $link.droppable({
-      tolerance: 'pointer',
-      accept: '.character-drag',
+      tolerance: "pointer",
+      accept: ".character-drag",
       over: (_, ui) => {
-        $(ui.draggable).siblings('.drop-target').hide()
-        return this.setState({dropOver: true})
+        $(ui.draggable).siblings(".drop-target").hide();
+        return this.setState({ dropOver: true });
       },
 
       out: (_, ui) => {
-        $(ui.draggable).siblings('.drop-target').show()
-        return this.setState({dropOver: false})
+        $(ui.draggable).siblings(".drop-target").show();
+        return this.setState({ dropOver: false });
       },
 
       drop: (event, ui) => {
-        const $source = ui.draggable
-        $source.addClass('dropped')
-        const sourceId = $source.data('character-id')
-        this._handleDrop(sourceId)
-        return this.setState({dropOver: false})
+        const $source = ui.draggable;
+        $source.addClass("dropped");
+        const sourceId = $source.data("character-id");
+        this._handleDrop(sourceId);
+        return this.setState({ dropOver: false });
       },
-    })
+    });
   },
 
   _handleEdit(e) {
-    this.setState({edit: true})
-    return e.preventDefault()
+    this.setState({ edit: true });
+    return e.preventDefault();
   },
 
   _handleChange(data) {
-    this.setState({edit: false})
-    return this.props.onChange(data)
+    this.setState({ edit: false });
+    return this.props.onChange(data);
   },
 
   _handleDrop(characterId) {
     return Model.post(
-      this.props.group.path + '/characters',
-      {id: characterId},
-      data => {
-        return this.props.onChange(data, characterId)
-      }
-    )
+      this.props.group.path + "/characters",
+      { id: characterId },
+      (data) => {
+        return this.props.onChange(data, characterId);
+      },
+    );
   },
 
   render() {
-    const {editable, active} = this.props
+    const { editable, active } = this.props;
 
     if (this.state.edit) {
       return (
@@ -107,31 +107,31 @@ export default UserCharacterGroupLink = createReactClass({
           group={this.props.group}
           onChange={this._handleChange}
         />
-      )
+      );
     } else {
-      let count, folder
-      const classNames = ['sortable-link', 'character-group-drop']
+      let count, folder;
+      const classNames = ["sortable-link", "character-group-drop"];
       if (active) {
-        classNames.push('active')
+        classNames.push("active");
       }
 
       if (editable) {
-        count = this.props.group.characters_count
+        count = this.props.group.characters_count;
       } else {
-        count = this.props.group.visible_characters_count
+        count = this.props.group.visible_characters_count;
       }
 
       if (this.state.dropOver) {
-        folder = 'add'
+        folder = "add";
       } else if (active) {
-        folder = 'folder_open'
+        folder = "folder_open";
       } else {
-        folder = 'folder'
+        folder = "folder";
       }
 
       return (
         <li
-          className={classNames.join(' ')}
+          className={classNames.join(" ")}
           ref="link"
           data-group-id={this.props.group.slug}
         >
@@ -149,7 +149,7 @@ export default UserCharacterGroupLink = createReactClass({
             </a>
           )}
         </li>
-      )
+      );
     }
   },
-})
+});

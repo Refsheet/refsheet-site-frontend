@@ -1,24 +1,24 @@
-import {subscribe} from 'services/ApplicationService'
+import { subscribe } from "services/ApplicationService";
 //graphql.macro
-const getNotifications = require('./getNotifications.graphql');
-const subscribeToNotifications = require('./subscribeToNotifications.graphql');
+const getNotifications = require("./getNotifications.graphql");
+const subscribeToNotifications = require("./subscribeToNotifications.graphql");
 
-const mapDataToProps = ({getNotifications = {}}) => ({
+const mapDataToProps = ({ getNotifications = {} }) => ({
   notifications: getNotifications.notifications,
   unreadCount: getNotifications.unreadCount,
-})
+});
 
 const updateQuery = (prev, data) => {
-  const {newNotification} = data
+  const { newNotification } = data;
 
   const notifications = [
     newNotification,
     ...prev.getNotifications.notifications.filter(
-      n => n.id !== newNotification.id
+      (n) => n.id !== newNotification.id,
     ),
-  ]
+  ];
 
-  const unreadCount = notifications.filter(n => n.is_unread).length
+  const unreadCount = notifications.filter((n) => n.is_unread).length;
 
   return {
     ...prev,
@@ -27,12 +27,12 @@ const updateQuery = (prev, data) => {
       unreadCount,
       notifications,
     },
-  }
-}
+  };
+};
 
 export default subscribe({
   query: getNotifications,
   subscription: subscribeToNotifications,
   mapDataToProps,
   updateQuery,
-})
+});

@@ -1,11 +1,11 @@
-import React from 'react'
-import createReactClass from 'create-react-class'
-import PropTypes from 'prop-types'
+import React from "react";
+import createReactClass from "create-react-class";
+import PropTypes from "prop-types";
 
-import AttributeForm from './attribute_form'
-import Attribute from './attribute'
+import AttributeForm from "./attribute_form";
+import Attribute from "./attribute";
 
-import $ from 'jquery'
+import $ from "jquery";
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
@@ -16,17 +16,17 @@ import $ from 'jquery'
  * DS208: Avoid top-level this
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
-let AttributeTable
+let AttributeTable;
 export default AttributeTable = createReactClass({
   getInitialState() {
     return {
       activeEditor: this.props.activeEditor,
       appendMode: false,
-    }
+    };
   },
 
   clearEditor() {
-    return this.setState({activeEditor: null})
+    return this.setState({ activeEditor: null });
   },
 
   componentDidMount() {
@@ -49,19 +49,19 @@ export default AttributeTable = createReactClass({
   },
 
   _triggerAppend(e) {
-    this.setState({appendMode: true})
-    return e.preventDefault()
+    this.setState({ appendMode: true });
+    return e.preventDefault();
   },
 
   render() {
-    let newForm
-    const children = React.Children.map(this.props.children, child => {
+    let newForm;
+    const children = React.Children.map(this.props.children, (child) => {
       if (this.props.hideEmpty && !child.props.value) {
-        return
+        return;
       }
 
-      if (!child || !child.type || child.type.displayName !== 'Attribute') {
-        return child
+      if (!child || !child.type || child.type.displayName !== "Attribute") {
+        return child;
       }
 
       return React.cloneElement(child, {
@@ -75,14 +75,14 @@ export default AttributeTable = createReactClass({
         hideNotesForm: this.props.hideNotesForm,
 
         onEditStart: () => {
-          return this.setState({activeEditor: child.key, appendMode: false})
+          return this.setState({ activeEditor: child.key, appendMode: false });
         },
 
         onEditStop: () => {
-          return this.setState({activeEditor: null})
+          return this.setState({ activeEditor: null });
         },
-      })
-    })
+      });
+    });
 
     if (this.props.onAttributeCreate != null) {
       if (this.state.appendMode) {
@@ -95,7 +95,7 @@ export default AttributeTable = createReactClass({
             valueType={this.props.valueType}
             onFocus={this.clearEditor}
           />
-        )
+        );
       } else {
         newForm = (
           <li className="attribute-form">
@@ -105,16 +105,16 @@ export default AttributeTable = createReactClass({
               </a>
             </div>
           </li>
-        )
+        );
       }
     }
 
-    let className = 'attribute-table'
+    let className = "attribute-table";
     if (this.props.sortable) {
-      className += ' sortable'
+      className += " sortable";
     }
     if (this.props.className) {
-      className += ' ' + this.props.className
+      className += " " + this.props.className;
     }
 
     return (
@@ -122,6 +122,6 @@ export default AttributeTable = createReactClass({
         {children}
         {newForm}
       </ul>
-    )
+    );
   },
-})
+});

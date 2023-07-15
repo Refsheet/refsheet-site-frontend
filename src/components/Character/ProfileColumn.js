@@ -3,10 +3,10 @@
  * DS102: Remove unnecessary code created because of implicit returns
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
-import React from 'react'
-import PropTypes from 'prop-types'
-import ProfileWidget from './ProfileWidget'
-import { camelize } from 'utils/ObjectUtils'
+import React from "react";
+import PropTypes from "prop-types";
+import ProfileWidget from "./ProfileWidget";
+import { camelize } from "utils/ObjectUtils";
 
 const ProfileColumn = function ({
   id,
@@ -32,7 +32,7 @@ const ProfileColumn = function ({
         first={i === 0}
         last={i >= widgets.length - 1}
       />
-    ))
+    ));
 
   return (
     <div className={`col s12 m${width}`}>
@@ -40,17 +40,17 @@ const ProfileColumn = function ({
 
       {editable && (
         <a
-          key={'new'}
+          key={"new"}
           className="btn btn-flat block margin-top--medium"
-          style={{ border: '1px dashed #ffffff33' }}
+          style={{ border: "1px dashed #ffffff33" }}
           onClick={onNewClick}
         >
           Add Widget
         </a>
       )}
     </div>
-  )
-}
+  );
+};
 
 ProfileColumn.propTypes = {
   id: PropTypes.number.isRequired,
@@ -61,6 +61,6 @@ ProfileColumn.propTypes = {
   onNewClick: PropTypes.func,
   onWidgetDelete: PropTypes.func,
   last: PropTypes.bool,
-}
+};
 
-export default ProfileColumn
+export default ProfileColumn;

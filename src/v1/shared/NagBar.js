@@ -1,9 +1,9 @@
-import React from 'react'
-import createReactClass from 'create-react-class'
-import PropTypes from 'prop-types'
-import $ from 'jquery'
-import Button from 'v1/shared/material/Button'
-import Icon from 'v1/shared/material/Icon'
+import React from "react";
+import createReactClass from "create-react-class";
+import PropTypes from "prop-types";
+import $ from "jquery";
+import Button from "v1/shared/material/Button";
+import Icon from "v1/shared/material/Icon";
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
@@ -13,7 +13,7 @@ import Icon from 'v1/shared/material/Icon'
  * DS208: Avoid top-level this
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
-let NagBar
+let NagBar;
 export default NagBar = createReactClass({
   contextTypes: {
     environment: PropTypes.string,
@@ -21,17 +21,17 @@ export default NagBar = createReactClass({
 
   _handleClear(e) {
     // Cookies.set('_noNagPlease', 1)
-    $(this.refs.nag).fadeOut()
-    return e.preventDefault()
+    $(this.refs.nag).fadeOut();
+    return e.preventDefault();
   },
 
   render() {
-    let actionButton
+    let actionButton;
     // if (this.context.environment === 'test' || Cookies.get('_noNagPlease')) {
     //   return null
     // }
 
-    const { children, action, type } = this.props
+    const { children, action, type } = this.props;
 
     if (action) {
       actionButton = (
@@ -42,27 +42,27 @@ export default NagBar = createReactClass({
         >
           {action.text}
         </Button>
-      )
+      );
     }
 
-    const classNames = ['nag-bar', 'white-text']
+    const classNames = ["nag-bar", "white-text"];
 
     switch (type) {
-      case 'good':
-        classNames.push('teal darken-1')
-        break
-      case 'bad':
-        classNames.push('red darken-1')
-        break
-      case 'info':
-        classNames.push('cyan darken-1')
-        break
+      case "good":
+        classNames.push("teal darken-1");
+        break;
+      case "bad":
+        classNames.push("red darken-1");
+        break;
+      case "info":
+        classNames.push("cyan darken-1");
+        break;
       default:
-        classNames.push('blue-grey darken 1')
+        classNames.push("blue-grey darken 1");
     }
 
     return (
-      <div className={classNames.join(' ')} ref="nag">
+      <div className={classNames.join(" ")} ref="nag">
         <div className="container">
           <a
             href="#"
@@ -77,6 +77,6 @@ export default NagBar = createReactClass({
           <div className="nag-action">{actionButton}</div>
         </div>
       </div>
-    )
+    );
   },
-})
+});

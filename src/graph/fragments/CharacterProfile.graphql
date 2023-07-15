@@ -1,13 +1,13 @@
 #import "./WidgetFields.graphql"
 
 fragment CharacterProfile on Character {
-    profile_sections {
-        id
-        title
-        columns
-        row_order
-        widgets {
-            ... WidgetFields
-        }
+  profile_sections {
+    id
+    title
+    columns
+    row_order
+    widgets {
+      ...WidgetFields
     }
+  }
 }

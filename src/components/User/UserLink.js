@@ -1,18 +1,18 @@
-import React, { Component } from 'react'
-import { createIdentity, identitySourceType } from '../../utils/IdentityUtils'
+import React, { Component } from "react";
+import { createIdentity, identitySourceType } from "../../utils/IdentityUtils";
 
-import IdentityLink from 'v1/shared/identity_link'
+import IdentityLink from "v1/shared/identity_link";
 
 // TODO - This passes through to the Global IdentityLink component, please convert to V2 standards.
 
 class UserLink extends Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   render() {
-    const { user } = this.props
-    const identity = createIdentity(this.props)
+    const { user } = this.props;
+    const identity = createIdentity(this.props);
 
     const legacyUser = {
       link: identity.path,
@@ -23,13 +23,13 @@ class UserLink extends Component {
       is_admin: user.is_admin,
       is_patron: user.is_patron,
       is_supporter: user.is_supporter,
-    }
+    };
 
     // noinspection JSUnresolvedVariable
-    return <IdentityLink to={legacyUser} />
+    return <IdentityLink to={legacyUser} />;
   }
 }
 
-UserLink.propTypes = identitySourceType
+UserLink.propTypes = identitySourceType;
 
-export default UserLink
+export default UserLink;

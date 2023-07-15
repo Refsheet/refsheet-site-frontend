@@ -1,6 +1,6 @@
-import React from 'react'
-import GenerateNewKey from './GenerateNewKey'
-import ApiKeys from './ApiKeys'
+import React from "react";
+import GenerateNewKey from "./GenerateNewKey";
+import ApiKeys from "./ApiKeys";
 
 const API = () => {
   return (
@@ -8,7 +8,7 @@ const API = () => {
       <ApiKeys />
       <GenerateNewKey />
     </>
-  )
-}
+  );
+};
 
-export default API
+export default API;

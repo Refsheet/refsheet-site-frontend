@@ -4,12 +4,12 @@
     react/no-deprecated,
     react/react-in-jsx-scope,
 */
-import React from 'react'
-import createReactClass from 'create-react-class'
-import PropTypes from 'prop-types'
-import Icon from '../../shared/material/Icon'
-import Model from '../../utils/Model'
-import compose, { withCurrentUser } from '../../../utils/compose'
+import React from "react";
+import createReactClass from "create-react-class";
+import PropTypes from "prop-types";
+import Icon from "../../shared/material/Icon";
+import Model from "../../utils/Model";
+import compose, { withCurrentUser } from "../../../utils/compose";
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
@@ -27,18 +27,18 @@ const Follow = createReactClass({
   },
 
   _handleFollowClick(e) {
-    const action = this.props.followed ? 'delete' : 'post'
+    const action = this.props.followed ? "delete" : "post";
     Model.request(
       action,
-      '/users/' + this.props.username + '/follow.json',
+      "/users/" + this.props.username + "/follow.json",
       {},
-      user => {
+      (user) => {
         if (this.props.onFollow) {
-          return this.props.onFollow(user.followed, this.props.username, user)
+          return this.props.onFollow(user.followed, this.props.username, user);
         }
-      }
-    )
-    return e.preventDefault()
+      },
+    );
+    return e.preventDefault();
   },
 
   render() {
@@ -47,37 +47,37 @@ const Follow = createReactClass({
       this.props.username !== this.props.currentUser.username
     ) {
       const followColor = this.props.followed
-        ? '#ffca28'
-        : 'rgba(255, 255, 255, 0.7)'
+        ? "#ffca28"
+        : "rgba(255, 255, 255, 0.7)";
 
       return (
         <a
           href="#"
           className="secondary-content btn btn-flat right cs--secondary-color"
-          style={{ border: '1px solid rgba(255,255,255,0.1)' }}
+          style={{ border: "1px solid rgba(255,255,255,0.1)" }}
           onClick={this._handleFollowClick}
         >
           {!this.props.short && (
             <span
               className="hide-on-med-and-down cs--secondary-color"
-              style={{ marginRight: '1rem' }}
+              style={{ marginRight: "1rem" }}
             >
-              {this.props.followed ? 'Following' : 'Follow'}
+              {this.props.followed ? "Following" : "Follow"}
             </span>
           )}
 
           <Icon
-            style={{ color: followColor, marginLeft: '0' }}
+            style={{ color: followColor, marginLeft: "0" }}
             className="right"
           >
             person_add
           </Icon>
         </a>
-      )
+      );
     } else {
-      return null
+      return null;
     }
   },
-})
+});
 
-export default compose(withCurrentUser())(Follow)
+export default compose(withCurrentUser())(Follow);

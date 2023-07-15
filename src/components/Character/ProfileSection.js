@@ -1,31 +1,30 @@
-import React, {Component} from 'react'
-import PropTypes from 'prop-types'
-import ProfileColumn from './ProfileColumn'
-import Section from 'components/Shared/Section'
-import c from 'classnames'
-import {Mutation} from '@apollo/client/react/components'
-import {gql} from '@apollo/client'
-import NewWidgetModal from './Modals/NewWidgetModal'
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import ProfileColumn from "./ProfileColumn";
+import Section from "components/Shared/Section";
+import c from "classnames";
+import { Mutation } from "@apollo/client/react/components";
+import { gql } from "@apollo/client";
+import NewWidgetModal from "./Modals/NewWidgetModal";
 //graphql.macro
-import dynamic from 'next/dynamic'
+import dynamic from "next/dynamic";
 
 let M = null;
-if (typeof window !== 'undefined') {
-  M = require('materialize-css');
+if (typeof window !== "undefined") {
+  M = require("materialize-css");
 }
 
-
-const deleteProfileSection = require('./deleteProfileSection.graphql');
+const deleteProfileSection = require("./deleteProfileSection.graphql");
 
 class ProfileSection extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       newWidget: null,
-    }
+    };
 
-    this.handleTitleChange = this.handleTitleChange.bind(this)
+    this.handleTitleChange = this.handleTitleChange.bind(this);
   }
 
   handleTitleChange(title) {
@@ -36,39 +35,39 @@ class ProfileSection extends Component {
           title,
         },
       })
-      .then(data => {
-        console.log(data)
-        this.props.refetch()
+      .then((data) => {
+        console.log(data);
+        this.props.refetch();
       })
-      .catch(error => console.error(error))
+      .catch((error) => console.error(error));
   }
 
   handleNewWidgetClose() {
-    this.setState({newWidget: null})
+    this.setState({ newWidget: null });
   }
 
   handleNewWidgetClick(column) {
-    return e => {
-      e.preventDefault()
+    return (e) => {
+      e.preventDefault();
 
       this.setState({
         newWidget: {
           sectionId: this.props.id,
           columnId: column,
         },
-      })
-    }
+      });
+    };
   }
 
   handleNewWidget(widget) {
-    this.props.onChange()
+    this.props.onChange();
     this.setState({
       newWidget: null,
-    })
+    });
   }
 
   handleDeletedWidget(widgetId) {
-    this.props.onChange()
+    this.props.onChange();
   }
 
   handleDelete() {
@@ -78,18 +77,18 @@ class ProfileSection extends Component {
           id: this.props.id,
         },
       })
-      .then(({data, errors}) => {
+      .then(({ data, errors }) => {
         if (errors) {
-          console.error(errors)
-          errors.map(e =>
-            M.toast({html: e.message, classes: 'red', displayLength: 3000})
-          )
+          console.error(errors);
+          errors.map((e) =>
+            M.toast({ html: e.message, classes: "red", displayLength: 3000 }),
+          );
         } else {
-          console.log({data})
-          this.props.refetch()
+          console.log({ data });
+          this.props.refetch();
         }
       })
-      .catch(console.error)
+      .catch(console.error);
   }
 
   handleMove(direction) {
@@ -100,25 +99,25 @@ class ProfileSection extends Component {
           row_order_position: direction,
         },
       })
-      .then(({data, errors}) => {
+      .then(({ data, errors }) => {
         if (errors) {
-          console.error(errors)
-          errors.map(e =>
-            M.toast({html: e.message, classes: 'red', displayLength: 3000})
-          )
+          console.error(errors);
+          errors.map((e) =>
+            M.toast({ html: e.message, classes: "red", displayLength: 3000 }),
+          );
         } else {
-          console.log({data})
-          this.props.refetch()
+          console.log({ data });
+          this.props.refetch();
         }
       })
-      .catch(console.error)
+      .catch(console.error);
   }
 
   renderSectionColumns(columns, widgets, editable) {
-    const _this = this
-    const {character} = this.props
+    const _this = this;
+    const { character } = this.props;
     return columns.map(function (width, id) {
-      const columnWidgets = widgets.filter(w => w.column === id)
+      const columnWidgets = widgets.filter((w) => w.column === id);
 
       return (
         <ProfileColumn
@@ -132,43 +131,36 @@ class ProfileSection extends Component {
           onNewClick={_this.handleNewWidgetClick(id).bind(_this)}
           onWidgetDelete={_this.handleDeletedWidget.bind(_this)}
         />
-      )
-    })
+      );
+    });
   }
 
   render() {
-    const {
-      title,
-      columns,
-      widgets,
-      editable,
-      className,
-      first,
-      last,
-    } = this.props
+    const { title, columns, widgets, editable, className, first, last } =
+      this.props;
 
     return (
       <Section
         title={title}
-        className={c('margin-bottom--large', className)}
+        className={c("margin-bottom--large", className)}
         editable={editable}
         onTitleChange={this.handleTitleChange}
         buttons={[
           {
-            icon: 'keyboard_arrow_up',
+            icon: "keyboard_arrow_up",
             hide: !editable || first,
-            id: 'up',
+            id: "up",
             onClick: this.handleMove.bind(this),
           },
           {
-            icon: 'keyboard_arrow_down',
+            icon: "keyboard_arrow_down",
             hide: !editable || last,
-            id: 'down',
+            id: "down",
             onClick: this.handleMove.bind(this),
           },
           {
-            icon: 'delete',
-            title: 'Delete',
+            icon: "delete",
+            title: "Delete",
             hide: !editable,
             onClick: this.handleDelete.bind(this),
           },
@@ -188,7 +180,7 @@ class ProfileSection extends Component {
           {this.renderSectionColumns(columns, widgets, editable)}
         </div>
       </Section>
-    )
+    );
   }
 }
 
@@ -203,29 +195,29 @@ ProfileSection.propTypes = {
   deleteSection: PropTypes.func,
   first: PropTypes.bool,
   last: PropTypes.bool,
-}
+};
 
 const UPDATE_SECTION_MUTATION = gql`
-    mutation updateProfileSection(
-        $id: ID!
-        $title: String
-        $row_order_position: String
+  mutation updateProfileSection(
+    $id: ID!
+    $title: String
+    $row_order_position: String
+  ) {
+    updateProfileSection(
+      id: $id
+      title: $title
+      row_order_position: $row_order_position
     ) {
-        updateProfileSection(
-            id: $id
-            title: $title
-            row_order_position: $row_order_position
-        ) {
-            title
-        }
+      title
     }
-`
+  }
+`;
 
-const Wrapped = props => (
+const Wrapped = (props) => (
   <Mutation mutation={UPDATE_SECTION_MUTATION}>
-    {(updateSection, {mutationData}) => (
+    {(updateSection, { mutationData }) => (
       <Mutation mutation={deleteProfileSection}>
-        {deleteSection => (
+        {(deleteSection) => (
           <ProfileSection
             {...props}
             deleteSection={deleteSection}
@@ -236,6 +228,6 @@ const Wrapped = props => (
       </Mutation>
     )}
   </Mutation>
-)
+);
 
-export default Wrapped
+export default Wrapped;

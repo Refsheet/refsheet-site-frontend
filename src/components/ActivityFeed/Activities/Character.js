@@ -1,10 +1,10 @@
-import React from 'react'
-import createReactClass from 'create-react-class'
-import PropTypes from 'prop-types'
-import Row from 'v1/shared/material/Row'
-import Attribute from 'v1/shared/attributes/attribute'
-import IdentityLink from 'v1/shared/identity_link'
-import AttributeTable from 'v1/shared/attributes/attribute_table'
+import React from "react";
+import createReactClass from "create-react-class";
+import PropTypes from "prop-types";
+import Row from "v1/shared/material/Row";
+import Attribute from "v1/shared/attributes/attribute";
+import IdentityLink from "v1/shared/identity_link";
+import AttributeTable from "v1/shared/attributes/attribute_table";
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
@@ -14,7 +14,7 @@ import AttributeTable from 'v1/shared/attributes/attribute_table'
  * DS208: Avoid top-level this
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
-let Character
+let Character;
 export default Character = createReactClass({
   propTypes: {
     characters: PropTypes.array.isRequired,
@@ -22,24 +22,24 @@ export default Character = createReactClass({
   },
 
   render() {
-    const characters = this.props.characters.map(character => {
+    const characters = this.props.characters.map((character) => {
       const identity = {
         username: this.props.username,
         name: character.name,
         avatarUrl: character.profile_image_url,
         link: character.link,
-        type: 'character',
-      }
+        type: "character",
+      };
 
       return (
         <Row key={character.id} oneColumn noMargin>
           <div
             className="character-card compact-mobile z-depth-0 margin-bottom--none margin-top--small"
-            style={{backgroundColor: '#1a1a1a', overflow: 'visible'}}
+            style={{ backgroundColor: "#1a1a1a", overflow: "visible" }}
           >
-            <div className="character-details" style={{minHeight: 'initial'}}>
+            <div className="character-details" style={{ minHeight: "initial" }}>
               <h3 className="name margin-top--none">
-                <IdentityLink to={identity}/>
+                <IdentityLink to={identity} />
               </h3>
 
               <div className="description">
@@ -59,14 +59,14 @@ export default Character = createReactClass({
             </div>
 
             <div className="character-image" onClick={this.handleImageClick}>
-              <div className="slant" style={{backgroundColor: '#1a1a1a'}}/>
-              <img src={character.profile_image_url}/>
+              <div className="slant" style={{ backgroundColor: "#1a1a1a" }} />
+              <img src={character.profile_image_url} />
             </div>
           </div>
         </Row>
-      )
-    })
+      );
+    });
 
-    return <div className="activity shift-up">{characters}</div>
+    return <div className="activity shift-up">{characters}</div>;
   },
-})
+});

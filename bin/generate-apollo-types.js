@@ -1,11 +1,11 @@
-const fetch = require('cross-fetch');
-const fs = require('fs');
+const fetch = require("cross-fetch");
+const fs = require("fs");
 
 const API_HOST = "https://kube.refsheet.net";
 
 fetch(`${API_HOST}/graphql`, {
-  method: 'POST',
-  headers: {'Content-Type': 'application/json'},
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
   body: JSON.stringify({
     variables: {},
     query: `
@@ -22,22 +22,28 @@ fetch(`${API_HOST}/graphql`, {
       }
     `,
   }),
-}).then(result => result.json())
-  .then(result => {
+})
+  .then((result) => result.json())
+  .then((result) => {
     const possibleTypes = {};
 
-    result.data.__schema.types.forEach(supertype => {
+    result.data.__schema.types.forEach((supertype) => {
       if (supertype.possibleTypes) {
-        possibleTypes[supertype.name] =
-          supertype.possibleTypes.map(subtype => subtype.name);
+        possibleTypes[supertype.name] = supertype.possibleTypes.map(
+          (subtype) => subtype.name,
+        );
       }
     });
 
-    fs.writeFile('./src/config/possibleTypes.json', JSON.stringify(possibleTypes, undefined, 2), err => {
-      if (err) {
-        console.error('Error writing possibleTypes.json', err);
-      } else {
-        console.log('Fragment types successfully extracted!');
-      }
-    });
+    fs.writeFile(
+      "./src/config/possibleTypes.json",
+      JSON.stringify(possibleTypes, undefined, 2),
+      (err) => {
+        if (err) {
+          console.error("Error writing possibleTypes.json", err);
+        } else {
+          console.log("Fragment types successfully extracted!");
+        }
+      },
+    );
   });

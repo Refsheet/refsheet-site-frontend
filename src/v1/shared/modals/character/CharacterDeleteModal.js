@@ -1,17 +1,17 @@
-import React from 'react'
-import createReactClass from 'create-react-class'
-import PropTypes from 'prop-types'
-import Modal from 'v1/shared/Modal'
-import dynamic from 'next/dynamic'
+import React from "react";
+import createReactClass from "create-react-class";
+import PropTypes from "prop-types";
+import Modal from "v1/shared/Modal";
+import dynamic from "next/dynamic";
 
 let Materialize = null;
-if (typeof window !== 'undefined') {
-  Materialize = require('materialize-css');
+if (typeof window !== "undefined") {
+  Materialize = require("materialize-css");
 }
 
-import $ from 'jquery'
-import compose from '../../../../utils/compose'
-import {withRouter} from 'utils/withRouter'
+import $ from "jquery";
+import compose from "../../../../utils/compose";
+import { withRouter } from "utils/withRouter";
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
@@ -28,36 +28,36 @@ const CharacterDeleteModal = createReactClass({
   _handleCharacterDelete(e) {
     $.ajax({
       url: this.props.character.path,
-      type: 'DELETE',
-      success: data => {
-        let el = document.getElementById('delete-form')
+      type: "DELETE",
+      success: (data) => {
+        let el = document.getElementById("delete-form");
         if (el) {
-          const inst = Materialize.Modal.getInstance(el)
-          if (inst) inst.close()
+          const inst = Materialize.Modal.getInstance(el);
+          if (inst) inst.close();
         }
 
         Materialize.toast({
           html: `${data.name} deleted. :(`,
           displayLength: 3000,
-        })
-        return this.props.history.push('/' + data.user_id)
+        });
+        return this.props.history.push("/" + data.user_id);
       },
 
-      error: error => {
+      error: (error) => {
         return Materialize.toast({
-          html: 'Something went wrong.',
+          html: "Something went wrong.",
           displayLength: 3000,
-          classes: 'red',
-        })
+          classes: "red",
+        });
       },
-    })
+    });
 
-    return e.preventDefault()
+    return e.preventDefault();
   },
 
   _handleDeleteClose(e) {
-    $('#delete-form').modal('close')
-    return e.preventDefault()
+    $("#delete-form").modal("close");
+    return e.preventDefault();
   },
 
   render() {
@@ -75,8 +75,8 @@ const CharacterDeleteModal = createReactClass({
           </a>
         </div>
       </Modal>
-    )
+    );
   },
-})
+});
 
-export default compose(withRouter)(CharacterDeleteModal)
+export default compose(withRouter)(CharacterDeleteModal);

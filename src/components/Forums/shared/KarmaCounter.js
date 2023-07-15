@@ -1,25 +1,25 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import compose from 'utils/compose'
-import KarmaButton from './KarmaButton'
-import c from 'classnames'
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import compose from "utils/compose";
+import KarmaButton from "./KarmaButton";
+import c from "classnames";
 
 class KarmaCounter extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
-    this.state = { loading: false }
+    this.state = { loading: false };
   }
 
   onKarmaLoad(value) {
-    this.setState({ loading: value })
+    this.setState({ loading: value });
   }
 
   render() {
-    const { discussion, forum, className } = this.props
+    const { discussion, forum, className } = this.props;
 
     return (
-      <div className={c('forum-post--votes', className)}>
+      <div className={c("forum-post--votes", className)}>
         <div className="forum-post--upvote">
           <KarmaButton
             give
@@ -31,8 +31,8 @@ class KarmaCounter extends Component {
           />
         </div>
 
-        <div className={'forum-post--karma'}>
-          {this.state.loading ? '...' : discussion.karma_total || 0}
+        <div className={"forum-post--karma"}>
+          {this.state.loading ? "..." : discussion.karma_total || 0}
         </div>
 
         <div className="forum-post--downvote">
@@ -46,14 +46,14 @@ class KarmaCounter extends Component {
           />
         </div>
       </div>
-    )
+    );
   }
 }
 
 KarmaCounter.propTypes = {
   discussion: PropTypes.object.isRequired,
   forum: PropTypes.object.isRequired,
-}
+};
 
-export default compose()(KarmaCounter)
+export default compose()(KarmaCounter);
 // TODO: Add HOC bindings here

@@ -1,66 +1,66 @@
-import React, {Component} from 'react'
-import PropTypes from 'prop-types'
-import c from 'classnames'
-import {format as f} from 'utils/NumberUtils'
-import {Icon} from 'react-materialize'
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import c from "classnames";
+import { format as f } from "utils/NumberUtils";
+import { Icon } from "react-materialize";
 
 class DropdownLink extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
-    this.ref = null
+    this.ref = null;
 
     this.state = {
       visible: false,
-    }
+    };
 
-    this.handleMenuToggle = this.handleMenuToggle.bind(this)
-    this.handleBodyClick = this.handleBodyClick.bind(this)
+    this.handleMenuToggle = this.handleMenuToggle.bind(this);
+    this.handleBodyClick = this.handleBodyClick.bind(this);
   }
 
   componentDidMount() {
-    document.body.addEventListener('click', this.handleBodyClick)
+    document.body.addEventListener("click", this.handleBodyClick);
   }
 
   componentWillUnmount() {
-    document.body.removeEventListener('click', this.handleBodyClick)
+    document.body.removeEventListener("click", this.handleBodyClick);
   }
 
   handleBodyClick(e) {
-    if (!this.ref || this.ref.contains(e.target)) return null
-    this.setState({visible: false})
+    if (!this.ref || this.ref.contains(e.target)) return null;
+    this.setState({ visible: false });
   }
 
   handleMenuToggle(e) {
-    e.preventDefault()
-    this.props.onClick && this.props.onClick()
-    const visible = !this.state.visible
-    this.setState({visible}, () => {
+    e.preventDefault();
+    this.props.onClick && this.props.onClick();
+    const visible = !this.state.visible;
+    this.setState({ visible }, () => {
       if (visible && this.props.onOpen) {
-        this.props.onOpen()
+        this.props.onOpen();
       }
-    })
+    });
   }
 
   render() {
-    const {imageSrc, className, text = '?', icon, count} = this.props
+    const { imageSrc, className, text = "?", icon, count } = this.props;
 
-    const {visible} = this.state
+    const { visible } = this.state;
 
-    const classNames = c('dropdown-trigger-native', className, {
+    const classNames = c("dropdown-trigger-native", className, {
       avatar: !!imageSrc,
       active: visible,
-    })
+    });
 
     return (
-      <li ref={r => (this.ref = r)}>
+      <li ref={(r) => (this.ref = r)}>
         <a
           className={classNames}
           onClick={this.handleMenuToggle}
-          data-testid={this.props['data-testid']}
+          data-testid={this.props["data-testid"]}
         >
           {imageSrc ? (
-            <img src={imageSrc} className="circle"/>
+            <img src={imageSrc} className="circle" />
           ) : icon ? (
             <Icon>{icon}</Icon>
           ) : (
@@ -72,12 +72,12 @@ class DropdownLink extends Component {
 
         {visible && this.props.children}
       </li>
-    )
+    );
   }
 }
 
 DropdownLink.propTypes = {
   onOpen: PropTypes.func,
-}
+};
 
-export default DropdownLink
+export default DropdownLink;

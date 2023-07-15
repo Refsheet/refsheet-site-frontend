@@ -1,15 +1,15 @@
 fragment CharacterFields on Character {
-    name
-    id
-    slug
-    username
-    shortcode
-    hidden
-    nsfw
-    special_notes
-    special_notes_html
-    species
-    created_at
-    version
-    can_edit
+  name
+  id
+  slug
+  username
+  shortcode
+  hidden
+  nsfw
+  special_notes
+  special_notes_html
+  species
+  created_at
+  version
+  can_edit
 }

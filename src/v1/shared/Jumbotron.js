@@ -1,6 +1,6 @@
-import React from 'react'
-import createReactClass from 'create-react-class'
-import PropTypes from 'prop-types'
+import React from "react";
+import createReactClass from "create-react-class";
+import PropTypes from "prop-types";
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
@@ -10,18 +10,18 @@ import PropTypes from 'prop-types'
  * DS208: Avoid top-level this
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
-let Jumbotron
+let Jumbotron;
 export default Jumbotron = function (props) {
-  const classNames = ['jumbotron']
+  const classNames = ["jumbotron"];
   if (props.className) {
-    classNames.push(props.className)
+    classNames.push(props.className);
   }
 
   return (
-    <div className={classNames.join(' ')}>
+    <div className={classNames.join(" ")}>
       <div className="jumbotron-background">
         <div className="container">{props.children}</div>
       </div>
     </div>
-  )
-}
+  );
+};

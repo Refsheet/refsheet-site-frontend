@@ -3,62 +3,62 @@
  * DS102: Remove unnecessary code created because of implicit returns
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
-import React from 'react'
-import PropTypes from 'prop-types'
-import {Row, Col} from 'react-materialize'
-import {Sticky, StickyContainer} from 'react-sticky'
-import c from 'classnames'
-import EditableHeader from 'components/Shared/EditableHeader'
-import styled from 'styled-components'
-import Icon from 'v1/shared/material/Icon'
+import React from "react";
+import PropTypes from "prop-types";
+import { Row, Col } from "react-materialize";
+import { Sticky, StickyContainer } from "react-sticky";
+import c from "classnames";
+import EditableHeader from "components/Shared/EditableHeader";
+import styled from "styled-components";
+import Icon from "v1/shared/material/Icon";
 
 const H2 = styled.h2`
-  color: ${props => props.theme.primary};
+  color: ${(props) => props.theme.primary};
   line-height: 48px;
   margin: 0;
-`
+`;
 
 const Button = styled.a`
-  background-color: ${props => props.theme.cardBackground} !important;
+  background-color: ${(props) => props.theme.cardBackground} !important;
   display: inline-block;
   margin: 6px 0 6px 1.5rem;
-`
+`;
 
 const SectionTitle = styled.div`
-  background-color: ${props => props.theme.background};
-`
+  background-color: ${(props) => props.theme.background};
+`;
 
 const Section = function ({
-                            id,
-                            className,
-                            titleClassName,
-                            title,
-                            tabs,
-                            container,
-                            onTabClick,
-                            buttons,
-                            children,
-                            editable,
-                            onTitleChange,
-                          }) {
-  const renderTitle = function ({style, isSticky}) {
-    let titleStyle
+  id,
+  className,
+  titleClassName,
+  title,
+  tabs,
+  container,
+  onTabClick,
+  buttons,
+  children,
+  editable,
+  onTitleChange,
+}) {
+  const renderTitle = function ({ style, isSticky }) {
+    let titleStyle;
     if (isSticky) {
       style = {
         ...style,
-        zIndex: '990',
-      }
+        zIndex: "990",
+      };
 
       titleStyle = {
-        paddingTop: '0.5rem',
-        paddingBottom: '0.5rem',
-      }
+        paddingTop: "0.5rem",
+        paddingBottom: "0.5rem",
+      };
     }
 
     return (
       <div
-        className={c(titleClassName, {container})}
-        style={{...style, top: '56px'}}
+        className={c(titleClassName, { container })}
+        style={{ ...style, top: "56px" }}
       >
         <SectionTitle className="row no-margin" style={titleStyle}>
           <Col m={4}>
@@ -66,7 +66,7 @@ const Section = function ({
               component={H2}
               editable={editable}
               onValueChange={onTitleChange}
-              default={'(No Title)'}
+              default={"(No Title)"}
             >
               {title}
             </EditableHeader>
@@ -75,12 +75,12 @@ const Section = function ({
           <Col m={8} className="right-align">
             {tabs && (
               <ul
-                key={'-tabs'}
+                key={"-tabs"}
                 className="tabs transparent"
                 style={{
-                  display: 'inline-block',
-                  width: 'auto',
-                  verticalAlign: 'middle',
+                  display: "inline-block",
+                  width: "auto",
+                  verticalAlign: "middle",
                 }}
               >
                 {tabs.map(renderTab(onTabClick))}
@@ -91,32 +91,32 @@ const Section = function ({
           </Col>
         </SectionTitle>
       </div>
-    )
-  }
+    );
+  };
 
   return (
     <StickyContainer>
       <section id={id} className={c(className)}>
         {(title || editable) && <Sticky topOffset={-66}>{renderTitle}</Sticky>}
 
-        <div className={c({container})}>{children}</div>
+        <div className={c({ container })}>{children}</div>
       </section>
     </StickyContainer>
-  )
-}
+  );
+};
 
 const actionHandler = (onClick, id) =>
   function (e) {
-    e.preventDefault()
+    e.preventDefault();
     if (onClick) {
-      return onClick(id)
+      return onClick(id);
     }
-  }
+  };
 
-const renderTab = onTabClick =>
-  function ({title, id, onClick}) {
+const renderTab = (onTabClick) =>
+  function ({ title, id, onClick }) {
     if (!onClick) {
-      onClick = onTabClick
+      onClick = onTabClick;
     }
 
     return (
@@ -125,11 +125,11 @@ const renderTab = onTabClick =>
           {title}
         </a>
       </li>
-    )
-  }
+    );
+  };
 
-const renderAction = ({title, id, onClick, icon, hide}, i) => {
-  if (hide) return null
+const renderAction = ({ title, id, onClick, icon, hide }, i) => {
+  if (hide) return null;
 
   return (
     <Button
@@ -138,17 +138,17 @@ const renderAction = ({title, id, onClick, icon, hide}, i) => {
       key={i}
       id={id}
     >
-      {icon && <Icon className={title ? 'left' : ''}>{icon}</Icon>}
+      {icon && <Icon className={title ? "left" : ""}>{icon}</Icon>}
       {title}
     </Button>
-  )
-}
+  );
+};
 const actionType = PropTypes.shape({
   icon: PropTypes.string,
   title: PropTypes.string,
   id: PropTypes.string,
   onClick: PropTypes.func,
-})
+});
 
 Section.propTypes = {
   id: PropTypes.string,
@@ -163,6 +163,6 @@ Section.propTypes = {
   titleClassName: PropTypes.string,
   editable: PropTypes.bool,
   onTitleChange: PropTypes.func,
-}
+};
 
-export default Section
+export default Section;

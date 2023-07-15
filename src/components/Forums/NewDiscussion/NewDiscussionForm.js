@@ -1,7 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const NewDiscussionForm = () => {
-  return <a>foo</a>
-}
+  return <a>foo</a>;
+};
 
-export default NewDiscussionForm
+export default NewDiscussionForm;

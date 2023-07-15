@@ -1,14 +1,14 @@
-import React from 'react'
-import createReactClass from 'create-react-class'
-import PropTypes from 'prop-types'
+import React from "react";
+import createReactClass from "create-react-class";
+import PropTypes from "prop-types";
 
-import Spinner from 'v1/shared/material/Spinner'
-import $ from 'jquery'
-import dynamic from 'next/dynamic'
+import Spinner from "v1/shared/material/Spinner";
+import $ from "jquery";
+import dynamic from "next/dynamic";
 
 let Materialize = null;
-if (typeof window !== 'undefined') {
-  Materialize = require('materialize-css');
+if (typeof window !== "undefined") {
+  Materialize = require("materialize-css");
 }
 
 // TODO: This file was created by bulk-decaffeinate.
@@ -25,83 +25,82 @@ if (typeof window !== 'undefined') {
 // @prop method [String]
 // @prop paramName [String]
 //
-let DropzoneContainer
+let DropzoneContainer;
 export default DropzoneContainer = createReactClass({
   x_getInitialState() {
     return {
       uploading: false,
       uploadPercent: 0,
       initialized: false,
-    }
+    };
   },
 
   x_componentDidMount() {
     if (this.props.url != null) {
-      const ___this = this
+      const ___this = this;
 
       return $(this.refs.dropzone).dropzone({
         clickable: this.props.clickable || undefined,
         url: this.props.url,
-        method: this.props.method || 'POST',
-        previewTemplate: '',
+        method: this.props.method || "POST",
+        previewTemplate: "",
         headers: {
-          'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content'),
+          "X-CSRF-Token": $('meta[name="csrf-token"]').attr("content"),
         },
-        paramName: this.props.paramName || 'image[image]',
+        paramName: this.props.paramName || "image[image]",
 
-        addedfile: file => {
-          return this.setState({uploading: true})
+        addedfile: (file) => {
+          return this.setState({ uploading: true });
         },
 
-        thumbnail(file, dataUrl) {
-        },
+        thumbnail(file, dataUrl) {},
         // Display the image in your file.previewElement
 
         uploadprogress: (file, progress, bytesSent) => {
-          console.log(progress)
-          return this.setState({uploadPercent: progress})
+          console.log(progress);
+          return this.setState({ uploadPercent: progress });
         },
 
         success: () => {
-          return this.setState({uploading: false, uploadPercent: 0})
+          return this.setState({ uploading: false, uploadPercent: 0 });
         },
 
         error: () => {
-          return this.setState({uploading: false, uploadPercent: 0})
+          return this.setState({ uploading: false, uploadPercent: 0 });
         },
 
         init() {
-          ___this.setState({initialized: true})
+          ___this.setState({ initialized: true });
 
-          this.on('error', function (_, error) {
+          this.on("error", function (_, error) {
             if (error.errors != null ? error.errors.image : undefined) {
               return Materialize.toast({
                 html: `Image ${error.errors.image}`,
                 displayLength: 3000,
-                classes: 'red',
-              })
+                classes: "red",
+              });
             } else {
-              console.error(JSON.stringify(error))
+              console.error(JSON.stringify(error));
               return Materialize.toast({
                 html: `An unknown error has occurred :( Please find Mau and tell them this: ${JSON.stringify(
-                  error
+                  error,
                 )}`,
-              })
+              });
             }
-          })
+          });
 
-          return this.on('success', function (_, data) {
+          return this.on("success", function (_, data) {
             Materialize.toast({
-              html: 'Image uploaded!',
+              html: "Image uploaded!",
               displayLength: 3000,
-              classes: 'green',
-            })
+              classes: "green",
+            });
             if (___this.props.onUpload != null) {
-              return ___this.props.onUpload(data)
+              return ___this.props.onUpload(data);
             }
-          })
+          });
         },
-      })
+      });
     }
   },
 
@@ -113,36 +112,36 @@ export default DropzoneContainer = createReactClass({
 
   render() {
     console.warn(
-      'DropzoneContainer relies on jquery-dropzone which is no longer used in V2 JS pack. This component will do nothing now.'
-    )
-    return this.props.children
+      "DropzoneContainer relies on jquery-dropzone which is no longer used in V2 JS pack. This component will do nothing now.",
+    );
+    return this.props.children;
 
-    let className, dropZoneContent
+    let className, dropZoneContent;
     if (this.state.uploading) {
-      let statusMessage
-      className = 'dropzone-container uploading'
+      let statusMessage;
+      className = "dropzone-container uploading";
 
       if (this.state.uploadPercent === 100) {
-        statusMessage = 'Processing thumbnails...'
+        statusMessage = "Processing thumbnails...";
       } else {
-        statusMessage = Math.round(this.state.uploadPercent) + '%'
+        statusMessage = Math.round(this.state.uploadPercent) + "%";
       }
 
       dropZoneContent = (
         <div className="container">
           <h1 className="white-text">Uploading...</h1>
-          <Spinner/>
+          <Spinner />
           <p className="flow-text">{statusMessage}</p>
         </div>
-      )
+      );
     } else {
-      className = 'dropzone-container'
+      className = "dropzone-container";
       dropZoneContent = (
         <div className="container">
           <h1 className="white-text">Drop images to uplaod</h1>
           <div className="flow-text">Images only, please.</div>
         </div>
-      )
+      );
     }
 
     return (
@@ -153,6 +152,6 @@ export default DropzoneContainer = createReactClass({
 
         {this.props.children}
       </div>
-    )
+    );
   },
-})
+});

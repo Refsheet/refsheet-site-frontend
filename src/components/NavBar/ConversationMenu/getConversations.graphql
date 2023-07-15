@@ -1,7 +1,7 @@
 #import '../../../graph/fragments/ConversationsFields.graphql'
 
 query getConversations {
-    getConversations {
-        ...ConversationsFields
-    }
+  getConversations {
+    ...ConversationsFields
+  }
 }

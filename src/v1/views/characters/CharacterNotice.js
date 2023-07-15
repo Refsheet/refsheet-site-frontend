@@ -4,18 +4,18 @@
     react/no-deprecated,
     react/react-in-jsx-scope,
 */
-import React from 'react'
-import createReactClass from 'create-react-class'
-import PropTypes from 'prop-types'
-import dynamic from 'next/dynamic'
+import React from "react";
+import createReactClass from "create-react-class";
+import PropTypes from "prop-types";
+import dynamic from "next/dynamic";
 
 let Materialize = null;
-if (typeof window !== 'undefined') {
-  Materialize = require('materialize-css');
+if (typeof window !== "undefined") {
+  Materialize = require("materialize-css");
 }
 
-import $ from 'jquery'
-import compose, {withCurrentUser} from '../../../utils/compose'
+import $ from "jquery";
+import compose, { withCurrentUser } from "../../../utils/compose";
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
@@ -31,67 +31,67 @@ const CharacterNotice = createReactClass({
   },
 
   getInitialState() {
-    return {transfer: this.props != null ? this.props.transfer : undefined}
+    return { transfer: this.props != null ? this.props.transfer : undefined };
   },
 
   UNSAFE_componentWillReceiveProps(newProps) {
-    return this.setState({transfer: newProps.transfer})
+    return this.setState({ transfer: newProps.transfer });
   },
 
   _handleAcceptTransfer(e) {
     $.ajax({
       url: this.state.transfer.path,
-      data: {status: 'claimed'},
-      type: 'PATCH',
-      success: data => {
+      data: { status: "claimed" },
+      type: "PATCH",
+      success: (data) => {
         return $(document).trigger(
-          'app:character:reload',
+          "app:character:reload",
           data.character_path,
-          character => {
-            window.history.replaceState({}, '', data.character_path)
+          (character) => {
+            window.history.replaceState({}, "", data.character_path);
             return Materialize.toast({
-              html: 'Transfer claimed!',
+              html: "Transfer claimed!",
               displayLength: 3000,
-              classes: 'green',
-            })
-          }
-        )
+              classes: "green",
+            });
+          },
+        );
       },
-      error: data => {
-        console.error(data)
+      error: (data) => {
+        console.error(data);
         return Materialize.toast({
-          html: 'Something went wrong :(',
+          html: "Something went wrong :(",
           displayLength: 3000,
-          classes: 'red',
-        })
+          classes: "red",
+        });
       },
-    })
-    return e.preventDefault()
+    });
+    return e.preventDefault();
   },
 
   _handleRejectTransfer(e) {
     $.ajax({
       url: this.state.transfer.path,
-      data: {status: 'rejected'},
-      type: 'PATCH',
-      success: data => {
-        this.setState({transfer: null})
+      data: { status: "rejected" },
+      type: "PATCH",
+      success: (data) => {
+        this.setState({ transfer: null });
         return Materialize.toast({
-          html: 'Transfer rejected.',
+          html: "Transfer rejected.",
           displayLength: 3000,
-          classes: 'green',
-        })
+          classes: "green",
+        });
       },
-      error: data => {
-        console.error(data)
+      error: (data) => {
+        console.error(data);
         return Materialize.toast({
-          html: 'Something went wrong :(',
+          html: "Something went wrong :(",
           displayLength: 3000,
-          classes: 'red',
-        })
+          classes: "red",
+        });
       },
-    })
-    return e.preventDefault()
+    });
+    return e.preventDefault();
   },
 
   render() {
@@ -100,9 +100,9 @@ const CharacterNotice = createReactClass({
       (this.state.transfer != null
         ? this.state.transfer.destination_username
         : undefined) ===
-      (this.props.currentUser != null
-        ? this.props.currentUser.username
-        : undefined)
+        (this.props.currentUser != null
+          ? this.props.currentUser.username
+          : undefined)
     ) {
       return (
         <div className="character-notice">
@@ -124,11 +124,11 @@ const CharacterNotice = createReactClass({
             </a>
           </div>
         </div>
-      )
+      );
     } else {
-      return null
+      return null;
     }
   },
-})
+});
 
-export default compose(withCurrentUser())(CharacterNotice)
+export default compose(withCurrentUser())(CharacterNotice);

@@ -1,6 +1,6 @@
 fragment getCharacterImages on Character {
+  id
+  images {
     id
-    images {
-        id
-    }
+  }
 }

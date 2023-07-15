@@ -4,11 +4,11 @@
     react/prop-types,
     react/react-in-jsx-scope,
 */
-import React from 'react'
-import createReactClass from 'create-react-class'
-import PropTypes from 'prop-types'
-import Feed from './_feed'
-import Layout from '../layout'
+import React from "react";
+import createReactClass from "create-react-class";
+import PropTypes from "prop-types";
+import Feed from "./_feed";
+import Layout from "../layout";
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
@@ -23,8 +23,8 @@ class Show extends React.Component {
       <Layout {...this.props}>
         <Feed filter={this.props.location.query.feed} />
       </Layout>
-    )
+    );
   }
 }
 
-export default Show
+export default Show;

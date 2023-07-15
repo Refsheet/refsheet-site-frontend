@@ -1,39 +1,39 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import styled from 'styled-components'
-import c from 'classnames'
-import { Icon } from 'react-materialize'
-import Button from '../../../Styled/Button'
+import React from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import c from "classnames";
+import { Icon } from "react-materialize";
+import Button from "../../../Styled/Button";
 
 const CharacterSaleButton = ({ character, className, ...props }) => {
   const {
     marketplace_listing: { amount_currency, amount_cents },
-  } = character
+  } = character;
 
   return (
     <Button
       {...props}
-      className={c(className, 'btn-secondary character-sale-button')}
+      className={c(className, "btn-secondary character-sale-button")}
     >
-      <span className={'for-sale'}>
+      <span className={"for-sale"}>
         <Icon>add_shopping_cart</Icon>
       </span>
-      <span className={'price'}>
-        {new Intl.NumberFormat('en-US', {
-          style: 'currency',
+      <span className={"price"}>
+        {new Intl.NumberFormat("en-US", {
+          style: "currency",
           currency: amount_currency,
         }).format(amount_cents / 100)}
       </span>
     </Button>
-  )
-}
+  );
+};
 
 CharacterSaleButton.propTypes = {
   character: PropTypes.shape({
     marketplace_listing: PropTypes.object.isRequired,
   }),
   className: PropTypes.string,
-}
+};
 
 export default styled(CharacterSaleButton)`
   float: right;
@@ -59,4 +59,4 @@ export default styled(CharacterSaleButton)`
     height: 3rem;
     font-size: 1.5rem;
   }
-`
+`;

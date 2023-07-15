@@ -1,75 +1,75 @@
-import React, { useState } from 'react'
-import { div as Card } from '../../Styled/Card'
-import Button from '../../Styled/Button'
-import { Col, Select, Switch } from 'react-materialize'
-import Restrict from '../../Shared/Restrict'
-import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
-import { setThemeSettings } from '../../../actions'
-import InputRow from '../shared/InputRow'
+import React, { useState } from "react";
+import { div as Card } from "../../Styled/Card";
+import Button from "../../Styled/Button";
+import { Col, Select, Switch } from "react-materialize";
+import Restrict from "../../Shared/Restrict";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { setThemeSettings } from "../../../actions";
+import InputRow from "../shared/InputRow";
 
 const LookAndFeel = ({ theme = {}, setThemeSettings }) => {
-  const [saving, setSaving] = useState(false)
+  const [saving, setSaving] = useState(false);
 
-  const handleSubmit = e => {
-    setSaving(true)
-    setTimeout(() => setSaving(false), 3000)
-    e.preventDefault()
-  }
+  const handleSubmit = (e) => {
+    setSaving(true);
+    setTimeout(() => setSaving(false), 3000);
+    e.preventDefault();
+  };
 
   const handleChange = (value, id) => {
-    const name = id.replace('theme_', '')
-    let newTheme = {}
-    newTheme[name] = value
-    setThemeSettings(newTheme)
-  }
+    const name = id.replace("theme_", "");
+    let newTheme = {};
+    newTheme[name] = value;
+    setThemeSettings(newTheme);
+  };
 
   return (
     <form onSubmit={handleSubmit}>
-      <Card className={'card sp'}>
-        <div className={'card-header'}>
+      <Card className={"card sp"}>
+        <div className={"card-header"}>
           <h2>Look and Feel</h2>
         </div>
 
-        <div className={'card-content'}>
+        <div className={"card-content"}>
           <InputRow
-            id={'theme_name'}
-            hint={'Default color scheme to apply site-wide.'}
-            label={'Color Scheme'}
+            id={"theme_name"}
+            hint={"Default color scheme to apply site-wide."}
+            label={"Color Scheme"}
             input={Select}
             onChange={handleChange}
             value={theme.name}
           >
-            <option value={'dark'}>Dark (Default)</option>
-            <option value={'light'}>Light</option>
-            <option value={'black'}>Pitch Black</option>
-            <option value={'white'}>Paper White</option>
+            <option value={"dark"}>Dark (Default)</option>
+            <option value={"light"}>Light</option>
+            <option value={"black"}>Pitch Black</option>
+            <option value={"white"}>Paper White</option>
             <Restrict development>
-              <option value={'debug'}>Debug</option>
+              <option value={"debug"}>Debug</option>
             </Restrict>
           </InputRow>
 
           <InputRow
-            id={'theme_allow_override'}
-            label={'Allow Override'}
-            hint={'Allow character profiles to override site color theme.'}
+            id={"theme_allow_override"}
+            label={"Allow Override"}
+            hint={"Allow character profiles to override site color theme."}
             input={Switch}
             onChange={handleChange}
             value={theme.allowOverride}
           />
 
           <InputRow
-            id={'theme_allow_holidays'}
-            label={'Allow Holiday Themes'}
+            id={"theme_allow_holidays"}
+            label={"Allow Holiday Themes"}
             hint={
-              'Automatically apply various holiday and special event themes.'
+              "Automatically apply various holiday and special event themes."
             }
             input={Switch}
             onChange={handleChange}
             value={theme.allowHoliday}
           />
 
-          <div className={'row'}>
+          <div className={"row"}>
             <Col s={12}>
               <strong>inb4</strong>: This feature isn't finished, the color
               scheme will revert when you reload the page, save does nothing,
@@ -88,15 +88,15 @@ const LookAndFeel = ({ theme = {}, setThemeSettings }) => {
           </div>
         </div>
 
-        <div className={'card-action right-align'}>
-          <Button type={'submit'} disabled={saving}>
-            {saving ? 'Saving...' : 'Save Settings'}
+        <div className={"card-action right-align"}>
+          <Button type={"submit"} disabled={saving}>
+            {saving ? "Saving..." : "Save Settings"}
           </Button>
         </div>
       </Card>
     </form>
-  )
-}
+  );
+};
 
 LookAndFeel.propTypes = {
   theme: PropTypes.shape({
@@ -106,14 +106,14 @@ LookAndFeel.propTypes = {
     allowOverride: PropTypes.bool,
   }),
   setThemeSettings: PropTypes.func,
-}
+};
 
 const mapStateToProps = ({ theme }) => ({
   theme,
-})
+});
 
 const mapDispatchToProps = {
   setThemeSettings,
-}
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(LookAndFeel)
+export default connect(mapStateToProps, mapDispatchToProps)(LookAndFeel);

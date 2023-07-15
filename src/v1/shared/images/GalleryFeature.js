@@ -1,8 +1,8 @@
-import React from 'react'
-import createReactClass from 'create-react-class'
-import PropTypes from 'prop-types'
-import GalleryImage from 'v1/shared/images/GalleryImage'
-import $ from 'jquery'
+import React from "react";
+import createReactClass from "create-react-class";
+import PropTypes from "prop-types";
+import GalleryImage from "v1/shared/images/GalleryImage";
+import $ from "jquery";
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
@@ -12,7 +12,7 @@ import $ from 'jquery'
  * DS208: Avoid top-level this
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
-let GalleryFeature
+let GalleryFeature;
 export default GalleryFeature = createReactClass({
   propTypes: {
     editable: PropTypes.bool,
@@ -25,8 +25,8 @@ export default GalleryFeature = createReactClass({
   },
 
   componentDidMount() {
-    $(window).resize(this._initialize)
-    return this._initialize()
+    $(window).resize(this._initialize);
+    return this._initialize();
   },
 
   componentDidRecieveProps(newProps) {
@@ -38,100 +38,100 @@ export default GalleryFeature = createReactClass({
       (this.props.third != null ? this.props.third.id : undefined) !==
         (newProps.third != null ? newProps.third.id : undefined)
     ) {
-      return this._initialize()
+      return this._initialize();
     }
   },
 
   componentDidUpdate() {
-    return this._initialize()
+    return this._initialize();
   },
 
   componentWillUnmount() {
-    return $(window).off('resize', this._initialize)
+    return $(window).off("resize", this._initialize);
   },
 
   _initialize() {
-    console.debug('[GalleryFeature] Initializing featured gallery...')
+    console.debug("[GalleryFeature] Initializing featured gallery...");
 
     return $(this.refs.galleryFeature).imagesLoaded(() => {
-      const select = selector => {
-        return $(this.refs.galleryFeature).find(selector)
-      }
-      const width = selector => {
-        return select(selector).width()
-      }
-      const height = selector => {
-        return select(selector).height()
-      }
+      const select = (selector) => {
+        return $(this.refs.galleryFeature).find(selector);
+      };
+      const width = (selector) => {
+        return select(selector).width();
+      };
+      const height = (selector) => {
+        return select(selector).height();
+      };
 
-      const ratio = selector => {
-        let end
-        if (select(selector).data('aspect-ratio')) {
-          end = select(selector).data('aspect-ratio')
+      const ratio = (selector) => {
+        let end;
+        if (select(selector).data("aspect-ratio")) {
+          end = select(selector).data("aspect-ratio");
         } else {
-          end = height(selector + ' img') / width(selector + ' img') || 1
-          select(selector).data('aspect-ratio', end)
+          end = height(selector + " img") / width(selector + " img") || 1;
+          select(selector).data("aspect-ratio", end);
         }
-        return end
-      }
+        return end;
+      };
 
-      const g = 15
-      const x0 = $(this.refs.galleryFeature).width() - 5
-      const r1 = ratio('.feature-main')
-      const r2 = ratio('.side-image.top')
-      const r3 = ratio('.side-image.bottom')
+      const g = 15;
+      const x0 = $(this.refs.galleryFeature).width() - 5;
+      const r1 = ratio(".feature-main");
+      const r2 = ratio(".side-image.top");
+      const r3 = ratio(".side-image.bottom");
 
       // Lots of magic. Ask Wolfram Alpha.
-      const t = g - g * r2 - g * r3 + r2 * x0 + r3 * x0
-      const b = r1 + r2 + r3
-      const x1 = t / b
-      const x2 = x0 - x1 - g
-      const y1 = x1 * r1
-      const y2 = x2 * r2
-      const y3 = x2 * r3
+      const t = g - g * r2 - g * r3 + r2 * x0 + r3 * x0;
+      const b = r1 + r2 + r3;
+      const x1 = t / b;
+      const x2 = x0 - x1 - g;
+      const y1 = x1 * r1;
+      const y2 = x2 * r2;
+      const y3 = x2 * r3;
 
       $(this.refs.featureMain)
         .css({
           width: x1,
           height: y1,
         })
-        .children('.feature-main')
-        .addClass('gf-entry')
+        .children(".feature-main")
+        .addClass("gf-entry");
 
       $(this.refs.featureSide).css({
         width: x2,
-      })
+      });
 
       setTimeout(() => {
         return $(this.refs.featureSide)
-          .children('.top')
+          .children(".top")
           .css({
             height: y2,
           })
-          .addClass('gf-entry')
-      }, 250)
+          .addClass("gf-entry");
+      }, 250);
 
       return setTimeout(() => {
         return $(this.refs.featureSide)
-          .children('.bottom')
+          .children(".bottom")
           .css({
             height: y3,
           })
-          .addClass('gf-entry')
-      }, 500)
-    })
+          .addClass("gf-entry");
+      }, 500);
+    });
   },
 
   render() {
     const firstId =
       (this.props.first != null ? this.props.first.id : undefined) ||
-      'placeholder-first'
+      "placeholder-first";
     const secondId =
       (this.props.second != null ? this.props.second.id : undefined) ||
-      'placeholder-second'
+      "placeholder-second";
     const thirdId =
       (this.props.third != null ? this.props.third.id : undefined) ||
-      'placeholder-third'
+      "placeholder-third";
 
     return (
       <div ref="galleryFeature" className="gallery-feature">
@@ -172,6 +172,6 @@ export default GalleryFeature = createReactClass({
           />
         </div>
       </div>
-    )
+    );
   },
-})
+});

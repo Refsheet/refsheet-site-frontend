@@ -4,17 +4,17 @@
     react/no-deprecated,
     react/react-in-jsx-scope,
 */
-import React from 'react'
-import createReactClass from 'create-react-class'
-import PropTypes from 'prop-types'
-import CharacterLinkCard from '../characters/CharacterLinkCard'
-import StringUtils from '../../../utils/StringUtils'
-import Main from '../../shared/Main'
-import Section from '../../../components/Shared/Section'
-import Loading from '../../shared/Loading'
-import Button from '../../shared/material/Button'
-import {Link} from 'react-router-dom'
-import $ from 'jquery'
+import React from "react";
+import createReactClass from "create-react-class";
+import PropTypes from "prop-types";
+import CharacterLinkCard from "../characters/CharacterLinkCard";
+import StringUtils from "../../../utils/StringUtils";
+import Main from "../../shared/Main";
+import Section from "../../../components/Shared/Section";
+import Loading from "../../shared/Loading";
+import Button from "../../shared/material/Button";
+import { Link } from "react-router-dom";
+import $ from "jquery";
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
@@ -24,7 +24,7 @@ import $ from 'jquery'
  * DS208: Avoid top-level this
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
-let BrowseApp
+let BrowseApp;
 export default BrowseApp = createReactClass({
   perPage: 16,
   scrollOffset: 100,
@@ -36,49 +36,51 @@ export default BrowseApp = createReactClass({
       totalResults: null,
       page: null,
       lastPage: false,
-    }
+    };
   },
 
   componentDidMount() {
-    this.doSearch(this.props.location.query.q)
+    this.doSearch(this.props.location.query.q);
 
-    return $(window).on('scroll.browse', () => {
+    return $(window).on("scroll.browse", () => {
       if (
         !this.state.lastPage &&
         !this.state.searching &&
         $(window).scrollTop() + $(window).height() >
-        $(document).height() - this.scrollOffset
+          $(document).height() - this.scrollOffset
       ) {
-        return this._loadMore()
+        return this._loadMore();
       }
-    })
+    });
   },
 
   componentWillUnmount() {
-    return $(window).off('scroll.browse')
+    return $(window).off("scroll.browse");
   },
 
   UNSAFE_componentWillReceiveProps(newProps) {
     if (newProps.location.query.q !== this.props.location.query.q) {
-      return this.doSearch(newProps.location.query.q)
+      return this.doSearch(newProps.location.query.q);
     }
   },
 
   _loadMore() {
-    console.log(`[BrowseApp] Loading more content: page ${this.state.page + 1}`)
-    return this.doSearch(this.props.location.query.q, this.state.page + 1)
+    console.log(
+      `[BrowseApp] Loading more content: page ${this.state.page + 1}`,
+    );
+    return this.doSearch(this.props.location.query.q, this.state.page + 1);
   },
 
   doSearch(query, page) {
-    let s
+    let s;
     if (query == null) {
-      query = ''
+      query = "";
     }
     if (page == null) {
-      page = 1
+      page = 1;
     }
     if (page > 1) {
-      s = {searching: true}
+      s = { searching: true };
     } else {
       s = {
         results: null,
@@ -86,67 +88,70 @@ export default BrowseApp = createReactClass({
         page: null,
         lastPage: true,
         totalResults: 0,
-      }
+      };
     }
 
     return this.setState(s, () => {
       return $.ajax({
-        url: '/characters.json',
-        data: {q: query, page},
-        success: data => {
-          let results = []
+        url: "/characters.json",
+        data: { q: query, page },
+        success: (data) => {
+          let results = [];
           if (page > 1) {
-            results = results.concat(this.state.results)
+            results = results.concat(this.state.results);
           }
-          results = results.concat(data.characters)
-          const lastPage = data.characters.length < this.perPage
-          const totalResults = data.$meta.total
+          results = results.concat(data.characters);
+          const lastPage = data.characters.length < this.perPage;
+          const totalResults = data.$meta.total;
           this.setState({
             results,
             page,
             lastPage,
             totalResults,
             searching: false,
-          })
+          });
           return console.debug(
             `[BrowseApp] Loaded ${data.characters.length} new records, ${results.length} total.`,
-            data.$meta
-          )
+            data.$meta,
+          );
         },
 
-        error: error => {
-          console.error(error)
+        error: (error) => {
+          console.error(error);
           this.setState({
             results: [],
             searching: false,
             page: null,
             lastPage: true,
             totalResults: 0,
-          })
-          if (typeof window != 'undefined') import('materialize-css').then((Materialize) => Materialize.toast({
-            html: error.responseText || 'Unknown error.',
-            displayLength: 3000,
-            classes: 'red',
-          }))
+          });
+          if (typeof window != "undefined")
+            import("materialize-css").then((Materialize) =>
+              Materialize.toast({
+                html: error.responseText || "Unknown error.",
+                displayLength: 3000,
+                classes: "red",
+              }),
+            );
         },
-      })
-    })
+      });
+    });
   },
 
   render() {
-    let results, title
+    let results, title;
     if (this.props.location.query.q) {
-      title = 'Search Results'
+      title = "Search Results";
     } else {
-      title = 'Browse'
+      title = "Browse";
     }
 
     if (this.state.results !== null) {
-      results = this.state.results.map(character => (
+      results = this.state.results.map((character) => (
         <div className="col m3 s6" key={character.slug}>
           <CharacterLinkCard {...StringUtils.camelizeKeys(character)} />
         </div>
-      ))
+      ));
     }
 
     return (
@@ -160,7 +165,7 @@ export default BrowseApp = createReactClass({
                 Exactly {this.state.totalResults} results
                 {this.props.location.query.q && (
                   <span>
-                    {' '}
+                    {" "}
                     | <Link to="/browse">Clear Search</Link>
                   </span>
                 )}
@@ -177,7 +182,7 @@ export default BrowseApp = createReactClass({
           <div className="row">{results}</div>
 
           {this.state.searching && (
-            <Loading className="margin-top--large" message={false}/>
+            <Loading className="margin-top--large" message={false} />
           )}
 
           {!this.state.searching && !this.state.lastPage && (
@@ -195,6 +200,6 @@ export default BrowseApp = createReactClass({
           )}
         </Section>
       </Main>
-    )
+    );
   },
-})
+});

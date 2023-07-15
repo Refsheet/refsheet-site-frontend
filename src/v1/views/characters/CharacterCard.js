@@ -4,24 +4,24 @@
     react/no-deprecated,
     react/react-in-jsx-scope,
 */
-import React from 'react'
-import createReactClass from 'create-react-class'
-import PropTypes from 'prop-types'
-import dynamic from 'next/dynamic'
+import React from "react";
+import createReactClass from "create-react-class";
+import PropTypes from "prop-types";
+import dynamic from "next/dynamic";
 
 let Materialize = null;
-if (typeof window !== 'undefined') {
-  Materialize = require('materialize-css');
+if (typeof window !== "undefined") {
+  Materialize = require("materialize-css");
 }
 
-import Attribute from '../../shared/attributes/attribute'
-import RichText from '../../../components/Shared/RichText'
-import Follow from 'v1/views/user/Follow'
-import Attributes from './_attributes'
-import AttributeTable from 'v1/shared/attributes/attribute_table'
-import $ from 'jquery'
-import HashUtils from '../../utils/HashUtils'
-import Flash from '../../../utils/Flash'
+import Attribute from "../../shared/attributes/attribute";
+import RichText from "../../../components/Shared/RichText";
+import Follow from "v1/views/user/Follow";
+import Attributes from "./_attributes";
+import AttributeTable from "v1/shared/attributes/attribute_table";
+import $ from "jquery";
+import HashUtils from "../../utils/HashUtils";
+import Flash from "../../../utils/Flash";
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
@@ -31,98 +31,96 @@ import Flash from '../../../utils/Flash'
  * DS208: Avoid top-level this
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
-let CharacterCard
+let CharacterCard;
 export default CharacterCard = createReactClass({
   getInitialState() {
-    return {character: this.props.character}
+    return { character: this.props.character };
   },
 
   UNSAFE_componentWillUpdate(newProps) {
     if (newProps.character !== this.props.character) {
-      return this.setState({character: newProps.character})
+      return this.setState({ character: newProps.character });
     }
   },
 
-  handleAttributeChange(data, onSuccess = () => {
-  }, onError = () => {
-  }) {
-    const postData = {character: {}}
-    postData.character[data.id] = data.value
+  handleAttributeChange(data, onSuccess = () => {}, onError = () => {}) {
+    const postData = { character: {} };
+    postData.character[data.id] = data.value;
 
     return $.ajax({
       url: this.state.character.path,
-      type: 'PATCH',
+      type: "PATCH",
       data: postData,
-      success: data => {
-        this.setState({character: data})
-        return onSuccess()
+      success: (data) => {
+        this.setState({ character: data });
+        return onSuccess();
       },
-      error: error => {
+      error: (error) => {
         if (error.status === 401 || error.status === 500) {
-          Flash.error(error.statusText)
+          Flash.error(error.statusText);
         }
         return onError({
           value:
             error.JSONData != null
               ? error.JSONData.errors[data.id]
               : error.statusText,
-        })
+        });
       },
-    })
+    });
   },
 
   handleSpecialNotesChange(data) {
     return new Promise((resolve, reject) => {
       $.ajax({
         url: this.state.character.path,
-        type: 'PATCH',
-        data: {character: data},
-        success: data => {
-          this.setState({character: data})
-          resolve(data)
+        type: "PATCH",
+        data: { character: data },
+        success: (data) => {
+          this.setState({ character: data });
+          resolve(data);
         },
 
-        error: error => {
+        error: (error) => {
           reject(
             error.JSONData != null
-              ? error.JSONData.errors['special_notes']
-              : undefined
-          )
+              ? error.JSONData.errors["special_notes"]
+              : undefined,
+          );
         },
-      })
-    })
+      });
+    });
   },
 
   handleProfileImageEdit() {
-    return $(document).trigger('app:character:profileImage:edit')
+    return $(document).trigger("app:character:profileImage:edit");
   },
 
   _handleFollow(f) {
     return this.setState(
-      HashUtils.set(this.state, 'character.followed', f),
+      HashUtils.set(this.state, "character.followed", f),
       () =>
         Materialize.toast({
-          html: `Character ${f ? 'followed!' : 'unfollowed.'}`,
+          html: `Character ${f ? "followed!" : "unfollowed."}`,
           displayLength: 3000,
-          classes: 'green',
-        })
-    )
+          classes: "green",
+        }),
+    );
   },
 
   _handleChange(char) {
     if (this.props.onChange) {
-      this.props.onChange(char)
+      this.props.onChange(char);
     }
-    return this.setState({character: char})
+    return this.setState({ character: char });
   },
 
   render() {
-    let attributeUpdate, editable, nickname, notesUpdate
+    let attributeUpdate, editable, nickname, notesUpdate;
 
     if (this.props.edit) {
-      attributeUpdate = this.handleAttributeChange
-      notesUpdate = this.handleSpecialNotesChange
-      editable = true
+      attributeUpdate = this.handleAttributeChange;
+      notesUpdate = this.handleSpecialNotesChange;
+      editable = true;
     }
 
     const description = (
@@ -151,45 +149,45 @@ export default CharacterCard = createReactClass({
         {(this.state.character.special_notes || editable) && (
           <div className="important-notes margin-top--large margin-bottom--medium">
             <RichText
-              title={'Important Notes'}
+              title={"Important Notes"}
               slim
-              name={'special_notes'}
-              contentHtml={this.state.character.special_notes_html || ''}
+              name={"special_notes"}
+              contentHtml={this.state.character.special_notes_html || ""}
               content={this.state.character.special_notes}
               onChange={notesUpdate}
             />
           </div>
         )}
       </div>
-    )
+    );
 
     if (this.props.nickname) {
       nickname = (
         <span className="nickname"> ({this.state.character.nickname})</span>
-      )
+      );
     }
 
-    let prefixClass = 'title-prefix'
-    const suffixClass = 'title-suffix'
+    let prefixClass = "title-prefix";
+    const suffixClass = "title-suffix";
 
     if (this.props.officialPrefix) {
-      prefixClass += ' official'
+      prefixClass += " official";
     }
 
     if (this.props.officialSuffix) {
-      prefixClass += ' official'
+      prefixClass += " official";
     }
 
     const gravity_crop = {
-      center: {objectPosition: 'center'},
-      north: {objectPosition: 'top'},
-      south: {objectPosition: 'bottom'},
-      east: {objectPosition: 'right'},
-      west: {objectPosition: 'left'},
-    }
+      center: { objectPosition: "center" },
+      north: { objectPosition: "top" },
+      south: { objectPosition: "bottom" },
+      east: { objectPosition: "right" },
+      west: { objectPosition: "left" },
+    };
 
     return (
-      <div className="character-card" style={{minHeight: 400}}>
+      <div className="character-card" style={{ minHeight: 400 }}>
         <div className="character-details">
           <div className="heading">
             <div className="right">
@@ -219,7 +217,7 @@ export default CharacterCard = createReactClass({
         </div>*/}
 
         <div className="character-image" onClick={this.handleImageClick}>
-          <div className="slant"/>
+          <div className="slant" />
           <img
             src={this.state.character.profile_image.medium}
             data-image-id={this.state.character.profile_image.id}
@@ -239,6 +237,6 @@ export default CharacterCard = createReactClass({
           )}
         </div>
       </div>
-    )
+    );
   },
-})
+});

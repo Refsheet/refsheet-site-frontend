@@ -6,17 +6,17 @@
     react/no-string-refs,
     react/react-in-jsx-scope,
 */
-import React from 'react'
-import createReactClass from 'create-react-class'
-import PropTypes from 'prop-types'
-import UserCharacterGroupLink from './groups/UserCharacterGroupLink'
-import UserCharacterGroupTrash from './groups/UserCharacterGroupTrash'
-import {Link} from 'react-router-dom'
-import UserCharacterGroupForm from './groups/UserCharacterGroupForm'
+import React from "react";
+import createReactClass from "create-react-class";
+import PropTypes from "prop-types";
+import UserCharacterGroupLink from "./groups/UserCharacterGroupLink";
+import UserCharacterGroupTrash from "./groups/UserCharacterGroupTrash";
+import { Link } from "react-router-dom";
+import UserCharacterGroupForm from "./groups/UserCharacterGroupForm";
 
-import $ from 'jquery'
-import Model from '../../../utils/Model'
-import NumberUtils from '../../../utils/NumberUtils'
+import $ from "jquery";
+import Model from "../../../utils/Model";
+import NumberUtils from "../../../utils/NumberUtils";
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
@@ -26,7 +26,7 @@ import NumberUtils from '../../../utils/NumberUtils'
  * DS208: Avoid top-level this
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
-let Groups
+let Groups;
 export default Groups = createReactClass({
   propTypes: {
     userLink: PropTypes.string.isRequired,
@@ -41,70 +41,70 @@ export default Groups = createReactClass({
   },
 
   getInitialState() {
-    return {dragging: false}
+    return { dragging: false };
   },
 
   componentDidMount() {
-    return this._initialize()
+    return this._initialize();
   },
 
   componentDidUpdate() {
-    return this._initialize()
+    return this._initialize();
   },
 
   _initialize() {
-    const $list = $(this.refs.list)
+    const $list = $(this.refs.list);
 
     return $list.sortable({
-      items: 'li.sortable-link',
-      placeholder: 'drop-target',
+      items: "li.sortable-link",
+      placeholder: "drop-target",
       forcePlaceholderSize: true,
       start: () => {
-        return this.setState({dragging: true})
+        return this.setState({ dragging: true });
       },
 
       stop: (_, el) => {
-        return this.setState({dragging: false})
+        return this.setState({ dragging: false });
       },
 
       update: (_, el) => {
-        this.setState({dragging: false})
-        if ($(el.item[0]).hasClass('dropped')) {
-          $(el.item[0]).removeClass('dropped')
-          return $list.sortable('cancel')
+        this.setState({ dragging: false });
+        if ($(el.item[0]).hasClass("dropped")) {
+          $(el.item[0]).removeClass("dropped");
+          return $list.sortable("cancel");
         } else {
-          const $item = $(el.item[0])
+          const $item = $(el.item[0]);
           const position = $item
             .parent()
-            .children('.sortable-link')
-            .index($item)
-          return this._handleSwap($item.data('group-id'), position)
+            .children(".sortable-link")
+            .index($item);
+          return this._handleSwap($item.data("group-id"), position);
         }
       },
-    })
+    });
   },
 
   _handleSwap(id, position) {
-    const group = this.props.groups.filter(g => g.slug === id)[0]
+    const group = this.props.groups.filter((g) => g.slug === id)[0];
 
     return Model.put(
       group.path,
-      {character_group: {row_order_position: position}},
-      data => {
-        return this.props.onSort(data, position)
-      }
-    )
+      { character_group: { row_order_position: position } },
+      (data) => {
+        return this.props.onSort(data, position);
+      },
+    );
   },
 
   render() {
-    let groups
-    const {onChange, editable} = this.props
-    const dragging = false
+    let groups;
+    const { onChange, editable } = this.props;
+    const dragging = false;
 
     if (this.props.groups.length) {
-      const _this = this
+      const _this = this;
 
-      groups = this.props.groups.map(group => (
+      groups = this.props.groups.map((group) => (
         <UserCharacterGroupLink
           group={group}
           editable={editable}
@@ -112,15 +112,13 @@ export default Groups = createReactClass({
           active={_this.props.activeGroupId === group.slug}
           key={group.slug}
         />
-      ))
+      ));
     }
 
     return (
       <div>
         <ul className="character-group-list margin-bottom--none" ref="list">
-          <li
-            className={'all fixed'}
-          >
+          <li className={"all fixed"}>
             <i className="material-icons left folder">person</i>
             <Link to={this.props.userLink} className="name">
               All Characters
@@ -143,10 +141,10 @@ export default Groups = createReactClass({
                 activeGroupId={this.props.activeGroupId}
               />
             ) : (
-              <UserCharacterGroupForm onChange={this.props.onChange}/>
+              <UserCharacterGroupForm onChange={this.props.onChange} />
             )}
 
-            {dragging && <UserCharacterGroupTrash/>}
+            {dragging && <UserCharacterGroupTrash />}
           </ul>
         )}
 
@@ -160,6 +158,6 @@ export default Groups = createReactClass({
           </div>
         )}
       </div>
-    )
+    );
   },
-})
+});

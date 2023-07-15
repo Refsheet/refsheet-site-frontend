@@ -1,8 +1,8 @@
-import React from 'react'
-import LookAndFeel from './LookAndFeel'
+import React from "react";
+import LookAndFeel from "./LookAndFeel";
 
 const Site = () => {
-  return <LookAndFeel />
-}
+  return <LookAndFeel />;
+};
 
-export default Site
+export default Site;

@@ -13,49 +13,49 @@ class StringUtils {
 
     return string
       .toLowerCase()
-      .replace(/_(.)/g, $1 => $1.toUpperCase())
-      .replace(/_/g, '')
+      .replace(/_(.)/g, ($1) => $1.toUpperCase())
+      .replace(/_/g, "");
   }
 
   static camelizeKeys(object) {
-    const out = {}
+    const out = {};
 
     for (let k in object) {
-      const v = object[k]
-      out[this.camelize(k)] = v
+      const v = object[k];
+      out[this.camelize(k)] = v;
     }
 
-    return out
+    return out;
   }
 
   static unCamelize(string) {
     return string.replace(
       /([a-z])([A-Z])/g,
-      (a, $0, $1) => $0 + '_' + $1.toLowerCase()
-    )
+      (a, $0, $1) => $0 + "_" + $1.toLowerCase(),
+    );
   }
 
   static unCamelizeKeys(object) {
-    const out = {}
+    const out = {};
 
     for (let k in object) {
-      const v = object[k]
-      out[this.unCamelize(k)] = v
+      const v = object[k];
+      out[this.unCamelize(k)] = v;
     }
 
-    return out
+    return out;
   }
 
   static indifferentKeys(object) {
-    const out = {}
+    const out = {};
 
     for (let k in object) {
-      const v = object[k]
-      out[k] = v
-      out[this.camelize(k)] = v
+      const v = object[k];
+      out[k] = v;
+      out[this.camelize(k)] = v;
     }
 
-    return out
+    return out;
   }
 }
-export default StringUtils
+export default StringUtils;

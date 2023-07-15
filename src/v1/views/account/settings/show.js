@@ -7,19 +7,19 @@
     react/no-deprecated,
     react/react-in-jsx-scope,
 */
-import React from 'react'
-import createReactClass from 'create-react-class'
-import PropTypes from 'prop-types'
-import Form from '../../../shared/forms/Form'
-import Row from '../../../shared/material/Row'
-import Column from '../../../shared/material/Column'
-import Input from '../../../shared/forms/Input'
-import Submit from '../../../shared/forms/Submit'
-import DeleteUser from '../../../../components/Settings/Account/DeleteUser'
+import React from "react";
+import createReactClass from "create-react-class";
+import PropTypes from "prop-types";
+import Form from "../../../shared/forms/Form";
+import Row from "../../../shared/material/Row";
+import Column from "../../../shared/material/Column";
+import Input from "../../../shared/forms/Input";
+import Submit from "../../../shared/forms/Submit";
+import DeleteUser from "../../../../components/Settings/Account/DeleteUser";
 
-import Error from '../../../../components/Shared/Error'
-import compose, {withCurrentUser} from '../../../../utils/compose'
-import EmailConfirmationNag from '../../../../components/User/EmailConfirmationNag'
+import Error from "../../../../components/Shared/Error";
+import compose, { withCurrentUser } from "../../../../utils/compose";
+import EmailConfirmationNag from "../../../../components/User/EmailConfirmationNag";
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
@@ -29,38 +29,41 @@ import EmailConfirmationNag from '../../../../components/User/EmailConfirmationN
  */
 class Show extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
-    this._handleFormChange = this._handleFormChange.bind(this)
+    this._handleFormChange = this._handleFormChange.bind(this);
     this.state = {
       user: props.currentUser,
-    }
+    };
   }
 
   _handleFormChange(user) {
-    this.props.setCurrentUser(user)
-    if (typeof window != 'undefined') import('materialize-css').then((Materialize) => Materialize.toast({
-      html: 'Settings Saved',
-      displayLength: 3000,
-      classes: 'green',
-    }))
+    this.props.setCurrentUser(user);
+    if (typeof window != "undefined")
+      import("materialize-css").then((Materialize) =>
+        Materialize.toast({
+          html: "Settings Saved",
+          displayLength: 3000,
+          classes: "green",
+        }),
+      );
   }
 
   render() {
     if (!this.state.user) {
       return (
-        <div className={'account-settings'}>
+        <div className={"account-settings"}>
           <Error
             error={
-              'Refsheet thinks, for whatever reason, that you are not signed in. If you are actually signed in, please report this via Twitter.'
+              "Refsheet thinks, for whatever reason, that you are not signed in. If you are actually signed in, please report this via Twitter."
             }
           />
         </div>
-      )
+      );
     }
     return (
       <div className="account-settings">
-        <EmailConfirmationNag/>
+        <EmailConfirmationNag />
         <Form
           action={this.state.user.path}
           className="card sp"
@@ -76,17 +79,17 @@ class Show extends React.Component {
           <div className="card-content padding-bottom--none">
             <Row noMargin>
               <Column m={6}>
-                <Input name="name" type="text" label="Display Name"/>
+                <Input name="name" type="text" label="Display Name" />
               </Column>
 
               <Column m={6}>
-                <Input name="email" type="email" label="Email Address"/>
+                <Input name="email" type="email" label="Email Address" />
               </Column>
             </Row>
 
             <Row noMargin>
               <Column m={6}>
-                <Input name="username" type="text" label="Username"/>
+                <Input name="username" type="text" label="Username" />
               </Column>
 
               <Column m={6}>
@@ -143,10 +146,10 @@ class Show extends React.Component {
           </div>
         </Form>
 
-        <DeleteUser user={this.state.user}/>
+        <DeleteUser user={this.state.user} />
       </div>
-    )
+    );
   }
 }
 
-export default compose(withCurrentUser(true))(Show)
+export default compose(withCurrentUser(true))(Show);

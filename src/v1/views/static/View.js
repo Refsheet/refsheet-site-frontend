@@ -13,30 +13,30 @@
  * DS208: Avoid top-level this
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
-import React from 'react'
-import PropTypes from 'prop-types'
-import createReactClass from 'create-react-class'
-import Main from '../../shared/Main'
-import StateUtils from '../../utils/StateUtils'
-import { sanitize } from '../../../utils/sanitize'
+import React from "react";
+import PropTypes from "prop-types";
+import createReactClass from "create-react-class";
+import Main from "../../shared/Main";
+import StateUtils from "../../utils/StateUtils";
+import { sanitize } from "../../../utils/sanitize";
 
-let View
+let View;
 export default View = createReactClass({
   contextTypes: {
     eagerLoad: PropTypes.object,
   },
 
-  dataPath: '/static/:pageId',
+  dataPath: "/static/:pageId",
 
   paramMap: {
-    pageId: 'id',
+    pageId: "id",
   },
 
   getInitialState() {
     return {
       page: null,
       error: null,
-    }
+    };
   },
 
   componentDidMount() {
@@ -46,11 +46,11 @@ export default View = createReactClass({
           pageId:
             (this.props.match != null
               ? this.props.match.params.pageId
-              : undefined) || this.props.location.pathname.replace(/^\//, ''),
+              : undefined) || this.props.location.pathname.replace(/^\//, ""),
         },
       },
-    }
-    return StateUtils.load(this, 'page', props)
+    };
+    return StateUtils.load(this, "page", props);
   },
 
   UNSAFE_componentWillReceiveProps(newProps) {
@@ -63,7 +63,7 @@ export default View = createReactClass({
             ? this.props.match.params.pageId
             : undefined))
     ) {
-      return
+      return;
     }
     const props = {
       match: {
@@ -71,15 +71,15 @@ export default View = createReactClass({
           pageId:
             (newProps.match != null
               ? newProps.match.params.pageId
-              : undefined) || newProps.location.pathname.replace(/^\//, ''),
+              : undefined) || newProps.location.pathname.replace(/^\//, ""),
         },
       },
-    }
-    return StateUtils.reload(this, 'page', props, {
+    };
+    return StateUtils.reload(this, "page", props, {
       params: {
         pageId: this.state.page != null ? this.state.page.id : undefined,
       },
-    })
+    });
   },
 
   //== Render
@@ -94,9 +94,9 @@ export default View = createReactClass({
             }}
           />
         </Main>
-      )
+      );
     } else {
-      return <Main />
+      return <Main />;
     }
   },
-})
+});

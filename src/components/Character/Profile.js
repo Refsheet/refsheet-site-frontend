@@ -1,23 +1,22 @@
-import React, {Component} from 'react'
-import PropTypes from 'prop-types'
-import ProfileSection from './ProfileSection'
-import c from 'classnames'
-import {Mutation} from '@apollo/client/react/components'
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import ProfileSection from "./ProfileSection";
+import c from "classnames";
+import { Mutation } from "@apollo/client/react/components";
 //graphql.macro
-import dynamic from 'next/dynamic'
+import dynamic from "next/dynamic";
 
 let M = null;
-if (typeof window !== 'undefined') {
-  M = require('materialize-css');
+if (typeof window !== "undefined") {
+  M = require("materialize-css");
 }
 
-
-const createProfileSection = require('./createProfileSection.graphql');
+const createProfileSection = require("./createProfileSection.graphql");
 
 class Profile extends Component {
   handleNewSection(lastSection) {
-    return e => {
-      e.preventDefault()
+    return (e) => {
+      e.preventDefault();
       this.props
         .createProfileSection({
           variables: {
@@ -25,67 +24,67 @@ class Profile extends Component {
             createAfterSectionId: lastSection,
           },
         })
-        .then(({data, errors}) => {
+        .then(({ data, errors }) => {
           if (errors) {
-            console.error(errors)
-            errors.map(e =>
-              M.toast({html: e.message, classes: 'red', displayLength: 3000})
-            )
+            console.error(errors);
+            errors.map((e) =>
+              M.toast({ html: e.message, classes: "red", displayLength: 3000 }),
+            );
           } else {
-            console.log({data})
-            this.props.refetch()
+            console.log({ data });
+            this.props.refetch();
           }
         })
-        .catch(console.error)
-    }
+        .catch(console.error);
+    };
   }
 
   groupProfileSections() {
-    const {profileSections, editable} = this.props
-    const groupOrder = []
-    const groups = {}
+    const { profileSections, editable } = this.props;
+    const groupOrder = [];
+    const groups = {};
 
-    let lastId = 'main'
+    let lastId = "main";
 
-    let sorted = [...profileSections]
-    sorted.sort((a, b) => (a.row_order || 0) - (b.row_order || 0))
+    let sorted = [...profileSections];
+    sorted.sort((a, b) => (a.row_order || 0) - (b.row_order || 0));
 
     sorted.map((section, i) => {
       if (section.title || editable) {
-        lastId = section.id
+        lastId = section.id;
       }
 
       if (!groups[lastId]) {
-        groupOrder.push(lastId)
-        groups[lastId] = []
+        groupOrder.push(lastId);
+        groups[lastId] = [];
       }
 
       groups[lastId].push({
         ...section,
         first: i === 0,
         last: i >= profileSections.length - 1,
-      })
-    })
+      });
+    });
 
-    return [groups, groupOrder]
+    return [groups, groupOrder];
   }
 
   renderProfileSections() {
-    const {editable, refetch, characterId, character} = this.props
-    const [groups, groupOrder] = this.groupProfileSections()
-    const render = []
+    const { editable, refetch, characterId, character } = this.props;
+    const [groups, groupOrder] = this.groupProfileSections();
+    const render = [];
 
     for (let id of groupOrder) {
-      const sections = groups[id]
-      let lastSectionId = null
+      const sections = groups[id];
+      let lastSectionId = null;
 
       const renderedSections = sections.map(function (section, i) {
-        lastSectionId = section.id
+        lastSectionId = section.id;
 
         const classNames = c({
-          'margin-bottom--none': sections.length > 0,
-          'margin-top--none': i > 0,
-        })
+          "margin-bottom--none": sections.length > 0,
+          "margin-top--none": i > 0,
+        });
 
         return (
           <ProfileSection
@@ -98,34 +97,34 @@ class Profile extends Component {
             onChange={refetch}
             character={character}
           />
-        )
-      })
+        );
+      });
 
       render.push(
-        <div id={'s:' + id} key={id} className="profile-scrollspy">
+        <div id={"s:" + id} key={id} className="profile-scrollspy">
           {renderedSections}
-        </div>
-      )
+        </div>,
+      );
 
       if (editable) {
         render.push(
           <a
-            key={'new-' + id}
+            key={"new-" + id}
             className="btn btn-flat block margin-top--medium margin-bottom--large"
-            style={{border: '1px dashed #ffffff33'}}
+            style={{ border: "1px dashed #ffffff33" }}
             onClick={this.handleNewSection(lastSectionId).bind(this)}
           >
             Add Section
-          </a>
-        )
+          </a>,
+        );
       }
     }
 
-    return render
+    return render;
   }
 
   render() {
-    return <div id="profile">{this.renderProfileSections()}</div>
+    return <div id="profile">{this.renderProfileSections()}</div>;
   }
 }
 
@@ -134,18 +133,18 @@ Profile.propTypes = {
     PropTypes.shape({
       id: PropTypes.string.isRequired,
       title: PropTypes.string,
-    })
+    }),
   ),
   editable: PropTypes.bool,
   characterId: PropTypes.string.isRequired,
-}
+};
 
-const CreateSectionMutation = props => (
+const CreateSectionMutation = (props) => (
   <Mutation mutation={createProfileSection}>
-    {createProfileSection => (
-      <Profile {...props} createProfileSection={createProfileSection}/>
+    {(createProfileSection) => (
+      <Profile {...props} createProfileSection={createProfileSection} />
     )}
   </Mutation>
-)
+);
 
-export default CreateSectionMutation
+export default CreateSectionMutation;

@@ -1,14 +1,14 @@
-import React from 'react'
-import createReactClass from 'create-react-class'
-import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
-import Icon from 'v1/shared/material/Icon'
-import Model from '../../utils/Model'
-import NumberUtils from '../../utils/NumberUtils'
+import React from "react";
+import createReactClass from "create-react-class";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import Icon from "v1/shared/material/Icon";
+import Model from "../../utils/Model";
+import NumberUtils from "../../utils/NumberUtils";
 
-import $ from 'jquery'
-import compose from '../../../utils/compose'
-import Thumbnail from '../../../components/Image/Thumbnail'
+import $ from "jquery";
+import compose from "../../../utils/compose";
+import Thumbnail from "../../../components/Image/Thumbnail";
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
@@ -32,149 +32,150 @@ const gallery_image = createReactClass({
   },
 
   getInitialState() {
-    return {image: this.props.image}
+    return { image: this.props.image };
   },
 
   load(image) {
-    return this.setState({image}, this._initialize)
+    return this.setState({ image }, this._initialize);
   },
 
   _handleFavoriteClick(e) {
     const action = (
       this.state.image != null ? this.state.image.is_favorite : undefined
     )
-      ? 'delete'
-      : 'post'
+      ? "delete"
+      : "post";
     Model.request(
       action,
-      '/media/' + this.state.image.id + '/favorites',
+      "/media/" + this.state.image.id + "/favorites",
       {},
-      data => {
-        return this._handleFavorite(!!data.media_id)
-      }
-    )
-    return e.preventDefault()
+      (data) => {
+        return this._handleFavorite(!!data.media_id);
+      },
+    );
+    return e.preventDefault();
   },
 
   _handleFavorite(fav) {
-    const o = this.state.image
-    o.is_favorite = fav
-    this.setState({image: o})
-    return $(document).trigger('app:image:update', o)
+    const o = this.state.image;
+    o.is_favorite = fav;
+    this.setState({ image: o });
+    return $(document).trigger("app:image:update", o);
   },
 
   _handleClick(e) {
-    const $target = $(e.target)
-    if ($target.prop('tagName') === 'IMG') {
+    const $target = $(e.target);
+    if ($target.prop("tagName") === "IMG") {
       if (this.props.onClick && this.props.onClick(this.state.image)) {
         // nop
       } else {
         this.props.dispatch({
-          type: 'OPEN_LIGHTBOX',
+          type: "OPEN_LIGHTBOX",
           mediaId: this.state.image != null ? this.state.image.id : undefined,
           gallery: this.props.gallery,
-        })
+        });
       }
     } else if (this.state.image.nsfw && !this.props.session.nsfwOk) {
-      this.props.dispatch({type: 'SET_NSFW_MODE', nsfwOk: true})
+      this.props.dispatch({ type: "SET_NSFW_MODE", nsfwOk: true });
     }
 
-    return e.preventDefault()
+    return e.preventDefault();
   },
 
   _initialize() {
     if (!this.state.image) {
-      return
+      return;
     }
 
-    const $image = $(this.refs.image)
+    const $image = $(this.refs.image);
 
     if (this.props.editable) {
-      const _this = this
+      const _this = this;
 
       $image.draggable({
         revert: true,
         opacity: 0.6,
-        appendTo: 'body',
+        appendTo: "body",
         cursorAt: {
           top: 5,
           left: 5,
         },
         helper: () => {
-          return $(`<div class='card-panel'>${this.state.image.title}</div>`)
+          return $(`<div class='card-panel'>${this.state.image.title}</div>`);
         },
-      })
+      });
 
       return $image.droppable({
-        tolerance: 'pointer',
+        tolerance: "pointer",
         drop: (event, ui) => {
-          const $source = ui.draggable
-          const sourceId = $source.data('gallery-image-id')
+          const $source = ui.draggable;
+          const sourceId = $source.data("gallery-image-id");
           if (_this.props.onSwap) {
-            return _this.props.onSwap(sourceId, this.state.image.id)
+            return _this.props.onSwap(sourceId, this.state.image.id);
           }
         },
-      })
+      });
     }
   },
 
   _updateEvent(e, image) {
     if (!this.state.image || !image || this.state.image.id !== image.id) {
-      return
+      return;
     }
-    return this.load(image)
+    return this.load(image);
   },
 
   componentDidMount() {
-    this._initialize()
+    this._initialize();
 
-    return $(document).on('app:image:update', this._updateEvent)
+    return $(document).on("app:image:update", this._updateEvent);
   },
 
   componentWillUnmount() {
-    return $(document).off('app:image:update', this._updateEvent)
+    return $(document).off("app:image:update", this._updateEvent);
   },
 
   UNSAFE_componentWillReceiveProps(newProps) {
     if (newProps.image != null) {
-      return this.load(newProps.image)
+      return this.load(newProps.image);
     }
   },
 
   render() {
-    const {noOverlay} = this.props
+    const { noOverlay } = this.props;
 
-    let contents
-    const classNames = ['gallery-image']
+    let contents;
+    const classNames = ["gallery-image"];
     if (this.props.className) {
-      classNames.push(this.props.className)
+      classNames.push(this.props.className);
     }
     if (this.props.editable) {
-      classNames.push('draggable')
+      classNames.push("draggable");
     }
 
     if (this.state.image) {
-      let imageSrc
-      if (typeof this.state.image.url === 'object') {
+      let imageSrc;
+      if (typeof this.state.image.url === "object") {
         imageSrc =
-          this.state.image.url[this.props.size] || this.state.image.url['large']
+          this.state.image.url[this.props.size] ||
+          this.state.image.url["large"];
       } else {
         imageSrc =
-          this.state.image[this.props.size] || this.state.image['large']
+          this.state.image[this.props.size] || this.state.image["large"];
       }
 
       const showNsfwWarning =
         this.state.image.nsfw &&
-        !(this.props.session != null ? this.props.session.nsfw_ok : undefined)
+        !(this.props.session != null ? this.props.session.nsfw_ok : undefined);
 
       contents = (
         <a
           ref="image"
-          className={classNames.join(' ')}
+          className={classNames.join(" ")}
           onClick={this._handleClick}
           href={this.state.image.path}
           data-gallery-image-id={this.state.image.id}
-          style={{backgroundColor: this.state.image.background_color}}
+          style={{ backgroundColor: this.state.image.background_color }}
         >
           {showNsfwWarning && (
             <div className="nsfw-cover">
@@ -191,7 +192,7 @@ const gallery_image = createReactClass({
                   onClick={this._handleFavoriteClick}
                 >
                   <Icon>
-                    {this.state.image.is_favorite ? 'star' : 'star_outline'}
+                    {this.state.image.is_favorite ? "star" : "star_outline"}
                   </Icon>
                   &nbsp;{NumberUtils.format(this.state.image.favorites_count)}
                 </div>
@@ -219,29 +220,29 @@ const gallery_image = createReactClass({
             title={this.state.image.title}
           />
         </a>
-      )
+      );
     } else {
-      classNames.push('image-placeholder')
+      classNames.push("image-placeholder");
 
-      contents = <div className={classNames.join(' ')}/>
+      contents = <div className={classNames.join(" ")} />;
     }
 
     if (this.props.wrapperClassName) {
-      return <div className={this.props.wrapperClassName}>{contents}</div>
+      return <div className={this.props.wrapperClassName}>{contents}</div>;
     } else {
-      return contents
+      return contents;
     }
   },
-})
+});
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   currentUser: state.session.currentUser,
   session: state.session,
-})
+});
 
-const V1GalleryImage = compose(connect(mapStateToProps))(gallery_image)
+const V1GalleryImage = compose(connect(mapStateToProps))(gallery_image);
 
-const V2ThumbnailWrapper = props => {
+const V2ThumbnailWrapper = (props) => {
   /*
   created_at,
         image_processing,
@@ -258,7 +259,7 @@ const V2ThumbnailWrapper = props => {
         url: { medium: src }
    */
 
-  const aspect_ratio = props.aspectRatio || 1
+  const aspect_ratio = props.aspectRatio || 1;
 
   const v2props = {
     ...props,
@@ -269,11 +270,11 @@ const V2ThumbnailWrapper = props => {
     style: {
       paddingBottom: `${aspect_ratio * 100}%`,
     },
-  }
+  };
 
-  return <Thumbnail flat {...v2props} />
-}
+  return <Thumbnail flat {...v2props} />;
+};
 
-export default V2ThumbnailWrapper
+export default V2ThumbnailWrapper;
 
-export {V1GalleryImage}
+export { V1GalleryImage };

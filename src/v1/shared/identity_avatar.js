@@ -1,7 +1,7 @@
-import React from 'react'
-import createReactClass from 'create-react-class'
-import PropTypes from 'prop-types'
-import StringUtils from '../../utils/StringUtils'
+import React from "react";
+import createReactClass from "create-react-class";
+import PropTypes from "prop-types";
+import StringUtils from "../../utils/StringUtils";
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
@@ -12,7 +12,7 @@ import StringUtils from '../../utils/StringUtils'
  * DS208: Avoid top-level this
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
-let IdentityAvatar
+let IdentityAvatar;
 export default IdentityAvatar = createReactClass({
   propTypes: {
     src: PropTypes.shape({
@@ -26,27 +26,27 @@ export default IdentityAvatar = createReactClass({
   },
 
   render() {
-    let imgShadow, nameColor
-    const to = StringUtils.indifferentKeys(this.props.src)
-    const user = undefined
+    let imgShadow, nameColor;
+    const to = StringUtils.indifferentKeys(this.props.src);
+    const user = undefined;
     if (!to.type) {
-      to.type = 'user'
+      to.type = "user";
     }
 
     if (
       to.is_admin ||
-      (typeof user !== 'undefined' && user !== null ? user.is_admin : undefined)
+      (typeof user !== "undefined" && user !== null ? user.is_admin : undefined)
     ) {
-      imgShadow = '0 0 3px 1px #2480C8'
-      nameColor = '#2480C8'
+      imgShadow = "0 0 3px 1px #2480C8";
+      nameColor = "#2480C8";
     } else if (
       to.is_patron ||
-      (typeof user !== 'undefined' && user !== null
+      (typeof user !== "undefined" && user !== null
         ? user.is_patron
         : undefined)
     ) {
-      imgShadow = '0 0 3px 1px #F96854'
-      nameColor = '#F96854'
+      imgShadow = "0 0 3px 1px #F96854";
+      nameColor = "#F96854";
     }
 
     return (
@@ -58,6 +58,6 @@ export default IdentityAvatar = createReactClass({
         height={48}
         width={48}
       />
-    )
+    );
   },
-})
+});

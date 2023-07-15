@@ -5,20 +5,20 @@
     react/no-deprecated,
     react/react-in-jsx-scope,
 */
-import React from 'react'
-import PropTypes from 'prop-types'
-import createReactClass from 'create-react-class'
-import Main from '../../shared/Main'
-import Form from '../../shared/forms/Form'
-import Input from '../../shared/forms/Input'
-import Submit from '../../shared/forms/Submit'
-import {Link} from 'react-router-dom';
-import {withRouter} from 'utils/withRouter'
+import React from "react";
+import PropTypes from "prop-types";
+import createReactClass from "create-react-class";
+import Main from "../../shared/Main";
+import Form from "../../shared/forms/Form";
+import Input from "../../shared/forms/Input";
+import Submit from "../../shared/forms/Submit";
+import { Link } from "react-router-dom";
+import { withRouter } from "utils/withRouter";
 
-import $ from 'jquery'
-import {setCurrentUser} from '../../../actions'
-import compose from '../../../utils/compose'
-import {connect} from 'react-redux'
+import $ from "jquery";
+import { setCurrentUser } from "../../../actions";
+import compose from "../../../utils/compose";
+import { connect } from "react-redux";
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
@@ -39,7 +39,7 @@ const LoginView = createReactClass({
             : undefined,
         password: null,
       },
-    }
+    };
   },
 
   _handleError(user) {
@@ -48,32 +48,32 @@ const LoginView = createReactClass({
         username: this.state.user.username,
         password: null,
       },
-    })
+    });
   },
 
   _handleLogin(session) {
-    const user = session.current_user
+    const user = session.current_user;
 
-    this.props.setCurrentUser(user)
+    this.props.setCurrentUser(user);
 
     const next =
       this.props.history.location &&
       this.props.history.location.query &&
-      this.props.history.location.query.next
+      this.props.history.location.query.next;
 
     if (next) {
-      return (window.location = next)
+      return (window.location = next);
     } else {
-      return this.props.history.push(user.link)
+      return this.props.history.push(user.link);
     }
   },
 
   componentDidMount() {
-    return $('body').addClass('no-footer')
+    return $("body").addClass("no-footer");
   },
 
   componentWillUnmount() {
-    return $('body').removeClass('no-footer')
+    return $("body").removeClass("no-footer");
   },
 
   render() {
@@ -87,13 +87,13 @@ const LoginView = createReactClass({
               action="/session"
               method="POST"
               modelName="user"
-              formName={'login_full'}
+              formName={"login_full"}
               model={this.state.user}
               onError={this._handleError}
               onChange={this._handleLogin}
             >
-              <Input name="username" label="Username" autoFocus/>
-              <Input name="password" type="password" label="Password"/>
+              <Input name="username" label="Username" autoFocus />
+              <Input name="password" type="password" label="Password" />
 
               <Input
                 type="checkbox"
@@ -104,31 +104,31 @@ const LoginView = createReactClass({
               <div className="margin-top--medium">
                 <Link
                   to="/register"
-                  query={{username: this.state.username}}
+                  query={{ username: this.state.username }}
                   className="btn grey darken-3"
                 >
                   Register
                 </Link>
 
-                <Submit className={'right'}>Log In</Submit>
+                <Submit className={"right"}>Log In</Submit>
               </div>
             </Form>
           </div>
         </div>
       </Main>
-    )
+    );
   },
-})
+});
 
-const mapStateToProps = ({session}) => ({
+const mapStateToProps = ({ session }) => ({
   session,
-})
+});
 
 const mapDispatchToProps = {
   setCurrentUser,
-}
+};
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
-  withRouter
-)(LoginView)
+  withRouter,
+)(LoginView);

@@ -5,20 +5,20 @@
     react/no-deprecated,
     react/react-in-jsx-scope,
 */
-import React from 'react'
-import PropTypes from 'prop-types'
-import createReactClass from 'create-react-class'
-import Form from '../../shared/forms/Form'
-import Input from '../../shared/forms/Input'
-import Row from '../../shared/material/Row'
-import Column from '../../shared/material/Column'
-import { Link } from 'react-router-dom'
-import Submit from '../../shared/forms/Submit'
+import React from "react";
+import PropTypes from "prop-types";
+import createReactClass from "create-react-class";
+import Form from "../../shared/forms/Form";
+import Input from "../../shared/forms/Input";
+import Row from "../../shared/material/Row";
+import Column from "../../shared/material/Column";
+import { Link } from "react-router-dom";
+import Submit from "../../shared/forms/Submit";
 
-import $ from 'jquery'
-import compose from '../../../utils/compose'
-import { connect } from 'react-redux'
-import { setCurrentUser } from '../../../actions'
+import $ from "jquery";
+import compose from "../../../utils/compose";
+import { connect } from "react-redux";
+import { setCurrentUser } from "../../../actions";
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
@@ -35,7 +35,7 @@ const LoginForm = createReactClass({
         password: null,
         remember: true,
       },
-    }
+    };
   },
 
   _handleError(user) {
@@ -44,16 +44,16 @@ const LoginForm = createReactClass({
         username: this.state.user.username,
         password: null,
       },
-    })
+    });
   },
 
   _handleLogin(session) {
-    const user = session.current_user
+    const user = session.current_user;
 
-    this.props.setCurrentUser(user)
+    this.props.setCurrentUser(user);
 
     if (this.props.onLogin) {
-      return this.props.onLogin(session)
+      return this.props.onLogin(session);
     }
   },
 
@@ -63,7 +63,7 @@ const LoginForm = createReactClass({
         action="/session"
         method="POST"
         modelName="user"
-        formName={'login_modal'}
+        formName={"login_modal"}
         model={this.state.user}
         onChange={this._handleLogin}
       >
@@ -89,16 +89,16 @@ const LoginForm = createReactClass({
           </Column>
         </Row>
       </Form>
-    )
+    );
   },
-})
+});
 
 const mapStateToProps = ({ session }) => ({
   session,
-})
+});
 
 const mapDispatchToProps = {
   setCurrentUser,
-}
+};
 
-export default compose(connect(mapStateToProps, mapDispatchToProps))(LoginForm)
+export default compose(connect(mapStateToProps, mapDispatchToProps))(LoginForm);

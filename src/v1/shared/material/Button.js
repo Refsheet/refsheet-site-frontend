@@ -1,6 +1,6 @@
-import React from 'react'
-import createReactClass from 'create-react-class'
-import PropTypes from 'prop-types'
+import React from "react";
+import createReactClass from "create-react-class";
+import PropTypes from "prop-types";
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
@@ -10,7 +10,7 @@ import PropTypes from 'prop-types'
  * DS208: Avoid top-level this
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
-let Button
+let Button;
 export default Button = function (props) {
   const {
     children,
@@ -22,25 +22,25 @@ export default Button = function (props) {
     className,
     target,
     ...others
-  } = props
+  } = props;
 
-  const classNames = ['btn']
+  const classNames = ["btn"];
   if (className) {
-    classNames.push(className)
+    classNames.push(className);
   }
   if (!noWaves) {
-    classNames.push('waves-effect waves-light')
+    classNames.push("waves-effect waves-light");
   }
   if (block) {
-    classNames.push('btn-block')
+    classNames.push("btn-block");
   }
   if (large) {
-    classNames.push('btn-large')
+    classNames.push("btn-large");
   }
 
   return (
     <a
-      className={classNames.join(' ')}
+      className={classNames.join(" ")}
       href={href}
       onClick={onClick}
       target={target}
@@ -48,5 +48,5 @@ export default Button = function (props) {
     >
       {children}
     </a>
-  )
-}
+  );
+};

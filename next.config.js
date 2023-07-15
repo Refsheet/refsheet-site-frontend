@@ -2,35 +2,35 @@ module.exports = {
   webpack: (config) => {
     config.resolve.fallback = {
       ...config.resolve.fallback,
-      fs: false
-    }
+      fs: false,
+    };
 
-    config.resolve.modules.push('./public')
+    config.resolve.modules.push("./public");
 
     config.module.rules.push({
       test: /\.(mp3)$/,
-      loader: 'file-loader'
-    })
+      loader: "file-loader",
+    });
 
     config.module.rules.push({
       test: /\.(graphql|gql)$/,
       exclude: /node_modules/,
-      loader: 'graphql-tag/loader'
-    })
+      loader: "graphql-tag/loader",
+    });
 
     config.output = {
       ...config.output,
-      globalObject: "typeof self !== 'undefined' ? self : this"
-    }
+      globalObject: "typeof self !== 'undefined' ? self : this",
+    };
 
     return config;
   },
 
-  output: 'standalone',
+  output: "standalone",
 
   experimental: {
     images: {
-      allowFutureImage: true
-    }
-  }
-}
+      allowFutureImage: true,
+    },
+  },
+};

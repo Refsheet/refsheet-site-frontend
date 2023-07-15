@@ -1,15 +1,15 @@
-import {createReducer} from 'reducers'
-import * as Actions from 'actions'
-import SessionService from '../services/SessionService'
+import { createReducer } from "reducers";
+import * as Actions from "actions";
+import SessionService from "../services/SessionService";
 
-const identityFromUser = user => {
-  if (!user) return null
+const identityFromUser = (user) => {
+  if (!user) return null;
   return {
     name: user.name,
     avatarUrl: user.avatar_url,
     characterId: null,
-  }
-}
+  };
+};
 
 const handlers = {
   [Actions.SET_CURRENT_USER]: (state, action) => ({
@@ -24,29 +24,29 @@ const handlers = {
       !action.confirmed &&
       // eslint-disable-next-line no-restricted-globals
       !confirm(
-        'By continuing, you assert that you are 18 years or older, and that it is legal for you to view explicit content.'
+        "By continuing, you assert that you are 18 years or older, and that it is legal for you to view explicit content.",
       )
     ) {
-      return state
+      return state;
     }
 
-    SessionService.set({nsfwOk: action.nsfwOk}).then()
-    return {...state, nsfwOk: action.nsfwOk}
+    SessionService.set({ nsfwOk: action.nsfwOk }).then();
+    return { ...state, nsfwOk: action.nsfwOk };
   },
   [Actions.SET_IDENTITY]: (state, action) => {
-    let identity
+    let identity;
 
     if (action.identity) {
-      identity = action.identity
+      identity = action.identity;
     } else {
-      identity = identityFromUser(state.currentUser)
+      identity = identityFromUser(state.currentUser);
     }
 
     return {
       ...state,
       identity,
-    }
+    };
   },
-}
+};
 
-export default createReducer({}, handlers)
+export default createReducer({}, handlers);

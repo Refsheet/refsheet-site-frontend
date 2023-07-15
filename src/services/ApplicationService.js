@@ -1,10 +1,10 @@
-import {ApolloClient, ApolloLink, HttpLink} from '@apollo/client'
-import {setContext} from '@apollo/client/link/context'
-import {InMemoryCache,} from '@apollo/client/cache'
-import fetch from 'node-fetch'
-import ActionCableLink from 'graphql-ruby-client/subscriptions/ActionCableLink'
-import introspectionQueryResultData from '../config/possibleTypes.json'
-import Cookies from 'js-cookie'
+import { ApolloClient, ApolloLink, HttpLink } from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
+import { InMemoryCache } from "@apollo/client/cache";
+import fetch from "node-fetch";
+import ActionCableLink from "graphql-ruby-client/subscriptions/ActionCableLink";
+import introspectionQueryResultData from "../config/possibleTypes.json";
+import Cookies from "js-cookie";
 
 // https://github.com/rails/rails/pull/39543#issuecomment-639804635
 // Package maintainers have the right to maintain their package however they please, but @rails/actioncable
@@ -13,83 +13,83 @@ import Cookies from 'js-cookie'
 
 let cable = null;
 
-if (typeof window !== 'undefined') {
-  const {createConsumer} = require('@rails/actioncable');
+if (typeof window !== "undefined") {
+  const { createConsumer } = require("@rails/actioncable");
   cable = createConsumer();
 }
 
 export const csrf = function () {
-  const token = Cookies.get('CSRF_TOKEN')
+  const token = Cookies.get("CSRF_TOKEN");
 
   if (!token) {
-    console.warn('CSRF Meta tag not found!')
-    return {}
+    console.warn("CSRF Meta tag not found!");
+    return {};
   }
 
   return {
-    'X-CSRF-Token': token,
-  }
-}
+    "X-CSRF-Token": token,
+  };
+};
 
 const HOST =
-  'https://kube.refsheet.net' ||
+  "https://kube.refsheet.net" ||
   (window && window.location && window.location.origin) ||
-  'http://localhost:5000'
+  "http://localhost:5000";
 
 const httpLink = new HttpLink({
   uri: `${HOST}/graphql`,
-  credentials: 'include',
+  credentials: "include",
   fetch,
-})
+});
 
-const authLink = setContext((_, {headers}) => {
+const authLink = setContext((_, { headers }) => {
   return {
     headers: {
       ...headers,
       ...csrf(),
-      Accept: 'application/json',
+      Accept: "application/json",
     },
-  }
-})
+  };
+});
 
-const hasSubscriptionOperation = ({query: {definitions}}) => {
+const hasSubscriptionOperation = ({ query: { definitions } }) => {
   return definitions.some(
-    ({kind, operation}) =>
-      kind === 'OperationDefinition' && operation === 'subscription'
-  )
-}
+    ({ kind, operation }) =>
+      kind === "OperationDefinition" && operation === "subscription",
+  );
+};
 
 const link = ApolloLink.split(
   hasSubscriptionOperation,
-  new ActionCableLink({cable}),
-  httpLink
-)
+  new ActionCableLink({ cable }),
+  httpLink,
+);
 
 const defaultOptions = {
   watchQuery: {
-    fetchPolicy: 'network-only',
-    errorPolicy: 'ignore',
+    fetchPolicy: "network-only",
+    errorPolicy: "ignore",
   },
   query: {
-    fetchPolicy: 'network-only',
-    errorPolicy: 'all',
+    fetchPolicy: "network-only",
+    errorPolicy: "all",
   },
   mutate: {
-    errorPolicy: 'all',
+    errorPolicy: "all",
   },
-}
+};
 
 const cache = new InMemoryCache({
   possibleTypes: introspectionQueryResultData,
-})
+});
 
 export const client = new ApolloClient({
   link: authLink.concat(link),
   cache: cache,
   defaultOptions,
-})
+});
 
-export {default as subscribe} from './buildSubscriptionRender'
-export {HOST as host}
+export { default as subscribe } from "./buildSubscriptionRender";
+export { HOST as host };
 
-export default client
+export default client;

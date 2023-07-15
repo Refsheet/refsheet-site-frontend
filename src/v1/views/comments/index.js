@@ -5,17 +5,17 @@
     react/no-string-refs,
     react/react-in-jsx-scope,
 */
-import React from 'react'
-import createReactClass from 'create-react-class'
-import PropTypes from 'prop-types'
-import Form from '../../shared/forms/Form'
-import Input from '../../shared/forms/Input'
-import Submit from '../../shared/forms/Submit'
-import Icon from '../../shared/material/Icon'
-import RichText from '../../../components/Shared/RichText'
-import { Link } from 'react-router-dom'
-import Model from '../../utils/Model'
-import compose, { withCurrentUser } from '../../../utils/compose'
+import React from "react";
+import createReactClass from "create-react-class";
+import PropTypes from "prop-types";
+import Form from "../../shared/forms/Form";
+import Input from "../../shared/forms/Input";
+import Submit from "../../shared/forms/Submit";
+import Icon from "../../shared/material/Icon";
+import RichText from "../../../components/Shared/RichText";
+import { Link } from "react-router-dom";
+import Model from "../../utils/Model";
+import compose, { withCurrentUser } from "../../../utils/compose";
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
@@ -36,35 +36,35 @@ const Index = createReactClass({
   getInitialState() {
     return {
       model: {
-        comment: '',
+        comment: "",
       },
-    }
+    };
   },
 
   _poll() {
     return (this.poller = setTimeout(() => {
-      return Model.poll(`/media/${this.props.mediaId}/comments`, {}, data => {
+      return Model.poll(`/media/${this.props.mediaId}/comments`, {}, (data) => {
         if (this.props.onCommentsChange) {
-          this.props.onCommentsChange(data)
+          this.props.onCommentsChange(data);
         }
-        return this._poll()
-      })
-    }, 3000))
+        return this._poll();
+      });
+    }, 3000));
   },
 
   componentDidMount() {
     if (this.props.onCommentsChange && this.props.poll) {
-      return this._poll()
+      return this._poll();
     }
   },
 
   componentWillUnmount() {
-    return clearTimeout(this.poller)
+    return clearTimeout(this.poller);
   },
 
   _handleComment(comment) {
     if (this.props.onCommentChange) {
-      return this.props.onCommentChange(comment)
+      return this.props.onCommentChange(comment);
     }
   },
 
@@ -85,7 +85,7 @@ const Index = createReactClass({
               />
             </div>
           </div>
-        )
+        );
       } else {
         return (
           <div className="card flat" key={comment.id}>
@@ -93,9 +93,9 @@ const Index = createReactClass({
               User Deactivated
             </div>
           </div>
-        )
+        );
       }
-    })
+    });
 
     return (
       <div className="flex-vertical">
@@ -110,7 +110,7 @@ const Index = createReactClass({
           <div className="flex-fixed">
             <Form
               className="reply-box"
-              action={'/media/' + this.props.mediaId + '/comments'}
+              action={"/media/" + this.props.mediaId + "/comments"}
               model={this.state.model}
               modelName="comment"
               onChange={this._handleComment}
@@ -131,8 +131,8 @@ const Index = createReactClass({
           </div>
         )}
       </div>
-    )
+    );
   },
-})
+});
 
-export default compose(withCurrentUser())(Index)
+export default compose(withCurrentUser())(Index);

@@ -1,45 +1,45 @@
-import React, {useState} from 'react'
-import {withCurrentUser, withMutations} from '../../utils/compose'
-import Button from '../Styled/Button'
-import gql from 'graphql-tag'
+import React, { useState } from "react";
+import { withCurrentUser, withMutations } from "../../utils/compose";
+import Button from "../Styled/Button";
+import gql from "graphql-tag";
 
 const RESEND_EMAIL_CONFIRMATION = gql`
-    mutation resendEmailConfirmation {
-        resendEmailConfirmation {
-            id
-            email_confirmed_at
-            unconfirmed_email
-        }
+  mutation resendEmailConfirmation {
+    resendEmailConfirmation {
+      id
+      email_confirmed_at
+      unconfirmed_email
     }
-`
+  }
+`;
 
 const EmailConfirmationNag = ({
-                                slim,
-                                currentUser,
-                                permit,
-                                resendEmailConfirmation,
-                                notice,
-                                nosend = false,
-                                children = null,
-                              }) => {
-  let [loading, setLoading] = useState(false)
-  let [sent, setCalled] = useState(false)
+  slim,
+  currentUser,
+  permit,
+  resendEmailConfirmation,
+  notice,
+  nosend = false,
+  children = null,
+}) => {
+  let [loading, setLoading] = useState(false);
+  let [sent, setCalled] = useState(false);
 
   if (
     permit ||
     (currentUser.email_confirmed_at && !currentUser.unconfirmed_email)
   ) {
-    return children
+    return children;
   }
-  let validation = null
-  let message = null
-  let style = {}
+  let validation = null;
+  let message = null;
+  let style = {};
 
   if (slim) {
-    nosend = true
-    style.marginBottom = 0
+    nosend = true;
+    style.marginBottom = 0;
 
-    message = <strong>You must confirm your email.</strong>
+    message = <strong>You must confirm your email.</strong>;
   } else if (notice) {
     message = (
       <>
@@ -48,7 +48,7 @@ const EmailConfirmationNag = ({
         </p>
         <p>{notice}</p>
       </>
-    )
+    );
   } else {
     message = (
       <>
@@ -62,40 +62,40 @@ const EmailConfirmationNag = ({
           for your account if you lose your password.
         </p>
       </>
-    )
+    );
   }
 
-  const handleSend = e => {
-    e.preventDefault()
+  const handleSend = (e) => {
+    e.preventDefault();
     resendEmailConfirmation({
       wrapped: true,
       setLoading,
       setCalled,
-    })
-  }
+    });
+  };
 
   if (!nosend) {
     validation = (
       <>
-        <p className={'margin--none right'} style={{lineHeight: '2.5rem'}}>
-          We sent a validation email to{' '}
+        <p className={"margin--none right"} style={{ lineHeight: "2.5rem" }}>
+          We sent a validation email to{" "}
           <strong>{currentUser.unconfirmed_email || currentUser.email}</strong>.
         </p>
         <Button disabled={loading || sent} onClick={handleSend}>
-          {loading ? 'Sending...' : sent ? 'Email sent.' : 'Resend Email?'}
+          {loading ? "Sending..." : sent ? "Email sent." : "Resend Email?"}
         </Button>
       </>
-    )
+    );
   }
 
   return (
-    <div className={'card-panel red darken-3 white-text'} style={style}>
+    <div className={"card-panel red darken-3 white-text"} style={style}>
       {message}
       {validation}
     </div>
-  )
-}
+  );
+};
 
 export default withMutations({
   resendEmailConfirmation: RESEND_EMAIL_CONFIRMATION,
-})(withCurrentUser()(EmailConfirmationNag))
+})(withCurrentUser()(EmailConfirmationNag));

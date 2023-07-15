@@ -1,41 +1,41 @@
-import React from 'react'
-import NavLink from 'components/Shared/NavLink'
-import {withRouter} from 'utils/withRouter'
-import {withTranslation} from 'react-i18next'
-import Restrict from '../Shared/Restrict'
+import React from "react";
+import NavLink from "components/Shared/NavLink";
+import { withRouter } from "utils/withRouter";
+import { withTranslation } from "react-i18next";
+import Restrict from "../Shared/Restrict";
 
-const SiteNav = ({t}) => {
+const SiteNav = ({ t }) => {
   return (
     <ul className="site-nav visible-on-med-and-up">
       <li>
         <NavLink href="/" exact activeClassName="primary-text">
-          {t('nav.home', 'Home')}
+          {t("nav.home", "Home")}
         </NavLink>
       </li>
 
       <li>
         <NavLink href="/browse" activeClassName="primary-text">
-          {t('nav.characters', 'Characters')}
+          {t("nav.characters", "Characters")}
         </NavLink>
       </li>
 
       <Restrict development>
         <li>
           <NavLink href="/artists" activeClassName="primary-text strong">
-            {t('nav.artists', 'Artists')}
+            {t("nav.artists", "Artists")}
           </NavLink>
         </li>
       </Restrict>
 
       <li>
         <NavLink href="/explore" activeClassName="primary-text">
-          {t('nav.images', 'Images')}
+          {t("nav.images", "Images")}
         </NavLink>
       </li>
 
       <li>
         <NavLink href="/forums" activeClassName="primary-text">
-          {t('nav.forums', 'Forums')}
+          {t("nav.forums", "Forums")}
         </NavLink>
       </li>
 
@@ -47,9 +47,9 @@ const SiteNav = ({t}) => {
       {/*<NavLink href='/marketplace'>Marketplace</NavLink>*/}
       {/*</li>*/}
     </ul>
-  )
-}
+  );
+};
 
-SiteNav.propTypes = {}
+SiteNav.propTypes = {};
 
-export default withTranslation('common')(withRouter(SiteNav))
+export default withTranslation("common")(withRouter(SiteNav));

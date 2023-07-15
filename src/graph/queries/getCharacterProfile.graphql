@@ -1,7 +1,7 @@
 #import '../fragments/DefaultCharacterFields.graphql'
 
 query getCharacterProfile($username: String!, $slug: String!) {
-    getCharacterByUrl(username: $username, slug: $slug) {
-        ...DefaultCharacterFields
-    }
+  getCharacterByUrl(username: $username, slug: $slug) {
+    ...DefaultCharacterFields
+  }
 }

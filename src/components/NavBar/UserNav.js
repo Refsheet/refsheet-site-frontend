@@ -1,15 +1,15 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import UserMenu from './UserMenu'
-import CartMenu from './CartMenu'
-import TransferMenu from './TransferMenu'
-import NotificationMenu from './NotificationMenu'
-import ConversationMenu from './ConversationMenu'
-import UploadMenu from './UploadMenu'
-import Restrict from '../Shared/Restrict'
-import compose from '../../utils/compose'
+import React from "react";
+import PropTypes from "prop-types";
+import UserMenu from "./UserMenu";
+import CartMenu from "./CartMenu";
+import TransferMenu from "./TransferMenu";
+import NotificationMenu from "./NotificationMenu";
+import ConversationMenu from "./ConversationMenu";
+import UploadMenu from "./UploadMenu";
+import Restrict from "../Shared/Restrict";
+import compose from "../../utils/compose";
 
-const UserNav = props => (
+const UserNav = (props) => (
   <ul className="right">
     <CartMenu />
     <TransferMenu />
@@ -18,7 +18,7 @@ const UserNav = props => (
     <NotificationMenu />
     <UserMenu {...props} />
   </ul>
-)
+);
 
 UserNav.propTypes = {
   user: PropTypes.shape({
@@ -27,6 +27,6 @@ UserNav.propTypes = {
   nsfwOk: PropTypes.bool,
   onNsfwClick: PropTypes.func.isRequired,
   onLogoutClick: PropTypes.func.isRequired,
-}
+};
 
-export default compose()(UserNav)
+export default compose()(UserNav);

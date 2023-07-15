@@ -1,8 +1,8 @@
-import React from 'react'
-import createReactClass from 'create-react-class'
-import PropTypes from 'prop-types'
+import React from "react";
+import createReactClass from "create-react-class";
+import PropTypes from "prop-types";
 
-import Icon from 'v1/shared/material/Icon'
+import Icon from "v1/shared/material/Icon";
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
@@ -12,9 +12,9 @@ import Icon from 'v1/shared/material/Icon'
  * DS208: Avoid top-level this
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
-let EmptyList
+let EmptyList;
 export default EmptyList = function (props) {
-  const { coffee, caption } = props
+  const { coffee, caption } = props;
 
   return (
     <div className="empty-list">
@@ -24,7 +24,7 @@ export default EmptyList = function (props) {
 
       {!coffee && <Icon className="cloud">cloud</Icon>}
 
-      <p>{caption || 'Nothing to see here!'}</p>
+      <p>{caption || "Nothing to see here!"}</p>
     </div>
-  )
-}
+  );
+};

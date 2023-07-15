@@ -14,8 +14,8 @@ class StringUtils {
   static camelize(string) {
     return string.replace(
       /(([a-z0-9])_(.))/g,
-      ($0, $1, $2, $3) => $2 + $3.toUpperCase()
-    )
+      ($0, $1, $2, $3) => $2 + $3.toUpperCase(),
+    );
   }
 
   /**
@@ -24,14 +24,14 @@ class StringUtils {
    * @returns {object} - { iAm: "an object" }
    */
   static camelizeKeys(object) {
-    const out = {}
+    const out = {};
 
     for (let k in object) {
-      const v = object[k]
-      out[this.camelize(k)] = v
+      const v = object[k];
+      out[this.camelize(k)] = v;
     }
 
-    return out
+    return out;
   }
 
   /**
@@ -42,8 +42,8 @@ class StringUtils {
   static unCamelize(string) {
     return string.replace(
       /([a-z])([A-Z])/g,
-      (a, $0, $1) => $0 + '_' + $1.toLowerCase()
-    )
+      (a, $0, $1) => $0 + "_" + $1.toLowerCase(),
+    );
   }
 
   /**
@@ -52,10 +52,10 @@ class StringUtils {
    * @returns {string} - I Am A String
    */
   static humanize(string) {
-    const uncamel = this.unCamelize(string)
+    const uncamel = this.unCamelize(string);
     return uncamel.replace(/(^([a-z0-9])|[_.]([a-z0-9]))/gi, (a, $0, $1, $2) =>
-      ($1 || ' ' + $2).toUpperCase()
-    )
+      ($1 || " " + $2).toUpperCase(),
+    );
   }
 
   /**
@@ -64,14 +64,14 @@ class StringUtils {
    * @returns {object} - { i_am: "an object" }
    */
   static unCamelizeKeys(object) {
-    const out = {}
+    const out = {};
 
     for (let k in object) {
-      const v = object[k]
-      out[this.unCamelize(k)] = v
+      const v = object[k];
+      out[this.unCamelize(k)] = v;
     }
 
-    return out
+    return out;
   }
 
   /**
@@ -81,16 +81,16 @@ class StringUtils {
    * @returns {object} - { i_am: "an object", iAm: "an object" }
    */
   static indifferentKeys(object) {
-    const out = {}
+    const out = {};
 
     for (let k in object) {
-      const v = object[k]
-      out[k] = v
-      out[this.camelize(k)] = v
+      const v = object[k];
+      out[k] = v;
+      out[this.camelize(k)] = v;
     }
 
-    return out
+    return out;
   }
 }
 
-export default StringUtils
+export default StringUtils;

@@ -4,10 +4,10 @@
     react/no-deprecated,
     react/react-in-jsx-scope,
 */
-import React from 'react'
-import createReactClass from 'create-react-class'
-import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import React from "react";
+import createReactClass from "create-react-class";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
@@ -16,7 +16,7 @@ import { Link } from 'react-router-dom'
  * DS208: Avoid top-level this
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
-let ForumPost
+let ForumPost;
 export default ForumPost = createReactClass({
   propTypes: {
     posts: PropTypes.array.isRequired,
@@ -24,33 +24,33 @@ export default ForumPost = createReactClass({
   },
 
   render() {
-    let str
+    let str;
     if (this.props.posts.length === 1) {
-      str = 'a discussion'
+      str = "a discussion";
     } else {
-      str = `${this.props.posts.length} discussions`
+      str = `${this.props.posts.length} discussions`;
     }
 
-    const action = this.props.action || 'Replied to'
+    const action = this.props.action || "Replied to";
 
-    const posts = this.props.posts.map(post => {
+    const posts = this.props.posts.map((post) => {
       return (
         <div
           key={post.id}
           className="card-panel z-depth-0"
-          style={{ backgroundColor: '#1a1a1a', padding: '1rem' }}
+          style={{ backgroundColor: "#1a1a1a", padding: "1rem" }}
         >
           <div className="muted right">
-            <Link to={'/forums/' + post.forum.id}>{post.forum.name}</Link>
+            <Link to={"/forums/" + post.forum.id}>{post.forum.name}</Link>
           </div>
 
           <h3 className="margin-top--none margin-bottom--medium">
-            <Link to={post.path || ''}>RE: {post.thread.topic}</Link>
+            <Link to={post.path || ""}>RE: {post.thread.topic}</Link>
           </h3>
           {post.content_text.substr(0, 120)}
         </div>
-      )
-    })
+      );
+    });
 
     return (
       <div className="activity padding-bottom--small">
@@ -60,6 +60,6 @@ export default ForumPost = createReactClass({
 
         {posts}
       </div>
-    )
+    );
   },
-})
+});

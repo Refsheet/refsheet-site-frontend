@@ -1,17 +1,17 @@
-import React from 'react'
-import createReactClass from 'create-react-class'
-import PropTypes from 'prop-types'
-import $ from 'jquery'
-import dynamic from 'next/dynamic'
+import React from "react";
+import createReactClass from "create-react-class";
+import PropTypes from "prop-types";
+import $ from "jquery";
+import dynamic from "next/dynamic";
 
 let Materialize = null;
-if (typeof window !== 'undefined') {
-  Materialize = require('materialize-css');
+if (typeof window !== "undefined") {
+  Materialize = require("materialize-css");
 }
 
-import NumberUtils from '../../utils/NumberUtils'
-import Tab from './Tab'
-import {captureException} from '@sentry/browser'
+import NumberUtils from "../../utils/NumberUtils";
+import Tab from "./Tab";
+import { captureException } from "@sentry/browser";
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
@@ -22,7 +22,7 @@ import {captureException} from '@sentry/browser'
  * DS208: Avoid top-level this
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
-let Tabs
+let Tabs;
 export default Tabs = createReactClass({
   propTypes: {
     className: PropTypes.string,
@@ -32,33 +32,35 @@ export default Tabs = createReactClass({
 
   componentDidMount() {
     try {
-      Materialize.Tabs.init(this.tabRef)
+      Materialize.Tabs.init(this.tabRef);
     } catch (e) {
-      captureException(e)
-      console.error(e)
+      captureException(e);
+      console.error(e);
     }
     // https://github.com/Dogfalo/materialize/issues/2102
-    $(document).on('materialize:modal:ready', () => $(window).trigger('resize'))
+    $(document).on("materialize:modal:ready", () =>
+      $(window).trigger("resize"),
+    );
   },
   // We'll try this and see if it works.
   // window.dispatchEvent(new Event('resize'))
 
   render() {
-    let className = 'tabs'
+    let className = "tabs";
     if (this.props.className) {
-      className += ' ' + this.props.className
+      className += " " + this.props.className;
     }
 
-    const tabs = React.Children.map(this.props.children, child => {
+    const tabs = React.Children.map(this.props.children, (child) => {
       if ((child != null ? child.type : undefined) === Tab) {
-        const liClasses = ['tab']
+        const liClasses = ["tab"];
         if (!child.props.name) {
-          liClasses.push('no-name')
+          liClasses.push("no-name");
         }
 
         return (
-          <li className={liClasses.join(' ')}>
-            <a href={'#' + child.props.id}>
+          <li className={liClasses.join(" ")}>
+            <a href={"#" + child.props.id}>
               {child.props.icon && (
                 <i className="material-icons">{child.props.icon}</i>
               )}
@@ -72,26 +74,26 @@ export default Tabs = createReactClass({
               )}
             </a>
           </li>
-        )
+        );
       } else {
-        if (typeof (child != null ? child.type : undefined) !== 'undefined') {
+        if (typeof (child != null ? child.type : undefined) !== "undefined") {
           return console.warn(
             `Children to Tabs should be a Tab, got ${
               child != null ? child.type : undefined
-            }.`
-          )
+            }.`,
+          );
         }
       }
-    })
+    });
 
     return (
       <div className="tabs-container">
-        <ul ref={r => (this.tabRef = r)} className={className}>
+        <ul ref={(r) => (this.tabRef = r)} className={className}>
           {tabs}
         </ul>
 
         {this.props.children}
       </div>
-    )
+    );
   },
-})
+});

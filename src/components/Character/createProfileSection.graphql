@@ -1,7 +1,10 @@
 mutation createProfileSection($characterId: ID!, $createAfterSectionId: ID) {
-    createProfileSection(characterId: $characterId, createAfterSectionId: $createAfterSectionId) {
-        id
-        title
-        row_order
-    }
+  createProfileSection(
+    characterId: $characterId
+    createAfterSectionId: $createAfterSectionId
+  ) {
+    id
+    title
+    row_order
+  }
 }

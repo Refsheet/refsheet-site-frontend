@@ -1,53 +1,53 @@
-import React, {Component} from 'react'
-import PropTypes from 'prop-types'
-import {Query} from '@apollo/client/react/components'
-import {withTranslation} from 'react-i18next'
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { Query } from "@apollo/client/react/components";
+import { withTranslation } from "react-i18next";
 //graphql.macro
-import {setIdentity} from 'actions'
-import {connect} from 'react-redux'
-import Modal from 'v1/shared/Modal'
+import { setIdentity } from "actions";
+import { connect } from "react-redux";
+import Modal from "v1/shared/Modal";
 
-const AutocompleteCharacter = require('../../ActivityFeed/autocompleteCharacter.graphql');
+const AutocompleteCharacter = require("../../ActivityFeed/autocompleteCharacter.graphql");
 
 class IdentityModal extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
-      query: '',
-      queryInput: '',
-    }
+      query: "",
+      queryInput: "",
+    };
   }
 
   handleModalDone(e) {
-    this.props.onClose()
+    this.props.onClose();
   }
 
   handleCharacterSelect(character) {
-    return e => {
-      e.preventDefault()
+    return (e) => {
+      e.preventDefault();
 
       if (!this.props.temporary) {
-        this.props.setIdentity({character})
+        this.props.setIdentity({ character });
       }
 
       if (this.props.onCharacterSelect) {
-        this.props.onCharacterSelect(character)
+        this.props.onCharacterSelect(character);
       } else {
-        this.props.onClose()
+        this.props.onClose();
       }
-    }
+    };
   }
 
   renderCharacterList(characters) {
     return (
-      <ul className={'collection margin--none'}>
-        {characters.map(character => (
-          <li key={character.id} className={'collection-item avatar'}>
+      <ul className={"collection margin--none"}>
+        {characters.map((character) => (
+          <li key={character.id} className={"collection-item avatar"}>
             <img
               src={character.profile_image.url.thumbnail}
               alt={character.name}
-              className={'circle'}
+              className={"circle"}
             />
             <a
               className="title"
@@ -60,89 +60,89 @@ class IdentityModal extends Component {
           </li>
         ))}
       </ul>
-    )
+    );
   }
 
   handleQueryChange(e) {
-    e.preventDefault()
-    this.setState({queryInput: e.target.value})
+    e.preventDefault();
+    this.setState({ queryInput: e.target.value });
   }
 
   handleSearch(e) {
-    e.preventDefault()
-    this.setState({query: this.state.queryInput})
+    e.preventDefault();
+    this.setState({ query: this.state.queryInput });
   }
 
   render() {
-    const {t, title, requireCharacter, allowCreate} = this.props
+    const { t, title, requireCharacter, allowCreate } = this.props;
 
     return (
       <Modal
         autoOpen
         noContainer
         id="select-identity"
-        title={title || t('identity.change', 'Change Identity')}
+        title={title || t("identity.change", "Change Identity")}
         onClose={this.handleModalDone.bind(this)}
       >
         <form
-          className={'modal-inline-form'}
+          className={"modal-inline-form"}
           onSubmit={this.handleSearch.bind(this)}
         >
           <input
-            type={'text'}
-            className={'block'}
-            name={'query'}
-            placeholder={t('identity.search', 'Search for Character...')}
+            type={"text"}
+            className={"block"}
+            name={"query"}
+            placeholder={t("identity.search", "Search for Character...")}
             onChange={this.handleQueryChange.bind(this)}
             value={this.state.queryInput}
           />
-          <button type={'submit'} className={'btn'}>
-            <i className={'material-icons'}>search</i>
+          <button type={"submit"} className={"btn"}>
+            <i className={"material-icons"}>search</i>
           </button>
         </form>
 
         <Query
           query={AutocompleteCharacter}
-          variables={{slug: this.state.query, username: 'me'}}
+          variables={{ slug: this.state.query, username: "me" }}
         >
-          {({data, loading, errors}) => {
+          {({ data, loading, errors }) => {
             if (loading) {
               return (
                 <div className="caption center modal-content">
-                  {t('status.loading', 'Loading...')}
+                  {t("status.loading", "Loading...")}
                 </div>
-              )
+              );
             } else if (errors) {
               return (
                 <div className="caption center error red-text modal-content">
-                  {'' + errors}
+                  {"" + errors}
                 </div>
-              )
+              );
             } else {
-              return this.renderCharacterList(data.autocompleteCharacter)
+              return this.renderCharacterList(data.autocompleteCharacter);
             }
           }}
         </Query>
 
         {(allowCreate || !requireCharacter) && (
-          <div className={'modal-footer'}>
+          <div className={"modal-footer"}>
             {allowCreate && (
-              <button className={'btn left'}>
-                {t('actions.create_character', 'Create Character')}
+              <button className={"btn left"}>
+                {t("actions.create_character", "Create Character")}
               </button>
             )}
             {requireCharacter || (
               <button
-                className={'btn right'}
+                className={"btn right"}
                 onClick={this.handleCharacterSelect(null).bind(this)}
               >
-                {t('identity.as-self', 'Post As Yourself')}
+                {t("identity.as-self", "Post As Yourself")}
               </button>
             )}
           </div>
         )}
       </Modal>
-    )
+    );
   }
 }
 
@@ -153,11 +153,11 @@ IdentityModal.propTypes = {
   requireCharacter: PropTypes.bool,
   allowCreate: PropTypes.bool,
   temporary: PropTypes.bool,
-}
+};
 
-const mapDispatchToProps = {setIdentity}
+const mapDispatchToProps = { setIdentity };
 
 export default connect(
   undefined,
-  mapDispatchToProps
-)(withTranslation('common')(IdentityModal))
+  mapDispatchToProps,
+)(withTranslation("common")(IdentityModal));

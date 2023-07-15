@@ -4,11 +4,11 @@
     react/no-deprecated,
     react/react-in-jsx-scope,
 */
-import React from 'react'
-import createReactClass from 'create-react-class'
-import PropTypes from 'prop-types'
-import NavLink from 'v1/shared/nav_link'
-import Restrict from '../../../components/Shared/Restrict'
+import React from "react";
+import createReactClass from "create-react-class";
+import PropTypes from "prop-types";
+import NavLink from "v1/shared/nav_link";
+import Restrict from "../../../components/Shared/Restrict";
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
@@ -17,7 +17,7 @@ import Restrict from '../../../components/Shared/Restrict'
  * DS208: Avoid top-level this
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
-let SideNav
+let SideNav;
 export default SideNav = createReactClass({
   render() {
     return (
@@ -61,6 +61,6 @@ export default SideNav = createReactClass({
           <NavLink to="/account/api_keys" text="API Keys" />
         </NavLink>
       </ul>
-    )
+    );
   },
-})
+});

@@ -4,15 +4,15 @@
     react/no-deprecated,
     react/react-in-jsx-scope,
 */
-import React from 'react'
-import createReactClass from 'create-react-class'
-import PropTypes from 'prop-types'
-import CharacterViewSilhouette from 'v1/views/characters/CharacterViewSilhouette'
-import { connect } from 'react-redux'
-import { openLightbox } from '../../../actions'
+import React from "react";
+import createReactClass from "create-react-class";
+import PropTypes from "prop-types";
+import CharacterViewSilhouette from "v1/views/characters/CharacterViewSilhouette";
+import { connect } from "react-redux";
+import { openLightbox } from "../../../actions";
 
-import $ from 'jquery'
-import Model from '../../utils/Model'
+import $ from "jquery";
+import Model from "../../utils/Model";
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
@@ -24,30 +24,30 @@ import Model from '../../utils/Model'
  */
 const ImageApp = createReactClass({
   getInitialState() {
-    return { image: null }
+    return { image: null };
   },
 
   load(data) {
-    const { openLightbox } = this.props
+    const { openLightbox } = this.props;
     this.setState({ image: data }, function () {
-      data.directLoad = true
+      data.directLoad = true;
       // TODO: We can direct load here.
-      openLightbox(data.id)
+      openLightbox(data.id);
       //       return $(document).trigger('app:lightbox', data)
-    })
+    });
   },
 
   fetch(imageId) {
     if (!imageId) {
-      return
+      return;
     }
-    return Model.get(`/images/${imageId}.json`, this.load)
+    return Model.get(`/images/${imageId}.json`, this.load);
   },
 
   UNSAFE_componentWillMount() {
     this.fetch(
-      this.props.match != null ? this.props.match.params.imageId : undefined
-    )
+      this.props.match != null ? this.props.match.params.imageId : undefined,
+    );
   },
 
   UNSAFE_componentWillReceiveProps(newProps) {
@@ -58,8 +58,8 @@ const ImageApp = createReactClass({
         (this.state.image != null ? this.state.image.id : undefined)
     ) {
       this.fetch(
-        newProps.match != null ? newProps.match.params.imageId : undefined
-      )
+        newProps.match != null ? newProps.match.params.imageId : undefined,
+      );
     }
   },
 
@@ -67,18 +67,18 @@ const ImageApp = createReactClass({
     if (this.state.image != null) {
       return (
         <CharacterViewSilhouette
-          title={[this.state.image.title, 'Images']}
+          title={[this.state.image.title, "Images"]}
           coverImage={this.state.image.character.featured_image_url}
           immediate
         />
-      )
+      );
     } else {
-      return <CharacterViewSilhouette />
+      return <CharacterViewSilhouette />;
     }
   },
-})
+});
 
-export default connect(undefined, { openLightbox })(ImageApp)
+export default connect(undefined, { openLightbox })(ImageApp);
 
 // BROKEN THINGS FOR TOMRROW
 

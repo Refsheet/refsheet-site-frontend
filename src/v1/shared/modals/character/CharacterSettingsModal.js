@@ -1,21 +1,20 @@
-import React from 'react'
-import createReactClass from 'create-react-class'
-import PropTypes from 'prop-types'
-import Modal from 'v1/shared/Modal'
-import Form from 'v1/shared/forms/Form'
-import Row from 'v1/shared/material/Row'
-import Column from 'v1/shared/material/Column'
-import Input from 'v1/shared/forms/Input'
-import Submit from 'v1/shared/forms/Submit'
+import React from "react";
+import createReactClass from "create-react-class";
+import PropTypes from "prop-types";
+import Modal from "v1/shared/Modal";
+import Form from "v1/shared/forms/Form";
+import Row from "v1/shared/material/Row";
+import Column from "v1/shared/material/Column";
+import Input from "v1/shared/forms/Input";
+import Submit from "v1/shared/forms/Submit";
 
-import $ from 'jquery'
-import dynamic from 'next/dynamic'
+import $ from "jquery";
+import dynamic from "next/dynamic";
 
 let Materialize = null;
-if (typeof window !== 'undefined') {
-  Materialize = require('materialize-css');
+if (typeof window !== "undefined") {
+  Materialize = require("materialize-css");
 }
-
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
@@ -25,46 +24,46 @@ if (typeof window !== 'undefined') {
  * DS208: Avoid top-level this
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
-let CharacterSettingsModal
+let CharacterSettingsModal;
 export default CharacterSettingsModal = createReactClass({
   propTypes: {
     character: PropTypes.object.isRequired,
   },
 
   getInitialState() {
-    return {dirty: false}
+    return { dirty: false };
   },
 
   _handleSettingsClose(e) {
-    const el = document.getElementById('character-settings-form')
+    const el = document.getElementById("character-settings-form");
     if (el) {
-      return Materialize.Modal.getInstance(el).close()
+      return Materialize.Modal.getInstance(el).close();
     }
   },
 
   _handleChange(character) {
     if (character.link !== this.props.character.link) {
-      window.history.replaceState({}, '', character.link)
+      window.history.replaceState({}, "", character.link);
     }
 
-    $(document).trigger('app:character:update', character)
+    $(document).trigger("app:character:update", character);
 
-    this._handleSettingsClose()
+    this._handleSettingsClose();
     return Materialize.toast({
-      html: 'Character saved!',
+      html: "Character saved!",
       displayLength: 3000,
-      classes: 'green',
-    })
+      classes: "green",
+    });
   },
 
   _handleCancel(e) {
-    this.refs.form.reset()
-    this._handleSettingsClose()
-    return e.preventDefault()
+    this.refs.form.reset();
+    this._handleSettingsClose();
+    return e.preventDefault();
   },
 
   _handleDirty(dirty) {
-    return this.setState({dirty})
+    return this.setState({ dirty });
   },
 
   render() {
@@ -81,13 +80,13 @@ export default CharacterSettingsModal = createReactClass({
         >
           <Row noMargin>
             <Column m={6}>
-              <Input name="name" label="Name" autoFocus/>
+              <Input name="name" label="Name" autoFocus />
             </Column>
             <Column s={6} m={3}>
-              <Input name="nsfw" type="checkbox" label="NSFW"/>
+              <Input name="nsfw" type="checkbox" label="NSFW" />
             </Column>
             <Column s={6} m={3}>
-              <Input name="hidden" type="checkbox" label="Hidden"/>
+              <Input name="hidden" type="checkbox" label="Hidden" />
             </Column>
           </Row>
 
@@ -95,11 +94,11 @@ export default CharacterSettingsModal = createReactClass({
             <Column m={6}>
               <Input
                 name="slug"
-                label={'refsheet.net/' + this.props.character.user_id + '/'}
+                label={"refsheet.net/" + this.props.character.user_id + "/"}
               />
             </Column>
             <Column m={6}>
-              <Input name="shortcode" label="ref.st/"/>
+              <Input name="shortcode" label="ref.st/" />
             </Column>
           </Row>
 
@@ -148,6 +147,6 @@ export default CharacterSettingsModal = createReactClass({
           </Column>
         </Row>
       </Modal>
-    )
+    );
   },
-})
+});

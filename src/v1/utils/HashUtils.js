@@ -11,125 +11,131 @@
  * DS208: Avoid top-level this
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
-import ObjectPath from './ObjectPath'
-import $ from 'jquery'
+import ObjectPath from "./ObjectPath";
+import $ from "jquery";
 
 const HashUtils = {
   deepUpdateCollectionItem(object, collectionPath, item, primaryKey) {
-    const collection = ObjectPath.get(object, collectionPath)
+    const collection = ObjectPath.get(object, collectionPath);
     if (!collection) {
-      return
+      return;
     }
-    const [old, index] = Array.from(this.findItem(collection, item, primaryKey))
+    const [old, index] = Array.from(
+      this.findItem(collection, item, primaryKey),
+    );
 
     if (old) {
-      collection[index] = item
+      collection[index] = item;
     } else {
-      collection.push(item)
+      collection.push(item);
     }
 
-    return this.set(object, collectionPath, collection)
+    return this.set(object, collectionPath, collection);
   },
 
   deepSortCollectionItem(object, collectionPath, item, position, primaryKey) {
-    const collection = ObjectPath.get(object, collectionPath)
+    const collection = ObjectPath.get(object, collectionPath);
     if (!collection) {
-      return
+      return;
     }
-    const [old, index] = Array.from(this.findItem(collection, item, primaryKey))
+    const [old, index] = Array.from(
+      this.findItem(collection, item, primaryKey),
+    );
 
     if (old) {
-      collection.splice(index, 1)
-      collection.splice(position, 0, old)
+      collection.splice(index, 1);
+      collection.splice(position, 0, old);
     }
 
-    return this.set(object, collectionPath, collection)
+    return this.set(object, collectionPath, collection);
   },
 
   deepRemoveCollectionItem(object, collectionPath, item, primaryKey) {
-    const collection = ObjectPath.get(object, collectionPath)
+    const collection = ObjectPath.get(object, collectionPath);
     if (!collection) {
-      return
+      return;
     }
-    const [old, index] = Array.from(this.findItem(collection, item, primaryKey))
+    const [old, index] = Array.from(
+      this.findItem(collection, item, primaryKey),
+    );
 
     if (old) {
-      collection.splice(index, 1)
+      collection.splice(index, 1);
     }
 
-    return this.set(object, collectionPath, collection)
+    return this.set(object, collectionPath, collection);
   },
 
   // An immutable variant of ObjectPath.set that saves the original object
   //
   set(object, path, value) {
-    object = $.extend({}, object)
-    ObjectPath.set(object, path, value)
-    return object
+    object = $.extend({}, object);
+    ObjectPath.set(object, path, value);
+    return object;
   },
 
   itemExists(collection, item, primaryKey) {
     if (primaryKey == null) {
-      primaryKey = 'id'
+      primaryKey = "id";
     }
     if (!collection || !item) {
-      return
+      return;
     }
-    const targetKey = typeof item === 'object' ? item[primaryKey] : item
+    const targetKey = typeof item === "object" ? item[primaryKey] : item;
     return !!collection.filter(
-      i => (i != null ? i[primaryKey] : undefined) === targetKey
-    )[0]
+      (i) => (i != null ? i[primaryKey] : undefined) === targetKey,
+    )[0];
   },
 
   findItem(collection, item, primaryKey, callback) {
-    let index
+    let index;
     if (primaryKey == null) {
-      primaryKey = 'id'
+      primaryKey = "id";
     }
     if (!collection || !item) {
-      return []
+      return [];
     }
-    const targetKey = typeof item === 'object' ? item[primaryKey] : item
+    const targetKey = typeof item === "object" ? item[primaryKey] : item;
     const old = collection.filter(
-      i => (i != null ? i[primaryKey] : undefined) === targetKey
-    )[0]
+      (i) => (i != null ? i[primaryKey] : undefined) === targetKey,
+    )[0];
     if (old) {
-      index = collection.indexOf(old)
+      index = collection.indexOf(old);
     }
     if (callback) {
-      callback(old, index)
+      callback(old, index);
     }
-    return [old, index]
+    return [old, index];
   },
 
   compare(a, b, ...keys) {
     for (let k of Array.from(keys)) {
-      const ca = ObjectPath.get(a, k)
-      const cb = ObjectPath.get(b, k)
+      const ca = ObjectPath.get(a, k);
+      const cb = ObjectPath.get(b, k);
       if (ca !== cb) {
-        return false
+        return false;
       }
     }
-    return true
+    return true;
   },
 
   groupBy(items, path) {
-    const final = {}
+    const final = {};
 
     if (!items) {
-      return final
+      return final;
     }
 
     for (let item of Array.from(items)) {
-      const key = ObjectPath.get(item, path)
+      const key = ObjectPath.get(item, path);
       if (!final[key]) {
-        final[key] = []
+        final[key] = [];
       }
-      final[key].push(item)
+      final[key].push(item);
     }
 
-    return final
+    return final;
   },
-}
+};
 
-export default HashUtils
+export default HashUtils;

@@ -1,86 +1,86 @@
-import request from 'superagent'
-import client from 'services/ApplicationService'
-import xmljs from 'xml-js'
+import request from "superagent";
+import client from "services/ApplicationService";
+import xmljs from "xml-js";
 //graphql.macro
-import * as Sentry from '@sentry/browser'
+import * as Sentry from "@sentry/browser";
 
 // TODO: Make this a mutation too, it deserves it.
-const getCharacterImages = require('../graph/fragments/getCharacterImages.graphql');
-const getImageUploadToken = require('../graph/queries/getImageUploadToken.graphql');
-const uploadImage = require('../graph/mutations/uploadImage.graphql');
+const getCharacterImages = require("../graph/fragments/getCharacterImages.graphql");
+const getImageUploadToken = require("../graph/queries/getImageUploadToken.graphql");
+const uploadImage = require("../graph/mutations/uploadImage.graphql");
 
 class ImageHandler {
   static upload(image, characterId, onChange) {
-    const handler = new this(image, characterId, onChange)
-    return handler.upload()
+    const handler = new this(image, characterId, onChange);
+    return handler.upload();
   }
 
   constructor(image, characterId, onChange) {
-    this.image = image
-    this.characterId = characterId
-    this.onChange = onChange
+    this.image = image;
+    this.characterId = characterId;
+    this.onChange = onChange;
 
-    this.error = this.error.bind(this)
+    this.error = this.error.bind(this);
   }
 
   upload() {
-    console.debug('ImageHandler#upload', this.image, this.characterId)
+    console.debug("ImageHandler#upload", this.image, this.characterId);
 
     return this.getS3Token()
-      .then(response => {
-        return this.postToS3(response)
+      .then((response) => {
+        return this.postToS3(response);
       })
-      .then(response => {
-        return this.updateImageRecord(response)
+      .then((response) => {
+        return this.updateImageRecord(response);
       })
-      .then(response => {
-        return this.finalize(response)
+      .then((response) => {
+        return this.finalize(response);
       })
-      .catch(this.error)
+      .catch(this.error);
   }
 
   getS3Token() {
-    const variables = {characterId: this.characterId}
-    return client.query({query: getImageUploadToken, variables})
+    const variables = { characterId: this.characterId };
+    return client.query({ query: getImageUploadToken, variables });
   }
 
   postToS3(response) {
     if (response.errors) {
-      return Promise.reject(response.errors)
+      return Promise.reject(response.errors);
     }
 
-    const token = response.data && response.data.getImageUploadToken
+    const token = response.data && response.data.getImageUploadToken;
 
     if (!token) {
       return Promise.reject({
         error:
-          'An upload token could not be generated. Is a character selected?',
-      })
+          "An upload token could not be generated. Is a character selected?",
+      });
     }
 
-    const {url, __typename, ...awsHeaders} = token
+    const { url, __typename, ...awsHeaders } = token;
 
-    console.debug(`Posting file to ${url}`)
+    console.debug(`Posting file to ${url}`);
 
-    const formData = new FormData()
+    const formData = new FormData();
 
-    Object.keys(awsHeaders).forEach(key => {
-      formData.append(key.replace(/^x_amz_/, 'x-amz-'), awsHeaders[key])
-    })
+    Object.keys(awsHeaders).forEach((key) => {
+      formData.append(key.replace(/^x_amz_/, "x-amz-"), awsHeaders[key]);
+    });
 
-    formData.append('Content-Type', this.image.type)
-    formData.append('file', this.image)
+    formData.append("Content-Type", this.image.type);
+    formData.append("file", this.image);
 
     return request
       .post(url)
       .send(formData)
-      .on('progress', e => {
-        this.image.progress = Math.ceil(e.percent)
-        this.onChange(this.image)
+      .on("progress", (e) => {
+        this.image.progress = Math.ceil(e.percent);
+        this.onChange(this.image);
       })
-      .then(response => {
-        const data = xmljs.xml2js(response.text, {compact: true})
-        const obj = data && data.PostResponse
+      .then((response) => {
+        const data = xmljs.xml2js(response.text, { compact: true });
+        const obj = data && data.PostResponse;
 
         return (
           obj && {
@@ -89,12 +89,12 @@ class ImageHandler {
             key: obj.Key._text,
             location: obj.Location._text,
           }
-        )
-      })
+        );
+      });
   }
 
   updateImageRecord(response) {
-    const {title, folder, nsfw} = this.image
+    const { title, folder, nsfw } = this.image;
 
     const variables = {
       ...response,
@@ -102,93 +102,93 @@ class ImageHandler {
       folder,
       nsfw,
       characterId: this.characterId,
-    }
+    };
 
-    console.debug('Telling Refsheet all about this!', variables)
+    console.debug("Telling Refsheet all about this!", variables);
 
     return client.mutate({
       mutation: uploadImage,
       variables,
       update: (store, result) => {
         const {
-          data: {uploadImage},
-        } = result
+          data: { uploadImage },
+        } = result;
 
-        let data
+        let data;
 
         try {
           data = store.readFragment({
             fragment: getCharacterImages,
-            id: 'Character:' + uploadImage.character.id,
-          })
+            id: "Character:" + uploadImage.character.id,
+          });
         } catch (e) {
-          console.warn(e)
-          console.warn('Store contained', store.data)
+          console.warn(e);
+          console.warn("Store contained", store.data);
         }
 
         if (!data) {
-          data = {}
+          data = {};
         }
 
         if (!data.images) {
-          data.images = []
+          data.images = [];
         }
 
         data.images.push({
           id: uploadImage.id,
           __typename: uploadImage.__typename,
-        })
+        });
 
         try {
           store.writeFragment({
             fragment: getCharacterImages,
-            id: 'Character:' + uploadImage.character.id,
+            id: "Character:" + uploadImage.character.id,
             data: data,
-          })
+          });
         } catch (e) {
-          console.warn(e)
-          Sentry.captureException(e)
+          console.warn(e);
+          Sentry.captureException(e);
         }
       },
-    })
+    });
   }
 
   finalize(response) {
     if (response.errors) {
-      return Promise.reject(response.errors)
+      return Promise.reject(response.errors);
     }
 
-    const image = response.data && response.data.uploadImage
+    const image = response.data && response.data.uploadImage;
 
-    const {id, ...imageData} = image
+    const { id, ...imageData } = image;
 
     const final = {
       ...this.image,
       ...imageData,
       guid: id,
-      state: 'done',
+      state: "done",
       progress: 100,
-    }
+    };
 
-    console.debug('UPLOAD DONE', image, final)
-    this.onChange(final)
-    return final
+    console.debug("UPLOAD DONE", image, final);
+    this.onChange(final);
+    return final;
   }
 
   // PRIVATE
 
   error(error) {
-    const errorMessage = ImageHandler.findError(error)
-    const image = Object.assign({}, this.image)
-    console.error(error, errorMessage)
+    const errorMessage = ImageHandler.findError(error);
+    const image = Object.assign({}, this.image);
+    console.error(error, errorMessage);
 
-    image.progress = 100
-    image.state = 'error'
-    image.errorMessage = errorMessage
+    image.progress = 100;
+    image.state = "error";
+    image.errorMessage = errorMessage;
 
-    this.onChange(image)
+    this.onChange(image);
 
-    return Promise.reject(error)
+    return Promise.reject(error);
   }
 
   /**
@@ -199,11 +199,11 @@ class ImageHandler {
    */
   static findError(error) {
     if (!error) {
-      return null
+      return null;
     }
 
     if (error.map) {
-      return error.map(e => e.message).join(', ')
+      return error.map((e) => e.message).join(", ");
     }
 
     let friendlyText =
@@ -212,17 +212,17 @@ class ImageHandler {
         (error.response.body.error || error.response.body)) ||
       error.error ||
       error.message ||
-      null
+      null;
 
     if (!friendlyText) {
-      const eventId = Sentry.captureException(error)
+      const eventId = Sentry.captureException(error);
       friendlyText =
-        'Something went wrong. If you report this issue, please include this ID: ' +
-        eventId
+        "Something went wrong. If you report this issue, please include this ID: " +
+        eventId;
     }
 
-    return friendlyText
+    return friendlyText;
   }
 }
 
-export default ImageHandler
+export default ImageHandler;

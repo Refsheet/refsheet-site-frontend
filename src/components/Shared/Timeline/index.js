@@ -1,10 +1,10 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from "react";
+import PropTypes from "prop-types";
 
 const Timeline = ({ children }) => {
-  return <ul className={'timeline'}>{children}</ul>
-}
+  return <ul className={"timeline"}>{children}</ul>;
+};
 
-Timeline.propTypes = {}
+Timeline.propTypes = {};
 
-export default Timeline
+export default Timeline;

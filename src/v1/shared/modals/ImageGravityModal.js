@@ -1,18 +1,17 @@
-import React from 'react'
-import createReactClass from 'create-react-class'
+import React from "react";
+import createReactClass from "create-react-class";
 
-import Modal from 'v1/shared/Modal'
-import Row from 'v1/shared/material/Row'
-import Column from 'v1/shared/material/Column'
+import Modal from "v1/shared/Modal";
+import Row from "v1/shared/material/Row";
+import Column from "v1/shared/material/Column";
 
-import $ from 'jquery'
-import dynamic from 'next/dynamic'
+import $ from "jquery";
+import dynamic from "next/dynamic";
 
 let Materialize = null;
-if (typeof window !== 'undefined') {
-  Materialize = require('materialize-css');
+if (typeof window !== "undefined") {
+  Materialize = require("materialize-css");
 }
-
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
@@ -22,66 +21,65 @@ if (typeof window !== 'undefined') {
  * DS208: Avoid top-level this
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
-let ImageGravityModal
+let ImageGravityModal;
 export default ImageGravityModal = createReactClass({
   getInitialState() {
     return {
-      gravity: this.props.image.gravity || 'center',
+      gravity: this.props.image.gravity || "center",
       loading: false,
-    }
+    };
   },
 
   handleGravityChange(e) {
-    const gravity = $(e.target).closest('[data-gravity]').data('gravity')
-    return this.setState({gravity})
+    const gravity = $(e.target).closest("[data-gravity]").data("gravity");
+    return this.setState({ gravity });
   },
 
   handleSave(e) {
-    this.setState({loading: true})
+    this.setState({ loading: true });
     $.ajax({
       url: this.props.image.path,
-      type: 'PATCH',
-      data: {image: {gravity: this.state.gravity}},
-      success: data => {
-        $(document).trigger('app:image:update', data)
+      type: "PATCH",
+      data: { image: { gravity: this.state.gravity } },
+      success: (data) => {
+        $(document).trigger("app:image:update", data);
         Materialize.toast({
-          html:
-            'Cropping settings saved. It may take a second to rebuild your thumbnails.',
+          html: "Cropping settings saved. It may take a second to rebuild your thumbnails.",
           displayLength: 3000,
-          classes: 'green',
-        })
-        this.setState({loading: false})
+          classes: "green",
+        });
+        this.setState({ loading: false });
         return Materialize.Modal.getInstance(
-          document.getElementById('image-gravity-modal')
-        ).close()
+          document.getElementById("image-gravity-modal"),
+        ).close();
       },
-      error: error => {
+      error: (error) => {
         Materialize.toast({
-          html: 'Something bad happened',
+          html: "Something bad happened",
           displayLength: 3000,
-          classes: 'red',
-        })
-        this.setState({loading: false})
-        return console.log(error)
+          classes: "red",
+        });
+        this.setState({ loading: false });
+        return console.log(error);
       },
-    })
-    return e.preventDefault()
+    });
+    return e.preventDefault();
   },
 
   handleClose(e) {
-    $('#image-gravity-modal').modal('close')
-    this.setState({gravity: this.getInitialState()})
-    return e.preventDefault()
+    $("#image-gravity-modal").modal("close");
+    this.setState({ gravity: this.getInitialState() });
+    return e.preventDefault();
   },
 
   render() {
     const gravity_crop = {
-      center: {objectPosition: 'center'},
-      north: {objectPosition: 'top'},
-      south: {objectPosition: 'bottom'},
-      east: {objectPosition: 'right'},
-      west: {objectPosition: 'left'},
-    }
+      center: { objectPosition: "center" },
+      north: { objectPosition: "top" },
+      south: { objectPosition: "bottom" },
+      east: { objectPosition: "right" },
+      west: { objectPosition: "left" },
+    };
 
     return (
       <Modal id="image-gravity-modal" title="Change Image Cropping">
@@ -154,6 +152,6 @@ export default ImageGravityModal = createReactClass({
           </Column>
         </Row>
       </Modal>
-    )
+    );
   },
-})
+});
