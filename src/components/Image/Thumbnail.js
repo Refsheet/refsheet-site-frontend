@@ -1,78 +1,78 @@
-import React, {Component} from 'react'
-import PropTypes from 'prop-types'
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 //graphql.macro
-import {Subscription} from '@apollo/client/react/components'
-import {Icon} from 'react-materialize'
-import {connect} from 'react-redux'
-import {openLightbox, setNsfwMode} from '../../actions'
-import NumberUtils from '../../v1/utils/NumberUtils'
-import c from 'classnames'
-import compose, {withMutations} from '../../utils/compose'
-import CacheUtils from '../../utils/CacheUtils'
-import Flash from '../../utils/Flash'
-import {withTranslation} from 'react-i18next'
+import { Subscription } from "@apollo/client/react/components";
+import { Icon } from "react-materialize";
+import { connect } from "react-redux";
+import { openLightbox, setNsfwMode } from "../../actions";
+import NumberUtils from "../../v1/utils/NumberUtils";
+import c from "classnames";
+import compose, { withMutations } from "../../utils/compose";
+import CacheUtils from "../../utils/CacheUtils";
+import Flash from "../../utils/Flash";
+import { withTranslation } from "react-i18next";
 
-const imageProcessingComplete = require('./imageProcessingComplete.graphql');
-const deleteMedia = require('../Lightbox/deleteMedia.graphql');
-const updateImage = require('../Lightbox/updateImage.graphql');
+const imageProcessingComplete = require("./imageProcessingComplete.graphql");
+const deleteMedia = require("../Lightbox/deleteMedia.graphql");
+const updateImage = require("../Lightbox/updateImage.graphql");
 
 class Thumbnail extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
-    this.handleClick = this.handleClick.bind(this)
-    this.handleDeleteClick = this.handleDeleteClick.bind(this)
-    this.handleFavoriteClick = this.handleFavoriteClick.bind(this)
-    this.handleReprocessClick = this.handleReprocessClick.bind(this)
+    this.handleClick = this.handleClick.bind(this);
+    this.handleDeleteClick = this.handleDeleteClick.bind(this);
+    this.handleFavoriteClick = this.handleFavoriteClick.bind(this);
+    this.handleReprocessClick = this.handleReprocessClick.bind(this);
   }
 
   handleClick(e) {
-    e.preventDefault()
+    e.preventDefault();
 
     const {
-      image: {id, nsfw},
-      session: {nsfwOk},
+      image: { id, nsfw },
+      session: { nsfwOk },
       openLightbox,
       gallery,
       t,
       setNsfwMode,
-    } = this.props
+    } = this.props;
 
     if (nsfw && !nsfwOk) {
       if (
         // eslint-disable-next-line no-restricted-globals
         confirm(
           t(
-            'confirmations.nsfw_ok',
-            'By continuing, you assert that you are 18 years or older, and that it is legal for you to view explicit content.'
-          )
+            "confirmations.nsfw_ok",
+            "By continuing, you assert that you are 18 years or older, and that it is legal for you to view explicit content.",
+          ),
         )
       ) {
-        setNsfwMode(true, true)
+        setNsfwMode(true, true);
       }
     } else {
-      openLightbox(id, gallery)
+      openLightbox(id, gallery);
     }
   }
 
   handleFavoriteClick(e) {
-    e.preventDefault()
-    e.stopPropagation()
+    e.preventDefault();
+    e.stopPropagation();
 
     const {
-      image: {id},
-    } = this.props
+      image: { id },
+    } = this.props;
 
-    console.log('Favorite ' + id)
+    console.log("Favorite " + id);
   }
 
   handleReprocessClick(e) {
-    e.preventDefault()
+    e.preventDefault();
 
     const {
-      image: {id},
+      image: { id },
       updateImage,
-    } = this.props
+    } = this.props;
 
     updateImage({
       wrapped: true,
@@ -80,16 +80,16 @@ class Thumbnail extends Component {
         id,
         reprocess: true,
       },
-    })
+    });
   }
 
   handleDeleteClick(e) {
-    e.preventDefault()
+    e.preventDefault();
 
     const {
-      image: {id, title},
+      image: { id, title },
       deleteMedia,
-    } = this.props
+    } = this.props;
 
     // eslint-disable-next-line no-restricted-globals
     if (confirm(`Really delete ${title}?`)) {
@@ -100,35 +100,35 @@ class Thumbnail extends Component {
         },
         update: CacheUtils.deleteMedia,
       })
-        .then(data => {
-          Flash.info('Image deleted.')
+        .then((data) => {
+          Flash.info("Image deleted.");
         })
-        .catch(error => {
-          console.error({error})
-          Flash.error('Something went wrong.')
-        })
+        .catch((error) => {
+          console.error({ error });
+          Flash.error("Something went wrong.");
+        });
     }
   }
 
   renderNotification(icon, title, message, className, redrive = false) {
     return (
-      <div className={'message center-align ' + className}>
-        <i className={'material-icons ' + className}>{icon}</i>
-        <div className={'caption margin-top--large ' + className}>{title}</div>
-        <div className={'muted margin-top--medium ' + className}>{message}</div>
+      <div className={"message center-align " + className}>
+        <i className={"material-icons " + className}>{icon}</i>
+        <div className={"caption margin-top--large " + className}>{title}</div>
+        <div className={"muted margin-top--medium " + className}>{message}</div>
         {redrive && (
-          <div className={'actions margin-top--small'}>
+          <div className={"actions margin-top--small"}>
             <a
-              href={'#'}
+              href={"#"}
               onClick={this.handleReprocessClick}
               className={className}
             >
               Reprocess
-            </a>{' '}
-            |{' '}
+            </a>{" "}
+            |{" "}
             <a
               onClick={this.handleDeleteClick}
-              href={'#'}
+              href={"#"}
               className={className}
             >
               Delete
@@ -136,12 +136,12 @@ class Thumbnail extends Component {
           </div>
         )}
       </div>
-    )
+    );
   }
 
   renderImage() {
     const {
-      session: {nsfwOk},
+      session: { nsfwOk },
       image: {
         created_at,
         image_processing,
@@ -158,64 +158,64 @@ class Thumbnail extends Component {
         url,
       },
       size,
-    } = this.props
+    } = this.props;
 
-    let src = url[size || 'medium']
+    let src = url[size || "medium"];
 
     if (!src) {
-      console.log({size, url})
-      src = url[Object.keys[url][0]]
+      console.log({ size, url });
+      src = url[Object.keys[url][0]];
     }
 
     if (image_processing_error) {
       return this.renderNotification(
-        'error',
-        'Processing Error',
+        "error",
+        "Processing Error",
         `An error happened for image #${id}, and our system was unable to resize it.`,
-        'red-text',
-        true
-      )
+        "red-text",
+        true,
+      );
     } else if (image_processing) {
-      const image_age = Date.now() / 1000 - created_at
+      const image_age = Date.now() / 1000 - created_at;
       return this.renderNotification(
-        'hourglass_empty',
-        'Image processing...',
-        'Thumbnails are being generated for this image, and should be available soon. ' +
-        'You might need to reload this page. ' +
-        image_age,
+        "hourglass_empty",
+        "Image processing...",
+        "Thumbnails are being generated for this image, and should be available soon. " +
+          "You might need to reload this page. " +
+          image_age,
         undefined,
-        created_at < Date.now() / 1000 - 3600
-      )
+        created_at < Date.now() / 1000 - 3600,
+      );
     } else if (!aspect_ratio) {
       return this.renderNotification(
-        'warning',
-        'Invalid image :(',
+        "warning",
+        "Invalid image :(",
         `Something's not quite right. This might be a bug. Report Image #${id}.`,
-        'red-text',
-        true
-      )
+        "red-text",
+        true,
+      );
     }
 
-    const showNsfwWarning = nsfw && !nsfwOk
+    const showNsfwWarning = nsfw && !nsfwOk;
 
     return (
       <a
         onClick={this.handleClick}
         href={path}
         data-gallery-image-id={id}
-        style={{backgroundColor: background_color}}
+        style={{ backgroundColor: background_color }}
       >
         {showNsfwWarning && (
-          <div className="nsfw-cover" style={{padding: '1rem'}}>
+          <div className="nsfw-cover" style={{ padding: "1rem" }}>
             <div
               style={{
-                position: 'relative',
-                top: '50%',
-                transform: 'translateY(-50%)',
+                position: "relative",
+                top: "50%",
+                transform: "translateY(-50%)",
               }}
             >
               <Icon>remove_circle_outline</Icon>
-              <div className="caption" style={{paddingTop: '1rem'}}>
+              <div className="caption" style={{ paddingTop: "1rem" }}>
                 Click to show NSFW content.
               </div>
             </div>
@@ -225,7 +225,7 @@ class Thumbnail extends Component {
         <div className="overlay">
           <div className="interactions">
             <div className="favs clickable" onClick={this.handleFavoriteClick}>
-              <Icon>{is_favorite ? 'star' : 'star_outline'}</Icon>
+              <Icon>{is_favorite ? "star" : "star_outline"}</Icon>
               &nbsp;{NumberUtils.format(favorites_count)}
             </div>
             &nbsp;
@@ -241,9 +241,9 @@ class Thumbnail extends Component {
           </div>
         </div>
 
-        <img src={src} alt={title} title={title}/>
+        <img src={src} alt={title} title={title} />
       </a>
-    )
+    );
   }
 
   render() {
@@ -255,7 +255,7 @@ class Thumbnail extends Component {
       children,
       image = {},
       flat,
-    } = this.props
+    } = this.props;
 
     const preReturn = () => {
       return (
@@ -263,22 +263,22 @@ class Thumbnail extends Component {
           ref={innerRef}
           style={{
             ...style,
-            backgroundColor: image.background_color || 'rgb(0,0,0)',
+            backgroundColor: image.background_color || "rgb(0,0,0)",
           }}
-          className={c('gallery-image image-thumbnail', className, {
-            'z-depth-1': !flat,
+          className={c("gallery-image image-thumbnail", className, {
+            "z-depth-1": !flat,
           })}
         >
           {children}
           {this.renderImage()}
         </div>
-      )
-    }
+      );
+    };
 
     if (connectorFunc) {
-      return connectorFunc(preReturn())
+      return connectorFunc(preReturn());
     } else {
-      return preReturn()
+      return preReturn();
     }
   }
 }
@@ -297,44 +297,46 @@ Thumbnail.propTypes = {
     image_processing: PropTypes.bool,
   }),
   gallery: PropTypes.arrayOf(PropTypes.string),
-}
+};
 
-const renderSubscribed = props => ({data, loading, error}) => {
-  let image = props.image
+const renderSubscribed =
+  (props) =>
+  ({ data, loading, error }) => {
+    let image = props.image;
 
-  if (!loading && data && data.imageProcessingComplete) {
-    image = data.imageProcessingComplete
-  }
+    if (!loading && data && data.imageProcessingComplete) {
+      image = data.imageProcessingComplete;
+    }
 
-  return <Thumbnail {...props} image={image}/>
-}
+    return <Thumbnail {...props} image={image} />;
+  };
 
-const Subscribed = props => {
+const Subscribed = (props) => {
   if (props.image.image_processing) {
     return (
       <Subscription
         subscription={imageProcessingComplete}
-        variables={{imageId: props.image.id}}
+        variables={{ imageId: props.image.id }}
       >
         {renderSubscribed(props)}
       </Subscription>
-    )
+    );
   } else {
-    return <Thumbnail {...props} />
+    return <Thumbnail {...props} />;
   }
-}
+};
 
 const mapDispatchToProps = {
   openLightbox,
   setNsfwMode,
-}
+};
 
-const mapStateToProps = ({session}) => ({
+const mapStateToProps = ({ session }) => ({
   session,
-})
+});
 
 export default compose(
-  withMutations({updateImage, deleteMedia}),
+  withMutations({ updateImage, deleteMedia }),
   connect(mapStateToProps, mapDispatchToProps),
-  withTranslation('common')
-)(Subscribed)
+  withTranslation("common"),
+)(Subscribed);

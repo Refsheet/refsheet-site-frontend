@@ -1,9 +1,9 @@
-import { createReducer } from 'reducers'
-import * as Actions from 'actions'
+import { createReducer } from "reducers";
+import * as Actions from "actions";
 
 function willOpenModal() {
   // Prevent clobbering the lightbox:
-  return !document.getElementById('lightbox-v2')
+  return !document.getElementById("lightbox-v2");
 }
 
 const handlers = {
@@ -15,17 +15,17 @@ const handlers = {
   }),
 
   [Actions.CLEAR_UPLOAD]: (state, action) => {
-    let selectedIndex = state.selectedIndex
+    let selectedIndex = state.selectedIndex;
 
-    const files = state.files.filter(f => f.id !== action.fileId)
+    const files = state.files.filter((f) => f.id !== action.fileId);
 
-    if (files.length <= selectedIndex) selectedIndex = files.length - 1
+    if (files.length <= selectedIndex) selectedIndex = files.length - 1;
 
     return {
       ...state,
       files: files,
       selectedIndex,
-    }
+    };
   },
 
   [Actions.CLEAR_ALL_UPLOADS]: (state, action) => {
@@ -33,30 +33,30 @@ const handlers = {
       ...state,
       files: [],
       selectedIndex: null,
-    }
+    };
   },
 
   [Actions.MODIFY_UPLOAD]: (state, { file }) => {
-    let files = state.files
-    let fileIndex = state.files.findIndex(i => i.id === file.id)
+    let files = state.files;
+    let fileIndex = state.files.findIndex((i) => i.id === file.id);
 
     if (fileIndex !== -1) {
       const fields = (({ nsfw, title, hidden }) => ({ nsfw, title, hidden }))(
-        file
-      )
-      files[fileIndex] = Object.assign(files[fileIndex], fields)
+        file,
+      );
+      files[fileIndex] = Object.assign(files[fileIndex], fields);
     }
 
     return {
       ...state,
       files: files,
-    }
+    };
   },
 
   [Actions.OPEN_UPLOAD_MODAL]: (state, action) => {
     let selectedIndex = state.files.findIndex(
-      file => file.id === state.uploadId
-    )
+      (file) => file.id === state.uploadId,
+    );
 
     return {
       ...state,
@@ -64,7 +64,7 @@ const handlers = {
       selectedIndex,
       characterId: action.characterId || state.characterId,
       uploadCallback: action.uploadCallback || state.uploadCallback,
-    }
+    };
   },
 
   [Actions.CLOSE_UPLOAD_MODAL]: (state, action) => {
@@ -72,7 +72,7 @@ const handlers = {
       ...state,
       modalOpen: false,
       selectedIndex: null,
-    }
+    };
   },
 
   [Actions.SET_UPLOAD_TARGET]: (state, action) => {
@@ -80,22 +80,22 @@ const handlers = {
       ...state,
       characterId: action.characterId,
       uploadCallback: action.uploadCallback,
-    }
+    };
   },
 
-  [Actions.DISABLE_DROPZONE]: state => {
+  [Actions.DISABLE_DROPZONE]: (state) => {
     return {
       ...state,
       dropzoneDisabled: true,
-    }
+    };
   },
 
-  [Actions.ENABLE_DROPZONE]: state => {
+  [Actions.ENABLE_DROPZONE]: (state) => {
     return {
       ...state,
       dropzoneDisabled: false,
-    }
+    };
   },
-}
+};
 
-export default createReducer({}, handlers)
+export default createReducer({}, handlers);

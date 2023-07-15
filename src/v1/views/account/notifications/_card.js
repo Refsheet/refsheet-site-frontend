@@ -5,14 +5,14 @@
     react/no-deprecated,
     react/react-in-jsx-scope,
 */
-import React from 'react'
-import createReactClass from 'create-react-class'
-import PropTypes from 'prop-types'
-import Views from 'v1/views/_views'
-import { Link } from 'react-router-dom'
-import Icon from '../../../shared/material/Icon'
-import DateFormat from '../../../shared/utils/DateFormat'
-import IdentityLink from 'v1/shared/identity_link'
+import React from "react";
+import createReactClass from "create-react-class";
+import PropTypes from "prop-types";
+import Views from "v1/views/_views";
+import { Link } from "react-router-dom";
+import Icon from "../../../shared/material/Icon";
+import DateFormat from "../../../shared/utils/DateFormat";
+import IdentityLink from "v1/shared/identity_link";
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
@@ -23,7 +23,7 @@ import IdentityLink from 'v1/shared/identity_link'
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
 
-let Card
+let Card;
 export default Card = createReactClass({
   propTypes: {
     type: PropTypes.string.isRequired,
@@ -36,7 +36,7 @@ export default Card = createReactClass({
   },
 
   getInitialState() {
-    return { is_read: this.props.is_read }
+    return { is_read: this.props.is_read };
   },
 
   _getIdentity() {
@@ -48,8 +48,8 @@ export default Card = createReactClass({
         is_admin: this.props.user.is_admin,
         is_patron: this.props.user.is_patron,
         username: this.props.user.username,
-        type: 'character',
-      }
+        type: "character",
+      };
     } else {
       return {
         avatarUrl: this.props.user.avatar_url,
@@ -58,50 +58,50 @@ export default Card = createReactClass({
         username: this.props.user.username,
         is_admin: this.props.user.is_admin,
         is_patron: this.props.user.is_patron,
-        type: 'user',
-      }
+        type: "user",
+      };
     }
   },
 
   _getActionables(key) {
-    let out = this.props.actionables || [this.props.actionable]
-    if (typeof key !== 'undefined') {
-      out = out.map(out => out[key])
+    let out = this.props.actionables || [this.props.actionable];
+    if (typeof key !== "undefined") {
+      out = out.map((out) => out[key]);
     }
-    return out
+    return out;
   },
 
   _getActionable() {
     if (!this.props.actionable) {
-      return null
+      return null;
     }
 
     switch (this.props.type) {
-      case 'Notifications::ImageFavorite':
+      case "Notifications::ImageFavorite":
         return (
           <Views.Account.Activities.Image
-            images={this._getActionables('media')}
+            images={this._getActionables("media")}
             action="Likes"
           />
-        )
+        );
 
-      case 'Notifications::ImageComment':
+      case "Notifications::ImageComment":
         return (
           <Views.Account.Activities.Comment comments={this._getActionables()} />
-        )
+        );
 
-      case 'Notifications::ForumReply':
+      case "Notifications::ForumReply":
         return (
           <Views.Account.Activities.ForumPost posts={this._getActionables()} />
-        )
+        );
 
-      case 'Notifications::ForumTag':
+      case "Notifications::ForumTag":
         return (
           <Views.Account.Activities.ForumPost
             action="Mentioned you in"
             posts={this._getActionables()}
           />
-        )
+        );
 
       default:
         return (
@@ -110,31 +110,31 @@ export default Card = createReactClass({
             <br />
             <Link to={this.props.href}>{this.props.message}</Link>
           </div>
-        )
+        );
     }
   },
 
   UNSAFE_componentWillReceiveProps(newProps) {
     if (newProps.is_read !== this.state.is_read) {
-      return this.setState({ is_read: newProps.is_read })
+      return this.setState({ is_read: newProps.is_read });
     }
   },
 
   render() {
-    let imgShadow, nameColor, unreadLink
-    const identity = this._getIdentity()
+    let imgShadow, nameColor, unreadLink;
+    const identity = this._getIdentity();
 
     if (identity.is_admin) {
-      imgShadow = '0 0 3px 1px #2480C8'
-      nameColor = '#2480C8'
+      imgShadow = "0 0 3px 1px #2480C8";
+      nameColor = "#2480C8";
     } else if (identity.is_patron) {
-      imgShadow = '0 0 3px 1px #F96854'
-      nameColor = '#F96854'
+      imgShadow = "0 0 3px 1px #F96854";
+      nameColor = "#F96854";
     }
 
     const classNames = [
-      'card sp with-avatar margin-bottom--medium notification',
-    ]
+      "card sp with-avatar margin-bottom--medium notification",
+    ];
 
     if (this.state.is_read) {
       unreadLink = (
@@ -147,7 +147,7 @@ export default Card = createReactClass({
         >
           <Icon>drafts</Icon>
         </a>
-      )
+      );
     } else {
       unreadLink = (
         <a
@@ -159,13 +159,13 @@ export default Card = createReactClass({
         >
           <Icon>done</Icon>
         </a>
-      )
+      );
 
-      classNames.push('notification-unread')
+      classNames.push("notification-unread");
     }
 
     return (
-      <div className={classNames.join(' ')}>
+      <div className={classNames.join(" ")}>
         <img
           className="avatar circle"
           src={identity.avatarUrl}
@@ -185,6 +185,6 @@ export default Card = createReactClass({
 
         <div className="clearfix" />
       </div>
-    )
+    );
   },
-})
+});

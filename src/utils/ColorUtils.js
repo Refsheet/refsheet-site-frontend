@@ -1,4 +1,4 @@
-import Color from 'color'
+import Color from "color";
 
 const ColorUtils = {
   /**
@@ -9,13 +9,13 @@ const ColorUtils = {
    * @returns {{}}
    */
   rejectV1(v2ColorData) {
-    let clean = {}
+    let clean = {};
 
     Object.keys(v2ColorData)
-      .filter(k => !/-/.test(k))
-      .map(k => (clean[k] = v2ColorData[k]))
+      .filter((k) => !/-/.test(k))
+      .map((k) => (clean[k] = v2ColorData[k]));
 
-    return clean
+    return clean;
   },
 
   /**
@@ -23,20 +23,20 @@ const ColorUtils = {
    * @param v1ColorData
    */
   convertV1(v1ColorData) {
-    let v2ColorData = { ...v1ColorData }
+    let v2ColorData = { ...v1ColorData };
 
     Object.keys(v1ColorData)
-      .filter(k => /-/.test(k))
-      .map(k => {
+      .filter((k) => /-/.test(k))
+      .map((k) => {
         v2ColorData[
           k.replace(
             /([a-z])-([a-z])/g,
-            ($0, $1, $2) => `${$1}${$2.toUpperCase()}`
+            ($0, $1, $2) => `${$1}${$2.toUpperCase()}`,
           )
-        ] = v1ColorData[k]
-      })
+        ] = v1ColorData[k];
+      });
 
-    return v2ColorData
+    return v2ColorData;
   },
 
   /**
@@ -44,16 +44,16 @@ const ColorUtils = {
    * @param v2ColorData
    */
   convertV2(v2ColorData) {
-    let v1ColorData = { ...v2ColorData }
+    let v1ColorData = { ...v2ColorData };
 
     Object.keys(v2ColorData)
-      .filter(k => /[a-z][A-Z]/.test(k))
-      .map(k => {
-        const key = k.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
-        if (!v1ColorData[key]) v1ColorData[key] = v2ColorData[k]
-      })
+      .filter((k) => /[a-z][A-Z]/.test(k))
+      .map((k) => {
+        const key = k.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase();
+        if (!v1ColorData[key]) v1ColorData[key] = v2ColorData[k];
+      });
 
-    return v1ColorData
+    return v1ColorData;
   },
 
   /**
@@ -61,8 +61,8 @@ const ColorUtils = {
    * @param colorData
    */
   indifferent(colorData) {
-    return this.convertV1(this.convertV2(colorData))
+    return this.convertV1(this.convertV2(colorData));
   },
-}
+};
 
-export default ColorUtils
+export default ColorUtils;

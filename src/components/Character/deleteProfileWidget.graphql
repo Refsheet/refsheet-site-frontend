@@ -1,5 +1,5 @@
 mutation deleteProfileWidget($id: ID!) {
-    deleteProfileWidget(id: $id) {
-        id
-    }
+  deleteProfileWidget(id: $id) {
+    id
+  }
 }

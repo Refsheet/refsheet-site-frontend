@@ -6,24 +6,24 @@
     react/no-string-refs,
     react/react-in-jsx-scope,
 */
-import React from 'react'
-import createReactClass from 'create-react-class'
-import PropTypes from 'prop-types'
-import dynamic from 'next/dynamic'
+import React from "react";
+import createReactClass from "create-react-class";
+import PropTypes from "prop-types";
+import dynamic from "next/dynamic";
 
 let Materialize = null;
-if (typeof window !== 'undefined') {
-  Materialize = require('materialize-css');
+if (typeof window !== "undefined") {
+  Materialize = require("materialize-css");
 }
 
-import Modal from '../../shared/Modal'
-import Form from '../../shared/forms/Form'
-import Row from '../../shared/material/Row'
-import Column from '../../shared/material/Column'
-import Input from '../../shared/forms/Input'
-import Submit from '../../shared/forms/Submit'
+import Modal from "../../shared/Modal";
+import Form from "../../shared/forms/Form";
+import Row from "../../shared/material/Row";
+import Column from "../../shared/material/Column";
+import Input from "../../shared/forms/Input";
+import Submit from "../../shared/forms/Submit";
 
-import $ from 'jquery'
+import $ from "jquery";
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
@@ -32,7 +32,7 @@ import $ from 'jquery'
  * DS208: Avoid top-level this
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
-let CharacterTransferModal
+let CharacterTransferModal;
 export default CharacterTransferModal = createReactClass({
   propTypes: {
     character: PropTypes.object.isRequired,
@@ -44,35 +44,35 @@ export default CharacterTransferModal = createReactClass({
       model: {
         transfer_to_user: null,
       },
-    }
+    };
   },
 
   _handleModalClose(e) {
     return Materialize.Modal.getInstance(
-      document.getElementById('character-transfer-modal')
-    ).close()
+      document.getElementById("character-transfer-modal"),
+    ).close();
   },
 
   _handleChange(character) {
-    this.setState({model: {transfer_to_user: null}})
-    $(document).trigger('app:character:update', character)
+    this.setState({ model: { transfer_to_user: null } });
+    $(document).trigger("app:character:update", character);
 
-    this._handleModalClose()
+    this._handleModalClose();
     return Materialize.toast({
-      html: 'Character transfer initiated.',
+      html: "Character transfer initiated.",
       displayLength: 3000,
-      classes: 'green',
-    })
+      classes: "green",
+    });
   },
 
   _handleCancel(e) {
-    this.refs.form.reset()
-    this._handleModalClose()
-    return e.preventDefault()
+    this.refs.form.reset();
+    this._handleModalClose();
+    return e.preventDefault();
   },
 
   _handleDirty(dirty) {
-    return this.setState({dirty})
+    return this.setState({ dirty });
   },
 
   render() {
@@ -132,6 +132,6 @@ export default CharacterTransferModal = createReactClass({
           </Column>
         </Row>
       </Modal>
-    )
+    );
   },
-})
+});

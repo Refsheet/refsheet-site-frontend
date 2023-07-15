@@ -4,11 +4,11 @@
     react/no-deprecated,
     react/react-in-jsx-scope,
 */
-import React from 'react'
-import createReactClass from 'create-react-class'
-import PropTypes from 'prop-types'
-import Groups from './characters/Groups'
-import List from './characters/List'
+import React from "react";
+import createReactClass from "create-react-class";
+import PropTypes from "prop-types";
+import Groups from "./characters/Groups";
+import List from "./characters/List";
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
@@ -17,7 +17,7 @@ import List from './characters/List'
  * DS208: Avoid top-level this
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
-let Characters
+let Characters;
 export default Characters = createReactClass({
   propTypes: {
     groups: PropTypes.array.isRequired,
@@ -33,7 +33,7 @@ export default Characters = createReactClass({
   },
 
   render() {
-    let listEditable
+    let listEditable;
     const {
       groups,
       editable,
@@ -44,18 +44,18 @@ export default Characters = createReactClass({
       onGroupDelete,
       onCharacterDelete,
       onCharacterSort,
-    } = this.props
+    } = this.props;
 
-    let { characters } = this.props
+    let { characters } = this.props;
 
     if (!characters) {
-      characters = []
+      characters = [];
     }
 
     if (activeGroupId) {
-      listEditable = false
+      listEditable = false;
     } else {
-      listEditable = editable
+      listEditable = editable;
     }
 
     return (
@@ -92,6 +92,6 @@ export default Characters = createReactClass({
           />
         </div>
       </div>
-    )
+    );
   },
-})
+});

@@ -5,52 +5,52 @@
     react/no-deprecated,
     react/react-in-jsx-scope,
 */
-import React from 'react'
-import createReactClass from 'create-react-class'
-import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
-import {openUploadModal, setUploadTarget} from '../../../actions'
-import Section from '../../shared/material/Section'
-import ImageGallery from '../../shared/images/ImageGallery'
-import Column from '../../shared/material/Column'
-import Row from '../../shared/material/Row'
-import SwatchPanel from '../../shared/swatches/SwatchPanel'
-import CharacterCard from './CharacterCard'
-import ActionButton from '../../shared/ActionButton'
-import CharacterNotice from './CharacterNotice'
-import PageHeader from '../../shared/PageHeader'
-import CharacterSettingsModal from '../../shared/modals/character/CharacterSettingsModal'
-import CharacterTransferModal from './CharacterTransferModal'
-import CharacterDeleteModal from '../../shared/modals/character/CharacterDeleteModal'
-import CharacterColorSchemeModal from '../../shared/modals/character/CharacterColorSchemeModal'
-import ImageGalleryModal from '../../shared/modals/ImageGalleryModal'
-import FixedActionButton from '../../shared/FixedActionButton'
-import PageStylesheet from '../../shared/PageStylesheet'
-import NotFound from '../static/NotFound'
-import dynamic from 'next/dynamic'
+import React from "react";
+import createReactClass from "create-react-class";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { openUploadModal, setUploadTarget } from "../../../actions";
+import Section from "../../shared/material/Section";
+import ImageGallery from "../../shared/images/ImageGallery";
+import Column from "../../shared/material/Column";
+import Row from "../../shared/material/Row";
+import SwatchPanel from "../../shared/swatches/SwatchPanel";
+import CharacterCard from "./CharacterCard";
+import ActionButton from "../../shared/ActionButton";
+import CharacterNotice from "./CharacterNotice";
+import PageHeader from "../../shared/PageHeader";
+import CharacterSettingsModal from "../../shared/modals/character/CharacterSettingsModal";
+import CharacterTransferModal from "./CharacterTransferModal";
+import CharacterDeleteModal from "../../shared/modals/character/CharacterDeleteModal";
+import CharacterColorSchemeModal from "../../shared/modals/character/CharacterColorSchemeModal";
+import ImageGalleryModal from "../../shared/modals/ImageGalleryModal";
+import FixedActionButton from "../../shared/FixedActionButton";
+import PageStylesheet from "../../shared/PageStylesheet";
+import NotFound from "../static/NotFound";
+import dynamic from "next/dynamic";
 
 let Materialize = null;
-if (typeof window !== 'undefined') {
-  Materialize = require('materialize-css');
+if (typeof window !== "undefined") {
+  Materialize = require("materialize-css");
 }
 
-import Main from '../../shared/Main'
-import CharacterViewSilhouette from './CharacterViewSilhouette'
-import RichText from '../../../components/Shared/RichText'
-import Character from 'components/Character'
-import $ from 'jquery'
-import StateUtils from '../../utils/StateUtils'
-import Gallery from '../../../components/Character/Gallery'
-import {Query} from '@apollo/client/react/components'
+import Main from "../../shared/Main";
+import CharacterViewSilhouette from "./CharacterViewSilhouette";
+import RichText from "../../../components/Shared/RichText";
+import Character from "components/Character";
+import $ from "jquery";
+import StateUtils from "../../utils/StateUtils";
+import Gallery from "../../../components/Character/Gallery";
+import { Query } from "@apollo/client/react/components";
 //graphql.macro
-import Flash from '../../../utils/Flash'
-import {ThemedMain} from '../../../components/Styled/Global'
-import defaultTheme from '../../../themes/default'
-import {ThemeProvider} from 'styled-components'
-import ColorUtils from '../../../utils/ColorUtils'
-import compose, {withCurrentUser} from '../../../utils/compose'
+import Flash from "../../../utils/Flash";
+import { ThemedMain } from "../../../components/Styled/Global";
+import defaultTheme from "../../../themes/default";
+import { ThemeProvider } from "styled-components";
+import ColorUtils from "../../../utils/ColorUtils";
+import compose, { withCurrentUser } from "../../../utils/compose";
 
-const getCharacterImages = require('./getCharacterImages.graphql');
+const getCharacterImages = require("./getCharacterImages.graphql");
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
@@ -73,197 +73,197 @@ const Component = createReactClass({
       onGallerySelect: null,
       images: null,
       editable: true,
-    }
+    };
   },
 
-  dataPath: '/users/:userId/characters/:characterId',
+  dataPath: "/users/:userId/characters/:characterId",
   paramMap: {
-    characterId: 'slug',
-    userId: 'user_id',
+    characterId: "slug",
+    userId: "user_id",
   },
 
   componentDidUpdate(prevProps, prevState) {
-    StateUtils.reload(this, 'character', this.props, prevProps)
+    StateUtils.reload(this, "character", this.props, prevProps);
 
     if (
       this.state.character &&
       (prevState.character || {}).id !== (this.state.character || {}).id
     ) {
-      this.props.setUploadTarget(this.state.character.id)
+      this.props.setUploadTarget(this.state.character.id);
 
       // Handle URL changes:
       if (
         prevState.character &&
         prevState.character.link !== this.state.character.link
       )
-        window.history.replaceState({}, '', this.state.character.link)
+        window.history.replaceState({}, "", this.state.character.link);
     }
   },
 
   componentDidMount() {
-    StateUtils.load(this, 'character')
+    StateUtils.load(this, "character");
 
     if (this.state.character) {
-      this.props.setUploadTarget(this.state.character.id)
+      this.props.setUploadTarget(this.state.character.id);
     }
 
     return $(document)
-      .on('app:character:update', (e, character) => {
-        console.warn('jQuery events are deprecated, find a better way.', e)
+      .on("app:character:update", (e, character) => {
+        console.warn("jQuery events are deprecated, find a better way.", e);
         if (this.state.character.id === character.id) {
-          return this.setState({character})
+          return this.setState({ character });
         }
       })
-      .on('app:character:profileImage:edit', e => {
-        console.warn('jQuery events are deprecated, find a better way.', e)
+      .on("app:character:profileImage:edit", (e) => {
+        console.warn("jQuery events are deprecated, find a better way.", e);
         this.setState({
-          galleryTitle: 'Select Profile Picture',
-          onGallerySelect: imageId => {
-            this.setProfileImage(imageId)
+          galleryTitle: "Select Profile Picture",
+          onGallerySelect: (imageId) => {
+            this.setProfileImage(imageId);
             return Materialize.Modal.getInstance(
-              document.getElementById('image-gallery-modal')
-            ).close()
+              document.getElementById("image-gallery-modal"),
+            ).close();
           },
-        })
+        });
         return Materialize.Modal.getInstance(
-          document.getElementById('image-gallery-modal')
-        ).open()
+          document.getElementById("image-gallery-modal"),
+        ).open();
       })
       .on(
-        'app:character:reload app:image:delete',
+        "app:character:reload app:image:delete",
         (e, newPath, callback = null) => {
-          console.warn('jQuery events are deprecated, find a better way.', e)
+          console.warn("jQuery events are deprecated, find a better way.", e);
           if (newPath == null) {
-            newPath = this.state.character.path
+            newPath = this.state.character.path;
           }
-          console.debug('[CharacterApp] Reloading character...')
-          return $.get(`${newPath}.json`, data => {
-            this.setState({character: data})
+          console.debug("[CharacterApp] Reloading character...");
+          return $.get(`${newPath}.json`, (data) => {
+            this.setState({ character: data });
             if (callback != null) {
-              return callback(data)
+              return callback(data);
             }
-          })
-        }
-      )
+          });
+        },
+      );
   },
 
   componentWillUnmount() {
-    $(document).off('app:character:update')
-    $(document).off('app:character:profileImage:edit')
-    $(document).off('app:character:reload')
-    $(document).off('app:image:delete')
+    $(document).off("app:character:update");
+    $(document).off("app:character:profileImage:edit");
+    $(document).off("app:character:reload");
+    $(document).off("app:image:delete");
   },
 
   setFeaturedImage(imageId) {
     return new Promise((resolve, reject) => {
       $.ajax({
         url: this.state.character.path,
-        type: 'PATCH',
-        data: {character: {featured_image_guid: imageId}},
-        success: data => {
-          Flash.info('Header image updated!')
-          this.setState({character: data})
-          resolve(data)
+        type: "PATCH",
+        data: { character: { featured_image_guid: imageId } },
+        success: (data) => {
+          Flash.info("Header image updated!");
+          this.setState({ character: data });
+          resolve(data);
         },
-        error: error => {
-          const {errors} = error.responseJSON
+        error: (error) => {
+          const { errors } = error.responseJSON;
           if (errors.featured_image && errors.featured_image.length) {
-            Flash.error(errors.featured_image.join(', '))
+            Flash.error(errors.featured_image.join(", "));
           } else {
-            console.error(error)
-            Flash.error('Unknown issue!' + JSON.stringify(errors))
+            console.error(error);
+            Flash.error("Unknown issue!" + JSON.stringify(errors));
           }
-          reject(errors)
+          reject(errors);
         },
-      })
-    })
+      });
+    });
   },
 
   setProfileImage(imageId) {
     return new Promise((resolve, reject) => {
       $.ajax({
         url: this.state.character.path,
-        type: 'PATCH',
-        data: {character: {profile_image_guid: imageId}},
-        success: data => {
-          Flash.info('Profile picture updated!')
-          this.setState({character: data})
-          resolve(data)
+        type: "PATCH",
+        data: { character: { profile_image_guid: imageId } },
+        success: (data) => {
+          Flash.info("Profile picture updated!");
+          this.setState({ character: data });
+          resolve(data);
         },
-        error: error => {
+        error: (error) => {
           if (error.responseJSON) {
-            const {errors} = error.responseJSON
+            const { errors } = error.responseJSON;
             if (errors.profile_image && errors.profile_image.length) {
-              Flash.error(errors.profile_image.join(', '))
+              Flash.error(errors.profile_image.join(", "));
             } else {
-              console.error(error)
-              Flash.error('Unknown issue: ' + JSON.stringify(errors))
+              console.error(error);
+              Flash.error("Unknown issue: " + JSON.stringify(errors));
             }
-            reject(errors)
+            reject(errors);
           } else {
-            reject({error})
+            reject({ error });
           }
         },
-      })
-    })
+      });
+    });
   },
 
   handleRichTextChange(data) {
     return new Promise((resolve, reject) => {
       $.ajax({
         url: this.state.character.path,
-        data: {character: data},
-        type: 'PATCH',
-        success: data => {
-          this.setState({character: data})
-          resolve(data)
+        data: { character: data },
+        type: "PATCH",
+        success: (data) => {
+          this.setState({ character: data });
+          resolve(data);
         },
-        error: error => {
-          reject(error)
+        error: (error) => {
+          reject(error);
         },
-      })
-    })
+      });
+    });
   },
 
   handleHeaderImageEdit() {
     this.setState({
-      galleryTitle: 'Select Header Image',
-      onGallerySelect: imageId => {
-        this.setFeaturedImage(imageId).then(_data => {
+      galleryTitle: "Select Header Image",
+      onGallerySelect: (imageId) => {
+        this.setFeaturedImage(imageId).then((_data) => {
           Materialize.Modal.getInstance(
-            document.getElementById('image-gallery-modal')
-          ).close()
-        })
+            document.getElementById("image-gallery-modal"),
+          ).close();
+        });
       },
-    })
+    });
     return Materialize.Modal.getInstance(
-      document.getElementById('image-gallery-modal')
-    ).open()
+      document.getElementById("image-gallery-modal"),
+    ).open();
   },
 
   _toggleEditable() {
-    return this.setState({editable: !this.state.editable})
+    return this.setState({ editable: !this.state.editable });
   },
 
   _openUploads() {
     return this.props.openUploadModal({
       characterId: this.state.character && this.state.character.id,
-    })
+    });
   },
 
   renderGallery(canEdit) {
-    return ({data, loading, error}) => {
+    return ({ data, loading, error }) => {
       if (error) {
-        console.error('renderGallery failed:', error)
+        console.error("renderGallery failed:", error);
       }
 
       const images =
-        (data && data.getCharacterByUrl && data.getCharacterByUrl.images) || []
+        (data && data.getCharacterByUrl && data.getCharacterByUrl.images) || [];
       const folders =
         (data &&
           data.getCharacterByUrl &&
           data.getCharacterByUrl.media_folders) ||
-        []
+        [];
 
       return (
         <div>
@@ -283,57 +283,57 @@ const Component = createReactClass({
             editable={canEdit}
           />
         </div>
-      )
-    }
+      );
+    };
   },
 
   render() {
-    let richTextChange, editable, headerImageEditCallback, showMenu
+    let richTextChange, editable, headerImageEditCallback, showMenu;
 
     if (this.state.error != null) {
-      return <NotFound/>
+      return <NotFound />;
     }
 
     if (!this.state.character) {
-      return <CharacterViewSilhouette/>
+      return <CharacterViewSilhouette />;
     }
 
     if (this.state.character.version === 2) {
-      let props = this.props
+      let props = this.props;
 
       props.match.params = {
         ...props.match.params,
         username: props.match.params.userId,
         slug: props.match.params.characterId,
-      }
+      };
 
-      return <Character {...props} />
+      return <Character {...props} />;
     }
 
     const isOwner =
-      this.state.character.user_id === (this.props.currentUser || {}).username
+      this.state.character.user_id === (this.props.currentUser || {}).username;
     const canEdit =
-      isOwner || (this.props.currentUser && this.props.currentUser.is_admin)
+      isOwner || (this.props.currentUser && this.props.currentUser.is_admin);
 
     if (canEdit) {
-      showMenu = true
+      showMenu = true;
 
       if (this.state.editable) {
-        editable = true
-        richTextChange = this.handleRichTextChange
-        headerImageEditCallback = this.handleHeaderImageEdit
+        editable = true;
+        richTextChange = this.handleRichTextChange;
+        headerImageEditCallback = this.handleHeaderImageEdit;
       }
     }
 
     let colors =
       this.state.character.color_scheme &&
       this.state.character.color_scheme.color_data &&
-      ColorUtils.indifferent(this.state.character.color_scheme.color_data)
+      ColorUtils.indifferent(this.state.character.color_scheme.color_data);
 
     return (
       <ThemeProvider theme={defaultTheme.apply(colors || {})}>
-        <ThemedMain title={[this.state.character.name, 'Characters']}>
-          {colors && <PageStylesheet colorData={colors}/>}
+        <ThemedMain title={[this.state.character.name, "Characters"]}>
+          {colors && <PageStylesheet colorData={colors} />}
           {/*<CharacterEditMenu onEditClick={ this._toggleEditable }
                                 images={ this.state.images }
                                 galleryTitle={ this.state.galleryTitle } <-- THIS SHOULD NOT HAPPEN
@@ -385,9 +385,9 @@ const Component = createReactClass({
               </FixedActionButton>
 
               <CharacterColorSchemeModal
-                colorScheme={{color_data: colors}}
+                colorScheme={{ color_data: colors }}
                 characterPath={this.state.character.path}
-                onChange={data =>
+                onChange={(data) =>
                   this.setState(
                     {
                       character: {
@@ -398,20 +398,20 @@ const Component = createReactClass({
                         },
                       },
                     },
-                    console.log
+                    console.log,
                   )
                 }
               />
-              <CharacterDeleteModal character={this.state.character}/>
-              <CharacterTransferModal character={this.state.character}/>
-              <CharacterSettingsModal character={this.state.character}/>
+              <CharacterDeleteModal character={this.state.character} />
+              <CharacterTransferModal character={this.state.character} />
+              <CharacterSettingsModal character={this.state.character} />
             </div>
           )}
           <PageHeader
             backgroundImage={(this.state.character.featured_image || {}).url}
             onHeaderImageEdit={headerImageEditCallback}
           >
-            <CharacterNotice transfer={this.state.character.pending_transfer}/>
+            <CharacterNotice transfer={this.state.character.pending_transfer} />
 
             {showMenu && (
               <div className="button-group">
@@ -441,44 +441,44 @@ const Component = createReactClass({
             />
             <SwatchPanel
               edit={editable}
-              swatchesPath={this.state.character.path + '/swatches/'}
+              swatchesPath={this.state.character.path + "/swatches/"}
               swatches={this.state.character.swatches}
             />
           </PageHeader>
           <Section>
             <Row className="rowfix">
-              <Column m={12} id={'profile_about'}>
+              <Column m={12} id={"profile_about"}>
                 <RichText
                   renderAsCard
                   name="profile"
                   title={`About ${this.state.character.name}`}
                   placeholder="No biography written."
                   onChange={richTextChange}
-                  contentHtml={this.state.character.profile_html || ''}
+                  contentHtml={this.state.character.profile_html || ""}
                   content={this.state.character.profile}
                 />
               </Column>
             </Row>
             <Row className="rowfix">
-              <Column m={6} id={'profile_likes'}>
+              <Column m={6} id={"profile_likes"}>
                 <RichText
                   renderAsCard
-                  title={'Likes'}
-                  name={'likes'}
+                  title={"Likes"}
+                  name={"likes"}
                   placeholder="No likes specified."
                   onChange={richTextChange}
-                  contentHtml={this.state.character.likes_html || ''}
+                  contentHtml={this.state.character.likes_html || ""}
                   content={this.state.character.likes}
                 />
               </Column>
-              <Column m={6} id={'profile_dislikes'}>
+              <Column m={6} id={"profile_dislikes"}>
                 <RichText
                   renderAsCard
-                  title={'Dislikes'}
-                  name={'dislikes'}
+                  title={"Dislikes"}
+                  name={"dislikes"}
                   placeholder="No dislikes specified."
                   onChange={richTextChange}
-                  contentHtml={this.state.character.dislikes_html || ''}
+                  contentHtml={this.state.character.dislikes_html || ""}
                   content={this.state.character.dislikes}
                 />
               </Column>
@@ -498,18 +498,18 @@ const Component = createReactClass({
           </Section>
         </ThemedMain>
       </ThemeProvider>
-    )
+    );
   },
-})
+});
 
 const mapDispatchToProps = {
   setUploadTarget,
   openUploadModal,
-}
+};
 
-const mapStateToProps = state => state
+const mapStateToProps = (state) => state;
 
 export default compose(
   withCurrentUser(),
-  connect(mapStateToProps, mapDispatchToProps)
-)(Component)
+  connect(mapStateToProps, mapDispatchToProps),
+)(Component);

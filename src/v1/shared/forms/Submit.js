@@ -1,6 +1,6 @@
-import React from 'react'
-import createReactClass from 'create-react-class'
-import PropTypes from 'prop-types'
+import React from "react";
+import createReactClass from "create-react-class";
+import PropTypes from "prop-types";
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
@@ -10,28 +10,28 @@ import PropTypes from 'prop-types'
  * DS208: Avoid top-level this
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
-let Submit
+let Submit;
 export default Submit = function (props) {
-  const classNames = ['btn']
-  classNames.push(props.className)
+  const classNames = ["btn"];
+  classNames.push(props.className);
   if (!props.noWaves) {
-    classNames.push('waves-effect waves-light')
+    classNames.push("waves-effect waves-light");
   }
   if (props.flat) {
-    classNames.push('btn-flat')
+    classNames.push("btn-flat");
   }
   if (props.link) {
-    classNames.push('btn-link')
+    classNames.push("btn-link");
   }
 
   return (
     <button
-      type={props.type || 'submit'}
-      className={classNames.join(' ')}
+      type={props.type || "submit"}
+      className={classNames.join(" ")}
       id={props.id}
       disabled={props.disabled}
     >
-      {props.children || 'Submit'}
+      {props.children || "Submit"}
     </button>
-  )
-}
+  );
+};

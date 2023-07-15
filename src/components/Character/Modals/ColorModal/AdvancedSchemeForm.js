@@ -1,20 +1,20 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import compose from 'utils/compose'
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import compose from "utils/compose";
 
 class AdvancedSchemeForm extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
-    this.state = {}
+    this.state = {};
   }
 
   render() {
-    return <h1>AdvancedSchemeForm</h1>
+    return <h1>AdvancedSchemeForm</h1>;
   }
 }
 
-AdvancedSchemeForm.propTypes = {}
+AdvancedSchemeForm.propTypes = {};
 
-export default compose()(AdvancedSchemeForm)
+export default compose()(AdvancedSchemeForm);
 // TODO: Add HOC bindings here

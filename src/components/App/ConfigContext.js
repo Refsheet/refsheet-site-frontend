@@ -1,7 +1,7 @@
-import { createContext } from 'react'
+import { createContext } from "react";
 
 const ConfigContext = createContext({
   loading: true,
-})
+});
 
-export default ConfigContext
+export default ConfigContext;

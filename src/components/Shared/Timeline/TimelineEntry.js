@@ -1,7 +1,7 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import c from 'classnames'
-import Moment from 'react-moment'
+import React from "react";
+import PropTypes from "prop-types";
+import c from "classnames";
+import Moment from "react-moment";
 
 const TimelineEntry = ({
   current,
@@ -12,22 +12,22 @@ const TimelineEntry = ({
   children,
 }) => {
   return (
-    <li className={c('timeline-entry', { current, active: current })}>
-      <div className={'collapsible-header'} onClick={onClick}>
+    <li className={c("timeline-entry", { current, active: current })}>
+      <div className={"collapsible-header"} onClick={onClick}>
         {time && (
-          <Moment format={'L'} withTitle titleFormat={'L LT'} unix>
+          <Moment format={"L"} withTitle titleFormat={"L LT"} unix>
             {time}
           </Moment>
         )}
-        {title && <div className={'title'}>{title}</div>}
-        {summary && <div className={'summary'}>{summary}</div>}
+        {title && <div className={"title"}>{title}</div>}
+        {summary && <div className={"summary"}>{summary}</div>}
       </div>
 
-      <div className={'details collapsible-body'}>{children}</div>
+      <div className={"details collapsible-body"}>{children}</div>
     </li>
-  )
-}
+  );
+};
 
-TimelineEntry.propTypes = {}
+TimelineEntry.propTypes = {};
 
-export default TimelineEntry
+export default TimelineEntry;

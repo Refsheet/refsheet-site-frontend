@@ -1,13 +1,13 @@
-import React from 'react'
-import Main from '../../Shared/Main'
-import { Link } from 'react-router-dom'
+import React from "react";
+import Main from "../../Shared/Main";
+import { Link } from "react-router-dom";
 
 const View = ({ data: { artists, currentPage, perPage } }) => {
   return (
-    <Main title={'Artists'}>
-      <div className={'container'}>
+    <Main title={"Artists"}>
+      <div className={"container"}>
         <ul>
-          {artists.map(artist => (
+          {artists.map((artist) => (
             <li key={artist.slug}>
               <Link to={`/artists/${artist.slug}`}>{artist.name}</Link>
             </li>
@@ -15,7 +15,7 @@ const View = ({ data: { artists, currentPage, perPage } }) => {
         </ul>
       </div>
     </Main>
-  )
-}
+  );
+};
 
-export default View
+export default View;

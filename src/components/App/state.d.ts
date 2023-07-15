@@ -1,59 +1,59 @@
 export interface ISessionUser {
-    username: string;
+  username: string;
 }
 
 export interface ISessionIdentity {
-    avatarUrl: string | null;
-    name: string | null;
-    characterId: string | null;
+  avatarUrl: string | null;
+  name: string | null;
+  characterId: string | null;
 }
 
 export interface IModal {
-    open: boolean;
+  open: boolean;
 }
 
 export interface ISession {
-    currentUser: ISessionUser | null;
-    nsfwOk: boolean;
-    timeZone: string | null;
-    locale: string | null;
-    identity: ISessionIdentity | null;
+  currentUser: ISessionUser | null;
+  nsfwOk: boolean;
+  timeZone: string | null;
+  locale: string | null;
+  identity: ISessionIdentity | null;
 }
 
 export interface GlobalState {
-    session: ISession;
+  session: ISession;
 
-    theme: {
-        id: string | null;
-        name: string | null;
-        allowHoliday: boolean;
-        allowOverride: boolean;
-    };
+  theme: {
+    id: string | null;
+    name: string | null;
+    allowHoliday: boolean;
+    allowOverride: boolean;
+  };
 
-    conversations: {
-        openConversations: [string];
-    };
+  conversations: {
+    openConversations: [string];
+  };
 
-    uploads: {
-        files: [File];
-        characterId: string | null;
-        modalOpen: boolean;
-        activeImageId: string | null;
-        uploadCallback: null;
-        dropzoneDisabled: boolean;
-    };
+  uploads: {
+    files: [File];
+    characterId: string | null;
+    modalOpen: boolean;
+    activeImageId: string | null;
+    uploadCallback: null;
+    dropzoneDisabled: boolean;
+  };
 
-    lightbox: {
-        mediaId: string | null;
-        gallery: [string];
-    };
+  lightbox: {
+    mediaId: string | null;
+    gallery: [string];
+  };
 
-    modals: {
-        newCharacter: IModal;
-        support: IModal;
-        report: IModal & {
-            id: string | null;
-            type: string | null;
-        };
+  modals: {
+    newCharacter: IModal;
+    support: IModal;
+    report: IModal & {
+      id: string | null;
+      type: string | null;
     };
+  };
 }

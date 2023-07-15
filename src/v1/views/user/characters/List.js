@@ -5,14 +5,14 @@
     react/no-string-refs,
     react/react-in-jsx-scope,
 */
-import React from 'react'
-import createReactClass from 'create-react-class'
-import PropTypes from 'prop-types'
-import StringUtils from '../../../../utils/StringUtils'
-import CharacterLinkCard from 'v1/views/characters/CharacterLinkCard'
+import React from "react";
+import createReactClass from "create-react-class";
+import PropTypes from "prop-types";
+import StringUtils from "../../../../utils/StringUtils";
+import CharacterLinkCard from "v1/views/characters/CharacterLinkCard";
 
-import $ from 'jquery'
-import Model from '../../../utils/Model'
+import $ from "jquery";
+import Model from "../../../utils/Model";
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
@@ -22,7 +22,7 @@ import Model from '../../../utils/Model'
  * DS208: Avoid top-level this
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
-let List
+let List;
 export default List = createReactClass({
   propTypes: {
     characters: PropTypes.array.isRequired,
@@ -31,67 +31,67 @@ export default List = createReactClass({
   },
 
   componentDidMount() {
-    return this._initialize()
+    return this._initialize();
   },
 
   componentDidUpdate() {
-    return this._initialize()
+    return this._initialize();
   },
 
   _initialize() {
     if (!this.props.editable) {
-      return
+      return;
     }
-    const $list = $(this.refs.list)
+    const $list = $(this.refs.list);
 
     return $list.sortable({
-      items: 'li',
-      placeholder: 'drop-target col s6 m4 xl3',
-      tolerance: 'pointer',
+      items: "li",
+      placeholder: "drop-target col s6 m4 xl3",
+      tolerance: "pointer",
       cursorAt: {
         top: 15,
         left: 15,
       },
       update: (e, el) => {
-        const $item = $(el.item[0])
+        const $item = $(el.item[0]);
 
-        if ($item.hasClass('dropped')) {
-          $item.removeClass('dropped')
-          return $list.sortable('cancel')
+        if ($item.hasClass("dropped")) {
+          $item.removeClass("dropped");
+          return $list.sortable("cancel");
         } else {
-          const position = $item.parent().children().index($item)
-          return this._handleSwap($item.data('character-id'), position)
+          const position = $item.parent().children().index($item);
+          return this._handleSwap($item.data("character-id"), position);
         }
       },
-    })
+    });
   },
 
   _handleSwap(characterId, position) {
     const character = this.props.characters.filter(
-      c => c.slug === characterId
-    )[0]
+      (c) => c.slug === characterId,
+    )[0];
 
     return Model.put(
       character.path,
-      {character: {row_order_position: position}},
-      data => {
-        return this.props.onSort(data, position)
-      }
-    )
+      { character: { row_order_position: position } },
+      (data) => {
+        return this.props.onSort(data, position);
+      },
+    );
   },
 
   render() {
     if (this.props.characters.length) {
-      let characterScope
+      let characterScope;
       if (this.props.activeGroupId) {
-        characterScope = this.props.characters.filter(c => {
-          return c.group_ids.indexOf(this.props.activeGroupId) !== -1
-        })
+        characterScope = this.props.characters.filter((c) => {
+          return c.group_ids.indexOf(this.props.activeGroupId) !== -1;
+        });
       } else {
-        characterScope = this.props.characters
+        characterScope = this.props.characters;
       }
 
-      const characters = characterScope.map(character => (
+      const characters = characterScope.map((character) => (
         <li
           className="character-drag col s6 m4 xl3"
           key={character.slug}
@@ -99,15 +99,15 @@ export default List = createReactClass({
         >
           <CharacterLinkCard {...StringUtils.camelizeKeys(character)} />
         </li>
-      ))
+      ));
 
       return (
         <ul className="user-characters row" ref="list">
           {characters}
         </ul>
-      )
+      );
     } else {
-      return <p className="caption center">No characters to show here :(</p>
+      return <p className="caption center">No characters to show here :(</p>;
     }
   },
-})
+});

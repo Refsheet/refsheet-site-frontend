@@ -4,12 +4,12 @@
     react/no-deprecated,
     react/react-in-jsx-scope,
 */
-import React from 'react'
-import createReactClass from 'create-react-class'
-import PropTypes from 'prop-types'
-import Form from '../../../../shared/forms/Form'
-import Input from '../../../../shared/forms/Input'
-import Submit from '../../../../shared/forms/Submit'
+import React from "react";
+import createReactClass from "create-react-class";
+import PropTypes from "prop-types";
+import Form from "../../../../shared/forms/Form";
+import Input from "../../../../shared/forms/Input";
+import Submit from "../../../../shared/forms/Submit";
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
@@ -20,7 +20,7 @@ import Submit from '../../../../shared/forms/Submit'
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
 //@User.CharacterGroups.Form = createReactClass
-let UserCharacterGroupForm
+let UserCharacterGroupForm;
 export default UserCharacterGroupForm = createReactClass({
   propTypes: {
     group: PropTypes.object,
@@ -31,23 +31,23 @@ export default UserCharacterGroupForm = createReactClass({
     return {
       model: {
         name:
-          (this.props.group != null ? this.props.group.name : undefined) || '',
+          (this.props.group != null ? this.props.group.name : undefined) || "",
       },
-    }
+    };
   },
 
   render() {
-    let action, icon, method
-    const editing = !!this.props.group
+    let action, icon, method;
+    const editing = !!this.props.group;
 
     if (editing) {
-      method = 'PUT'
-      action = this.props.group.path
-      icon = 'edit'
+      method = "PUT";
+      action = this.props.group.path;
+      icon = "edit";
     } else {
-      method = 'POST'
-      action = '/character_groups'
-      icon = 'create_new_folder'
+      method = "POST";
+      action = "/character_groups";
+      icon = "create_new_folder";
     }
 
     return (
@@ -65,7 +65,7 @@ export default UserCharacterGroupForm = createReactClass({
 
           <Input
             type="text"
-            placeholder={editing ? 'Edit Group' : 'New Group'}
+            placeholder={editing ? "Edit Group" : "New Group"}
             autoFocus={editing}
             name="name"
           />
@@ -75,6 +75,6 @@ export default UserCharacterGroupForm = createReactClass({
           </Submit>
         </Form>
       </li>
-    )
+    );
   },
-})
+});

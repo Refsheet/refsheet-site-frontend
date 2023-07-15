@@ -1,4 +1,4 @@
 export default {
-    environment: 'production',
-    version: 'next'
-}
+  environment: "production",
+  version: "next",
+};

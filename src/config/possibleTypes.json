@@ -29,9 +29,7 @@
     "User",
     "Version"
   ],
-  "ModerationItem": [
-    "Image"
-  ],
+  "ModerationItem": ["Image"],
   "Paginated": [
     "ArtistsCollection",
     "ForumDiscussionCollection",
@@ -39,13 +37,6 @@
     "MediaCommentCollection",
     "UsersCollection"
   ],
-  "Policy": [
-    "ForumDiscussion",
-    "ForumPost"
-  ],
-  "WidgetData": [
-    "RichText",
-    "Json",
-    "Youtube"
-  ]
+  "Policy": ["ForumDiscussion", "ForumPost"],
+  "WidgetData": ["RichText", "Json", "Youtube"]
 }

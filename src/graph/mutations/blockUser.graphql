@@ -1,8 +1,8 @@
 mutation blockUser($username: String!) {
-    blockUser(username: $username) {
-        id
-        username
-        is_blocked
-        is_followed
-    }
+  blockUser(username: $username) {
+    id
+    username
+    is_blocked
+    is_followed
+  }
 }

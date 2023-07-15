@@ -1,6 +1,6 @@
-import React from 'react'
-import { withCurrentUser } from '../../../../../utils/compose'
-import { restrict } from '../../../../Shared/Restrict'
+import React from "react";
+import { withCurrentUser } from "../../../../../utils/compose";
+import { restrict } from "../../../../Shared/Restrict";
 
 /**
  #  id                 :integer          not null, primary key
@@ -24,20 +24,20 @@ import { restrict } from '../../../../Shared/Restrict'
  */
 const MarketplaceListing = ({ currentUser, character }) => {
   if (restrict({ currentUser, patron: true })) {
-    const { marketplace_listing } = character
-    console.log({ marketplace_listing })
+    const { marketplace_listing } = character;
+    console.log({ marketplace_listing });
 
-    return <div>{JSON.stringify(marketplace_listing)}</div>
+    return <div>{JSON.stringify(marketplace_listing)}</div>;
   } else {
     return (
       <div>
-        <p className={'caption center margin-top--large'}>
+        <p className={"caption center margin-top--large"}>
           This feature is currently only available to Patrons and Site
           Supporters.
         </p>
       </div>
-    )
+    );
   }
-}
+};
 
-export default withCurrentUser()(MarketplaceListing)
+export default withCurrentUser()(MarketplaceListing);

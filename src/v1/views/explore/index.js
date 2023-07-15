@@ -5,20 +5,20 @@
     react/no-string-refs,
     react/react-in-jsx-scope,
 */
-import React from 'react'
-import createReactClass from 'create-react-class'
-import PropTypes from 'prop-types'
-import Loading from '../../shared/Loading'
-import InfiniteScroll from '../../shared/InfiniteScroll'
-import Main from '../../shared/Main'
-import Jumbotron from '../../../components/Shared/Jumbotron'
-import { Link } from 'react-router-dom'
-import Container from '../../shared/material/Container'
+import React from "react";
+import createReactClass from "create-react-class";
+import PropTypes from "prop-types";
+import Loading from "../../shared/Loading";
+import InfiniteScroll from "../../shared/InfiniteScroll";
+import Main from "../../shared/Main";
+import Jumbotron from "../../../components/Shared/Jumbotron";
+import { Link } from "react-router-dom";
+import Container from "../../shared/material/Container";
 
-import $ from 'jquery'
-import StateUtils from '../../utils/StateUtils'
-import Gallery from '../../../components/Character/Gallery'
-import compose, { withCurrentUser } from '../../../utils/compose'
+import $ from "jquery";
+import StateUtils from "../../utils/StateUtils";
+import Gallery from "../../../components/Character/Gallery";
+import compose, { withCurrentUser } from "../../../utils/compose";
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
@@ -39,26 +39,26 @@ const Index = createReactClass({
 
   // new syntax
   stateLink: {
-    dataPath: '/explore/:scope',
-    statePath: 'media',
+    dataPath: "/explore/:scope",
+    statePath: "media",
     paramMap: {
-      scope: 'scope',
+      scope: "scope",
     },
   },
 
   // old syntax
-  dataPath: '/explore/:scope',
+  dataPath: "/explore/:scope",
 
   paramMap: {
-    scope: 'scope',
+    scope: "scope",
   },
 
   getInitialState() {
-    return { media: null }
+    return { media: null };
   },
 
   UNSAFE_componentWillMount() {
-    StateUtils.load(this, 'media')
+    StateUtils.load(this, "media");
   },
 
   componentDidMount() {
@@ -73,21 +73,21 @@ const Index = createReactClass({
       (this.props.match != null ? this.props.match.params.scope : undefined) !==
       (newProps.match != null ? newProps.match.params.scope : undefined)
     ) {
-      this.setState({ media: null })
+      this.setState({ media: null });
     }
-    StateUtils.reload(this, 'media', newProps)
+    StateUtils.reload(this, "media", newProps);
   },
 
   _append(data) {
-    return StateUtils.updateItems(this, 'media', data)
+    return StateUtils.updateItems(this, "media", data);
   },
 
   _renderImages() {
     if (!this.state.media) {
-      return <Loading />
+      return <Loading />;
     }
 
-    console.log(this.state.media)
+    console.log(this.state.media);
 
     return (
       <div key={this.props.match && this.props.match.params.scope}>
@@ -98,32 +98,32 @@ const Index = createReactClass({
           params={this.props.match && this.props.match.params}
         />
       </div>
-    )
+    );
   },
 
   render() {
-    let description, title
+    let description, title;
     switch (
       this.props.match != null ? this.props.match.params.scope : undefined
     ) {
-      case 'favorites':
-        title = 'Your Favorites'
-        description = "Everything you've ever loved in one place (finally)!"
-        break
+      case "favorites":
+        title = "Your Favorites";
+        description = "Everything you've ever loved in one place (finally)!";
+        break;
 
-      case 'popular':
-        title = 'Popular Media'
+      case "popular":
+        title = "Popular Media";
         description =
-          "See what's getting a lot of love this week on Refsheet.net!"
-        break
+          "See what's getting a lot of love this week on Refsheet.net!";
+        break;
 
       default:
-        title = 'Explore Images'
+        title = "Explore Images";
         description =
-          'Explore recent artwork uploads across all of Refsheet.net!'
+          "Explore recent artwork uploads across all of Refsheet.net!";
     }
 
-    console.log(this.context)
+    console.log(this.context);
 
     return (
       <Main title={title}>
@@ -138,11 +138,11 @@ const Index = createReactClass({
               <ul className="tabs">
                 <li
                   className={
-                    !this.props.match.params.scope ? 'active tab' : 'tab'
+                    !this.props.match.params.scope ? "active tab" : "tab"
                   }
                 >
                   <Link
-                    className={!this.props.match.params.scope ? 'active' : ''}
+                    className={!this.props.match.params.scope ? "active" : ""}
                     to="/explore"
                   >
                     Recent
@@ -151,14 +151,14 @@ const Index = createReactClass({
 
                 <li
                   className={
-                    this.props.match.params.scope == 'popular'
-                      ? 'active tab'
-                      : 'tab'
+                    this.props.match.params.scope == "popular"
+                      ? "active tab"
+                      : "tab"
                   }
                 >
                   <Link
                     className={
-                      this.props.match.params.scope == 'popular' ? 'active' : ''
+                      this.props.match.params.scope == "popular" ? "active" : ""
                     }
                     to="/explore/popular"
                   >
@@ -169,16 +169,16 @@ const Index = createReactClass({
                 {this.props.currentUser && (
                   <li
                     className={
-                      this.props.match.params.scope == 'favorites'
-                        ? 'active tab'
-                        : 'tab'
+                      this.props.match.params.scope == "favorites"
+                        ? "active tab"
+                        : "tab"
                     }
                   >
                     <Link
                       className={
-                        this.props.match.params.scope == 'favorites'
-                          ? 'active'
-                          : ''
+                        this.props.match.params.scope == "favorites"
+                          ? "active"
+                          : ""
                       }
                       to="/explore/favorites"
                     >
@@ -195,8 +195,8 @@ const Index = createReactClass({
           {this._renderImages()}
         </Container>
       </Main>
-    )
+    );
   },
-})
+});
 
-export default compose(withCurrentUser())(Index)
+export default compose(withCurrentUser())(Index);

@@ -1,10 +1,7 @@
-import {
-  useLocation,
-  useParams, useRouteMatch
-} from "react-router-dom";
+import { useLocation, useParams, useRouteMatch } from "react-router-dom";
 
-import qs from 'query-string';
-import {useHistory} from "react-router";
+import qs from "query-string";
+import { useHistory } from "react-router";
 
 function withRouter(Component) {
   function ComponentWithRouterProp(props) {
@@ -15,8 +12,8 @@ function withRouter(Component) {
 
     location = {
       ...location,
-      query: qs.parse(location.search)
-    }
+      query: qs.parse(location.search),
+    };
 
     return (
       <Component
@@ -32,4 +29,4 @@ function withRouter(Component) {
   return ComponentWithRouterProp;
 }
 
-export {withRouter};
+export { withRouter };

@@ -4,18 +4,18 @@
     react/no-deprecated,
     react/react-in-jsx-scope,
 */
-import React from 'react'
-import createReactClass from 'create-react-class'
-import PropTypes from 'prop-types'
-import * as ReactGA from 'react-ga'
-import Form from '../../shared/forms/Form'
-import Row from '../../shared/material/Row'
-import Column from '../../shared/material/Column'
-import Input from '../../shared/forms/Input'
-import Restrict from '../../../components/Shared/Restrict'
-import Submit from '../../shared/forms/Submit'
-import compose, { withCurrentUser } from '../../../utils/compose'
-import EmailConfirmationNag from '../../../components/User/EmailConfirmationNag'
+import React from "react";
+import createReactClass from "create-react-class";
+import PropTypes from "prop-types";
+import * as ReactGA from "react-ga";
+import Form from "../../shared/forms/Form";
+import Row from "../../shared/material/Row";
+import Column from "../../shared/material/Column";
+import Input from "../../shared/forms/Input";
+import Restrict from "../../../components/Shared/Restrict";
+import Submit from "../../shared/forms/Submit";
+import compose, { withCurrentUser } from "../../../utils/compose";
+import EmailConfirmationNag from "../../../components/User/EmailConfirmationNag";
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
@@ -40,15 +40,15 @@ const NewCharacterForm = createReactClass({
         shortcode: null,
         create_v2: false,
       },
-    }
+    };
   },
 
   _handleCreate(character) {
-    this.props.onCreate(character)
+    this.props.onCreate(character);
     return ReactGA.event({
-      category: 'Character',
-      action: 'Created Character',
-    })
+      category: "Character",
+      action: "Created Character",
+    });
   },
 
   render() {
@@ -64,8 +64,8 @@ const NewCharacterForm = createReactClass({
       >
         <EmailConfirmationNag
           notice={
-            'If character creation fails, you have exceeded your quota for character profiles. ' +
-            'You can increase this limit by confirming your email address.'
+            "If character creation fails, you have exceeded your quota for character profiles. " +
+            "You can increase this limit by confirming your email address."
           }
         />
         <Row>
@@ -84,7 +84,7 @@ const NewCharacterForm = createReactClass({
           <Column m={6}>
             <Input
               name="slug"
-              label={'refsheet.net/' + this.props.currentUser.username + '/'}
+              label={"refsheet.net/" + this.props.currentUser.username + "/"}
             />
           </Column>
           <Column m={6}>
@@ -123,8 +123,8 @@ const NewCharacterForm = createReactClass({
           </div>
         </Row>
       </Form>
-    )
+    );
   },
-})
+});
 
-export default compose(withCurrentUser())(NewCharacterForm)
+export default compose(withCurrentUser())(NewCharacterForm);

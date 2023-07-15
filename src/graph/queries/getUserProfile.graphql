@@ -1,25 +1,25 @@
 query getUserProfile($username: String!) {
-    getUser(username: $username) {
-        id
-        name
-        username
-        created_at
-        profile
-        profile_html
-        profile_image_url
+  getUser(username: $username) {
+    id
+    name
+    username
+    created_at
+    profile
+    profile_html
+    profile_image_url
 
-        blocks
-        is_blocked
-        is_followed
-        is_admin
-        is_managed
-        is_moderator
-        is_supporter
-        is_patron
+    blocks
+    is_blocked
+    is_followed
+    is_admin
+    is_managed
+    is_moderator
+    is_supporter
+    is_patron
 
-        character_groups {
-            name
-            characters_count
-        }
+    character_groups {
+      name
+      characters_count
     }
+  }
 }

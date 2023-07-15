@@ -1,7 +1,7 @@
 #import '../fragments/DefaultCharacterFields.graphql'
 
 query getCharacterProfileById($id: ID!) {
-    getCharacter(id: $id) {
-        ...DefaultCharacterFields
-    }
+  getCharacter(id: $id) {
+    ...DefaultCharacterFields
+  }
 }

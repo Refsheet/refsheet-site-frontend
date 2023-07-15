@@ -1,30 +1,30 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import MarkdownEditor from '../../Shared/MarkdownEditor'
-import { sanitize } from '../../../utils/sanitize'
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import MarkdownEditor from "../../Shared/MarkdownEditor";
+import { sanitize } from "../../../utils/sanitize";
 
 class RichTextWidget extends Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   handleMarkdownChange(name, content) {
-    this.props.onChange({ content })
+    this.props.onChange({ content });
   }
 
   render() {
-    const { contentHtml, content, editing } = this.props
+    const { contentHtml, content, editing } = this.props;
 
     if (editing) {
       return (
-        <div className={'rich-text-widget editing'}>
+        <div className={"rich-text-widget editing"}>
           <MarkdownEditor
-            name={'value'}
+            name={"value"}
             content={content}
             onChange={this.handleMarkdownChange.bind(this)}
           />
         </div>
-      )
+      );
     }
 
     return (
@@ -41,7 +41,7 @@ class RichTextWidget extends Component {
           )}
         </div>
       </div>
-    )
+    );
   }
 }
 
@@ -50,6 +50,6 @@ RichTextWidget.propTypes = {
   contentHtml: PropTypes.string,
   editing: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
-}
+};
 
-export default RichTextWidget
+export default RichTextWidget;

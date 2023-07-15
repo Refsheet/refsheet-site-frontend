@@ -4,114 +4,118 @@
  * DS102: Remove unnecessary code created because of implicit returns
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import replace from 'react-string-replace'
-import { Link } from 'react-router-dom'
-import MarkdownEditor from './MarkdownEditor'
-import c from 'classnames'
-import * as Showdown from 'showdown'
-import Button from '../../v1/shared/material/Button'
-import WindowAlert from '../../utils/WindowAlert'
-import { H2 } from '../Styled/Headings'
-import { sanitize } from '../../utils/sanitize'
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import replace from "react-string-replace";
+import { Link } from "react-router-dom";
+import MarkdownEditor from "./MarkdownEditor";
+import c from "classnames";
+import * as Showdown from "showdown";
+import Button from "../../v1/shared/material/Button";
+import WindowAlert from "../../utils/WindowAlert";
+import { H2 } from "../Styled/Headings";
+import { sanitize } from "../../utils/sanitize";
 
 class RichText extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
 
     this.state = {
       content: props.content,
       editing: false,
       saving: false,
       dirty: false,
-    }
+    };
 
     this.Showdown = new Showdown.Converter({
       tables: true,
       simplifiedAutoLink: true,
       strikethrough: true,
       tasklists: true,
-    })
+    });
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.dirty !== prevState.dirty) {
-      const dirtyKey = 'richtext:' + this.props.name
+      const dirtyKey = "richtext:" + this.props.name;
       if (this.state.dirty) {
-        WindowAlert.dirty(dirtyKey)
+        WindowAlert.dirty(dirtyKey);
       } else {
-        WindowAlert.clean(dirtyKey)
+        WindowAlert.clean(dirtyKey);
       }
     }
   }
 
   UNSAFE_componentWillReceiveProps(newProps) {
     if (this.state.content !== newProps.content) {
-      return this.setState({ content: newProps.content, dirty: false })
+      return this.setState({ content: newProps.content, dirty: false });
     }
   }
 
   handleSubmit(e) {
-    e.preventDefault()
+    e.preventDefault();
 
-    const data = {}
-    data[this.props.name || 'value'] = this.state.content
+    const data = {};
+    data[this.props.name || "value"] = this.state.content;
 
     return this.props
       .onChange(data)
-      .then(newData => {
+      .then((newData) => {
         this.setState({
-          content: newData[this.props.name || 'value'],
+          content: newData[this.props.name || "value"],
           editing: false,
           dirty: false,
           saving: false,
-        })
+        });
       })
-      .catch(e => {
-        this.setState({ saving: false })
-        console.error(e)
-      })
+      .catch((e) => {
+        this.setState({ saving: false });
+        console.error(e);
+      });
   }
 
   handleMarkdownChange(name, content) {
-    this.setState({ content, dirty: true })
+    this.setState({ content, dirty: true });
   }
 
   handleChange(e) {
-    return this.setState({ content: e.target.value })
+    return this.setState({ content: e.target.value });
   }
 
   renderContent(content) {
-    if (!content || content === '') {
-      return <p className={'caption'}>No Caption</p>
+    if (!content || content === "") {
+      return <p className={"caption"}>No Caption</p>;
     }
 
-    let filtered = content.replace(/^\s*(#\w+\s*)+$/gm, '')
-    let n = 0
+    let filtered = content.replace(/^\s*(#\w+\s*)+$/gm, "");
+    let n = 0;
 
     filtered = replace(filtered, /#(\w+)/g, (match, i) => (
-      <Link key={'hashtag-' + n++} to={`/explore/tag/${match}`}>
+      <Link key={"hashtag-" + n++} to={`/explore/tag/${match}`}>
         #{match}
       </Link>
-    ))
+    ));
 
-    filtered = replace(filtered, /\n/g, (match, i) => <br key={'br-' + n++} />)
+    filtered = replace(filtered, /\n/g, (match, i) => <br key={"br-" + n++} />);
 
-    return filtered
+    return filtered;
   }
 
   handleEditClick(e) {
-    e.preventDefault()
-    this.setState({ editing: true })
+    e.preventDefault();
+    this.setState({ editing: true });
   }
 
   handleEditStop(e) {
-    e.preventDefault()
-    this.setState({ editing: false, dirty: false, content: this.props.content })
+    e.preventDefault();
+    this.setState({
+      editing: false,
+      dirty: false,
+      content: this.props.content,
+    });
   }
 
   render() {
@@ -121,41 +125,41 @@ class RichText extends Component {
       placeholder,
       onChange,
       titleComponent: Title = H2,
-    } = this.props
+    } = this.props;
 
-    const { content } = this.state
+    const { content } = this.state;
 
-    const outerClassNames = []
-    const headerClassNames = []
-    const bodyClassNames = ['rich-text']
+    const outerClassNames = [];
+    const headerClassNames = [];
+    const bodyClassNames = ["rich-text"];
 
     if (this.props.renderAsCard) {
-      outerClassNames.push('card')
-      headerClassNames.push('card-header')
-      bodyClassNames.push('card-content')
+      outerClassNames.push("card");
+      headerClassNames.push("card-header");
+      bodyClassNames.push("card-content");
     }
 
     if (this.state.editing) {
       return (
-        <div className={c('editing', outerClassNames)}>
-          <div className={headerClassNames.join(' ')}>
+        <div className={c("editing", outerClassNames)}>
+          <div className={headerClassNames.join(" ")}>
             <a
-              className={'right btn btn-flat'}
+              className={"right btn btn-flat"}
               style={{
-                height: '3.2rem',
-                padding: '1rem',
-                margin: '-1rem' + (this.props.renderAsCard ? '' : ' 0 -1rem 0'),
-                lineHeight: '1.2rem',
+                height: "3.2rem",
+                padding: "1rem",
+                margin: "-1rem" + (this.props.renderAsCard ? "" : " 0 -1rem 0"),
+                lineHeight: "1.2rem",
                 borderRadius: this.props.renderAsCard ? 0 : undefined,
               }}
-              data-testid={'rt-cancel'}
+              data-testid={"rt-cancel"}
               onClick={this.handleEditStop.bind(this)}
             >
               <i
-                className={'material-icons'}
+                className={"material-icons"}
                 style={{
-                  height: '1.2rem',
-                  lineHeight: '1.2rem',
+                  height: "1.2rem",
+                  lineHeight: "1.2rem",
                 }}
               >
                 cancel
@@ -166,51 +170,51 @@ class RichText extends Component {
           </div>
 
           <MarkdownEditor
-            content={this.state.content || ''}
+            content={this.state.content || ""}
             onChange={this.handleMarkdownChange.bind(this)}
           />
 
-          <div className={'card-action'}>
-            <div className={'right-align'}>
+          <div className={"card-action"}>
+            <div className={"right-align"}>
               <Button
                 onClick={this.handleSubmit.bind(this)}
-                data-testid={'rt-save'}
+                data-testid={"rt-save"}
               >
-                <i className={'material-icons left'}>save</i>
+                <i className={"material-icons left"}>save</i>
                 Save
               </Button>
             </div>
           </div>
         </div>
-      )
+      );
     }
 
-    const contentPresent = content && /\S/.test(content)
+    const contentPresent = content && /\S/.test(content);
 
     // TODO: Don't DangerouslySet, but use a proper render function. Yes, this broke Hashtags.
     return (
-      <div className={outerClassNames.join(' ')}>
+      <div className={outerClassNames.join(" ")}>
         {(title || onChange) && (
-          <div className={headerClassNames.join(' ')}>
+          <div className={headerClassNames.join(" ")}>
             {onChange && (
               <a
-                className={'right btn btn-flat'}
+                className={"right btn btn-flat"}
                 style={{
-                  height: '3.2rem',
-                  padding: '1rem',
+                  height: "3.2rem",
+                  padding: "1rem",
                   margin:
-                    '-1rem' + (this.props.renderAsCard ? '' : ' 0 -1rem 0'),
-                  lineHeight: '1.2rem',
+                    "-1rem" + (this.props.renderAsCard ? "" : " 0 -1rem 0"),
+                  lineHeight: "1.2rem",
                   borderRadius: this.props.renderAsCard ? 0 : undefined,
                 }}
                 onClick={this.handleEditClick.bind(this)}
-                data-testid={'rt-edit'}
+                data-testid={"rt-edit"}
               >
                 <i
-                  className={'material-icons'}
+                  className={"material-icons"}
                   style={{
-                    height: '1.2rem',
-                    lineHeight: '1.2rem',
+                    height: "1.2rem",
+                    lineHeight: "1.2rem",
                   }}
                 >
                   edit
@@ -222,7 +226,7 @@ class RichText extends Component {
           </div>
         )}
 
-        <div className={bodyClassNames.join(' ')}>
+        <div className={bodyClassNames.join(" ")}>
           {contentPresent ? (
             <div
               dangerouslySetInnerHTML={{
@@ -231,12 +235,12 @@ class RichText extends Component {
             />
           ) : (
             <p className="caption">
-              {placeholder || 'This section unintentionally left blank.'}
+              {placeholder || "This section unintentionally left blank."}
             </p>
           )}
         </div>
       </div>
-    )
+    );
   }
 }
 
@@ -248,6 +252,6 @@ RichText.propTypes = {
   placeholder: PropTypes.string,
   onChange: PropTypes.func,
   name: PropTypes.string,
-}
+};
 
-export default RichText
+export default RichText;

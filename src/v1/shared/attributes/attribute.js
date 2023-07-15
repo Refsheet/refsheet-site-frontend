@@ -1,8 +1,8 @@
-import React from 'react'
-import createReactClass from 'create-react-class'
-import PropTypes from 'prop-types'
+import React from "react";
+import createReactClass from "create-react-class";
+import PropTypes from "prop-types";
 
-import AttributeForm from './attribute_form'
+import AttributeForm from "./attribute_form";
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
@@ -15,52 +15,52 @@ import AttributeForm from './attribute_form'
  */
 const Attribute = createReactClass({
   getInitialState() {
-    return { edit: this.props.onCommit != null && this.props.editorActive }
+    return { edit: this.props.onCommit != null && this.props.editorActive };
   },
 
   UNSAFE_componentWillReceiveProps(newProps) {
     if (this.state.edit && newProps.editorActive === false) {
-      return this.setState({ edit: false })
+      return this.setState({ edit: false });
     }
   },
 
   deleteAttribute(e) {
-    this.props.onDelete(this.props.id)
-    return e.preventDefault()
+    this.props.onDelete(this.props.id);
+    return e.preventDefault();
   },
 
   startEdit(e) {
-    this.setState({ edit: true })
+    this.setState({ edit: true });
     if (this.props.onEditStart != null) {
-      this.props.onEditStart()
+      this.props.onEditStart();
     }
     if (e != null) {
-      return e.preventDefault()
+      return e.preventDefault();
     }
   },
 
   cancelEdit(e) {
-    this.setState({ edit: false })
+    this.setState({ edit: false });
     if (this.props.onEditStop != null) {
-      this.props.onEditStop()
+      this.props.onEditStop();
     }
     if (e != null) {
-      return e.preventDefault()
+      return e.preventDefault();
     }
   },
 
   handleAttributeClick(e) {
     if (this.props.onCommit) {
-      return this.startEdit(e)
+      return this.startEdit(e);
     }
   },
 
   render() {
-    let defaultValue, edit, icon, trash
+    let defaultValue, edit, icon, trash;
     if (this.props.defaultValue != null) {
       defaultValue = (
         <span className="default-value">{this.props.defaultValue}</span>
-      )
+      );
     }
 
     if (this.props.icon != null) {
@@ -70,7 +70,7 @@ const Attribute = createReactClass({
             {this.props.icon}
           </i>
         </div>
-      )
+      );
     }
 
     if (this.props.onDelete != null) {
@@ -78,7 +78,7 @@ const Attribute = createReactClass({
         <a className="attr-delete" onClick={this.deleteAttribute} href="#">
           <i className="material-icons">delete</i>
         </a>
-      )
+      );
     }
 
     if (this.props.onCommit != null) {
@@ -86,7 +86,7 @@ const Attribute = createReactClass({
         <a className="attr-start-edit" onClick={this.startEdit} href="#">
           <i className="material-icons">edit</i>
         </a>
-      )
+      );
     }
 
     if (this.state.edit) {
@@ -103,15 +103,15 @@ const Attribute = createReactClass({
           freezeName={this.props.freezeName}
           hideNotes={this.props.hideNotesForm}
         />
-      )
+      );
     } else {
-      let notesTag
+      let notesTag;
       if (!this.props.hideNotesForm) {
         notesTag = (
           <div className="notes" onClick={this.handleAttributeClick}>
             {this.props.notes}
           </div>
-        )
+        );
       }
 
       return (
@@ -131,9 +131,9 @@ const Attribute = createReactClass({
             {trash}
           </div>
         </li>
-      )
+      );
     }
   },
-})
+});
 
-export default Attribute
+export default Attribute;

@@ -1,97 +1,97 @@
-import React, {Component} from 'react'
-import PropTypes from 'prop-types'
-import {camelize} from 'utils/ObjectUtils'
-import widgets, {SerializerWidget} from './Widgets'
-import ProfileWidgetHeader from './ProfileWidgetHeader'
-import {Mutation} from '@apollo/client/react/components'
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { camelize } from "utils/ObjectUtils";
+import widgets, { SerializerWidget } from "./Widgets";
+import ProfileWidgetHeader from "./ProfileWidgetHeader";
+import { Mutation } from "@apollo/client/react/components";
 //graphql.macro
-import dynamic from 'next/dynamic'
+import dynamic from "next/dynamic";
 
 let M = null;
-if (typeof window !== 'undefined') {
-  M = require('materialize-css');
+if (typeof window !== "undefined") {
+  M = require("materialize-css");
 }
 
-import {div as Card} from '../Styled/Card'
-import compose from '../../utils/compose'
-import {withErrorBoundary} from '../Shared/ErrorBoundary'
+import { div as Card } from "../Styled/Card";
+import compose from "../../utils/compose";
+import { withErrorBoundary } from "../Shared/ErrorBoundary";
 
-const updateProfileWidget = require('./updateProfileWidget.graphql');
-const deleteProfileWidget = require('./deleteProfileWidget.graphql');
+const updateProfileWidget = require("./updateProfileWidget.graphql");
+const deleteProfileWidget = require("./deleteProfileWidget.graphql");
 
 class ProfileWidget extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       editing: false,
       saving: false,
       widgetData: props.data,
-    }
+    };
   }
 
   handleEditStart() {
-    this.setState({editing: true})
+    this.setState({ editing: true });
   }
 
   handleEditStop(save = true) {
-    let state = {editing: false, saving: false}
+    let state = { editing: false, saving: false };
 
     if (!save) {
-      state.widgetData = this.props.data
+      state.widgetData = this.props.data;
     }
 
-    this.setState(state)
+    this.setState(state);
   }
 
   handleDelete() {
     const payload = {
       id: this.props.id,
-    }
+    };
 
     this.props
-      .deleteWidget({variables: payload})
-      .then(({data, errors}) => {
+      .deleteWidget({ variables: payload })
+      .then(({ data, errors }) => {
         if (errors) {
-          console.error(errors)
-          errors.map(e =>
-            M.toast({html: e.message, classes: 'red', displayLength: 3000})
-          )
+          console.error(errors);
+          errors.map((e) =>
+            M.toast({ html: e.message, classes: "red", displayLength: 3000 }),
+          );
         } else {
-          const {deleteProfileWidget: widgetData} = data
-          this.props.onDelete && this.props.onDelete(widgetData.id)
+          const { deleteProfileWidget: widgetData } = data;
+          this.props.onDelete && this.props.onDelete(widgetData.id);
         }
       })
-      .catch(error => console.error(error))
+      .catch((error) => console.error(error));
   }
 
   handleMove(direction) {
     const payload = {
       id: this.props.id,
-    }
+    };
 
-    if (direction === 'up' || direction === 'down') {
-      payload['row_order_position'] = direction
-    } else if (direction === 'left') {
-      payload['column'] = this.props.column - 1
-    } else if (direction === 'right') {
-      payload['column'] = this.props.column + 1
+    if (direction === "up" || direction === "down") {
+      payload["row_order_position"] = direction;
+    } else if (direction === "left") {
+      payload["column"] = this.props.column - 1;
+    } else if (direction === "right") {
+      payload["column"] = this.props.column + 1;
     }
 
     this.props
-      .update({variables: payload})
-      .then(({data, errors}) => {
+      .update({ variables: payload })
+      .then(({ data, errors }) => {
         if (errors) {
-          console.error(errors)
-          errors.map(e =>
-            M.toast({html: e.message, classes: 'red', displayLength: 3000})
-          )
+          console.error(errors);
+          errors.map((e) =>
+            M.toast({ html: e.message, classes: "red", displayLength: 3000 }),
+          );
         } else {
-          const {updateProfileWidget: widgetData} = data
-          this.props.onChange && this.props.onChange(widgetData)
+          const { updateProfileWidget: widgetData } = data;
+          this.props.onChange && this.props.onChange(widgetData);
         }
       })
-      .catch(error => console.error(error))
+      .catch((error) => console.error(error));
   }
 
   handleSave(title) {
@@ -99,27 +99,27 @@ class ProfileWidget extends Component {
       id: this.props.id,
       data: JSON.stringify(this.state.widgetData),
       title: title,
-    }
+    };
 
-    this.setState({saving: true})
+    this.setState({ saving: true });
 
     this.props
-      .update({variables: payload})
-      .then(({data, errors}) => {
+      .update({ variables: payload })
+      .then(({ data, errors }) => {
         if (errors) {
-          console.error(errors)
-          errors.map(e =>
-            M.toast({html: e.message, classes: 'red', displayLength: 3000})
-          )
+          console.error(errors);
+          errors.map((e) =>
+            M.toast({ html: e.message, classes: "red", displayLength: 3000 }),
+          );
         } else {
-          const {updateProfileWidget: widgetData} = data
+          const { updateProfileWidget: widgetData } = data;
 
-          this.setState({saving: false, widgetData: widgetData.data})
-          this.props.onChange && this.props.onChange(widgetData)
-          this.handleEditStop()
+          this.setState({ saving: false, widgetData: widgetData.data });
+          this.props.onChange && this.props.onChange(widgetData);
+          this.handleEditStop();
         }
       })
-      .catch(error => console.error(error))
+      .catch((error) => console.error(error));
   }
 
   handleWidgetChange(widgetData) {
@@ -128,7 +128,7 @@ class ProfileWidget extends Component {
         ...this.state.widgetData,
         ...widgetData,
       },
-    })
+    });
   }
 
   render() {
@@ -141,8 +141,8 @@ class ProfileWidget extends Component {
       first,
       last,
       character,
-    } = this.props
-    const Widget = widgets[widgetType] || SerializerWidget
+    } = this.props;
+    const Widget = widgets[widgetType] || SerializerWidget;
 
     return (
       <Card className="card profile-widget margin-top--none margin-bottom--large margin-bottom-last--none">
@@ -171,7 +171,7 @@ class ProfileWidget extends Component {
           saving={this.state.saving}
         />
       </Card>
-    )
+    );
   }
 }
 
@@ -187,18 +187,18 @@ ProfileWidget.propTypes = {
   firstColumn: PropTypes.bool,
   first: PropTypes.bool,
   last: PropTypes.bool,
-}
+};
 
-const Mutated = props => (
+const Mutated = (props) => (
   <Mutation mutation={updateProfileWidget}>
-    {update => <ProfileWidget {...props} update={update}/>}
+    {(update) => <ProfileWidget {...props} update={update} />}
   </Mutation>
-)
+);
 
-const DeleteMutation = props => (
+const DeleteMutation = (props) => (
   <Mutation mutation={deleteProfileWidget}>
-    {deleteWidget => <Mutated {...props} deleteWidget={deleteWidget}/>}
+    {(deleteWidget) => <Mutated {...props} deleteWidget={deleteWidget} />}
   </Mutation>
-)
+);
 
-export default compose(withErrorBoundary)(DeleteMutation)
+export default compose(withErrorBoundary)(DeleteMutation);

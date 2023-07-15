@@ -1,33 +1,34 @@
-import React, {Component} from 'react'
-import PropTypes from 'prop-types'
-import DropdownLink from '../DropdownLink'
-import NotificationItem from '../Dropdown/NotificationItem'
-import {Link} from 'react-router-dom'
-import Scrollbars from 'components/Shared/Scrollbars'
-import subscription from './subscription'
-import {formatBody} from 'components/Chat/ConversationMessage'
-import {connect} from 'react-redux'
-import {openConversation} from 'actions'
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import DropdownLink from "../DropdownLink";
+import NotificationItem from "../Dropdown/NotificationItem";
+import { Link } from "react-router-dom";
+import Scrollbars from "components/Shared/Scrollbars";
+import subscription from "./subscription";
+import { formatBody } from "components/Chat/ConversationMessage";
+import { connect } from "react-redux";
+import { openConversation } from "actions";
 
 class ConversationMenu extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
-    this.renderConversation = this.renderConversation.bind(this)
-    this.handleNewConversationClick = this.handleNewConversationClick.bind(this)
+    this.renderConversation = this.renderConversation.bind(this);
+    this.handleNewConversationClick =
+      this.handleNewConversationClick.bind(this);
   }
 
   renderConversation(c) {
-    const {openConversation} = this.props
+    const { openConversation } = this.props;
 
-    const click = e => {
-      e && e.preventDefault && e.preventDefault()
-      openConversation(c.guid)
-    }
+    const click = (e) => {
+      e && e.preventDefault && e.preventDefault();
+      openConversation(c.guid);
+    };
 
     const user = c.user || {
-      name: 'Deleted User',
-    }
+      name: "Deleted User",
+    };
 
     return (
       <NotificationItem
@@ -38,7 +39,7 @@ class ConversationMenu extends Component {
         title={
           <span>
             <strong>{user.name}</strong>
-            <br/>
+            <br />
             {formatBody(c.lastMessage, true)}
           </span>
         }
@@ -46,29 +47,29 @@ class ConversationMenu extends Component {
         floatTime
         {...c}
       />
-    )
+    );
   }
 
   handleNewConversationClick(e) {
-    e.preventDefault()
-    this.props.openConversation()
+    e.preventDefault();
+    this.props.openConversation();
   }
 
   render() {
-    const {conversations = [], loading = false, refetch} = this.props
+    const { conversations = [], loading = false, refetch } = this.props;
 
-    const unreadCount = conversations?.filter(c => c.unreadCount > 0).length
+    const unreadCount = conversations?.filter((c) => c.unreadCount > 0).length;
 
     const tryRefetch = () => {
-      if (refetch) refetch()
-    }
+      if (refetch) refetch();
+    };
 
     return (
       <DropdownLink icon="message" count={unreadCount} onOpen={tryRefetch}>
         <div className="dropdown-menu wide">
           <div className="title">
             <div className="right">
-              <a href={'#'} onClick={this.handleNewConversationClick}>
+              <a href={"#"} onClick={this.handleNewConversationClick}>
                 New Conversation
               </a>
             </div>
@@ -90,25 +91,28 @@ class ConversationMenu extends Component {
           )}
         </div>
       </DropdownLink>
-    )
+    );
   }
 }
 
 ConversationMenu.propTypes = {
   conversations: PropTypes.array,
-}
+};
 
-const mapStateToProps = ({conversations}, props) => ({
+const mapStateToProps = ({ conversations }, props) => ({
   openConversations: conversations.openConversations,
   ...props,
-})
+});
 
 const mapDispatchToProps = {
   openConversation,
-}
+};
 
-const connected = connect(mapStateToProps, mapDispatchToProps)(ConversationMenu)
+const connected = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(ConversationMenu);
 
-export {connected as ConversationMenu}
+export { connected as ConversationMenu };
 
-export default subscription(connected)
+export default subscription(connected);

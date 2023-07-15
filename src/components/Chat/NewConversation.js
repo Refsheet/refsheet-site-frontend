@@ -1,54 +1,54 @@
-import React, {Component} from 'react'
-import PropTypes from 'prop-types'
-import {Icon} from 'react-materialize'
-import {Query} from '@apollo/client/react/components'
-import {gql} from '@apollo/client'
-import NewMessage from './NewMessage'
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { Icon } from "react-materialize";
+import { Query } from "@apollo/client/react/components";
+import { gql } from "@apollo/client";
+import NewMessage from "./NewMessage";
 
 class NewConversation extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       username: this.props.username,
       doSearch: !!this.props.username,
-    }
+    };
 
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.handleUsernameChange = this.handleUsernameChange.bind(this)
-    this.handleClose = this.handleClose.bind(this)
-    this.handleKeyPress = this.handleKeyPress.bind(this)
-    this.handleReset = this.handleReset.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleUsernameChange = this.handleUsernameChange.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.handleReset = this.handleReset.bind(this);
   }
 
   handleUsernameChange(e) {
-    e.preventDefault()
-    this.setState({username: e.target.value})
+    e.preventDefault();
+    this.setState({ username: e.target.value });
   }
 
   handleReset(e) {
-    if (e && e.preventDefault) e.preventDefault()
-    this.setState({username: '', doSearch: false})
+    if (e && e.preventDefault) e.preventDefault();
+    this.setState({ username: "", doSearch: false });
   }
 
   handleSubmit(e) {
-    e.preventDefault()
-    if (this.state.username !== '') this.setState({doSearch: true})
+    e.preventDefault();
+    if (this.state.username !== "") this.setState({ doSearch: true });
   }
 
   handleClose(e) {
-    e.preventDefault()
-    this.props.onClose()
+    e.preventDefault();
+    this.props.onClose();
   }
 
   handleKeyPress(e) {
     if (e.keyCode === 27) {
-      this.handleClose(e)
+      this.handleClose(e);
     }
   }
 
   render() {
-    const {doSearch, username} = this.state
+    const { doSearch, username } = this.state;
 
     if (!doSearch) {
       return (
@@ -67,34 +67,34 @@ class NewConversation extends Component {
             autoFocus
           />
 
-          <button type="submit" disabled={username === ''}>
+          <button type="submit" disabled={username === ""}>
             <Icon>add</Icon>
           </button>
         </form>
-      )
+      );
     } else {
       const FIND_USER_QUERY = gql`
-          query findUser($username: String!) {
-              findUser(username: $username) {
-                  id
-                  name
-                  username
-                  avatar_url
-                  is_admin
-                  is_patron
-              }
+        query findUser($username: String!) {
+          findUser(username: $username) {
+            id
+            name
+            username
+            avatar_url
+            is_admin
+            is_patron
           }
-      `
+        }
+      `;
 
-      const renderResult = ({loading, data}) => {
+      const renderResult = ({ loading, data }) => {
         if (loading) {
           return (
             <div className="chat-footer">
               <span>Finding user...</span>
             </div>
-          )
+          );
         } else {
-          const {findUser: user} = data
+          const { findUser: user } = data;
 
           if (user) {
             return (
@@ -111,7 +111,7 @@ class NewConversation extends Component {
                   onConversationStart={this.props.onConversationStart}
                 />
               </div>
-            )
+            );
           } else {
             return (
               <div className="chat-footer">
@@ -120,16 +120,16 @@ class NewConversation extends Component {
                 </a>
                 <span>User not found.</span>
               </div>
-            )
+            );
           }
         }
-      }
+      };
 
       return (
-        <Query query={FIND_USER_QUERY} variables={{username}}>
+        <Query query={FIND_USER_QUERY} variables={{ username }}>
           {renderResult}
         </Query>
-      )
+      );
     }
   }
 }
@@ -137,6 +137,6 @@ class NewConversation extends Component {
 NewConversation.propTypes = {
   onClose: PropTypes.func.isRequired,
   onConversationStart: PropTypes.func,
-}
+};
 
-export default NewConversation
+export default NewConversation;

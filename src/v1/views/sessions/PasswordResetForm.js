@@ -6,24 +6,23 @@
     react/no-string-refs,
     react/react-in-jsx-scope,
 */
-import React from 'react'
-import PropTypes from 'prop-types'
-import createReactClass from 'create-react-class'
+import React from "react";
+import PropTypes from "prop-types";
+import createReactClass from "create-react-class";
 
-import Form from '../../shared/forms/Form'
-import Input from '../../shared/forms/Input'
-import Submit from '../../shared/forms/Submit'
-import Row from 'v1/shared/material/Row'
-import Column from 'v1/shared/material/Column'
-import {Link} from 'react-router-dom'
-import $ from 'jquery'
-import dynamic from 'next/dynamic'
+import Form from "../../shared/forms/Form";
+import Input from "../../shared/forms/Input";
+import Submit from "../../shared/forms/Submit";
+import Row from "v1/shared/material/Row";
+import Column from "v1/shared/material/Column";
+import { Link } from "react-router-dom";
+import $ from "jquery";
+import dynamic from "next/dynamic";
 
 let Materialize = null;
-if (typeof window !== 'undefined') {
-  Materialize = require('materialize-css');
+if (typeof window !== "undefined") {
+  Materialize = require("materialize-css");
 }
-
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
@@ -43,37 +42,37 @@ const PasswordResetForm = createReactClass({
         password: null,
         password_confirmation: null,
       },
-    }
+    };
   },
 
   _handleCreate(data) {
     return $(this.refs.createForm).fadeOut(300, () => {
-      return this.setState({email: data.user.email})
-    })
+      return this.setState({ email: data.user.email });
+    });
   },
 
   _handleUpdate(data) {
     return $(this.refs.updateForm).fadeOut(300, () => {
-      return this.setState({token: true, userPath: data.current_user.path})
-    })
+      return this.setState({ token: true, userPath: data.current_user.path });
+    });
   },
 
   _handlePasswordChange(data) {
     if (this.props.onComplete) {
-      this.props.onComplete()
+      this.props.onComplete();
     }
     return Materialize.toast({
-      html: 'Password changed!',
+      html: "Password changed!",
       displayLength: 3000,
-      classes: 'green',
-    })
+      classes: "green",
+    });
   },
 
   _handleSignInClick(e) {
     if (this.props.onSignInClick) {
-      this.props.onSignInClick()
+      this.props.onSignInClick();
     }
-    return e.preventDefault()
+    return e.preventDefault();
   },
 
   render() {
@@ -89,11 +88,11 @@ const PasswordResetForm = createReactClass({
           </Link>
 
           <div className="right">
-            <Submit>{this.state.token ? 'Change Password' : 'Continue'}</Submit>
+            <Submit>{this.state.token ? "Change Password" : "Continue"}</Submit>
           </div>
         </Column>
       </Row>
-    )
+    );
 
     if (this.state.email === null) {
       return (
@@ -121,7 +120,7 @@ const PasswordResetForm = createReactClass({
             {actions}
           </Form>
         </div>
-      )
+      );
     } else if (this.state.token === null) {
       return (
         <div ref="updateForm" key="ResetUpdateForm">
@@ -148,7 +147,7 @@ const PasswordResetForm = createReactClass({
             {actions}
           </Form>
         </div>
-      )
+      );
     } else {
       return (
         <Form
@@ -162,7 +161,7 @@ const PasswordResetForm = createReactClass({
             Enter a new password and you should be good to go!
           </p>
 
-          <Input name="password" type="password" label="Password" autoFocus/>
+          <Input name="password" type="password" label="Password" autoFocus />
           <Input
             name="password_confirmation"
             type="password"
@@ -172,9 +171,9 @@ const PasswordResetForm = createReactClass({
 
           {actions}
         </Form>
-      )
+      );
     }
   },
-})
+});
 
-export default PasswordResetForm
+export default PasswordResetForm;

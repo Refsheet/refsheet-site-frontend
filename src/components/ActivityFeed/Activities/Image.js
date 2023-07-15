@@ -4,12 +4,12 @@
     react/no-deprecated,
     react/react-in-jsx-scope,
 */
-import React from 'react'
-import createReactClass from 'create-react-class'
-import PropTypes from 'prop-types'
-import Row from 'v1/shared/material/Row'
-import Column from 'v1/shared/material/Column'
-import GalleryImage from 'v1/shared/images/GalleryImage'
+import React from "react";
+import createReactClass from "create-react-class";
+import PropTypes from "prop-types";
+import Row from "v1/shared/material/Row";
+import Column from "v1/shared/material/Column";
+import GalleryImage from "v1/shared/images/GalleryImage";
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
@@ -20,7 +20,7 @@ import GalleryImage from 'v1/shared/images/GalleryImage'
  * DS208: Avoid top-level this
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
-let Image
+let Image;
 export default Image = createReactClass({
   propTypes: {
     images: PropTypes.array.isRequired,
@@ -31,9 +31,9 @@ export default Image = createReactClass({
   _getGallery() {
     return (
       (this.props.images &&
-        this.props.images.filter(i => !!i).map(i => i.id)) ||
+        this.props.images.filter((i) => !!i).map((i) => i.id)) ||
       []
-    )
+    );
   },
 
   _buildSingle(key, one) {
@@ -47,7 +47,7 @@ export default Image = createReactClass({
           />
         </Column>
       </Row>
-    )
+    );
   },
 
   _buildDouble(key, one, two) {
@@ -68,7 +68,7 @@ export default Image = createReactClass({
           />
         </Column>
       </Row>
-    )
+    );
   },
 
   _buildTriple(key, one, two, three) {
@@ -100,21 +100,21 @@ export default Image = createReactClass({
           </Row>
         </Column>
       </Row>
-    )
+    );
   },
 
   _buildImageGrid(images, grid) {
     if (grid == null) {
-      grid = []
+      grid = [];
     }
 
-    const key = images.length
+    const key = images.length;
 
     // 3 Block: 3, 5, 6
     if ((images.length > 4 && images.length < 7) || images.length === 3) {
-      const [one, two, three, ...more] = Array.from(images)
-      grid.push(this._buildTriple(key, one, two, three))
-      this._buildImageGrid(more, grid)
+      const [one, two, three, ...more] = Array.from(images);
+      grid.push(this._buildTriple(key, one, two, three));
+      this._buildImageGrid(more, grid);
 
       // 2 Block: 2, 4, 7+
     } else if (
@@ -122,29 +122,29 @@ export default Image = createReactClass({
       images.length === 4 ||
       images.length >= 7
     ) {
-      const [one, two, ...more] = Array.from(images)
-      grid.push(this._buildDouble(key, one, two))
-      this._buildImageGrid(more, grid)
+      const [one, two, ...more] = Array.from(images);
+      grid.push(this._buildDouble(key, one, two));
+      this._buildImageGrid(more, grid);
 
       // Single: 1
     } else if (images.length === 1) {
-      const [one] = Array.from(images)
-      grid.push(this._buildSingle(key, one))
+      const [one] = Array.from(images);
+      grid.push(this._buildSingle(key, one));
     }
 
-    return grid
+    return grid;
   },
 
   render() {
     // Reject NULLs here, see: REFST-2DP
-    let images = this.props.images.filter(i => !!i)
+    let images = this.props.images.filter((i) => !!i);
 
     if (this.props.character) {
-      images.map(i => {
-        i.character = this.props.character
-      })
+      images.map((i) => {
+        i.character = this.props.character;
+      });
     }
 
-    return <div className="activity">{this._buildImageGrid(images)}</div>
+    return <div className="activity">{this._buildImageGrid(images)}</div>;
   },
-})
+});

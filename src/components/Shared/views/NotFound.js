@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 const NotFound = () => (
   <main className="modal-page-content">
@@ -7,6 +7,6 @@ const NotFound = () => (
       <div className="flow-text">That's unfortunate. Where did it go?</div>
     </div>
   </main>
-)
+);
 
-export default NotFound
+export default NotFound;

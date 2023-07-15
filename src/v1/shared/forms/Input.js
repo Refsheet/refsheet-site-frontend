@@ -1,21 +1,21 @@
-import React from 'react'
-import createReactClass from 'create-react-class'
-import PropTypes from 'prop-types'
-import dynamic from 'next/dynamic'
+import React from "react";
+import createReactClass from "create-react-class";
+import PropTypes from "prop-types";
+import dynamic from "next/dynamic";
 
 let Materialize = null;
-if (typeof window !== 'undefined') {
-  Materialize = require('materialize-css');
+if (typeof window !== "undefined") {
+  Materialize = require("materialize-css");
 }
 
-import $ from 'jquery'
-import c from 'classnames'
+import $ from "jquery";
+import c from "classnames";
 import validate, {
   errorString,
   isHexColor,
   isColor,
-} from '../../../utils/validate'
-import ColorPicker from '../../../components/Shared/ColorPicker'
+} from "../../../utils/validate";
+import ColorPicker from "../../../components/Shared/ColorPicker";
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
@@ -59,15 +59,15 @@ class Input extends React.Component {
   getInitialState() {
     return {
       value:
-        this.props.type === 'radio'
-          ? ''
+        this.props.type === "radio"
+          ? ""
           : this.props.value || this.props.default,
       error: this.props.error,
       validationErrors: [],
       dirty: false,
       showColorPicker: false,
-    }
-  };
+    };
+  }
 
   constructor(props) {
     super(props);
@@ -82,168 +82,173 @@ class Input extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.type === 'textarea') {
-      Materialize.textareaAutoResize(this.inputRef)
+    if (this.props.type === "textarea") {
+      Materialize.textareaAutoResize(this.inputRef);
     }
-  };
+  }
 
   handleFocus(e) {
-    clearTimeout(this._blurTimeout)
-    this.inputRef && this.inputRef.focus()
+    clearTimeout(this._blurTimeout);
+    this.inputRef && this.inputRef.focus();
 
     if (this.props.focusSelectAll) {
-      this.inputRef && this.inputRef.select()
+      this.inputRef && this.inputRef.select();
     }
 
-    if (this.props.type === 'color') {
-      this.setState({showColorPicker: true})
+    if (this.props.type === "color") {
+      this.setState({ showColorPicker: true });
     }
-  };
+  }
 
   handleBlur(e) {
     this._blurTimeout = setTimeout(() => {
-      if (this.props.type === 'color') {
-        this.setState({showColorPicker: false})
+      if (this.props.type === "color") {
+        this.setState({ showColorPicker: false });
       }
       // A timeout of 0 might be a problem here. If we see issues where the color picker keeps closing when you click it,
       // this might need to be increased. System specs play a role here.
-    }, 0)
-  };
+    }, 0);
+  }
 
   componentDidUpdate(prevProps, prevState) {
     if (
-      this.props.type === 'textarea' &&
+      this.props.type === "textarea" &&
       this.props.browserDefault &&
       this.state.value !== prevState.value
     ) {
-      const overflow = this.inputRef.style.overflow
-      this.inputRef.style.overflow = 'hidden'
-      this.inputRef.style.height = '5px'
-      this.inputRef.style.height = this.inputRef.scrollHeight + 'px'
-      this.inputRef.style.overflow = overflow
-      console.log(this.inputRef, this.inputRef.style.height)
+      const overflow = this.inputRef.style.overflow;
+      this.inputRef.style.overflow = "hidden";
+      this.inputRef.style.height = "5px";
+      this.inputRef.style.height = this.inputRef.scrollHeight + "px";
+      this.inputRef.style.overflow = overflow;
+      console.log(this.inputRef, this.inputRef.style.height);
     }
 
-    if (this.props.type === 'textarea' && !this.props.browserDefault) {
+    if (this.props.type === "textarea" && !this.props.browserDefault) {
       // TODO: Is this Return correct?
-      return Materialize.textareaAutoResize(this.inputRef)
+      return Materialize.textareaAutoResize(this.inputRef);
     }
 
     if (prevProps.value !== this.props.value) {
-      this.setState({value: this.props.value || this.props.default})
+      this.setState({ value: this.props.value || this.props.default });
     }
 
     if (prevProps.error !== this.props.error) {
-      return this.setState({error: this.props.error})
+      return this.setState({ error: this.props.error });
     }
-  };
+  }
 
   handleColorClose() {
-    this.setState({showColorPicker: false})
-  };
+    this.setState({ showColorPicker: false });
+  }
 
   handleColorChange(data) {
     this._handleInputChange({
       target: {
         value: data.hex,
       },
-    })
-  };
+    });
+  }
 
   _handleInputChange(e) {
-    let value
-    if (this.props.type === 'checkbox') {
-      value = e.target.checked
-    } else if (this.props.type === 'radio') {
+    let value;
+    if (this.props.type === "checkbox") {
+      value = e.target.checked;
+    } else if (this.props.type === "radio") {
       if (e.target.checked) {
-        value = this.props.default
+        value = this.props.default;
       }
     } else {
-      value = e.target.value
+      value = e.target.value;
     }
 
-    let model = {}
-    model[this.props.name] = value
+    let model = {};
+    model[this.props.name] = value;
 
-    let validations = []
+    let validations = [];
 
     // Assign validators here.
-    if (this.props.type === 'color') {
+    if (this.props.type === "color") {
       if (this.props.hexOnly) {
-        validations.push(isHexColor)
-        value = isHexColor.transform(value)
+        validations.push(isHexColor);
+        value = isHexColor.transform(value);
       } else {
-        validations.push(isColor)
+        validations.push(isColor);
       }
     }
 
-    let validators = {}
-    validators[this.props.name] = validations
-    const errors = validate(model, validators)[this.props.name]
+    let validators = {};
+    validators[this.props.name] = validations;
+    const errors = validate(model, validators)[this.props.name];
 
-    this.setState({error: null, validationErrors: errors, value, dirty: true})
+    this.setState({
+      error: null,
+      validationErrors: errors,
+      value,
+      dirty: true,
+    });
     if (this.props.onChange) {
-      return this.props.onChange(this.props.name, value)
+      return this.props.onChange(this.props.name, value);
     }
-  };
+  }
 
   _handleKeyPress(e) {
     switch (false) {
       case !e.ctrlKey || e.keyCode !== 13:
         if (this.props.onSubmit) {
-          return this.props.onSubmit()
+          return this.props.onSubmit();
         }
-        break
+        break;
     }
-  };
+  }
 
   render() {
-    let icon, id, inputField
-    let {className} = this.props
-    const {showColorPicker} = this.state
+    let icon, id, inputField;
+    let { className } = this.props;
+    const { showColorPicker } = this.state;
 
-    let errors = this.state.validationErrors || []
-    let error
+    let errors = this.state.validationErrors || [];
+    let error;
     if (this.state.error) {
       if (this.state.error.map) {
-        errors = [...errors, ...this.state.error]
+        errors = [...errors, ...this.state.error];
       } else {
-        errors = [...errors, this.state.error]
+        errors = [...errors, this.state.error];
       }
     }
 
     if (errors.length > 0) {
-      className += ' invalid'
-      error = errorString(errors)
+      className += " invalid";
+      error = errorString(errors);
     }
     if (this.props.browserDefault) {
-      className += ' browser-default'
+      className += " browser-default";
     }
     if (this.props.autoFocus) {
-      className += ' autofocus'
+      className += " autofocus";
     }
     if (this.props.noMargin) {
-      className += ' margin-bottom--none'
+      className += " margin-bottom--none";
     }
 
-    let inputFieldInsideLabel = false
+    let inputFieldInsideLabel = false;
 
     if (this.props.id) {
-      ;({id} = this.props)
+      ({ id } = this.props);
     } else if (this.props.modelName) {
-      id = `${this.props.modelName}_${this.props.name}`
+      id = `${this.props.modelName}_${this.props.name}`;
     } else {
-      id = this.props.name
+      id = this.props.name;
     }
 
     if (this.props.formName) {
-      id = this.props.formName + '_' + id
+      id = this.props.formName + "_" + id;
     }
 
     const commonProps = {
       id,
       name: this.props.name,
-      ref: r => (this.inputRef = r),
+      ref: (r) => (this.inputRef = r),
       disabled: this.props.disabled,
       readOnly: this.props.readOnly,
       placeholder: this.props.placeholder,
@@ -251,33 +256,33 @@ class Input extends React.Component {
       onChange: this._handleInputChange,
       className,
       noValidate: true,
-      autoComplete: this.props.autoComplete
-    }
+      autoComplete: this.props.autoComplete,
+    };
 
-    if (this.props.type === 'textarea') {
+    if (this.props.type === "textarea") {
       if (!this.props.browserDefault) {
-        className += ' materialize-textarea'
+        className += " materialize-textarea";
       }
 
       inputField = (
         <textarea
           {...commonProps}
-          value={this.state.value || ''}
+          value={this.state.value || ""}
           onKeyDown={this._handleKeyPress}
           className={className}
         />
-      )
-    } else if (this.props.type === 'checkbox') {
-      inputFieldInsideLabel = true
+      );
+    } else if (this.props.type === "checkbox") {
+      inputFieldInsideLabel = true;
       inputField = (
         <input
           {...commonProps}
           type={this.props.type}
           checked={this.state.value || false}
         />
-      )
-    } else if (this.props.type === 'radio') {
-      inputFieldInsideLabel = true
+      );
+    } else if (this.props.type === "radio") {
+      inputFieldInsideLabel = true;
       inputField = (
         <input
           {...commonProps}
@@ -285,39 +290,39 @@ class Input extends React.Component {
           type={this.props.type}
           checked={this.state.value === this.props.default}
         />
-      )
-    } else if (this.props.type === 'color') {
+      );
+    } else if (this.props.type === "color") {
       inputField = (
-        <input {...commonProps} value={this.state.value || ''} type="text"/>
-      )
+        <input {...commonProps} value={this.state.value || ""} type="text" />
+      );
 
-      if (this.props.icon !== '') {
-        let iconName = this.props.icon || 'palette'
-        let color = this.state.value
+      if (this.props.icon !== "") {
+        let iconName = this.props.icon || "palette";
+        let color = this.state.value;
 
         if (error) {
-          iconName = 'error'
-          color = 'inherit'
+          iconName = "error";
+          color = "inherit";
         }
 
         icon = (
           <i
             className="material-icons prefix shadow"
-            style={{color}}
+            style={{ color }}
             onClick={this.handleFocus}
           >
             {iconName}
           </i>
-        )
+        );
       }
     } else {
       inputField = (
         <input
           {...commonProps}
-          type={this.props.type || 'text'}
-          value={this.state.value || ''}
+          type={this.props.type || "text"}
+          value={this.state.value || ""}
         />
-      )
+      );
     }
 
     if (this.props.icon) {
@@ -325,23 +330,23 @@ class Input extends React.Component {
         <i className="material-icons prefix" onClick={this.handleFocus}>
           {this.props.icon}
         </i>
-      )
+      );
     }
 
-    const wrapperClassNames = []
-    if (this.props.type !== 'radio' && this.props.type !== 'checkbox') {
-      wrapperClassNames.push('input-field')
+    const wrapperClassNames = [];
+    if (this.props.type !== "radio" && this.props.type !== "checkbox") {
+      wrapperClassNames.push("input-field");
     }
     if (this.props.noMargin || !this.props.label) {
-      wrapperClassNames.push('margin-top--none')
+      wrapperClassNames.push("margin-top--none");
     }
-    if (this.props.type === 'radio' || this.props.type === 'checkbox') {
-      wrapperClassNames.push('check-field')
+    if (this.props.type === "radio" || this.props.type === "checkbox") {
+      wrapperClassNames.push("check-field");
     }
 
     return (
       <div
-        className={wrapperClassNames.join(' ')}
+        className={wrapperClassNames.join(" ")}
         onFocus={this.handleFocus}
         onBlur={this.handleBlur}
       >
@@ -353,8 +358,9 @@ class Input extends React.Component {
             htmlFor={id}
             className={c({
               active:
-                this.props.type !== 'radio' && this.props.type !== 'checkbox' && (
-                  this.state.value ||
+                this.props.type !== "radio" &&
+                this.props.type !== "checkbox" &&
+                (this.state.value ||
                   commonProps.placeholder ||
                   commonProps.default),
             })}
@@ -381,8 +387,8 @@ class Input extends React.Component {
           />
         )}
       </div>
-    )
-  };
+    );
+  }
 }
 
-export default Input
+export default Input;

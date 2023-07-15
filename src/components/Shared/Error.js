@@ -11,32 +11,32 @@
  * DS102: Remove unnecessary code created because of implicit returns
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
-import React from 'react'
-import Main from './Main'
+import React from "react";
+import Main from "./Main";
 
-const findError = error => {
-  if (typeof error === 'undefined') {
-    return 'Unknown Error'
+const findError = (error) => {
+  if (typeof error === "undefined") {
+    return "Unknown Error";
   } else if (error.map) {
-    return error.map(findError).join(', ')
+    return error.map(findError).join(", ");
   } else {
-    return error.toString()
+    return error.toString();
   }
-}
+};
 
 export default ({ error, message }) => {
-  const classNames = ['modal-page-content']
+  const classNames = ["modal-page-content"];
 
-  let finalText = message
+  let finalText = message;
   if (!finalText) {
-    finalText = findError(error)
+    finalText = findError(error);
   }
 
   return (
-    <Main className={classNames.join(' ')}>
+    <Main className={classNames.join(" ")}>
       <div className="container">
         <h1>{finalText}</h1>
       </div>
     </Main>
-  )
-}
+  );
+};

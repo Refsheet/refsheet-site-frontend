@@ -3,10 +3,10 @@
     react/prop-types,
     react/react-in-jsx-scope,
 */
-import React from 'react'
-import createReactClass from 'create-react-class'
-import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import React from "react";
+import createReactClass from "create-react-class";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
@@ -18,12 +18,13 @@ import { Link } from 'react-router-dom'
  */
 const CharacterLinkCard = function (props) {
   const colorData =
-    (props.colorScheme != null ? props.colorScheme.color_data : undefined) || {}
+    (props.colorScheme != null ? props.colorScheme.color_data : undefined) ||
+    {};
 
   return (
     <div
       className="character-link-card"
-      style={{ backgroundColor: colorData['imageBackground'] || '#000000' }}
+      style={{ backgroundColor: colorData["imageBackground"] || "#000000" }}
     >
       <Link to={props.link} className="image">
         <img src={props.profileImageUrl} />
@@ -31,21 +32,21 @@ const CharacterLinkCard = function (props) {
 
       <div
         className="details"
-        style={{ backgroundColor: colorData['cardBackground'] }}
+        style={{ backgroundColor: colorData["cardBackground"] }}
       >
         <Link
           to={props.link}
           className="name"
-          style={{ color: colorData['accent1'] }}
+          style={{ color: colorData["accent1"] }}
         >
           {props.name}
         </Link>
-        <div className="species" style={{ color: colorData['text'] }}>
-          {props.species || 'Unknown Species'}
+        <div className="species" style={{ color: colorData["text"] }}>
+          {props.species || "Unknown Species"}
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CharacterLinkCard
+export default CharacterLinkCard;

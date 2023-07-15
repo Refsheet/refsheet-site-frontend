@@ -1,53 +1,53 @@
-import React, {Component} from 'react'
-import PropTypes from 'prop-types'
-import {Icon} from 'react-materialize'
-import {Mutation} from '@apollo/client/react/components'
-import {gql} from '@apollo/client'
-import dynamic from 'next/dynamic'
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { Icon } from "react-materialize";
+import { Mutation } from "@apollo/client/react/components";
+import { gql } from "@apollo/client";
+import dynamic from "next/dynamic";
 
 let M = null;
-if (typeof window !== 'undefined') {
-  M = require('materialize-css');
+if (typeof window !== "undefined") {
+  M = require("materialize-css");
 }
 
-import EmailConfirmationNag from '../User/EmailConfirmationNag'
+import EmailConfirmationNag from "../User/EmailConfirmationNag";
 
 class NewMessage extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
-      message: '',
-    }
+      message: "",
+    };
 
-    this.nonce = 0
+    this.nonce = 0;
 
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.handleMessageChange = this.handleMessageChange.bind(this)
-    this.handleClose = this.handleClose.bind(this)
-    this.handleKeyPress = this.handleKeyPress.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleMessageChange = this.handleMessageChange.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
   }
 
   handleMessageChange(e) {
-    e.preventDefault()
-    this.setState({message: e.target.value})
+    e.preventDefault();
+    this.setState({ message: e.target.value });
   }
 
   handleSubmit(e) {
-    e.preventDefault()
+    e.preventDefault();
 
-    const {nonce} = this
-    this.nonce += 1
+    const { nonce } = this;
+    this.nonce += 1;
 
     if (this.props.onCreate) {
-      const ctime = new Date().getTime() / 1000
+      const ctime = new Date().getTime() / 1000;
 
       this.props.onCreate({
         message: this.state.message,
         nonce: nonce,
-        status: 'preflight',
+        status: "preflight",
         created_at: ctime,
-      })
+      });
     }
 
     this.props
@@ -59,74 +59,74 @@ class NewMessage extends Component {
           nonce: nonce,
         },
       })
-      .then(({data, errors}) => {
-        const {onConversationStart} = this.props
+      .then(({ data, errors }) => {
+        const { onConversationStart } = this.props;
 
         const guid =
           data &&
           data.sendMessage &&
           data.sendMessage.conversation &&
-          data.sendMessage.conversation.guid
+          data.sendMessage.conversation.guid;
 
-        const messageGuid = data && data.sendMessage && data.sendMessage.guid
+        const messageGuid = data && data.sendMessage && data.sendMessage.guid;
 
         if (guid && onConversationStart) {
           onConversationStart({
             id: guid,
             name: this.props.recipient.name,
             user: this.props.recipient,
-          })
+          });
         }
 
         if (errors) {
-          errors.map(error => {
+          errors.map((error) => {
             M.toast({
               html: error.message,
-              classes: 'red',
+              classes: "red",
               displayLength: 3000,
-            })
-          })
+            });
+          });
 
           if (this.props.onCreate) {
             this.props.onCreate({
               nonce: nonce,
-              status: 'error',
+              status: "error",
               error: errors[0].message,
-            })
+            });
           }
         } else if (messageGuid) {
           if (this.props.onCreate) {
             this.props.onCreate({
               nonce: nonce,
-              status: 'delivered',
+              status: "delivered",
               guid: messageGuid,
-            })
+            });
           }
         }
       })
-      .catch(error => {
-        console.error(error)
+      .catch((error) => {
+        console.error(error);
 
         if (this.props.onCreate) {
           this.props.onCreate({
             nonce: nonce,
-            status: 'error',
+            status: "error",
             error: error,
-          })
+          });
         }
-      })
+      });
 
-    this.setState({message: ''})
+    this.setState({ message: "" });
   }
 
   handleClose(e) {
-    e.preventDefault()
-    this.props.onClose()
+    e.preventDefault();
+    this.props.onClose();
   }
 
   handleKeyPress(e) {
     if (e.keyCode === 27) {
-      this.handleClose(e)
+      this.handleClose(e);
     }
   }
 
@@ -148,44 +148,44 @@ class NewMessage extends Component {
           autoComplete="off"
         />
 
-        <button type="submit" disabled={this.state.message === ''}>
+        <button type="submit" disabled={this.state.message === ""}>
           <Icon>send</Icon>
         </button>
       </form>
-    )
+    );
   }
 }
 
 const MESSAGE_MUTATION = gql`
-    mutation sendMessage(
-        $conversationId: ID
-        $recipientId: ID
-        $message: String!
+  mutation sendMessage(
+    $conversationId: ID
+    $recipientId: ID
+    $message: String!
+  ) {
+    sendMessage(
+      conversationId: $conversationId
+      recipientId: $recipientId
+      message: $message
     ) {
-        sendMessage(
-            conversationId: $conversationId
-            recipientId: $recipientId
-            message: $message
-        ) {
-            guid
-            message
-            created_at
-            read_at
-            conversation {
-                guid
-            }
-        }
+      guid
+      message
+      created_at
+      read_at
+      conversation {
+        guid
+      }
     }
-`
-const Wrapped = props => (
+  }
+`;
+const Wrapped = (props) => (
   <EmailConfirmationNag slim>
     <Mutation mutation={MESSAGE_MUTATION}>
-      {(send, {mutationData}) => (
-        <NewMessage {...props} send={send} mutationData={mutationData}/>
+      {(send, { mutationData }) => (
+        <NewMessage {...props} send={send} mutationData={mutationData} />
       )}
     </Mutation>
   </EmailConfirmationNag>
-)
+);
 
 Wrapped.propTypes = {
   onClose: PropTypes.func.isRequired,
@@ -196,6 +196,6 @@ Wrapped.propTypes = {
     id: PropTypes.string,
     name: PropTypes.string,
   }),
-}
+};
 
-export default Wrapped
+export default Wrapped;

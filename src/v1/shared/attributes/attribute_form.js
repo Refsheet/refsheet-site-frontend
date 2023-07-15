@@ -1,9 +1,9 @@
-import React from 'react'
-import createReactClass from 'create-react-class'
-import PropTypes from 'prop-types'
+import React from "react";
+import createReactClass from "create-react-class";
+import PropTypes from "prop-types";
 
-import Input from '../forms/Input'
-import $ from 'jquery'
+import Input from "../forms/Input";
+import $ from "jquery";
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
@@ -13,7 +13,7 @@ import $ from 'jquery'
  * DS208: Avoid top-level this
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
-let AttributeForm
+let AttributeForm;
 export default AttributeForm = createReactClass({
   getInitialState() {
     return {
@@ -21,7 +21,7 @@ export default AttributeForm = createReactClass({
       value: this.props.value,
       notes: this.props.notes,
       errors: {},
-    }
+    };
   },
 
   commit(e) {
@@ -34,85 +34,85 @@ export default AttributeForm = createReactClass({
       },
       () => {
         if (this.props.onCancel != null) {
-          return this.props.onCancel()
+          return this.props.onCancel();
         } else {
-          this.setState({errors: {}})
+          this.setState({ errors: {} });
           if (this.props.id == null) {
-            return this.setState({name: '', value: '', notes: ''})
+            return this.setState({ name: "", value: "", notes: "" });
           }
         }
       },
-      data => {
-        console.log(data)
-        return this.setState({errors: data})
-      }
-    )
+      (data) => {
+        console.log(data);
+        return this.setState({ errors: data });
+      },
+    );
 
-    return e.preventDefault()
+    return e.preventDefault();
   },
 
   handleChange(key, value) {
-    const o = {}
-    o[key] = value
-    return this.setState(o)
+    const o = {};
+    o[key] = value;
+    return this.setState(o);
   },
 
   colorPicker(e) {
-    return this.setState({value: e.target.value})
+    return this.setState({ value: e.target.value });
   },
 
   colorPickerClick(e) {
-    return $(e.target).children('input').click()
+    return $(e.target).children("input").click();
   },
 
   UNSAFE_componentWillReceiveProps(newProps) {
-    const state = []
+    const state = [];
     if (newProps.name != null) {
-      state.name = newProps.name
+      state.name = newProps.name;
     }
     if (newProps.value != null) {
-      state.value = newProps.value
+      state.value = newProps.value;
     }
     if (newProps.notes != null) {
-      state.notes = newProps.notes
+      state.notes = newProps.notes;
     }
-    return this.setState(state)
+    return this.setState(state);
   },
 
   UNSAFE_componentWillUpdate() {
-    if (typeof window !== 'undefined') {
-      import('materialize-css').then((Materialize) => {
+    if (typeof window !== "undefined") {
+      import("materialize-css").then((Materialize) => {
         if (Materialize.updateTextFields != null) {
-          return Materialize.updateTextFields()
+          return Materialize.updateTextFields();
         }
-      })
+      });
     }
   },
 
   componentDidMount() {
-    return $('[name="value"]').focus()
+    return $('[name="value"]').focus();
   },
 
   render() {
-    let cancel, iconTag, nameTag, notesTag, saveClassName
+    let cancel, iconTag, nameTag, notesTag, saveClassName;
     if (this.props.onCancel != null) {
       cancel = (
         <a className="" onClick={this.props.onCancel}>
           <i className="material-icons">cancel</i>
         </a>
-      )
+      );
     }
 
-    let className = 'attribute-form'
+    let className = "attribute-form";
 
     if (Object.keys(this.state.errors).length !== 0) {
-      saveClassName = 'red-text'
+      saveClassName = "red-text";
     } else {
-      saveClassName = 'teal-text'
+      saveClassName = "teal-text";
     }
 
     if (this.props.inactive) {
-      className += ' inactive'
+      className += " inactive";
     }
 
     if (!this.props.hideIcon) {
@@ -120,11 +120,11 @@ export default AttributeForm = createReactClass({
         <div className="icon">
           <i className="material-icons">edit</i>
         </div>
-      )
+      );
     }
 
     if (this.props.freezeName) {
-      nameTag = <div className="key">{this.state.name}</div>
+      nameTag = <div className="key">{this.state.name}</div>;
     } else {
       nameTag = (
         <div className="key">
@@ -137,7 +137,7 @@ export default AttributeForm = createReactClass({
             value={this.state.name}
           />
         </div>
-      )
+      );
     }
 
     if (!this.props.hideNotes) {
@@ -152,7 +152,7 @@ export default AttributeForm = createReactClass({
             value={this.state.notes}
           />
         </div>
-      )
+      );
     }
 
     return (
@@ -165,7 +165,7 @@ export default AttributeForm = createReactClass({
 
             <div className="value">
               <Input
-                type={this.props.valueType || 'text'}
+                type={this.props.valueType || "text"}
                 name="value"
                 onChange={this.handleChange}
                 error={this.state.errors.value}
@@ -185,6 +185,6 @@ export default AttributeForm = createReactClass({
           </div>
         </form>
       </li>
-    )
+    );
   },
-})
+});

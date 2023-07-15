@@ -1,66 +1,66 @@
 query getMedia($mediaId: ID!) {
-    getMedia(mediaId: $mediaId) {
-      id
-      title
-      created_at
+  getMedia(mediaId: $mediaId) {
+    id
+    title
+    created_at
 
-      caption
-      caption_html
-      source_url
-      source_url_display
-        is_v2_image
+    caption
+    caption_html
+    source_url
+    source_url_display
+    is_v2_image
 
-        nsfw
-        hidden
-        background_color
-        image_processing
-        image_processing_error
+    nsfw
+    hidden
+    background_color
+    image_processing
+    image_processing_error
 
-        favorites_count
-        comments_count
-        is_favorite
-        is_managed
-        watermark
-        gravity
+    favorites_count
+    comments_count
+    is_favorite
+    is_managed
+    watermark
+    gravity
 
-      url {
-        large
-      }
+    url {
+      large
+    }
 
-        download_link
+    download_link
 
-        hashtags {
-            tag
-        }
+    hashtags {
+      tag
+    }
 
-        tags {
-            position_x
-            position_y
-
-            character {
-                id
-                name
-            }
-        }
+    tags {
+      position_x
+      position_y
 
       character {
         id
         name
-        path
-        profile_image {
-            url {
-                thumbnail
-            }
+      }
+    }
+
+    character {
+      id
+      name
+      path
+      profile_image {
+        url {
+          thumbnail
         }
       }
+    }
 
-        favorites {
-            id,
-            user {
-                username,
-                name,
-                avatar_url
-            }
-        }
+    favorites {
+      id
+      user {
+        username
+        name
+        avatar_url
+      }
     }
   }
+}

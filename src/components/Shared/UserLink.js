@@ -1,16 +1,16 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import PropTypes from 'prop-types'
-import { userFgColor } from '../../utils/UserUtils'
-import { createIdentity } from '../../utils/IdentityUtils'
+import React from "react";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import { userFgColor } from "../../utils/UserUtils";
+import { createIdentity } from "../../utils/IdentityUtils";
 
-const UserLink = props => {
-  const { user } = props
-  const identity = createIdentity(props)
+const UserLink = (props) => {
+  const { user } = props;
+  const identity = createIdentity(props);
 
   const style = {
     color: `${userFgColor(user)}`,
-  }
+  };
 
   return (
     <Link
@@ -20,8 +20,8 @@ const UserLink = props => {
     >
       {identity.name}
     </Link>
-  )
-}
+  );
+};
 
 UserLink.propTypes = {
   user: PropTypes.shape({
@@ -30,6 +30,6 @@ UserLink.propTypes = {
     is_admin: PropTypes.bool,
     is_patron: PropTypes.bool,
   }),
-}
+};
 
-export default UserLink
+export default UserLink;

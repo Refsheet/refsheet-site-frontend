@@ -1,37 +1,37 @@
-import React, {Component} from 'react'
-import PropTypes from 'prop-types'
-import compose from 'utils/compose'
-import {withCurrentUser, withMutations} from '../../../utils/compose'
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import compose from "utils/compose";
+import { withCurrentUser, withMutations } from "../../../utils/compose";
 
 let M = null;
-if (typeof window !== 'undefined') {
-  M = require('materialize-css');
+if (typeof window !== "undefined") {
+  M = require("materialize-css");
 }
-import CommentForm from '../../Shared/CommentForm'
-import {Row, Col} from 'react-materialize'
+import CommentForm from "../../Shared/CommentForm";
+import { Row, Col } from "react-materialize";
 //graphql.macro
-import Muted from '../../Styled/Muted'
+import Muted from "../../Styled/Muted";
 
-const postReply = require('./postReply.graphql');
-const editReply = require('./editReply.graphql');
-const createDiscussion = require('../NewDiscussion/createDiscussion.graphql');
+const postReply = require("./postReply.graphql");
+const editReply = require("./editReply.graphql");
+const createDiscussion = require("../NewDiscussion/createDiscussion.graphql");
 
 class DiscussionReplyForm extends Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   canReply(user) {
     // TODO: Use a policy for this.
-    const {forum, discussion, edit} = this.props
-    if (!user) return false
-    if (edit) return true
-    if (user.is_admin) return true
+    const { forum, discussion, edit } = this.props;
+    if (!user) return false;
+    if (edit) return true;
+    if (user.is_admin) return true;
 
-    return !(forum && forum.locked) || (discussion && discussion.locked)
+    return !(forum && forum.locked) || (discussion && discussion.locked);
   }
 
-  handleSubmit({comment: content, identity}) {
+  handleSubmit({ comment: content, identity }) {
     const {
       edit,
       post,
@@ -41,7 +41,7 @@ class DiscussionReplyForm extends Component {
       newDiscussion,
       createDiscussion,
       forum,
-    } = this.props
+    } = this.props;
 
     if (edit) {
       return editReply({
@@ -51,7 +51,7 @@ class DiscussionReplyForm extends Component {
           userId: identity.userId,
           content: content,
         },
-      })
+      });
     }
 
     if (newDiscussion) {
@@ -64,7 +64,7 @@ class DiscussionReplyForm extends Component {
           content: content,
           sticky: post.sticky,
         },
-      })
+      });
     }
 
     return postReply({
@@ -75,21 +75,21 @@ class DiscussionReplyForm extends Component {
         characterId: identity.characterId,
         content,
       },
-    })
+    });
   }
 
-  handleSubmitConfirm({postReply, editReply, createDiscussion}) {
-    const {edit} = this.props
+  handleSubmitConfirm({ postReply, editReply, createDiscussion }) {
+    const { edit } = this.props;
 
     M.toast({
-      html: edit ? 'Reply edited!' : 'Reply submitted!',
+      html: edit ? "Reply edited!" : "Reply submitted!",
       displayLength: 3000,
-      classes: 'green',
-    })
+      classes: "green",
+    });
 
-    if (this.props.refetch) this.props.refetch()
+    if (this.props.refetch) this.props.refetch();
     if (this.props.onSubmit)
-      this.props.onSubmit(postReply || editReply || createDiscussion)
+      this.props.onSubmit(postReply || editReply || createDiscussion);
   }
 
   render() {
@@ -100,14 +100,14 @@ class DiscussionReplyForm extends Component {
       post = {},
       onCancel,
       children,
-    } = this.props
+    } = this.props;
 
     if (!this.canReply(currentUser)) {
-      return null
+      return null;
     }
 
     return (
-      <div id="reply" className={'margin-top--medium forum-post--reply'}>
+      <div id="reply" className={"margin-top--medium forum-post--reply"}>
         <CommentForm
           richText
           v2Style
@@ -117,23 +117,23 @@ class DiscussionReplyForm extends Component {
           onSubmit={this.handleSubmit.bind(this)}
           onSubmitConfirm={this.handleSubmitConfirm.bind(this)}
           onCancel={onCancel}
-          placeholder={'Leave a reply...'}
-          value={post.content || ''}
-          buttonText={edit ? 'Edit Reply' : 'Post Reply'}
-          buttonSubmittingText={'Posting...'}
+          placeholder={"Leave a reply..."}
+          value={post.content || ""}
+          buttonText={edit ? "Edit Reply" : "Post Reply"}
+          buttonSubmittingText={"Posting..."}
         >
           {children}
         </CommentForm>
 
         <Row>
-          <Col s={12} m={10} offset={'m1'}>
+          <Col s={12} m={10} offset={"m1"}>
             {edit ? (
-              <Muted className={'margin-top--medium center'}>
+              <Muted className={"margin-top--medium center"}>
                 The content of this post can be edited, but previous versions
                 will still be visible via the edit history.
               </Muted>
             ) : (
-              <Muted className={'margin-top--medium center'}>
+              <Muted className={"margin-top--medium center"}>
                 Before posting, please make sure you've read the forum rules,
                 and be sure your post doesn't violate them. Remember: be
                 excellent to each other.
@@ -142,7 +142,7 @@ class DiscussionReplyForm extends Component {
           </Col>
         </Row>
       </div>
-    )
+    );
   }
 }
 
@@ -154,9 +154,9 @@ DiscussionReplyForm.propTypes = {
   inCharacter: PropTypes.bool,
   refetch: PropTypes.func,
   onSubmit: PropTypes.func,
-}
+};
 
 export default compose(
   withCurrentUser(),
-  withMutations({postReply, editReply, createDiscussion})
-)(DiscussionReplyForm)
+  withMutations({ postReply, editReply, createDiscussion }),
+)(DiscussionReplyForm);

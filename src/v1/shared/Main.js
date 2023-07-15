@@ -1,2 +1,2 @@
-import Main from 'components/Shared/Main'
-export default Main
+import Main from "components/Shared/Main";
+export default Main;

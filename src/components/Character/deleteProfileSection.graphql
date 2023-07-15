@@ -1,5 +1,5 @@
 mutation deleteProfileSection($id: ID!) {
-    deleteProfileSection(id: $id) {
-        id
-    }
+  deleteProfileSection(id: $id) {
+    id
+  }
 }

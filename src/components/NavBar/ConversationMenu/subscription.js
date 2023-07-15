@@ -1,24 +1,24 @@
-import {subscribe} from 'services/ApplicationService'
+import { subscribe } from "services/ApplicationService";
 //graphql.macro
-const getConversations = require('./getConversations.graphql');
-const subscribeToConversations = require('./subscribeToConversations.graphql');
+const getConversations = require("./getConversations.graphql");
+const subscribeToConversations = require("./subscribeToConversations.graphql");
 
-const mapDataToProps = data => ({
+const mapDataToProps = (data) => ({
   conversations: data.getConversations,
-})
+});
 
 const updateQuery = (prev, data) => {
-  const {newConversation} = data
+  const { newConversation } = data;
 
   return {
     ...prev,
     getConversations: [...prev.getConversations, newConversation],
-  }
-}
+  };
+};
 
 export default subscribe({
   query: getConversations,
   subscription: subscribeToConversations,
   mapDataToProps,
   updateQuery,
-})
+});

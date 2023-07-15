@@ -1,10 +1,10 @@
-import React from 'react'
-import CharacterPolicy from './CharacterPolicy'
-import { withCurrentUser } from '../utils/compose'
+import React from "react";
+import CharacterPolicy from "./CharacterPolicy";
+import { withCurrentUser } from "../utils/compose";
 
 const policies = {
   Character: CharacterPolicy,
-}
+};
 
 /**
  * Authorize an action against an object. This requires a `__typename` attribute to be set on the
@@ -30,46 +30,46 @@ const policies = {
 function authorize(
   object,
   user = null,
-  action = 'update',
+  action = "update",
   policy = null,
-  args = []
+  args = [],
 ) {
-  let activePolicy
+  let activePolicy;
 
-  if (!policy || typeof policy === 'string') {
+  if (!policy || typeof policy === "string") {
     activePolicy =
-      policies[policy] || policies[object.__typename] || policies[object]
+      policies[policy] || policies[object.__typename] || policies[object];
   } else {
-    activePolicy = policy
+    activePolicy = policy;
   }
 
   if (!activePolicy) {
-    console.error('No policy found for ' + object, {
+    console.error("No policy found for " + object, {
       user,
       action,
       object,
       policy,
-    })
-    return false
+    });
+    return false;
   }
 
-  const policyInstance = new activePolicy(object, user)
-  const check = policyInstance[action]
+  const policyInstance = new activePolicy(object, user);
+  const check = policyInstance[action];
 
   if (!check) {
     console.error(
-      'Policy ' + activePolicy.name + ' does not define action ' + action,
-      { user, action, object, activePolicy }
-    )
-    return false
+      "Policy " + activePolicy.name + " does not define action " + action,
+      { user, action, object, activePolicy },
+    );
+    return false;
   }
 
   console.debug(
-    'Checking policy ' + activePolicy.name + ', action: ' + action,
-    { user, action, object, policyInstance, check }
-  )
+    "Checking policy " + activePolicy.name + ", action: " + action,
+    { user, action, object, policyInstance, check },
+  );
 
-  return check.apply(policyInstance, args)
+  return check.apply(policyInstance, args);
 }
 
 /**
@@ -84,25 +84,31 @@ function authorize(
  * @returns {null|*}
  * @constructor
  */
-const Authorized = withCurrentUser()(
-  ({ object, action, children, user, currentUser, policy, args }) => {
-    if (authorize(object, user || currentUser, action, policy, args)) {
-      return children
-    } else {
-      return null
-    }
+const Authorized = withCurrentUser()(({
+  object,
+  action,
+  children,
+  user,
+  currentUser,
+  policy,
+  args,
+}) => {
+  if (authorize(object, user || currentUser, action, policy, args)) {
+    return children;
+  } else {
+    return null;
   }
-)
+});
 
 function withAuthorize(Component) {
-  return withCurrentUser()(props => {
+  return withCurrentUser()((props) => {
     const authorizeWithUser = (object, action, policy, args) => {
-      return authorize(object, props.currentUser, action, policy, args)
-    }
+      return authorize(object, props.currentUser, action, policy, args);
+    };
 
-    return <Component {...props} authorize={authorizeWithUser} />
-  })
+    return <Component {...props} authorize={authorizeWithUser} />;
+  });
 }
 
-export { Authorized, withAuthorize }
-export default authorize
+export { Authorized, withAuthorize };
+export default authorize;

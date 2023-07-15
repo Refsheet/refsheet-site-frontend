@@ -1,46 +1,46 @@
-import React, {Component} from 'react'
-import PropTypes from 'prop-types'
-import DropdownLink from '../DropdownLink'
-import NotificationItem from '../Dropdown/NotificationItem'
-import {Link} from 'react-router-dom'
-import Scrollbars from 'components/Shared/Scrollbars'
-import subscription from './subscription'
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import DropdownLink from "../DropdownLink";
+import NotificationItem from "../Dropdown/NotificationItem";
+import { Link } from "react-router-dom";
+import Scrollbars from "components/Shared/Scrollbars";
+import subscription from "./subscription";
 //graphql.macro
-import WindowAlert from '../../../utils/WindowAlert'
-import compose, {withMutations} from '../../../utils/compose'
-import {withTranslation} from 'react-i18next'
+import WindowAlert from "../../../utils/WindowAlert";
+import compose, { withMutations } from "../../../utils/compose";
+import { withTranslation } from "react-i18next";
 
-const markAllNotificationsAsRead = require('./markAllNotificationsAsRead.graphql');
-const readNotification = require('./readNotification.graphql');
+const markAllNotificationsAsRead = require("./markAllNotificationsAsRead.graphql");
+const readNotification = require("./readNotification.graphql");
 
 class NotificationMenu extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       markAllLoading: false,
-    }
+    };
   }
 
   UNSAFE_componentWillReceiveProps(newProps) {
     if (this.props.unreadCount < newProps.unreadCount) {
-      WindowAlert.playSound('notificationDing')
+      WindowAlert.playSound("notificationDing");
     }
   }
 
   handleMarkAllClick(e) {
-    const {unreadCount, loading = false, refetch, markAllAsRead} = this.props
+    const { unreadCount, loading = false, refetch, markAllAsRead } = this.props;
 
-    e.preventDefault()
-    this.setState({markAllLoading: true})
+    e.preventDefault();
+    this.setState({ markAllLoading: true });
 
     if (unreadCount !== 0 && !loading && markAllAsRead) {
       markAllAsRead()
-        .then(_data => {
-          if (refetch) refetch()
-          this.setState({markAllLoading: false})
+        .then((_data) => {
+          if (refetch) refetch();
+          this.setState({ markAllLoading: false });
         })
-        .catch(console.error)
+        .catch(console.error);
     }
   }
 
@@ -53,32 +53,32 @@ class NotificationMenu extends Component {
       unreadCount,
       readNotification,
       t,
-    } = this.props
+    } = this.props;
 
-    const renderNotification = n => (
+    const renderNotification = (n) => (
       <NotificationItem
         key={n.id}
         {...n}
         onDismiss={readNotification}
         refetch={refetch}
       />
-    )
+    );
 
     const renderContent = () => {
       if (loading) {
-        return <li className="empty-item">Loading...</li>
+        return <li className="empty-item">Loading...</li>;
       } else if (error) {
-        return <li className="empty-item red-text">{JSON.stringify(error)}</li>
+        return <li className="empty-item red-text">{JSON.stringify(error)}</li>;
       } else if (notifications.length > 0) {
-        return notifications.map(renderNotification)
+        return notifications.map(renderNotification);
       } else {
-        return <li className="empty-item">No new notifications.</li>
+        return <li className="empty-item">No new notifications.</li>;
       }
-    }
+    };
 
     const tryRefetch = () => {
-      if (refetch) refetch()
-    }
+      if (refetch) refetch();
+    };
 
     return (
       <DropdownLink
@@ -90,13 +90,13 @@ class NotificationMenu extends Component {
           <div className="title">
             <div className="right">
               <a
-                href={'/notifications'}
+                href={"/notifications"}
                 onClick={this.handleMarkAllClick.bind(this)}
-                className={this.state.markAllLoading ? 'disabled' : ''}
+                className={this.state.markAllLoading ? "disabled" : ""}
               >
                 {this.state.markAllLoading
-                  ? t('status.wait', 'Please wait...')
-                  : t('notifications.mark_all_read', 'Mark All Read')}
+                  ? t("status.wait", "Please wait...")
+                  : t("notifications.mark_all_read", "Mark All Read")}
               </a>
             </div>
             <strong>Notifications</strong>
@@ -109,19 +109,22 @@ class NotificationMenu extends Component {
           </Link>
         </div>
       </DropdownLink>
-    )
+    );
   }
 }
 
 NotificationMenu.propTypes = {
   notifications: PropTypes.array,
   unreadCount: PropTypes.number,
-}
+};
 
-export {NotificationMenu}
+export { NotificationMenu };
 
 export default compose(
   subscription,
-  withTranslation('common'),
-  withMutations({markAllAsRead: markAllNotificationsAsRead, readNotification})
-)(NotificationMenu)
+  withTranslation("common"),
+  withMutations({
+    markAllAsRead: markAllNotificationsAsRead,
+    readNotification,
+  }),
+)(NotificationMenu);

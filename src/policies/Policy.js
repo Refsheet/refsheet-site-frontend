@@ -12,25 +12,25 @@
  */
 class Policy {
   constructor(object, user) {
-    this.user = user
-    this.object = object
+    this.user = user;
+    this.object = object;
   }
 
   show() {
-    return false
+    return false;
   }
 
   create() {
-    return false
+    return false;
   }
 
   update() {
-    return false
+    return false;
   }
 
   destroy() {
-    return false
+    return false;
   }
 }
 
-export default Policy
+export default Policy;

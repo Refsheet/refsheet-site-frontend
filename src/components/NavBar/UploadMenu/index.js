@@ -1,27 +1,31 @@
-import React, {Component} from 'react'
-import PropTypes from 'prop-types'
-import DropdownLink from '../DropdownLink'
-import NotificationItem from '../Dropdown/NotificationItem'
-import {Link} from 'react-router-dom'
-import Scrollbars from 'components/Shared/Scrollbars'
-import compose from '../../../utils/compose'
-import {connect} from 'react-redux'
-import WindowAlert from '../../../utils/WindowAlert'
-import {clearAllUploads, clearUpload, openUploadModal} from '../../../actions'
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import DropdownLink from "../DropdownLink";
+import NotificationItem from "../Dropdown/NotificationItem";
+import { Link } from "react-router-dom";
+import Scrollbars from "components/Shared/Scrollbars";
+import compose from "../../../utils/compose";
+import { connect } from "react-redux";
+import WindowAlert from "../../../utils/WindowAlert";
+import {
+  clearAllUploads,
+  clearUpload,
+  openUploadModal,
+} from "../../../actions";
 
 class UploadMenu extends Component {
   handleUploadDismiss(args) {
-    this.props.clearUpload(args.variables.id)
+    this.props.clearUpload(args.variables.id);
   }
 
   handleUploadClick(args) {
-    console.log({args})
-    this.props.openUploadModal(args.variables.id, null)
+    console.log({ args });
+    this.props.openUploadModal(args.variables.id, null);
   }
 
   handleClearAllClick(e) {
-    e.preventDefault()
-    this.props.clearAllUploads()
+    e.preventDefault();
+    this.props.clearAllUploads();
   }
 
   renderNotification(n) {
@@ -41,24 +45,24 @@ class UploadMenu extends Component {
         id={n.id}
         thumbnail={n.preview}
         title={n.title}
-        is_unread={n.state === 'pending'}
+        is_unread={n.state === "pending"}
         onDismiss={this.handleUploadDismiss.bind(this)}
         onClick={this.handleUploadClick.bind(this)}
-        dismissIcon={'close'}
+        dismissIcon={"close"}
       />
-    )
+    );
   }
 
   render() {
-    const {uploads = []} = this.props
+    const { uploads = [] } = this.props;
 
-    const unreadCount = uploads.length
+    const unreadCount = uploads.length;
 
     if (!unreadCount || unreadCount === 0) {
-      WindowAlert.clean('uploads')
-      return null
+      WindowAlert.clean("uploads");
+      return null;
     } else {
-      WindowAlert.dirty('uploads', 'You have pending uploads!')
+      WindowAlert.dirty("uploads", "You have pending uploads!");
     }
 
     return (
@@ -66,7 +70,7 @@ class UploadMenu extends Component {
         <div className="dropdown-menu wide">
           <div className="title">
             <div className="right">
-              <a href={'#'} onClick={this.handleClearAllClick.bind(this)}>
+              <a href={"#"} onClick={this.handleClearAllClick.bind(this)}>
                 Clear All
               </a>
             </div>
@@ -77,23 +81,25 @@ class UploadMenu extends Component {
           </Scrollbars>
         </div>
       </DropdownLink>
-    )
+    );
   }
 }
 
 UploadMenu.propTypes = {
   transfers: PropTypes.array,
-}
+};
 
 const mapStateToProps = (state, props) => ({
   uploads: state.uploads.files,
   ...props,
-})
+});
 
 const mapDispatchToProps = {
   clearUpload,
   clearAllUploads,
   openUploadModal,
-}
+};
 
-export default compose(connect(mapStateToProps, mapDispatchToProps))(UploadMenu)
+export default compose(connect(mapStateToProps, mapDispatchToProps))(
+  UploadMenu,
+);

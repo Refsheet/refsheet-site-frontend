@@ -1,54 +1,52 @@
-import React, {Component} from 'react'
-import PropTypes from 'prop-types'
-import compose from 'utils/compose'
-import {Trans, withTranslation} from 'react-i18next'
-import {Row, Col, TextInput} from 'react-materialize'
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import compose from "utils/compose";
+import { Trans, withTranslation } from "react-i18next";
+import { Row, Col, TextInput } from "react-materialize";
 //graphql.macro
-import {withCurrentUser, withMutations} from '../../../../utils/compose'
-import authorize from 'policies'
-import validate, {errorProps, isRequired} from '../../../../utils/validate'
-import dynamic from 'next/dynamic'
+import { withCurrentUser, withMutations } from "../../../../utils/compose";
+import authorize from "policies";
+import validate, { errorProps, isRequired } from "../../../../utils/validate";
+import dynamic from "next/dynamic";
 
 let Materialize = null;
-if (typeof window !== 'undefined') {
-  Materialize = require('materialize-css');
+if (typeof window !== "undefined") {
+  Materialize = require("materialize-css");
 }
 
-
-const transferCharacter = require('./transferCharacter.graphql');
+const transferCharacter = require("./transferCharacter.graphql");
 
 class TransferCharacter extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.validations = {
       destination: [isRequired],
-    }
+    };
 
-    this.state = {destination: '', errors: {}}
+    this.state = { destination: "", errors: {} };
   }
 
   handleDestinationChange(e) {
-    e.preventDefault()
-    const destination = e.target.value
-    const errors = validate({destination}, this.validations)
-    this.setState({destination, errors})
+    e.preventDefault();
+    const destination = e.target.value;
+    const errors = validate({ destination }, this.validations);
+    this.setState({ destination, errors });
   }
 
   handleSubmit(e) {
-    e.preventDefault()
+    e.preventDefault();
 
     const {
       character,
       currentUser,
       transferCharacter,
-      onSave = _c => {
-      },
-    } = this.props
+      onSave = (_c) => {},
+    } = this.props;
 
-    if (!authorize(character, currentUser, 'transfer')) {
-      console.warn('Not authorized!')
-      return false
+    if (!authorize(character, currentUser, "transfer")) {
+      console.warn("Not authorized!");
+      return false;
     }
 
     transferCharacter({
@@ -58,36 +56,36 @@ class TransferCharacter extends Component {
         destination: this.state.destination,
       },
     })
-      .then(({transferCharacter}) => {
+      .then(({ transferCharacter }) => {
         Materialize.toast({
-          html: 'Character transfer initiated',
+          html: "Character transfer initiated",
           displayLength: 3000,
-          classes: 'green',
-        })
+          classes: "green",
+        });
 
         // Update Cache
-        onSave(transferCharacter)
+        onSave(transferCharacter);
       })
-      .catch(({validationErrors}) => {
+      .catch(({ validationErrors }) => {
         this.setState({
           errors: {
             ...validationErrors,
             destination: validationErrors.transfer_to_user,
           },
-        })
-      })
+        });
+      });
   }
 
   render() {
-    const {t} = this.props
-    const {errors} = this.state
+    const { t } = this.props;
+    const { errors } = this.state;
 
     return (
       <form
         onSubmit={this.handleSubmit.bind(this)}
-        className={'no-input-margins'}
+        className={"no-input-margins"}
       >
-        <Trans i18nKey={'notice.character_transfer'}>
+        <Trans i18nKey={"notice.character_transfer"}>
           <p>
             If you wish to transfer a character, and all the art assets and
             history attached, enter the destination username or email below.
@@ -103,14 +101,14 @@ class TransferCharacter extends Component {
           </p>
         </Trans>
 
-        <Row className={'margin-top--medium'}>
+        <Row className={"margin-top--medium"}>
           <TextInput
             s={12}
-            name={'destination'}
-            id={'transfer_destination'}
+            name={"destination"}
+            id={"transfer_destination"}
             label={t(
-              'labels.transfer_destination',
-              'Destination Email, Username, or Organization ID'
+              "labels.transfer_destination",
+              "Destination Email, Username, or Organization ID",
             )}
             value={this.state.destination}
             {...errorProps(errors.destination)}
@@ -118,28 +116,28 @@ class TransferCharacter extends Component {
           />
         </Row>
 
-        <Row className={'actions'}>
+        <Row className={"actions"}>
           <Col s={6}>
             <button
-              type={'button'}
-              className={'btn btn-secondary'}
-              onClick={this.props.goTo('settings')}
+              type={"button"}
+              className={"btn btn-secondary"}
+              onClick={this.props.goTo("settings")}
             >
-              {t('actions.cancel', 'Cancel')}
+              {t("actions.cancel", "Cancel")}
             </button>
           </Col>
-          <Col s={6} className={'right-align'}>
+          <Col s={6} className={"right-align"}>
             <button
-              type={'submit'}
-              className={'btn btn-primary'}
+              type={"submit"}
+              className={"btn btn-primary"}
               disabled={!this.state.destination}
             >
-              {t('actions.transfer', 'Transfer')}
+              {t("actions.transfer", "Transfer")}
             </button>
           </Col>
         </Row>
       </form>
-    )
+    );
   }
 }
 
@@ -147,10 +145,10 @@ TransferCharacter.propTypes = {
   character: PropTypes.object.isRequired,
   goTo: PropTypes.func.isRequired,
   onSave: PropTypes.func.isRequired,
-}
+};
 
 export default compose(
-  withTranslation('common'),
-  withMutations({transferCharacter}),
-  withCurrentUser()
-)(TransferCharacter)
+  withTranslation("common"),
+  withMutations({ transferCharacter }),
+  withCurrentUser(),
+)(TransferCharacter);

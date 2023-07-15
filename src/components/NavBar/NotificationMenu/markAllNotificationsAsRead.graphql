@@ -1,5 +1,5 @@
 mutation markAllNotificationsAsRead {
-    markAllNotificationsAsRead {
-        unreadCount
-    }
+  markAllNotificationsAsRead {
+    unreadCount
+  }
 }

@@ -1,72 +1,72 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
-import { Row, Select, TextInput, Switch, Button } from 'react-materialize'
+import { Row, Select, TextInput, Switch, Button } from "react-materialize";
 
 class UploadForm extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
-    this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(e) {
-    const { image, onChange } = this.props
+    const { image, onChange } = this.props;
 
-    let value = e.target.value
+    let value = e.target.value;
 
-    if (e.target.type === 'checkbox') {
-      value = e.target.checked
+    if (e.target.type === "checkbox") {
+      value = e.target.checked;
     }
 
-    if (!onChange) return
-    image[e.target.name] = value
-    onChange(image)
+    if (!onChange) return;
+    image[e.target.name] = value;
+    onChange(image);
   }
 
   handleClear(e) {
-    e.preventDefault()
-    this.props.onClear(this.props.image.id)
+    e.preventDefault();
+    this.props.onClear(this.props.image.id);
   }
 
   handleSubmit(e) {
-    e.preventDefault()
-    if (!this.props.onUpload) return
+    e.preventDefault();
+    if (!this.props.onUpload) return;
 
-    this.props.onUpload(this.props.image)
+    this.props.onUpload(this.props.image);
   }
 
   handleCharacterChangeClick(e) {
-    if (this.props.onCharacterChangeClick) this.props.onCharacterChangeClick(e)
-    else e.preventDefault()
+    if (this.props.onCharacterChangeClick) this.props.onCharacterChangeClick(e);
+    else e.preventDefault();
   }
 
   render() {
-    const { image, characterId } = this.props
+    const { image, characterId } = this.props;
 
     const folders = [
-      ['default', 'Default'],
-      ['scraps', 'Scraps'],
-      ['wips', 'WIPs'],
-    ]
+      ["default", "Default"],
+      ["scraps", "Scraps"],
+      ["wips", "WIPs"],
+    ];
 
-    const uploading = image.state === 'uploading'
+    const uploading = image.state === "uploading";
 
     return (
       <form
         onSubmit={this.handleSubmit}
         className="image-form"
         style={{
-          flex: '0 1 300px',
-          display: 'flex',
-          height: 'auto',
-          flexDirection: 'column',
+          flex: "0 1 300px",
+          display: "flex",
+          height: "auto",
+          flexDirection: "column",
         }}
       >
         <div
           className="image-data padding--medium padding-bottom--none"
-          style={{ flexGrow: 1, overflow: 'hidden' }}
+          style={{ flexGrow: 1, overflow: "hidden" }}
         >
           <Row>
             <TextInput
@@ -102,39 +102,39 @@ class UploadForm extends Component {
             </Row>
           </div>
 
-          <div className={'actions'}>
+          <div className={"actions"}>
             {!characterId && (
-              <div className={'errors muted red-text padding--small center'}>
-                You must{' '}
+              <div className={"errors muted red-text padding--small center"}>
+                You must{" "}
                 <a
-                  href={'#'}
+                  href={"#"}
                   onClick={this.handleCharacterChangeClick.bind(this)}
                 >
                   select a character
-                </a>{' '}
+                </a>{" "}
                 before uploading.
               </div>
             )}
 
             <div className="right">
               <Button type="submit" disabled={!characterId || uploading}>
-                {uploading ? 'Uploading...' : 'Upload'}
+                {uploading ? "Uploading..." : "Upload"}
               </Button>
             </div>
 
             {!uploading && (
               <Button
                 type="button"
-                className={'btn low-pad btn-flat'}
+                className={"btn low-pad btn-flat"}
                 onClick={this.handleClear.bind(this)}
               >
-                <i className={'material-icons'}>delete</i>
+                <i className={"material-icons"}>delete</i>
               </Button>
             )}
           </div>
         </div>
       </form>
-    )
+    );
   }
 }
 
@@ -150,6 +150,6 @@ UploadForm.propTypes = {
   onChange: PropTypes.func,
   onUpload: PropTypes.func,
   onCharacterChangeClick: PropTypes.func,
-}
+};
 
-export default UploadForm
+export default UploadForm;

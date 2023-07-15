@@ -1,26 +1,26 @@
-import React, {Component} from 'react'
-import PropTypes from 'prop-types'
-import {Mutation} from '@apollo/client/react/components'
-import dynamic from 'next/dynamic'
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { Mutation } from "@apollo/client/react/components";
+import dynamic from "next/dynamic";
 
 let M = null;
-if (typeof window !== 'undefined') {
-  M = require('materialize-css');
+if (typeof window !== "undefined") {
+  M = require("materialize-css");
 }
 
 //graphql.macro
-import Modal from 'v1/shared/Modal'
+import Modal from "v1/shared/Modal";
 
-const createWidget = require('./createWidget.graphql');
+const createWidget = require("./createWidget.graphql");
 
 class NewWidgetModal extends Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   handleWidgetClick(type) {
-    return e => {
-      e.preventDefault()
+    return (e) => {
+      e.preventDefault();
       this.props
         .createWidget({
           variables: {
@@ -30,63 +30,63 @@ class NewWidgetModal extends Component {
             type: type,
           },
         })
-        .then(({data, errors}) => {
+        .then(({ data, errors }) => {
           if (errors) {
-            console.error(errors)
-            errors.map(e =>
-              M.toast({html: e.message, classes: 'red', displayLength: 3000})
-            )
+            console.error(errors);
+            errors.map((e) =>
+              M.toast({ html: e.message, classes: "red", displayLength: 3000 }),
+            );
           } else {
-            console.log({data})
-            this.props.onCreate(data.createProfileWidget)
+            console.log({ data });
+            this.props.onCreate(data.createProfileWidget);
           }
         })
-        .catch(console.error)
-    }
+        .catch(console.error);
+    };
   }
 
   render() {
     const widgets = [
       {
-        name: 'Rich Text',
-        type: 'RichText',
-        description: 'Standard, Markdown-supported text widget.',
+        name: "Rich Text",
+        type: "RichText",
+        description: "Standard, Markdown-supported text widget.",
         accessLevel: 0,
       },
       {
-        name: 'Youtube',
-        type: 'Youtube',
-        description: 'Add a Youtube video as a widget.',
+        name: "Youtube",
+        type: "Youtube",
+        description: "Add a Youtube video as a widget.",
         accessLevel: 5,
       },
       {
-        name: 'Lodestone Class / Job Data',
-        type: 'LodestoneClassJob',
+        name: "Lodestone Class / Job Data",
+        type: "LodestoneClassJob",
         description:
           "If synced, a place to show off your FFXIV character's class and job!",
         accessLevel: 5,
       },
       {
-        name: 'Lodestone Portrait',
-        type: 'LodestonePortrait',
+        name: "Lodestone Portrait",
+        type: "LodestonePortrait",
         description:
           "Display and capture your character's most recent Lodestone selfie!",
         accessLevel: 5,
       },
-    ]
+    ];
 
     return (
       <Modal
         autoOpen
         id="character-new-widget"
-        title={'Add Widget'}
+        title={"Add Widget"}
         onClose={this.props.onClose}
       >
-        <ul className={'widget-list row no-margin'}>
-          {widgets.map(widget => (
-            <li key={widget.type} className={'widget col s6 m3'}>
+        <ul className={"widget-list row no-margin"}>
+          {widgets.map((widget) => (
+            <li key={widget.type} className={"widget col s6 m3"}>
               <a
-                href={'#'}
+                href={"#"}
                 onClick={this.handleWidgetClick(widget.type).bind(this)}
               >
                 {widget.name}
@@ -95,7 +95,7 @@ class NewWidgetModal extends Component {
           ))}
         </ul>
       </Modal>
-    )
+    );
   }
 }
 
@@ -105,11 +105,11 @@ NewWidgetModal.propTypes = {
   onClose: PropTypes.func,
   createWidget: PropTypes.func.isRequired,
   onCreate: PropTypes.func.isRequired,
-}
+};
 
-const Mutated = props => (
+const Mutated = (props) => (
   <Mutation mutation={createWidget}>
-    {(createWidget, {data}) => (
+    {(createWidget, { data }) => (
       <NewWidgetModal
         {...props}
         createWidget={createWidget}
@@ -117,6 +117,6 @@ const Mutated = props => (
       />
     )}
   </Mutation>
-)
+);
 
-export default Mutated
+export default Mutated;

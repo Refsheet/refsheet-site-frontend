@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import Summary from './Summary'
-import styled from 'styled-components'
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import Summary from "./Summary";
+import styled from "styled-components";
 
 const Backdrop = styled.div`
-  background-color: ${props => props.theme.imageBackground} !important;
-`
+  background-color: ${(props) => props.theme.imageBackground} !important;
+`;
 
 class Header extends Component {
   render() {
@@ -15,16 +15,16 @@ class Header extends Component {
       onHeaderImageEdit,
       onAvatarEdit,
       onMarketplaceBuy,
-    } = this.props
+    } = this.props;
     const backgroundImage =
       character.cover_image_url ||
-      ((character.featured_image || {}).url || {}).large
+      ((character.featured_image || {}).url || {}).large;
 
     return (
       <section className="page-header">
         <Backdrop
           className="page-header-backdrop"
-          style={{ backgroundImage: 'url(' + backgroundImage + ')' }}
+          style={{ backgroundImage: "url(" + backgroundImage + ")" }}
         >
           {onHeaderImageEdit && (
             <a
@@ -50,7 +50,7 @@ class Header extends Component {
           </div>
         </div>
       </section>
-    )
+    );
   }
 }
 
@@ -60,6 +60,6 @@ Header.propTypes = {
   onHeaderImageEdit: PropTypes.func,
   onAvatarEdit: PropTypes.func,
   onMarketplaceBuy: PropTypes.func,
-}
+};
 
-export default Header
+export default Header;

@@ -4,10 +4,10 @@
     react/no-deprecated,
     react/react-in-jsx-scope,
 */
-import React from 'react'
-import createReactClass from 'create-react-class'
-import PropTypes from 'prop-types'
-import Views from 'v1/views/_views'
+import React from "react";
+import createReactClass from "create-react-class";
+import PropTypes from "prop-types";
+import Views from "v1/views/_views";
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
@@ -20,10 +20,10 @@ const Show = createReactClass({
   render() {
     return (
       <Views.Account.Layout {...this.props}>
-        <Views.Account.Activity filter={undefined}/>
+        <Views.Account.Activity filter={undefined} />
       </Views.Account.Layout>
-    )
+    );
   },
-})
+});
 
-export default Show
+export default Show;

@@ -1,14 +1,14 @@
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
 
 export function createIdentity({ user, character, identity }) {
   let result = {
-    name: 'deleted user',
-    avatarUrl: '',
-    username: '',
-    path: '/',
-    type: 'user',
+    name: "deleted user",
+    avatarUrl: "",
+    username: "",
+    path: "/",
+    type: "user",
     characterId: null,
-  }
+  };
 
   if (user) {
     result = {
@@ -16,9 +16,9 @@ export function createIdentity({ user, character, identity }) {
       avatarUrl: user.avatar_url,
       username: user.username,
       path: `/${user.username}`,
-      type: 'user',
+      type: "user",
       characterId: null,
-    }
+    };
   }
 
   if (character) {
@@ -29,19 +29,19 @@ export function createIdentity({ user, character, identity }) {
         character.profile_image_url || character.profile_image.url.thumbnail,
       username: user.username,
       path: `/${user.username}/${character.slug}`,
-      type: 'character',
+      type: "character",
       characterId: character.id,
-    }
+    };
   }
 
   if (identity) {
     result = {
       ...result,
       ...identity,
-    }
+    };
   }
 
-  return result
+  return result;
 }
 
 export const userIdentitySourceType = {
@@ -51,7 +51,7 @@ export const userIdentitySourceType = {
   is_patron: PropTypes.bool,
   is_moderator: PropTypes.bool,
   avatar_url: PropTypes.string,
-}
+};
 
 export const characterIdentitySourceType = {
   name: PropTypes.string.isRequired,
@@ -61,7 +61,7 @@ export const characterIdentitySourceType = {
       thumbnail: PropTypes.string.isRequired,
     }),
   }),
-}
+};
 
 export const identityType = {
   name: PropTypes.string.isRequired,
@@ -70,10 +70,10 @@ export const identityType = {
   type: PropTypes.string.isRequired,
   path: PropTypes.string.isRequired,
   characterId: PropTypes.number,
-}
+};
 
 export const identitySourceType = {
   user: PropTypes.shape(userIdentitySourceType).isRequired,
   character: PropTypes.shape(characterIdentitySourceType),
   identity: PropTypes.shape(identityType),
-}
+};

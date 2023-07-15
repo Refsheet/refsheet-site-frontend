@@ -1,7 +1,7 @@
 #include './ConversationsFields.graphql'
 
 query getConversations {
-    getConversations {
-        ...ConversationsFields
-    }
+  getConversations {
+    ...ConversationsFields
+  }
 }

@@ -5,24 +5,24 @@
     react/no-deprecated,
     react/react-in-jsx-scope,
 */
-import React from 'react'
-import ReactGA from 'react-ga'
-import createReactClass from 'create-react-class'
-import PropTypes from 'prop-types'
-import StringUtils from '../utils/StringUtils'
-import LoadingOverlay from '../shared/LoadingOverlay'
-import SessionModal from '../shared/modals/SessionModal'
-import Lightbox from '../shared/images/Lightbox'
-import Footer from '../../components/Layout/Footer'
-import {setCurrentUser} from '../../actions'
-import {connect} from 'react-redux'
-import Views from 'v1/views/_views'
-import UploadModal from '../../components/Image/UploadModal'
-import NavBar from '../../components/NavBar'
-import Chat from 'components/Chat/ConversationTray'
-import NewLightbox from 'components/Lightbox'
+import React from "react";
+import ReactGA from "react-ga";
+import createReactClass from "create-react-class";
+import PropTypes from "prop-types";
+import StringUtils from "../utils/StringUtils";
+import LoadingOverlay from "../shared/LoadingOverlay";
+import SessionModal from "../shared/modals/SessionModal";
+import Lightbox from "../shared/images/Lightbox";
+import Footer from "../../components/Layout/Footer";
+import { setCurrentUser } from "../../actions";
+import { connect } from "react-redux";
+import Views from "v1/views/_views";
+import UploadModal from "../../components/Image/UploadModal";
+import NavBar from "../../components/NavBar";
+import Chat from "components/Chat/ConversationTray";
+import NewLightbox from "components/Lightbox";
 
-import $ from 'jquery'
+import $ from "jquery";
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
@@ -44,7 +44,7 @@ const LegacyApp = createReactClass({
       loading: 0,
       reportImageId: null,
       eagerLoad: this.props.eagerLoad || {},
-    }
+    };
   },
 
   getChildContext() {
@@ -55,69 +55,69 @@ const LegacyApp = createReactClass({
       eagerLoad: this.state.eagerLoad,
       environment: this.props.environment,
       reportImage: this._reportImage,
-    }
+    };
   },
 
   componentDidMount() {
-    this.setState({eagerLoad: null})
-    console.debug('[App] Mount complete, clearing eager load.')
+    this.setState({ eagerLoad: null });
+    console.debug("[App] Mount complete, clearing eager load.");
 
     return $(document)
-      .on('app:session:update', (e, session) => {
-        console.log('Event login (deprecated!): ', session)
+      .on("app:session:update", (e, session) => {
+        console.log("Event login (deprecated!): ", session);
         ReactGA.set({
           userId:
             session.current_user != null ? session.current_user.id : undefined,
-        })
-        return this.props.setCurrentUser(session.current_user)
+        });
+        return this.props.setCurrentUser(session.current_user);
       })
-      .on('app:loading', () => {
-        let val = this.state.loading + 1
+      .on("app:loading", () => {
+        let val = this.state.loading + 1;
         if (val <= 0) {
-          val = 1
+          val = 1;
         }
-        return this.setState({loading: val})
+        return this.setState({ loading: val });
       })
-      .on('app:loading:done', () => {
-        let val = this.state.loading - 1
+      .on("app:loading:done", () => {
+        let val = this.state.loading - 1;
         if (val < 0) {
-          val = 0
+          val = 0;
         }
-        return this.setState({loading: val})
-      })
+        return this.setState({ loading: val });
+      });
   },
 
   _onLogin(user, callback) {
-    this.props.setCurrentUser(user)
-    return ReactGA.set({userId: user != null ? user.id : undefined})
+    this.props.setCurrentUser(user);
+    return ReactGA.set({ userId: user != null ? user.id : undefined });
   },
 
   _reportImage(e) {
-    let imageId
+    let imageId;
     if (e != null ? e.target : undefined) {
-      imageId = $(e.target).data('image-id')
+      imageId = $(e.target).data("image-id");
     } else {
-      imageId = e
+      imageId = e;
     }
 
-    console.debug(`Reporting: ${imageId}`)
-    return this.setState({reportImageId: imageId})
+    console.debug(`Reporting: ${imageId}`);
+    return this.setState({ reportImageId: imageId });
   },
 
   render() {
-    const currentUser = this.props.session.currentUser || {}
+    const currentUser = this.props.session.currentUser || {};
 
     return (
       <div id="RefsheetApp">
-        {this.state.loading > 0 && <LoadingOverlay/>}
+        {this.state.loading > 0 && <LoadingOverlay />}
 
-        <Chat/>
-        <NewLightbox/>
-        <UploadModal/>
+        <Chat />
+        <NewLightbox />
+        <UploadModal />
 
-        <SessionModal/>
-        <Views.Images.ReportModal imageId={this.state.reportImageId}/>
-        <Lightbox currentUser={currentUser} history={this.props.history}/>
+        <SessionModal />
+        <Views.Images.ReportModal imageId={this.state.reportImageId} />
+        <Lightbox currentUser={currentUser} history={this.props.history} />
 
         <NavBar
           query={this.props.location.query.q}
@@ -127,7 +127,7 @@ const LegacyApp = createReactClass({
 
         {this.props.children}
 
-        <Footer/>
+        <Footer />
 
         {/*<FeedbackModal name={ currentUser && currenUser.name } />*/}
         {/*<a className='btn modal-trigger feedback-btn' href='#feedback-modal'>Feedback</a>*/}
@@ -143,22 +143,22 @@ const LegacyApp = createReactClass({
         {/*</div>*/}
         {/*</NagBar>*/}
       </div>
-    )
+    );
   },
-})
+});
 
 // HACK : Redux bridge for session
-console.log('Bridging redux to session.')
+console.log("Bridging redux to session.");
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   session: state.session,
-})
+});
 
-const mapDispatchToProps = {setCurrentUser}
+const mapDispatchToProps = { setCurrentUser };
 
-if (typeof window !== 'undefined') {
-  window.React = React
+if (typeof window !== "undefined") {
+  window.React = React;
 }
 
-const App = connect(mapStateToProps, mapDispatchToProps)(LegacyApp)
-export default App
+const App = connect(mapStateToProps, mapDispatchToProps)(LegacyApp);
+export default App;

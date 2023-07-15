@@ -1,6 +1,6 @@
-import React from 'react'
-import createReactClass from 'create-react-class'
-import PropTypes from 'prop-types'
+import React from "react";
+import createReactClass from "create-react-class";
+import PropTypes from "prop-types";
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
@@ -10,24 +10,24 @@ import PropTypes from 'prop-types'
  * DS208: Avoid top-level this
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
-let Spinner
+let Spinner;
 export default Spinner = function (props) {
-  const classNames = ['preloader-wrapper']
+  const classNames = ["preloader-wrapper"];
   if (!props.inactive) {
-    classNames.push('active')
+    classNames.push("active");
   }
   if (!props.small) {
-    classNames.push('big')
+    classNames.push("big");
   }
   if (props.center) {
-    classNames.push('center-by-margin')
+    classNames.push("center-by-margin");
   }
   if (props.className) {
-    classNames.push(props.className)
+    classNames.push(props.className);
   }
 
   return (
-    <div className={classNames.join(' ')}>
+    <div className={classNames.join(" ")}>
       <div className="spinner-layer spinner-teal">
         <div className="circle-clipper left">
           <div className="circle"></div>
@@ -40,5 +40,5 @@ export default Spinner = function (props) {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};

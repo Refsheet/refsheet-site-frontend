@@ -1,10 +1,9 @@
-import dynamic from 'next/dynamic'
+import dynamic from "next/dynamic";
 
 let M = null;
-if (typeof window !== 'undefined') {
-  M = require('materialize-css');
+if (typeof window !== "undefined") {
+  M = require("materialize-css");
 }
-
 
 /**
  * Display Flash messages as Materialize Toast messages.
@@ -22,16 +21,16 @@ class Flash {
    */
   static getClasses(level) {
     switch (level) {
-      case 'error':
-        return 'red'
-      case 'warn':
-        return 'yellow darken-1'
-      case 'notice':
-      case 'info':
-        return 'green'
-      case 'debug':
+      case "error":
+        return "red";
+      case "warn":
+        return "yellow darken-1";
+      case "notice":
+      case "info":
+        return "green";
+      case "debug":
       default:
-        return 'grey darken-1'
+        return "grey darken-1";
     }
   }
 
@@ -47,7 +46,7 @@ class Flash {
       displayLength: 3000,
       classes: this.getClasses(level),
       ...options,
-    })
+    });
   }
 
   /**
@@ -56,7 +55,7 @@ class Flash {
    * @param options {Object} - Options, passed to <tt>M.toast</tt>
    */
   static error(message, options = {}) {
-    this.now('error', message, options)
+    this.now("error", message, options);
   }
 
   /**
@@ -65,7 +64,7 @@ class Flash {
    * @param options {Object} - Options, passed to <tt>M.toast</tt>
    */
   static warn(message, options = {}) {
-    this.now('warn', message, options)
+    this.now("warn", message, options);
   }
 
   /**
@@ -74,7 +73,7 @@ class Flash {
    * @param options {Object} - Options, passed to <tt>M.toast</tt>
    */
   static info(message, options = {}) {
-    this.now('info', message, options)
+    this.now("info", message, options);
   }
 
   /**
@@ -83,8 +82,8 @@ class Flash {
    * @param options {Object} - Options, passed to <tt>M.toast</tt>
    */
   static debug(message, options = {}) {
-    this.now('debug', message, options)
+    this.now("debug", message, options);
   }
 }
 
-export default Flash
+export default Flash;

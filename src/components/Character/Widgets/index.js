@@ -1,9 +1,9 @@
-import SerializerWidget from './SerializerWidget'
-import RichTextWidget from './RichTextWidget'
-import ImageWidget from './ImageWidget'
-import YoutubeWidget from './YoutubeWidget'
-import LodestoneClassJobWidget from './LodestoneClassJobWidget'
-import LodestonePortraitWidget from './LodestonePortraitWidget'
+import SerializerWidget from "./SerializerWidget";
+import RichTextWidget from "./RichTextWidget";
+import ImageWidget from "./ImageWidget";
+import YoutubeWidget from "./YoutubeWidget";
+import LodestoneClassJobWidget from "./LodestoneClassJobWidget";
+import LodestonePortraitWidget from "./LodestonePortraitWidget";
 
 export {
   SerializerWidget,
@@ -11,7 +11,7 @@ export {
   ImageWidget,
   YoutubeWidget,
   LodestoneClassJobWidget,
-}
+};
 
 export default {
   Serializer: SerializerWidget,
@@ -20,4 +20,4 @@ export default {
   Youtube: YoutubeWidget,
   LodestoneClassJob: LodestoneClassJobWidget,
   LodestonePortrait: LodestonePortraitWidget,
-}
+};

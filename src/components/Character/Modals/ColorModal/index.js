@@ -1,15 +1,23 @@
-import React, {Component} from 'react'
-import PropTypes from 'prop-types'
-import {Row, Col, Icon, TextInput, Switch, Tabs, Tab} from 'react-materialize'
-import {withTranslation} from 'react-i18next'
-import compose, {withMutations} from '../../../../utils/compose'
-import ColorTheme from '../../../../utils/ColorTheme'
-import Modal from 'components/Styled/Modal'
-import Input from '../../../../v1/shared/forms/Input'
-import Flash from '../../../../utils/Flash'
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import {
+  Row,
+  Col,
+  Icon,
+  TextInput,
+  Switch,
+  Tabs,
+  Tab,
+} from "react-materialize";
+import { withTranslation } from "react-i18next";
+import compose, { withMutations } from "../../../../utils/compose";
+import ColorTheme from "../../../../utils/ColorTheme";
+import Modal from "components/Styled/Modal";
+import Input from "../../../../v1/shared/forms/Input";
+import Flash from "../../../../utils/Flash";
 //graphql.macro
-const updateColorScheme = require('./updateColorScheme.graphql');
-const createColorScheme = require('./createColorScheme.graphql');
+const updateColorScheme = require("./updateColorScheme.graphql");
+const createColorScheme = require("./createColorScheme.graphql");
 
 // TODO: Move simple / advanced to tabs
 // TODO: Cleanup callback hell.
@@ -18,125 +26,125 @@ const createColorScheme = require('./createColorScheme.graphql');
 
 class ColorModal extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
-      mode: 'simple',
-      base: 'dark',
+      mode: "simple",
+      base: "dark",
       loading: false,
-    }
+    };
 
     this.themeLabels = {
-      primary: 'Primary Color',
-      accent1: 'Secondary Color',
-      accent2: 'Accent Color',
-      text: 'Main Text',
-      textMedium: 'Muted Text',
-      textLight: 'Subtle Text',
-      background: 'Page Background',
-      cardBackground: 'Card Background',
-      cardHeaderBackground: 'Card Header',
-      border: 'Border Colors',
-      imageBackground: 'Image Background',
-    }
+      primary: "Primary Color",
+      accent1: "Secondary Color",
+      accent2: "Accent Color",
+      text: "Main Text",
+      textMedium: "Muted Text",
+      textLight: "Subtle Text",
+      background: "Page Background",
+      cardBackground: "Card Background",
+      cardHeaderBackground: "Card Header",
+      border: "Border Colors",
+      imageBackground: "Image Background",
+    };
 
     this.colorKeys = {
-      simple: ['primary', 'background', 'text'],
+      simple: ["primary", "background", "text"],
 
       advanced: [
-        'primary',
-        'accent1',
-        'accent2',
-        'background',
-        'cardBackground',
-        'imageBackground',
-        'text',
-        'textLight',
-        'textMedium',
+        "primary",
+        "accent1",
+        "accent2",
+        "background",
+        "cardBackground",
+        "imageBackground",
+        "text",
+        "textLight",
+        "textMedium",
       ],
-    }
+    };
 
     this.simpleBase = {
       dark: {
-        text: '#bdbdbd',
-        background: '#262626',
+        text: "#bdbdbd",
+        background: "#262626",
       },
       light: {
-        text: '#323232',
-        background: '#eeeeee',
+        text: "#323232",
+        background: "#eeeeee",
       },
-    }
+    };
   }
 
   theme(colors = this.props.colorSchemeOverride.colors) {
-    return new ColorTheme({...colors, base: this.state.base})
+    return new ColorTheme({ ...colors, base: this.state.base });
   }
 
   extrapolateColors(key, colors) {
-    if (this.state.mode === 'advanced') return colors
-    return this.theme(colors).getHash()
+    if (this.state.mode === "advanced") return colors;
+    return this.theme(colors).getHash();
   }
 
   applyBaseColors() {
-    const base = this.simpleBase[this.state.base]
-    this.handleColorChanges({background: base.background, text: base.text})
+    const base = this.simpleBase[this.state.base];
+    this.handleColorChanges({ background: base.background, text: base.text });
   }
 
   handleClose() {
-    this.props.onChange(this.props.colorScheme)
-    this.props.onClose()
+    this.props.onChange(this.props.colorScheme);
+    this.props.onClose();
   }
 
   handleColorChanges(changes) {
-    let theme = {...this.props.colorSchemeOverride}
-    let colors = {...theme.colors}
+    let theme = { ...this.props.colorSchemeOverride };
+    let colors = { ...theme.colors };
 
-    Object.keys(changes).map(key => {
-      colors[key] = changes[key]
-      theme.colors = this.extrapolateColors(key, colors)
-    })
+    Object.keys(changes).map((key) => {
+      colors[key] = changes[key];
+      theme.colors = this.extrapolateColors(key, colors);
+    });
 
-    this.props.onChange(theme)
+    this.props.onChange(theme);
   }
 
   handleColorChange(key, value) {
-    let theme = {...this.props.colorSchemeOverride}
-    let colors = {...theme.colors}
-    colors[key] = value
-    theme.colors = this.extrapolateColors(key, colors)
+    let theme = { ...this.props.colorSchemeOverride };
+    let colors = { ...theme.colors };
+    colors[key] = value;
+    theme.colors = this.extrapolateColors(key, colors);
 
-    this.props.onChange(theme)
+    this.props.onChange(theme);
   }
 
   changeMode(e) {
-    this.setState({mode: e.target.checked ? 'advanced' : 'simple'})
+    this.setState({ mode: e.target.checked ? "advanced" : "simple" });
   }
 
   changeBase(e) {
-    this.setState({base: e.target.checked ? 'light' : 'dark'}, () => {
-      this.applyBaseColors()
-    })
+    this.setState({ base: e.target.checked ? "light" : "dark" }, () => {
+      this.applyBaseColors();
+    });
   }
 
   handleReset(e) {
-    e.preventDefault()
-    this.props.onChange(this.props.colorScheme)
+    e.preventDefault();
+    this.props.onChange(this.props.colorScheme);
   }
 
   handleSubmit(e) {
-    e.preventDefault()
-    this.setState({loading: true})
+    e.preventDefault();
+    this.setState({ loading: true });
 
     const {
       t,
       updateColorScheme,
       createColorScheme,
       characterId,
-      colorScheme: {id},
-      colorSchemeOverride: {colors: colorData},
-    } = this.props
+      colorScheme: { id },
+      colorSchemeOverride: { colors: colorData },
+    } = this.props;
 
-    let result
+    let result;
 
     if (id) {
       result = updateColorScheme({
@@ -145,9 +153,9 @@ class ColorModal extends Component {
           id,
           colorData,
         },
-      }).then(data => {
-        Flash.info(t('flash.color_scheme_saved', 'Color scheme saved!'))
-      })
+      }).then((data) => {
+        Flash.info(t("flash.color_scheme_saved", "Color scheme saved!"));
+      });
     } else {
       result = createColorScheme({
         wrapped: true,
@@ -155,54 +163,54 @@ class ColorModal extends Component {
           characterId,
           colorData,
         },
-      }).then(data => {
-        Flash.info(t('flash.color_scheme_created', 'Color scheme created!'))
-      })
+      }).then((data) => {
+        Flash.info(t("flash.color_scheme_created", "Color scheme created!"));
+      });
     }
 
     result.catch(console.error).finally(() => {
-      this.setState({loading: false})
-    })
+      this.setState({ loading: false });
+    });
   }
 
   renderColor(key) {
-    if (['__typename'].indexOf(key) !== -1) return
+    if (["__typename"].indexOf(key) !== -1) return;
 
     const {
       t,
       colorScheme,
-      colorSchemeOverride: {colors},
-    } = this.props
+      colorSchemeOverride: { colors },
+    } = this.props;
 
-    const color = colors[key] || ''
-    let suggestion
+    const color = colors[key] || "";
+    let suggestion;
 
     if (key.match(/background/i)) {
       suggestion = this.theme().getSuggestions({
-        base: 'brand',
-        includeBase: 'background',
+        base: "brand",
+        includeBase: "background",
         desaturate: 0.4,
         darken: 0.7,
         lighten: 2.3,
         count: 6,
-      })
+      });
     } else if (key.match(/text/i)) {
       suggestion = this.theme().getSuggestions({
-        base: 'brand',
-        includeBase: 'text',
+        base: "brand",
+        includeBase: "text",
         desaturate: 0.4,
         darken: 0.6,
         lighten: 0.4,
         count: 6,
         highContrast: true,
-      })
+      });
     } else {
-      suggestion = this.theme().getSuggestions({base: 'brand', count: 14})
+      suggestion = this.theme().getSuggestions({ base: "brand", count: 14 });
     }
 
     return (
       <Input
-        type={'color'}
+        type={"color"}
         colors={suggestion}
         id={`theme_${key}`}
         name={key}
@@ -213,55 +221,55 @@ class ColorModal extends Component {
         onChange={this.handleColorChange.bind(this)}
         s={8}
       />
-    )
+    );
   }
 
   render() {
-    const {t} = this.props
-    const advanced = this.state.mode === 'advanced'
-    const light = this.state.base === 'light'
+    const { t } = this.props;
+    const advanced = this.state.mode === "advanced";
+    const light = this.state.base === "light";
 
     const actions = [
       {
-        name: 'Reset',
-        className: 'btn-secondary left',
+        name: "Reset",
+        className: "btn-secondary left",
         action: this.handleReset.bind(this),
         disabled: this.state.loading,
       },
       {
-        name: 'Save',
+        name: "Save",
         action: this.handleSubmit.bind(this),
         disabled: this.state.loading,
       },
-    ]
+    ];
 
     return (
       <Modal
         autoOpen
         sideSheet
         id="character-color"
-        title={t('labels.edit_color_scheme', 'Edit Color Scheme')}
+        title={t("labels.edit_color_scheme", "Edit Color Scheme")}
         onClose={this.handleClose.bind(this)}
         actions={actions}
       >
         <form onSubmit={this.handleSubmit.bind(this)}>
-          <div className={'margin-bottom--large'}>
-            <div className={'center margin-bottom--medium'}>
+          <div className={"margin-bottom--large"}>
+            <div className={"center margin-bottom--medium"}>
               <Switch
-                id={'theme_advanced'}
-                offLabel={'Simple'}
-                onLabel={'Advanced'}
+                id={"theme_advanced"}
+                offLabel={"Simple"}
+                onLabel={"Advanced"}
                 onChange={this.changeMode.bind(this)}
                 checked={advanced}
                 disabled={this.state.loading}
               />
             </div>
             {!advanced && (
-              <div className={'margin-bottom--medium center'}>
+              <div className={"margin-bottom--medium center"}>
                 <Switch
-                  id={'theme_light'}
-                  offLabel={'Dark'}
-                  onLabel={'Light'}
+                  id={"theme_light"}
+                  offLabel={"Dark"}
+                  onLabel={"Light"}
                   onChange={this.changeBase.bind(this)}
                   checked={light}
                   disabled={this.state.loading}
@@ -269,12 +277,12 @@ class ColorModal extends Component {
               </div>
             )}
           </div>
-          <div className={'margin-top--large'}>
+          <div className={"margin-top--large"}>
             {this.colorKeys[this.state.mode].map(this.renderColor.bind(this))}
           </div>
         </form>
       </Modal>
-    )
+    );
   }
 }
 
@@ -284,12 +292,12 @@ ColorModal.propTypes = {
   colorSchemeOverride: PropTypes.object,
   onChange: PropTypes.func,
   characterId: PropTypes.string,
-}
+};
 
 export default compose(
-  withTranslation('common'),
+  withTranslation("common"),
   withMutations({
     updateColorScheme,
     createColorScheme,
-  })
-)(ColorModal)
+  }),
+)(ColorModal);

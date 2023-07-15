@@ -1,27 +1,27 @@
 /* global Refsheet */
 
-import React from 'react'
-import PropTypes from 'prop-types'
-import {connect, useSelector} from 'react-redux'
-import Refsheet from 'services/Refsheet'
+import React from "react";
+import PropTypes from "prop-types";
+import { connect, useSelector } from "react-redux";
+import Refsheet from "services/Refsheet";
 
 const restrict = ({
-                    tag = '',
-                    admin,
-                    patron,
-                    user,
-                    confirmed,
-                    currentUser,
-                    hideAll,
-                    development,
-                    invert,
-                    nsfw,
-                    nsfwOk,
-                  }) => {
+  tag = "",
+  admin,
+  patron,
+  user,
+  confirmed,
+  currentUser,
+  hideAll,
+  development,
+  invert,
+  nsfw,
+  nsfwOk,
+}) => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const {currentUser: stateUser} = useSelector(state => state.session)
-  const {is_admin, is_patron, is_supporter, email_confirmed_at} =
-  currentUser || stateUser || {}
+  const { currentUser: stateUser } = useSelector((state) => state.session);
+  const { is_admin, is_patron, is_supporter, email_confirmed_at } =
+    currentUser || stateUser || {};
 
   // console.log({
   //   tag,
@@ -39,52 +39,49 @@ const restrict = ({
   //   },
   // })
 
-  let hide = false
-  if (hideAll) return false
+  let hide = false;
+  if (hideAll) return false;
 
-  if (
-    development &&
-    Refsheet.environment !== 'development'
-  ) {
-    hide = true
+  if (development && Refsheet.environment !== "development") {
+    hide = true;
   }
 
   if (user && !currentUser) {
-    hide = true
+    hide = true;
   }
 
   if (confirmed && !email_confirmed_at) {
-    hide = true
+    hide = true;
   }
 
   if (!is_admin) {
     if (admin) {
-      hide = true
+      hide = true;
     }
 
     if (patron && !is_patron && !is_supporter) {
-      hide = true
+      hide = true;
     }
   }
 
   if (nsfw && !nsfwOk) {
-    hide = true
+    hide = true;
   }
 
   if (invert) {
-    hide = !hide
+    hide = !hide;
   }
 
-  return !hide
-}
+  return !hide;
+};
 
-const Restrict = ({children, ...props}) => {
+const Restrict = ({ children, ...props }) => {
   if (restrict(props)) {
-    return children
+    return children;
   } else {
-    return null
+    return null;
   }
-}
+};
 
 Restrict.propTypes = {
   admin: PropTypes.bool,
@@ -92,12 +89,12 @@ Restrict.propTypes = {
   hideAll: PropTypes.bool,
   development: PropTypes.bool,
   invert: PropTypes.bool,
-}
+};
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   currentUser: state.session.currentUser,
   nsfwOk: state.session.nsfwOk,
-})
+});
 
-export {restrict}
-export default connect(mapStateToProps)(Restrict)
+export { restrict };
+export default connect(mapStateToProps)(Restrict);

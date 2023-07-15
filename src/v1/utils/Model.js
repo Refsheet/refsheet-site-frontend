@@ -9,75 +9,75 @@
  * DS208: Avoid top-level this
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
-import dynamic from 'next/dynamic'
+import dynamic from "next/dynamic";
 
 let Materialize = null;
-if (typeof window !== 'undefined') {
-  Materialize = require('materialize-css');
+if (typeof window !== "undefined") {
+  Materialize = require("materialize-css");
 }
 
-import $ from 'jquery'
+import $ from "jquery";
 
 const Model = {
   get(path, success, error) {
-    return this.request('GET', path, {}, success, error)
+    return this.request("GET", path, {}, success, error);
   },
 
   post(path, data, success, error) {
-    return this.request('POST', path, data, success, error)
+    return this.request("POST", path, data, success, error);
   },
 
   put(path, data, success, error) {
-    return this.request('PUT', path, data, success, error)
+    return this.request("PUT", path, data, success, error);
   },
 
   delete(path, success, error) {
-    return this.request('DELETE', path, {}, success, error)
+    return this.request("DELETE", path, {}, success, error);
   },
 
   poll(path, data, success) {
-    if (window.location.hash === '#nopoll') {
-      return
+    if (window.location.hash === "#nopoll") {
+      return;
     }
-    console.debug(`POLL ${path}`, data)
+    console.debug(`POLL ${path}`, data);
 
     return $.ajax({
       url: path,
-      type: 'GET',
+      type: "GET",
       data,
-      dataType: 'json',
+      dataType: "json",
       success,
-    })
+    });
   },
 
   request(type, path, data, success, error) {
-    console.debug(`${type} ${path}`, data)
+    console.debug(`${type} ${path}`, data);
 
     return $.ajax({
       url: path,
       type,
       data,
-      dataType: 'json',
+      dataType: "json",
       success,
 
-      error: e => {
-        const msg = e.responseJSON || e.responseText || 'Unknown error.'
-        console.warn(`Error sending request: ${JSON.stringify(msg)}`, e)
+      error: (e) => {
+        const msg = e.responseJSON || e.responseText || "Unknown error.";
+        console.warn(`Error sending request: ${JSON.stringify(msg)}`, e);
 
         if (error) {
-          return error(msg)
+          return error(msg);
         } else {
           if (msg && msg.error) {
             return Materialize.toast({
               html: msg.error,
               displayLength: 3000,
-              classes: 'red',
-            })
+              classes: "red",
+            });
           }
         }
       },
-    })
+    });
   },
-}
+};
 
-export default Model
+export default Model;

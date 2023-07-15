@@ -4,10 +4,10 @@
     react/prop-types,
     react/react-in-jsx-scope,
 */
-import React from 'react'
-import createReactClass from 'create-react-class'
-import PropTypes from 'prop-types'
-import Main from '../../../components/Shared/Main'
+import React from "react";
+import createReactClass from "create-react-class";
+import PropTypes from "prop-types";
+import Main from "../../../components/Shared/Main";
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
@@ -16,12 +16,12 @@ import Main from '../../../components/Shared/Main'
  * DS208: Avoid top-level this
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
-const CharacterViewSilhouette = props => (
-  <Main title={props.title || 'Loading...'} className="silhouette">
+const CharacterViewSilhouette = (props) => (
+  <Main title={props.title || "Loading..."} className="silhouette">
     <section className="page-header">
       <div
         className="page-header-backdrop silhouette-backdrop"
-        style={{ backgroundImage: 'url(' + props.coverImage + ')' }}
+        style={{ backgroundImage: "url(" + props.coverImage + ")" }}
       />
 
       <div className="page-header-content">
@@ -66,6 +66,6 @@ const CharacterViewSilhouette = props => (
       </div>
     </section>
   </Main>
-)
+);
 
-export default CharacterViewSilhouette
+export default CharacterViewSilhouette;

@@ -1,21 +1,20 @@
-import React from 'react'
-import createReactClass from 'create-react-class'
-import PropTypes from 'prop-types'
+import React from "react";
+import createReactClass from "create-react-class";
+import PropTypes from "prop-types";
 
-import Modal from 'v1/shared/Modal'
-import Form from 'v1/shared/forms/Form'
-import Row from 'v1/shared/material/Row'
-import Column from 'v1/shared/material/Column'
-import Input from 'v1/shared/forms/Input'
-import Submit from 'v1/shared/forms/Submit'
+import Modal from "v1/shared/Modal";
+import Form from "v1/shared/forms/Form";
+import Row from "v1/shared/material/Row";
+import Column from "v1/shared/material/Column";
+import Input from "v1/shared/forms/Input";
+import Submit from "v1/shared/forms/Submit";
 
-import dynamic from 'next/dynamic'
+import dynamic from "next/dynamic";
 
 let Materialize = null;
-if (typeof window !== 'undefined') {
-  Materialize = require('materialize-css');
+if (typeof window !== "undefined") {
+  Materialize = require("materialize-css");
 }
-
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
@@ -25,7 +24,7 @@ if (typeof window !== 'undefined') {
  * DS208: Avoid top-level this
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
-let FeedbackModal
+let FeedbackModal;
 export default FeedbackModal = createReactClass({
   propTypes: {
     name: PropTypes.string,
@@ -37,22 +36,22 @@ export default FeedbackModal = createReactClass({
         name: this.props.name,
         comment: null,
       },
-    }
+    };
   },
 
   _handleSubmit(feedback) {
-    this.refs.modal.close()
+    this.refs.modal.close();
     Materialize.toast({
-      html: 'Thanks for the feedback!',
+      html: "Thanks for the feedback!",
       displayLength: 3000,
-      classes: 'green',
-    })
-    return this.setState({model: {comment: null}})
+      classes: "green",
+    });
+    return this.setState({ model: { comment: null } });
   },
 
   _handleClose(e) {
-    this.refs.modal.close()
-    return e.preventDefault()
+    this.refs.modal.close();
+    return e.preventDefault();
   },
 
   render() {
@@ -77,7 +76,7 @@ export default FeedbackModal = createReactClass({
               />
             </Column>
             <Column m={6}>
-              <Input type="text" name="email" label="Your Email"/>
+              <Input type="text" name="email" label="Your Email" />
             </Column>
           </Row>
 
@@ -95,6 +94,6 @@ export default FeedbackModal = createReactClass({
           </Row>
         </Form>
       </Modal>
-    )
+    );
   },
-})
+});

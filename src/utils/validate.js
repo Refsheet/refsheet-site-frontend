@@ -5,63 +5,64 @@ const isRequired = {
   required: true,
   match: /\S+/,
   message: "can't be blank",
-  messageKey: 'validation.is_required',
-}
+  messageKey: "validation.is_required",
+};
 
 /**
  * A validator to check if the value is numeric
  */
 const isNumber = {
   match: /^\d+$/,
-  message: 'must be a number',
-  messageKey: 'validation.is_number',
-}
+  message: "must be a number",
+  messageKey: "validation.is_number",
+};
 
 /**
  * A validator to check if the value is an email
  */
 const isEmail = {
   match: /@/,
-  message: 'must be an email',
-  messageKey: 'validation.is_email',
-}
+  message: "must be an email",
+  messageKey: "validation.is_email",
+};
 
 /**
  * A validator to check if a string won't become an empty slug
  */
 const isSluggable = {
   match: /[a-z0-9]+/i,
-  message: 'must have at least one letter or number',
-  messageKey: 'validation.is_sluggable',
-}
+  message: "must have at least one letter or number",
+  messageKey: "validation.is_sluggable",
+};
 
 /**
  * A validator to validate a proper URL slug
  */
 const isSlug = {
   match: /^[a-z0-9_-]+$/i,
-  message: 'must only contain letters, numbers, and -',
-  messageKey: 'validation.is_slug',
-}
+  message: "must only contain letters, numbers, and -",
+  messageKey: "validation.is_slug",
+};
 
 /**
  * A validator to ensure a proper color string
  */
 const isColor = {
-  match: /^#([\da-f]{3}){1,2}$|^#([\da-f]{4}){1,2}$|(rgb|hsl)a?\((\s*-?\d+%?\s*,){2}(\s*-?\d+%?\s*,?\s*\)?)(,\s*(0?\.\d+)?|1)?\)/i,
-  message: 'must be a hex, rgb, or hsl color',
-  messageKey: 'validation.is_css_color',
-}
+  match:
+    /^#([\da-f]{3}){1,2}$|^#([\da-f]{4}){1,2}$|(rgb|hsl)a?\((\s*-?\d+%?\s*,){2}(\s*-?\d+%?\s*,?\s*\)?)(,\s*(0?\.\d+)?|1)?\)/i,
+  message: "must be a hex, rgb, or hsl color",
+  messageKey: "validation.is_css_color",
+};
 
 /**
  * A validator to ensure only HEX is allowed
  */
 const isHexColor = {
   match: /^#?(?:[0-9A-F]{3}){1,2}$/i,
-  message: 'must be hexadecimal color',
-  messageKey: 'validation.is_hex_color',
-  transform: value => (value[0] === '#' ? value : `#${value}`),
-}
+  message: "must be hexadecimal color",
+  messageKey: "validation.is_hex_color",
+  transform: (value) => (value[0] === "#" ? value : `#${value}`),
+};
 
 export {
   isRequired,
@@ -71,7 +72,7 @@ export {
   isSlug,
   isHexColor,
   isColor,
-}
+};
 
 /**
  * Validates a model and generates validation errors. Validators should be an object
@@ -99,35 +100,35 @@ export {
  * @returns {Object} - Validation errors, if any
  */
 function validate(model, validators = {}) {
-  let errors = {}
+  let errors = {};
 
-  Object.keys(validators).map(k => {
-    const value = (model[k] || '').toString()
+  Object.keys(validators).map((k) => {
+    const value = (model[k] || "").toString();
 
-    validators[k].map(validator => {
+    validators[k].map((validator) => {
       // console.debug("Validating '" + value + "' against validator:", validator)
 
       if (!value && !validator.required) {
         // console.debug('- Valid, blank allowed.')
-        return true
+        return true;
       }
 
       // Push errors here to prevent green boxes on blank validations.
-      if (!errors[k]) errors[k] = []
+      if (!errors[k]) errors[k] = [];
 
       if (value.match(validator.match)) {
         // console.debug('- Valid, match OK.')
-        return true
+        return true;
       }
 
       // console.debug("Validation error: '" + value + "' " + validator.message)
 
-      errors[k].push(validator.message)
-      return false
-    })
-  })
+      errors[k].push(validator.message);
+      return false;
+    });
+  });
 
-  return errors
+  return errors;
 }
 
 /**
@@ -141,14 +142,14 @@ function validate(model, validators = {}) {
  */
 function errorString(errors) {
   if (!errors) {
-    return ''
+    return "";
   }
 
   if (errors.join) {
-    return errors.join(', ')
+    return errors.join(", ");
   }
 
-  return errors.toString()
+  return errors.toString();
 }
 
 /**
@@ -158,7 +159,7 @@ function errorString(errors) {
  * @returns {boolean} - True if errors are present
  */
 function isValid(errors) {
-  return !errors || errors.length === 0
+  return !errors || errors.length === 0;
 }
 
 /**
@@ -171,12 +172,12 @@ function isValid(errors) {
  * @returns {string}
  */
 function errorClass(errors) {
-  if (typeof errors === 'undefined') {
-    return ''
+  if (typeof errors === "undefined") {
+    return "";
   } else if (isValid(errors)) {
-    return 'valid'
+    return "valid";
   } else {
-    return 'invalid'
+    return "invalid";
   }
 }
 
@@ -194,9 +195,9 @@ function errorProps(errors) {
   return {
     error: errorString(errors),
     className: errorClass(errors),
-  }
+  };
 }
 
-export { errorString, isValid, errorClass, errorProps }
+export { errorString, isValid, errorClass, errorProps };
 
-export default validate
+export default validate;

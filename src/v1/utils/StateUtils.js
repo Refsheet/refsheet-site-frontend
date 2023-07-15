@@ -1,8 +1,8 @@
-import ObjectPath from 'v1/utils/ObjectPath'
-import Model from 'v1/utils/Model'
-import $ from 'jquery'
-import HashUtils from './HashUtils'
-import {host} from "../../services/ApplicationService";
+import ObjectPath from "v1/utils/ObjectPath";
+import Model from "v1/utils/Model";
+import $ from "jquery";
+import HashUtils from "./HashUtils";
+import { host } from "../../services/ApplicationService";
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
@@ -16,173 +16,176 @@ import {host} from "../../services/ApplicationService";
 const StateUtils = {
   page(context, path, page, props) {
     if (props == null) {
-      ;({props} = context)
+      ({ props } = context);
     }
     if (!page) {
-      page = (context.currentPage || 1) + 1
+      page = (context.currentPage || 1) + 1;
     }
 
-    console.debug('[StateUtils] Loading page: ' + page)
-    return this.fetch(context, path, {page}, props)
+    console.debug("[StateUtils] Loading page: " + page);
+    return this.fetch(context, path, { page }, props);
   },
 
   load(context, path, props, callback, options) {
-    let elItem
+    let elItem;
     if (props == null) {
-      ;({props} = context)
+      ({ props } = context);
     }
     if (options == null) {
-      options = {}
+      options = {};
     }
-    const {dataPath, paramMap} = context
-    const {eagerLoad} = context.context
-    const state = $.extend({}, context.state)
-    let fetch = true
+    const { dataPath, paramMap } = context;
+    const { eagerLoad } = context.context;
+    const state = $.extend({}, context.state);
+    let fetch = true;
 
     console.debug(
-      '[StateUtils] Loading with params:',
-      props.match != null ? props.match.params : undefined
-    )
-    console.debug('[StateUtils] Eager Loading:', eagerLoad, context.context)
+      "[StateUtils] Loading with params:",
+      props.match != null ? props.match.params : undefined,
+    );
+    console.debug("[StateUtils] Eager Loading:", eagerLoad, context.context);
 
     if ((elItem = ObjectPath.get(eagerLoad, path))) {
-      let match = true
+      let match = true;
       for (let k in paramMap) {
-        const p = paramMap[k]
+        const p = paramMap[k];
         const a = ObjectPath.get(
           props.match != null ? props.match.params : undefined,
-          k
-        )
-        const b = ObjectPath.get(elItem, p)
-        console.debug('[StateUtils] Comparing:', a, b)
+          k,
+        );
+        const b = ObjectPath.get(elItem, p);
+        console.debug("[StateUtils] Comparing:", a, b);
         if (!a || !b || a.toUpperCase() !== b.toUpperCase()) {
-          match = false
+          match = false;
         }
       }
 
       if (match) {
-        fetch = false
-        console.debug('[StateUtils] Eager Loading:', elItem)
-        ObjectPath.set(state, path, elItem)
+        fetch = false;
+        console.debug("[StateUtils] Eager Loading:", elItem);
+        ObjectPath.set(state, path, elItem);
         context.setState(state, function () {
           if (callback) {
-            return callback(elItem)
+            return callback(elItem);
           }
-        })
+        });
       }
     }
 
     if (fetch) {
-      this.fetch(context, path, options.urlParams, props, callback)
+      this.fetch(context, path, options.urlParams, props, callback);
       if (!options.noScroll) {
-        console.debug('[StateUtils] Scrolling up!')
-        return $(window).scrollTop(0)
+        console.debug("[StateUtils] Scrolling up!");
+        return $(window).scrollTop(0);
       }
     }
   },
 
   fetch(context, path, data, props, callback) {
     if (data == null) {
-      data = {}
+      data = {};
     }
     if (props == null) {
-      ;({props} = context)
+      ({ props } = context);
     }
-    const fetchUrl = this.getFetchUrl(context, props)
-    const state = $.extend({}, context.state)
+    const fetchUrl = this.getFetchUrl(context, props);
+    const state = $.extend({}, context.state);
 
     return Model.request(
-      'GET',
+      "GET",
       fetchUrl,
       data,
       function (data) {
         if (data.$meta) {
-          data = ObjectPath.get(data, path)
+          data = ObjectPath.get(data, path);
         }
 
-        ObjectPath.set(state, path, data)
+        ObjectPath.set(state, path, data);
         return context.setState(state, function () {
           if (callback) {
-            return callback(data)
+            return callback(data);
           }
-        })
+        });
       },
 
-      error =>
-        context.setState({error}, function () {
+      (error) =>
+        context.setState({ error }, function () {
           if (callback) {
-            return callback()
+            return callback();
           }
-        })
-    )
+        }),
+    );
   },
 
   reload(context, path, newProps, oldProps, callback) {
     if (oldProps == null) {
-      oldProps = context.props
+      oldProps = context.props;
     }
-    let fetch = false
+    let fetch = false;
 
     for (let k in context.paramMap) {
-      const p = context.paramMap[k]
+      const p = context.paramMap[k];
       const a = ObjectPath.get(
         oldProps.match != null ? oldProps.match.params : undefined,
-        k
-      )
+        k,
+      );
       const b = ObjectPath.get(
         newProps.match != null ? newProps.match.params : undefined,
-        k
-      )
+        k,
+      );
 
       if (
         (a || b) &&
         (a != null ? a.toUpperCase() : undefined) !==
-        (b != null ? b.toUpperCase() : undefined)
+          (b != null ? b.toUpperCase() : undefined)
       ) {
-        fetch = true
-        break
+        fetch = true;
+        break;
       }
     }
 
     if (fetch) {
-      StateUtils.load(context, path, newProps, callback)
-      console.debug('[StateUtils] Scrolling up!')
-      return $(window).scrollTop(0)
+      StateUtils.load(context, path, newProps, callback);
+      console.debug("[StateUtils] Scrolling up!");
+      return $(window).scrollTop(0);
     }
   },
 
   poll(context, path, props) {
     if (props == null) {
-      ;({props} = context)
+      ({ props } = context);
     }
   },
   //no-op
 
   update(context, path, value, callback) {
-    return context.setState(HashUtils.set(context.state, path, value), callback)
+    return context.setState(
+      HashUtils.set(context.state, path, value),
+      callback,
+    );
   },
 
   updateItem(context, path, item, primaryKey, callback) {
     return context.setState(
       HashUtils.deepUpdateCollectionItem(context.state, path, item, primaryKey),
-      callback
-    )
+      callback,
+    );
   },
 
   updateItems(context, path, items, primaryKey, callback) {
-    let {state} = context
+    let { state } = context;
 
     items.map(
-      item =>
+      (item) =>
         (state = HashUtils.deepUpdateCollectionItem(
           state,
           path,
           item,
-          primaryKey
-        ))
-    )
+          primaryKey,
+        )),
+    );
 
-    return context.setState(state, callback)
+    return context.setState(state, callback);
   },
 
   sortItem(context, path, item, position, primaryKey, callback) {
@@ -192,35 +195,35 @@ const StateUtils = {
         path,
         item,
         position,
-        primaryKey
+        primaryKey,
       ),
-      callback
-    )
+      callback,
+    );
   },
 
   removeItem(context, path, item, primaryKey, callback) {
     return context.setState(
       HashUtils.deepRemoveCollectionItem(context.state, path, item, primaryKey),
-      callback
-    )
+      callback,
+    );
   },
 
   getFetchUrl(stateLink, props) {
-    if (typeof stateLink === 'function') {
-      stateLink = stateLink()
+    if (typeof stateLink === "function") {
+      stateLink = stateLink();
     }
-    const {dataPath, paramMap} = stateLink
+    const { dataPath, paramMap } = stateLink;
 
     const fetchUrl = dataPath.replace(/(:[a-zA-Z]+)/g, function (m) {
       const param = ObjectPath.get(
         props.match != null ? props.match.params : undefined,
-        m.substring(1)
-      )
-      return param || ''
-    })
+        m.substring(1),
+      );
+      return param || "";
+    });
 
-    return host + fetchUrl.replace(/\/\/+|\/$/g, '')
+    return host + fetchUrl.replace(/\/\/+|\/$/g, "");
   },
-}
+};
 
-export default StateUtils
+export default StateUtils;

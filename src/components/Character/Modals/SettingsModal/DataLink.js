@@ -1,34 +1,34 @@
-import React, {Component, Fragment} from 'react'
-import Restrict from '../../../Shared/Restrict'
-import Button from '../../../Styled/Button'
-import Input from '../../../../v1/shared/forms/Input'
-import Submit from '../../../../v1/shared/forms/Submit'
+import React, { Component, Fragment } from "react";
+import Restrict from "../../../Shared/Restrict";
+import Button from "../../../Styled/Button";
+import Input from "../../../../v1/shared/forms/Input";
+import Submit from "../../../../v1/shared/forms/Submit";
 //graphql.macro
-import compose, {withMutations} from '../../../../utils/compose'
-import Flash from '../../../../utils/Flash'
-import gql from 'graphql-tag'
-import Moment from 'react-moment'
+import compose, { withMutations } from "../../../../utils/compose";
+import Flash from "../../../../utils/Flash";
+import gql from "graphql-tag";
+import Moment from "react-moment";
 
-const updateLodestoneLink = require('./LodestoneSource/updateLodestoneLink.graphql');
-const createLodestoneLink = require('./LodestoneSource/createLodestoneLink.graphql');
+const updateLodestoneLink = require("./LodestoneSource/updateLodestoneLink.graphql");
+const createLodestoneLink = require("./LodestoneSource/createLodestoneLink.graphql");
 
 class DataLink extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       saving: false,
-      lodestoneId: '',
-    }
+      lodestoneId: "",
+    };
   }
 
   handleLodestoneLink(e) {
     const {
       createLodestoneLink,
-      character: {id},
-    } = this.props
-    e.preventDefault()
-    this.setState({saving: true})
+      character: { id },
+    } = this.props;
+    e.preventDefault();
+    this.setState({ saving: true });
 
     createLodestoneLink({
       wrapped: true,
@@ -36,22 +36,22 @@ class DataLink extends Component {
         characterId: id,
         lodestoneId: this.state.lodestoneId,
       },
-      update: (cache, {data: {createLodestoneLink: link}}) => {
+      update: (cache, { data: { createLodestoneLink: link } }) => {
         const fragment = gql`
-            fragment lodestoneLink on Character {
-                id
-                lodestone_character {
-                    id
-                }
+          fragment lodestoneLink on Character {
+            id
+            lodestone_character {
+              id
             }
-        `
+          }
+        `;
 
         const prev = cache.readFragment({
           id: `Character:${id}`,
           fragment,
-        })
+        });
 
-        console.log({prev, cache, rf: cache.readFragment, fragment})
+        console.log({ prev, cache, rf: cache.readFragment, fragment });
 
         cache.writeFragment({
           id: `Character:${id}`,
@@ -62,31 +62,31 @@ class DataLink extends Component {
               ...link,
             },
           },
-        })
+        });
       },
     })
-    .then(({data}) => {
-      Flash.info(
-        `Character linked to ${data.createLodestoneLink.name}@${data.createLodestoneLink.server.name}`
-      )
-    })
-    .catch(console.error)
-    .finally(() => this.setState({saving: false}))
+      .then(({ data }) => {
+        Flash.info(
+          `Character linked to ${data.createLodestoneLink.name}@${data.createLodestoneLink.server.name}`,
+        );
+      })
+      .catch(console.error)
+      .finally(() => this.setState({ saving: false }));
   }
 
   handleInputChange(name, value) {
-    let state = {}
-    state[name] = value
-    this.setState(state)
+    let state = {};
+    state[name] = value;
+    this.setState(state);
   }
 
   handleLodestoneUpdate(e) {
     const {
       updateLodestoneLink,
-      character: {id},
-    } = this.props
-    e.preventDefault()
-    this.setState({saving: true})
+      character: { id },
+    } = this.props;
+    e.preventDefault();
+    this.setState({ saving: true });
 
     updateLodestoneLink({
       wrapped: true,
@@ -94,19 +94,19 @@ class DataLink extends Component {
         characterId: id,
       },
     })
-      .then(({data}) => {
+      .then(({ data }) => {
         Flash.info(
-          `Character updated from ${data.updateLodestoneLink.name}@${data.updateLodestoneLink.server.name}`
-        )
+          `Character updated from ${data.updateLodestoneLink.name}@${data.updateLodestoneLink.server.name}`,
+        );
       })
       .catch(console.error)
-      .finally(() => this.setState({saving: false}))
+      .finally(() => this.setState({ saving: false }));
   }
 
   renderLodestone() {
     const {
-      character: {lodestone_character: lodestoneCharacter},
-    } = this.props
+      character: { lodestone_character: lodestoneCharacter },
+    } = this.props;
 
     return (
       <div>
@@ -117,13 +117,13 @@ class DataLink extends Component {
             {lodestoneCharacter.server.name}
           </li>
           <li>
-            Latest data:{' '}
+            Latest data:{" "}
             <Moment unix fromNow>
               {lodestoneCharacter.remote_updated_at}
             </Moment>
           </li>
           <li>
-            Last update request:{' '}
+            Last update request:{" "}
             <Moment unix fromNow>
               {lodestoneCharacter.updated_at}
             </Moment>
@@ -133,17 +133,17 @@ class DataLink extends Component {
           disabled={this.state.saving}
           onClick={this.handleLodestoneUpdate.bind(this)}
         >
-          {this.state.saving ? 'Updating...' : 'Update Data'}
+          {this.state.saving ? "Updating..." : "Update Data"}
         </Button>
       </div>
-    )
+    );
   }
 
   renderLinkOptions() {
-    const {character} = this.props
+    const { character } = this.props;
 
     if (character.lodestone_character) {
-      return this.renderLodestone(character.lodestone_character)
+      return this.renderLodestone(character.lodestone_character);
     } else {
       return (
         <div>
@@ -159,17 +159,17 @@ class DataLink extends Component {
           <form onSubmit={this.handleLodestoneLink.bind(this)}>
             <Input
               onChange={this.handleInputChange.bind(this)}
-              type={'text'}
-              name={'lodestoneId'}
-              placeholder={'Lodestone URL or ID'}
+              type={"text"}
+              name={"lodestoneId"}
+              placeholder={"Lodestone URL or ID"}
               value={this.state.lodestoneId}
             />
             <Submit disabled={this.state.saving}>
-              {this.state.saving ? 'Linking...' : 'Link to Lodestone'}
+              {this.state.saving ? "Linking..." : "Link to Lodestone"}
             </Submit>
           </form>
         </div>
-      )
+      );
     }
   }
 
@@ -191,7 +191,7 @@ class DataLink extends Component {
         </Restrict>
         <Restrict patron>{this.renderLinkOptions()}</Restrict>
       </Fragment>
-    )
+    );
   }
 }
 
@@ -199,5 +199,5 @@ export default compose(
   withMutations({
     updateLodestoneLink,
     createLodestoneLink,
-  })
-)(DataLink)
+  }),
+)(DataLink);

@@ -1,18 +1,18 @@
 #import '../../../graph/fragments/GalleryImageFields.graphql'
 
 query getCharacterImages($username: String!, $slug: String!) {
-    getCharacterByUrl(username: $username, slug: $slug) {
-        id
-        media_folders {
-            name
-            slug
-            id
-            is_nsfw
-            is_password_protected
-            media_count
-        }
-        images {
-            ...GalleryImageFields
-        }
+  getCharacterByUrl(username: $username, slug: $slug) {
+    id
+    media_folders {
+      name
+      slug
+      id
+      is_nsfw
+      is_password_protected
+      media_count
     }
+    images {
+      ...GalleryImageFields
+    }
+  }
 }

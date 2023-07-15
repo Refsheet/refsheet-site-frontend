@@ -1,13 +1,12 @@
-import React from 'react'
-import createReactClass from 'create-react-class'
-import PropTypes from 'prop-types'
-import dynamic from 'next/dynamic'
+import React from "react";
+import createReactClass from "create-react-class";
+import PropTypes from "prop-types";
+import dynamic from "next/dynamic";
 
 let Materialize = null;
-if (typeof window !== 'undefined') {
-  Materialize = require('materialize-css');
+if (typeof window !== "undefined") {
+  Materialize = require("materialize-css");
 }
-
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
@@ -17,40 +16,40 @@ if (typeof window !== 'undefined') {
  * DS208: Avoid top-level this
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
-let ActionButton
+let ActionButton;
 export default ActionButton = createReactClass({
   componentDidUpdate() {
     return Materialize.Tooltip.init(this.refs.actionButton, {
       delay: 0,
-      position: 'left',
-    })
+      position: "left",
+    });
   },
 
   componentDidMount() {
     return Materialize.Tooltip.init(this.refs.actionButton, {
       delay: 0,
-      position: 'left',
-    })
+      position: "left",
+    });
   },
 
   componentWillUnmount() {
-    const el = Materialize.Tooltip.getInstance(this.refs.actionButton)
-    return el.destroy()
+    const el = Materialize.Tooltip.getInstance(this.refs.actionButton);
+    return el.destroy();
   },
 
   render() {
-    let largeClass = ''
-    let iconClass = ''
+    let largeClass = "";
+    let iconClass = "";
 
     if (this.props.large) {
-      largeClass = ' btn-large red'
-      iconClass = ' large'
+      largeClass = " btn-large red";
+      iconClass = " large";
     }
 
     return (
       <a
         className={
-          'btn-floating tooltipped waves waves-light ' +
+          "btn-floating tooltipped waves waves-light " +
           this.props.className +
           largeClass
         }
@@ -60,8 +59,8 @@ export default ActionButton = createReactClass({
         onClick={this.props.onClick}
         id={this.props.id}
       >
-        <i className={'material-icons' + iconClass}>{this.props.icon}</i>
+        <i className={"material-icons" + iconClass}>{this.props.icon}</i>
       </a>
-    )
+    );
   },
-})
+});

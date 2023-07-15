@@ -1,13 +1,13 @@
-import React from 'react'
-import createReactClass from 'create-react-class'
-import PropTypes from 'prop-types'
+import React from "react";
+import createReactClass from "create-react-class";
+import PropTypes from "prop-types";
 
-import ActionButton from 'v1/shared/ActionButton'
-import dynamic from 'next/dynamic'
+import ActionButton from "v1/shared/ActionButton";
+import dynamic from "next/dynamic";
 
 let Materialize = null;
-if (typeof window !== 'undefined') {
-  Materialize = require('materialize-css');
+if (typeof window !== "undefined") {
+  Materialize = require("materialize-css");
 }
 
 // TODO: This file was created by bulk-decaffeinate.
@@ -18,27 +18,27 @@ if (typeof window !== 'undefined') {
  * DS208: Avoid top-level this
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
-let FixedActionButton
+let FixedActionButton;
 export default FixedActionButton = createReactClass({
   componentDidMount(e) {
-    Materialize.FloatingActionButton.init(this.fab)
+    Materialize.FloatingActionButton.init(this.fab);
   },
 
   render() {
-    const children = React.Children.map(this.props.children, child => {
-      return <li>{React.cloneElement(child)}</li>
-    })
+    const children = React.Children.map(this.props.children, (child) => {
+      return <li>{React.cloneElement(child)}</li>;
+    });
 
-    let className = 'fixed-action-btn'
+    let className = "fixed-action-btn";
     if (this.props.clickToToggle) {
-      className += ' click-to-toggle'
+      className += " click-to-toggle";
     }
 
     return (
-      <div className={className} ref={r => (this.fab = r)}>
+      <div className={className} ref={(r) => (this.fab = r)}>
         <ActionButton large={true} {...this.props} />
         <ul>{children}</ul>
       </div>
-    )
+    );
   },
-})
+});

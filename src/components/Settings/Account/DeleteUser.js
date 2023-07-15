@@ -1,51 +1,51 @@
-import React, {Component} from 'react'
-import PropTypes from 'prop-types'
-import {Input, Row, Col, Button} from 'react-materialize'
-import c from 'classnames'
-import {Mutation} from '@apollo/client/react/components'
-import {gql} from '@apollo/client'
-import {withRouter} from 'utils/withRouter'
-import compose, {withCurrentUser} from '../../../utils/compose'
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { Input, Row, Col, Button } from "react-materialize";
+import c from "classnames";
+import { Mutation } from "@apollo/client/react/components";
+import { gql } from "@apollo/client";
+import { withRouter } from "utils/withRouter";
+import compose, { withCurrentUser } from "../../../utils/compose";
 
 class DeleteUser extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
-      username: '',
-      password: '',
+      username: "",
+      password: "",
       errors: [],
       isOpen: false,
       isSubmitting: false,
-    }
+    };
 
-    this.toggleOpen = this.toggleOpen.bind(this)
-    this.handleUserChange = this.handleUserChange.bind(this)
-    this.handlePasswordChange = this.handlePasswordChange.bind(this)
-    this.handleFormSubmit = this.handleFormSubmit.bind(this)
+    this.toggleOpen = this.toggleOpen.bind(this);
+    this.handleUserChange = this.handleUserChange.bind(this);
+    this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
   toggleOpen(e) {
-    e.preventDefault()
-    this.setState({isOpen: !this.state.isOpen})
+    e.preventDefault();
+    this.setState({ isOpen: !this.state.isOpen });
   }
 
   handleUserChange(e) {
-    e.preventDefault()
-    const username = e.target.value
-    this.setState({username})
+    e.preventDefault();
+    const username = e.target.value;
+    this.setState({ username });
   }
 
   handlePasswordChange(e) {
-    e.preventDefault()
-    const password = e.target.value
-    this.setState({password})
+    e.preventDefault();
+    const password = e.target.value;
+    this.setState({ password });
   }
 
   handleFormSubmit(e) {
-    e.preventDefault()
+    e.preventDefault();
 
-    this.setState({isSubmitting: true})
+    this.setState({ isSubmitting: true });
 
     this.props
       .deleteUser({
@@ -54,32 +54,32 @@ class DeleteUser extends Component {
           password: this.state.password,
         },
       })
-      .then(response => {
-        const {data, errors} = response
+      .then((response) => {
+        const { data, errors } = response;
 
         if (errors && errors.length) {
-          this.setState({errors})
+          this.setState({ errors });
         } else {
-          this.props.setCurrentUser(null)
+          this.props.setCurrentUser(null);
         }
       })
 
-      .catch(data => console.error(data))
+      .catch((data) => console.error(data))
 
       .finally(() => {
-        this.setState({isSubmitting: false})
-      })
+        this.setState({ isSubmitting: false });
+      });
   }
 
   render() {
     const {
       first,
-      user: {username},
-    } = this.props
+      user: { username },
+    } = this.props;
 
-    const {username: usernameConfirm, password, isOpen, errors} = this.state
+    const { username: usernameConfirm, password, isOpen, errors } = this.state;
 
-    const disabled = usernameConfirm !== username || !password
+    const disabled = usernameConfirm !== username || !password;
 
     const body = [
       <div className="card-content padding-bottom--none" key="content">
@@ -146,31 +146,31 @@ class DeleteUser extends Component {
           disabled={disabled || this.state.isSubmitting}
         >
           {this.state.isSubmitting
-            ? 'Deleting everything...'
-            : 'Delete Account'}
+            ? "Deleting everything..."
+            : "Delete Account"}
         </Button>
       </div>,
-    ]
+    ];
 
     return (
       <form
-        className={c('card sp', {'margin-top--large': !first})}
+        className={c("card sp", { "margin-top--large": !first })}
         method="POST"
         onSubmit={this.handleFormSubmit}
       >
         <div
           className="card-header"
           onClick={this.toggleOpen}
-          style={{cursor: 'pointer'}}
+          style={{ cursor: "pointer" }}
         >
           <h2 className="red-text">
-            {this.state.isSubmitting ? 'Deleting Account...' : 'Delete Account'}
+            {this.state.isSubmitting ? "Deleting Account..." : "Delete Account"}
           </h2>
         </div>
 
         {isOpen && body}
       </form>
-    )
+    );
   }
 }
 
@@ -180,24 +180,24 @@ DeleteUser.propTypes = {
     username: PropTypes.string.isRequired,
   }),
   deleteUser: PropTypes.func.isRequired,
-}
+};
 
 const DELETE_USER_MUTATION = gql`
-    mutation DeleteUser($username: String!, $password: String!) {
-        deleteUser(username: $username, password: $password) {
-            username
-            deleted_at
-        }
+  mutation DeleteUser($username: String!, $password: String!) {
+    deleteUser(username: $username, password: $password) {
+      username
+      deleted_at
     }
-`
+  }
+`;
 
-const Wrapped = props => (
+const Wrapped = (props) => (
   <Mutation mutation={DELETE_USER_MUTATION}>
-    {(send, {mutationData}) => (
-      <DeleteUser {...props} deleteUser={send} deleteResult={mutationData}/>
+    {(send, { mutationData }) => (
+      <DeleteUser {...props} deleteUser={send} deleteResult={mutationData} />
     )}
   </Mutation>
-)
+);
 
-export {DeleteUser}
-export default compose(withRouter, withCurrentUser(true))(Wrapped)
+export { DeleteUser };
+export default compose(withRouter, withCurrentUser(true))(Wrapped);

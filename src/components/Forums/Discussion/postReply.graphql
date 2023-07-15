@@ -1,7 +1,15 @@
 #import "./ForumPostFields.graphql"
 
-mutation postDiscussionReply($discussionId: ID!, $characterId: ID, $content: String!) {
-    postReply(discussionId: $discussionId, characterId: $characterId, content: $content) {
-        ...ForumPostFields
-    }
+mutation postDiscussionReply(
+  $discussionId: ID!
+  $characterId: ID
+  $content: String!
+) {
+  postReply(
+    discussionId: $discussionId
+    characterId: $characterId
+    content: $content
+  ) {
+    ...ForumPostFields
+  }
 }

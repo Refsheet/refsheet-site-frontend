@@ -1,49 +1,49 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import Icon from 'v1/shared/material/Icon'
-import Button from '../Styled/Button'
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import Icon from "v1/shared/material/Icon";
+import Button from "../Styled/Button";
 
 class ProfileWidgetHeader extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       title: props.title,
-    }
+    };
   }
 
   handleEditClick(e) {
-    e.preventDefault()
-    this.props.onEditStart()
+    e.preventDefault();
+    this.props.onEditStart();
   }
 
   handleCancelClick(e) {
-    e.preventDefault()
-    this.setState({ title: this.props.title })
-    this.props.onEditStop(false)
+    e.preventDefault();
+    this.setState({ title: this.props.title });
+    this.props.onEditStop(false);
   }
 
   handleDeleteClick(e) {
-    e.preventDefault()
-    this.props.onDelete()
+    e.preventDefault();
+    this.props.onDelete();
   }
 
   handleSaveClick(e) {
-    e.preventDefault()
-    this.props.onSave(this.state.title)
+    e.preventDefault();
+    this.props.onSave(this.state.title);
   }
 
   handleTitleChange(e) {
-    e.preventDefault()
-    const title = e.target.value
-    this.setState({ title })
+    e.preventDefault();
+    const title = e.target.value;
+    this.setState({ title });
   }
 
   handleMove(direction) {
-    return e => {
-      e.preventDefault()
-      this.props.onMove(direction)
-    }
+    return (e) => {
+      e.preventDefault();
+      this.props.onMove(direction);
+    };
   }
 
   renderLocked() {
@@ -55,7 +55,7 @@ class ProfileWidgetHeader extends Component {
       firstColumn,
       first,
       last,
-    } = this.props
+    } = this.props;
 
     if (editable) {
       return (
@@ -64,14 +64,14 @@ class ProfileWidgetHeader extends Component {
             <a
               href="#"
               onClick={this.handleDeleteClick.bind(this)}
-              title={'Delete Widget'}
+              title={"Delete Widget"}
               className="margin-right--medium"
             >
               <Icon
                 className="muted"
                 style={{
-                  fontSize: '1rem',
-                  color: 'rgba(255,255,255,0.1) !important',
+                  fontSize: "1rem",
+                  color: "rgba(255,255,255,0.1) !important",
                 }}
               >
                 delete
@@ -80,13 +80,13 @@ class ProfileWidgetHeader extends Component {
             <a
               href="#"
               onClick={this.handleEditClick.bind(this)}
-              title={'Edit Widget'}
+              title={"Edit Widget"}
             >
               <Icon
                 className="muted"
                 style={{
-                  fontSize: '1rem',
-                  color: 'rgba(255,255,255,0.1) !important',
+                  fontSize: "1rem",
+                  color: "rgba(255,255,255,0.1) !important",
                 }}
               >
                 edit
@@ -97,15 +97,15 @@ class ProfileWidgetHeader extends Component {
             {firstColumn || (
               <a
                 href="#"
-                onClick={this.handleMove('left').bind(this)}
-                title={'Move Left'}
+                onClick={this.handleMove("left").bind(this)}
+                title={"Move Left"}
                 className="margin-right--medium"
               >
                 <Icon
                   className="muted"
                   style={{
-                    fontSize: '1rem',
-                    color: 'rgba(255,255,255,0.1) !important',
+                    fontSize: "1rem",
+                    color: "rgba(255,255,255,0.1) !important",
                   }}
                 >
                   keyboard_arrow_left
@@ -115,15 +115,15 @@ class ProfileWidgetHeader extends Component {
             {first || (
               <a
                 href="#"
-                onClick={this.handleMove('up').bind(this)}
-                title={'Move Up'}
+                onClick={this.handleMove("up").bind(this)}
+                title={"Move Up"}
                 className="margin-right--medium"
               >
                 <Icon
                   className="muted"
                   style={{
-                    fontSize: '1rem',
-                    color: 'rgba(255,255,255,0.1) !important',
+                    fontSize: "1rem",
+                    color: "rgba(255,255,255,0.1) !important",
                   }}
                 >
                   keyboard_arrow_up
@@ -133,15 +133,15 @@ class ProfileWidgetHeader extends Component {
             {last || (
               <a
                 href="#"
-                onClick={this.handleMove('down').bind(this)}
-                title={'Move Down'}
+                onClick={this.handleMove("down").bind(this)}
+                title={"Move Down"}
                 className="margin-right--medium"
               >
                 <Icon
                   className="muted"
                   style={{
-                    fontSize: '1rem',
-                    color: 'rgba(255,255,255,0.1) !important',
+                    fontSize: "1rem",
+                    color: "rgba(255,255,255,0.1) !important",
                   }}
                 >
                   keyboard_arrow_down
@@ -151,15 +151,15 @@ class ProfileWidgetHeader extends Component {
             {lastColumn || (
               <a
                 href="#"
-                onClick={this.handleMove('right').bind(this)}
-                title={'Move Left'}
+                onClick={this.handleMove("right").bind(this)}
+                title={"Move Left"}
                 className="margin-right--medium"
               >
                 <Icon
                   className="muted"
                   style={{
-                    fontSize: '1rem',
-                    color: 'rgba(255,255,255,0.1) !important',
+                    fontSize: "1rem",
+                    color: "rgba(255,255,255,0.1) !important",
                   }}
                 >
                   keyboard_arrow_right
@@ -170,17 +170,17 @@ class ProfileWidgetHeader extends Component {
 
           <div className="center">{title || widgetType}</div>
         </div>
-      )
+      );
     } else if (title) {
-      return <div className="card-header">{title}</div>
+      return <div className="card-header">{title}</div>;
     } else {
-      return null
+      return null;
     }
   }
 
   renderUnlocked() {
     return (
-      <div className={'muted card-header fix-height'}>
+      <div className={"muted card-header fix-height"}>
         <div className="right btn-group">
           <Button
             href="#"
@@ -190,29 +190,29 @@ class ProfileWidgetHeader extends Component {
             <Icon
               className="muted left"
               style={{
-                fontSize: '1rem',
-                color: 'rgba(255,255,255,0.1) !important',
+                fontSize: "1rem",
+                color: "rgba(255,255,255,0.1) !important",
               }}
             >
               save
-            </Icon>{' '}
-            {this.props.saving ? 'Saving...' : 'Save'}
+            </Icon>{" "}
+            {this.props.saving ? "Saving..." : "Save"}
           </Button>
         </div>
 
-        <div className={'center'}>
+        <div className={"center"}>
           <input
             value={this.state.title}
             onChange={this.handleTitleChange.bind(this)}
           />
         </div>
       </div>
-    )
+    );
   }
 
   render() {
-    if (this.props.editing) return this.renderUnlocked()
-    else return this.renderLocked()
+    if (this.props.editing) return this.renderUnlocked();
+    else return this.renderLocked();
   }
 }
 
@@ -228,6 +228,6 @@ ProfileWidgetHeader.propTypes = {
   firstColumn: PropTypes.bool,
   first: PropTypes.bool,
   last: PropTypes.bool,
-}
+};
 
-export default ProfileWidgetHeader
+export default ProfileWidgetHeader;

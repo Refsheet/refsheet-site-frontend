@@ -1,14 +1,14 @@
-import React from 'react'
-import createReactClass from 'create-react-class'
-import PropTypes from 'prop-types'
-import Spinner from '../../../shared/material/Spinner'
-import Icon from '../../../shared/material/Icon'
-import InfiniteScroll from '../../../shared/InfiniteScroll'
-import Views from '../../../views/_views'
-import $ from 'jquery'
-import StateUtils from '../../../utils/StateUtils'
-import Model from '../../../utils/Model'
-import HashUtils from '../../../utils/HashUtils'
+import React from "react";
+import createReactClass from "create-react-class";
+import PropTypes from "prop-types";
+import Spinner from "../../../shared/material/Spinner";
+import Icon from "../../../shared/material/Icon";
+import InfiniteScroll from "../../../shared/InfiniteScroll";
+import Views from "../../../views/_views";
+import $ from "jquery";
+import StateUtils from "../../../utils/StateUtils";
+import Model from "../../../utils/Model";
+import HashUtils from "../../../utils/HashUtils";
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
@@ -20,23 +20,23 @@ import HashUtils from '../../../utils/HashUtils'
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
 
-let Feed
+let Feed;
 export default Feed = createReactClass({
   propTypes: {
     filter: PropTypes.string,
   },
 
   timer: null,
-  dataPath: '/notifications',
+  dataPath: "/notifications",
   stateLink() {
     return {
       dataPath:
-        '/notifications?filter=' +
+        "/notifications?filter=" +
         this.props.filter +
-        '&before=' +
+        "&before=" +
         this.state.since,
-      statePath: 'notifications',
-    }
+      statePath: "notifications",
+    };
   },
 
   getInitialState() {
@@ -46,13 +46,13 @@ export default Feed = createReactClass({
       since: null,
       timer: null,
       lastUpdate: null,
-    }
+    };
   },
 
   componentDidMount() {
     return StateUtils.load(
       this,
-      'notifications',
+      "notifications",
       this.props.match != null ? this.props.match.params : undefined,
       () => {
         this.setState({
@@ -61,28 +61,28 @@ export default Feed = createReactClass({
               ? this.state.notifications[0].timestamp
               : undefined,
           lastUpdate: Math.floor(Date.now() / 1000),
-        })
-        return this._poll()
+        });
+        return this._poll();
       },
-      { urlParams: { filter: this.props.filter } }
-    )
+      { urlParams: { filter: this.props.filter } },
+    );
   },
 
   componentWillUnmount() {
     if (this.timer) {
-      return clearTimeout(this.timer)
+      return clearTimeout(this.timer);
     }
   },
 
   UNSAFE_componentWillReceiveProps(newProps) {
     if (this.props.filter !== newProps.filter) {
       if (this.timer) {
-        clearTimeout(this.timer)
+        clearTimeout(this.timer);
       }
       return this.setState({ notifications: null }, () => {
         return StateUtils.load(
           this,
-          'notifications',
+          "notifications",
           newProps.match != null ? newProps.match.params : undefined,
           () => {
             this.setState({
@@ -91,21 +91,21 @@ export default Feed = createReactClass({
                   ? this.state.notifications[0].timestamp
                   : undefined,
               lastUpdate: Math.floor(Date.now() / 1000),
-            })
-            return this._poll()
+            });
+            return this._poll();
           },
-          { urlParams: { filter: this.props.filter } }
-        )
-      })
+          { urlParams: { filter: this.props.filter } },
+        );
+      });
     }
   },
 
   UNSAFE_componentWillUpdate(newProps, newState) {
     if (newState.newActivity !== this.state.newActivity) {
-      document.title = document.title.replace(/^\(\d+\)\s+/, '')
+      document.title = document.title.replace(/^\(\d+\)\s+/, "");
       if (newState.newActivity && newState.newActivity.length > 0) {
         return (document.title =
-          `(${newState.newActivity.length}) ` + document.title)
+          `(${newState.newActivity.length}) ` + document.title);
       }
     }
   },
@@ -115,37 +115,37 @@ export default Feed = createReactClass({
       return Model.poll(
         this.dataPath,
         { since: this.state.since, filter: this.props.filter },
-        data => {
+        (data) => {
           return this.setState(
             {
               newActivity: data.notifications,
               lastUpdate: Math.floor(Date.now() / 1000),
             },
-            this._poll
-          )
-        }
-      )
-    }, 15000))
+            this._poll,
+          );
+        },
+      );
+    }, 15000));
   },
 
   _prepend() {
-    const act = (this.state.newActivity || []).concat(this.state.notifications)
+    const act = (this.state.newActivity || []).concat(this.state.notifications);
     return this.setState({
       notifications: act,
       since: act[0] != null ? act[0].timestamp : undefined,
       newActivity: null,
-    })
+    });
   },
 
   _append(notifications) {
-    return StateUtils.updateItems(this, 'notifications', notifications)
+    return StateUtils.updateItems(this, "notifications", notifications);
   },
 
   _groupedActivity() {
-    const grouped = []
+    const grouped = [];
 
     for (let item of Array.from(this.state.notifications)) {
-      const last = grouped[grouped.length - 1]
+      const last = grouped[grouped.length - 1];
 
       if (
         item.notification &&
@@ -153,67 +153,67 @@ export default Feed = createReactClass({
         HashUtils.compare(
           item,
           last,
-          'user.username',
-          'character.id',
-          'notifications_type',
-          'notifications_method'
+          "user.username",
+          "character.id",
+          "notifications_type",
+          "notifications_method",
         ) &&
         last.timestamp - item.timestamp < 3600
       ) {
         if (!last.notifications) {
-          last.notifications = [last.notifications]
+          last.notifications = [last.notifications];
         }
         if (
-          !HashUtils.itemExists(last.notifications, item.notifications, 'id')
+          !HashUtils.itemExists(last.notifications, item.notifications, "id")
         ) {
-          last.notifications.push(item.notifications)
+          last.notifications.push(item.notifications);
         }
       } else {
-        grouped.push(item)
+        grouped.push(item);
       }
     }
 
-    return grouped
+    return grouped;
   },
 
   _markRead(read, path) {
-    return e => {
-      e.preventDefault()
-      return Model.put(path, { read }, data => {
-        return StateUtils.updateItem(this, 'notifications', data, 'id')
-      })
-    }
+    return (e) => {
+      e.preventDefault();
+      return Model.put(path, { read }, (data) => {
+        return StateUtils.updateItem(this, "notifications", data, "id");
+      });
+    };
   },
 
   _markAllRead(read) {
-    return e => {
-      e.preventDefault()
-      const ids = this.state.notifications.map(n => n.id)
+    return (e) => {
+      e.preventDefault();
+      const ids = this.state.notifications.map((n) => n.id);
 
-      return Model.put('/notifications/bulk_update', { read, ids }, data => {
+      return Model.put("/notifications/bulk_update", { read, ids }, (data) => {
         const newNotes = this.state.notifications.map(function (n) {
-          const note = $.extend({}, n)
-          note.is_read = data.read
-          return note
-        })
-        return this.setState({ notifications: newNotes })
-      })
-    }
+          const note = $.extend({}, n);
+          note.is_read = data.read;
+          return note;
+        });
+        return this.setState({ notifications: newNotes });
+      });
+    };
   },
 
   render() {
     if (!this.state.notifications) {
-      return <Spinner className="margin-top--large" small center />
+      return <Spinner className="margin-top--large" small center />;
     }
-    const __this = this
+    const __this = this;
 
-    const out = this._groupedActivity().map(item => (
+    const out = this._groupedActivity().map((item) => (
       <Views.Account.Notifications.Card
         {...item}
         key={item.id}
         onReadChange={__this._markRead}
       />
-    ))
+    ));
 
     return (
       <div className="feed-item-stream">
@@ -228,10 +228,10 @@ export default Feed = createReactClass({
 
           {this.state.newActivity && this.state.newActivity.length > 0 && (
             <a className="btn btn-flat" onClick={this._prepend}>
-              {this.state.newActivity.length} new{' '}
+              {this.state.newActivity.length} new{" "}
               {this.state.newActivity.length == 1
-                ? 'notification'
-                : 'notifications'}
+                ? "notification"
+                : "notifications"}
             </a>
           )}
 
@@ -247,6 +247,6 @@ export default Feed = createReactClass({
           count={this.state.notifications.length}
         />
       </div>
-    )
+    );
   },
-})
+});

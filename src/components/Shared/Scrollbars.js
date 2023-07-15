@@ -1,35 +1,35 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import {Scrollbars as CustomScrollbars} from 'react-custom-scrollbars-2'
-import {withTheme} from 'styled-components'
+import React from "react";
+import PropTypes from "prop-types";
+import { Scrollbars as CustomScrollbars } from "react-custom-scrollbars-2";
+import { withTheme } from "styled-components";
 
-const Scrollbars = ({children, theme, maxHeight, ...otherProps}) => {
-  const renderThumb = ({style, ...props}) => (
+const Scrollbars = ({ children, theme, maxHeight, ...otherProps }) => {
+  const renderThumb = ({ style, ...props }) => (
     <div
       {...props}
       style={{
         ...style,
         backgroundColor: theme.primary,
-        opacity: '0.8',
-        width: '0.3rem',
-        borderRadius: '0.15rem',
+        opacity: "0.8",
+        width: "0.3rem",
+        borderRadius: "0.15rem",
       }}
     />
-  )
+  );
 
-  const renderTrack = ({style, ...props}) => (
+  const renderTrack = ({ style, ...props }) => (
     <div
       {...props}
       style={{
         ...style,
-        backgroundColor: 'transparent',
-        right: '0.1rem',
-        width: '0.3rem',
-        bottom: '0.1rem',
-        top: '0.1rem',
+        backgroundColor: "transparent",
+        right: "0.1rem",
+        width: "0.3rem",
+        bottom: "0.1rem",
+        top: "0.1rem",
       }}
     />
-  )
+  );
 
   return (
     <CustomScrollbars
@@ -41,9 +41,9 @@ const Scrollbars = ({children, theme, maxHeight, ...otherProps}) => {
     >
       {children}
     </CustomScrollbars>
-  )
-}
+  );
+};
 
-Scrollbars.propTypes = {}
+Scrollbars.propTypes = {};
 
-export default withTheme(Scrollbars)
+export default withTheme(Scrollbars);
