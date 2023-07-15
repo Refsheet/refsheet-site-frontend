@@ -55,6 +55,7 @@
     "next": "^12.2.5",
     "node-sass-glob-importer": "^5.3.2",
     "path-browserify": "^1.0.1",
+    "prettier": "^3.0.0",
     "prop-types": "^15.8.1",
     "query-string": "^7.1.1",
     "rails-erb-loader": "^5.5.2",
@@ -117,6 +118,7 @@
     "dev": "next dev -p 3000",
     "start": "next start",
     "build": "next build",
+    "format": "prettier . --write",
     "test": "next test",
     "gen-gql": "graphql-codegen --config codegen.yml"
   },
@@ -151,5 +153,6 @@
     "@graphql-codegen/typescript-operations": "2.5.3",
     "@graphql-codegen/typescript-react-apollo": "3.3.3",
     "cross-fetch": "^3.1.5"
-  }
+  },
+  "prettier": {}
 }
