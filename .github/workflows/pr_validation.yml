@@ -1,0 +1,25 @@
+name: PR Validation
+
+on: pull_request
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: v1-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            v1-${{ runner.os }}-
+            v1-
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Ensure files are formatted with Prettier
+        run: npx prettier . --check
