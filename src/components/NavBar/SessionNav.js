@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import DropdownLink from './DropdownLink'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 
-const SessionNav = ({ nsfwOk, onLoginClick, onNsfwClick }) => {
+const SessionNav = ({nsfwOk, onLoginClick, onNsfwClick}) => {
   const nsfwClassName = nsfwOk ? 'nsfw' : 'no-nsfw'
 
   return (
@@ -21,13 +21,13 @@ const SessionNav = ({ nsfwOk, onLoginClick, onNsfwClick }) => {
             </a>
           </li>
           <li>
-            <Link to="/register" data-testid={'register-link'}>
+            <Link href="/register" data-testid={'register-link'}>
               <i className="material-icons left">create</i>
               <span>Register</span>
             </Link>
           </li>
 
-          <li className="divider" />
+          <li className="divider"/>
 
           <li>
             <a onClick={onNsfwClick} className={nsfwClassName}>

@@ -46,7 +46,7 @@ class SettingsModal extends Component {
           <TransferCharacter
             character={this.props.character}
             onSave={this.props.refetch}
-            goTo={this.goTo.bind(this)}
+            gohref={this.goTo.bind(this)}
           />
         )
       case 'delete':
@@ -54,7 +54,7 @@ class SettingsModal extends Component {
           <DeleteCharacter
             character={this.props.character}
             onSave={this.props.refetch}
-            goTo={this.goTo.bind(this)}
+            gohref={this.goTo.bind(this)}
           />
         )
       case 'dataLink':
@@ -62,7 +62,7 @@ class SettingsModal extends Component {
           <DataLink
             character={this.props.character}
             onSave={this.props.refetch}
-            goTo={this.goTo.bind(this)}
+            gohref={this.goTo.bind(this)}
           />
         )
       case 'marketplace':
@@ -70,7 +70,7 @@ class SettingsModal extends Component {
           <MarketplaceListing
             character={this.props.character}
             onSave={this.props.refetch}
-            goTo={this.goTo.bind(this)}
+            gohref={this.goTo.bind(this)}
           />
         )
       default:
@@ -79,7 +79,7 @@ class SettingsModal extends Component {
             character={this.props.character}
             onSave={this.props.refetch}
             onClose={this.props.onClose}
-            goTo={this.goTo.bind(this)}
+            gohref={this.goTo.bind(this)}
           />
         )
     }

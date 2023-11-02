@@ -12,13 +12,13 @@ import Loading from '../../shared/Loading'
 import InfiniteScroll from '../../shared/InfiniteScroll'
 import Main from '../../shared/Main'
 import Jumbotron from '../../../components/Shared/Jumbotron'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import Container from '../../shared/material/Container'
 
 import $ from 'jquery'
 import StateUtils from '../../utils/StateUtils'
 import Gallery from '../../../components/Character/Gallery'
-import compose, { withCurrentUser } from '../../../utils/compose'
+import compose, {withCurrentUser} from '../../../utils/compose'
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
@@ -54,7 +54,7 @@ const Index = createReactClass({
   },
 
   getInitialState() {
-    return { media: null }
+    return {media: null}
   },
 
   UNSAFE_componentWillMount() {
@@ -73,7 +73,7 @@ const Index = createReactClass({
       (this.props.match != null ? this.props.match.params.scope : undefined) !==
       (newProps.match != null ? newProps.match.params.scope : undefined)
     ) {
-      this.setState({ media: null })
+      this.setState({media: null})
     }
     StateUtils.reload(this, 'media', newProps)
   },
@@ -84,14 +84,14 @@ const Index = createReactClass({
 
   _renderImages() {
     if (!this.state.media) {
-      return <Loading />
+      return <Loading/>
     }
 
     console.log(this.state.media)
 
     return (
       <div key={this.props.match && this.props.match.params.scope}>
-        <Gallery v1Data noHeader images={this.state.media} />
+        <Gallery v1Data noHeader images={this.state.media}/>
         <InfiniteScroll
           onLoad={this._append}
           stateLink={this.stateLink}
@@ -105,7 +105,7 @@ const Index = createReactClass({
     let description, title
     switch (
       this.props.match != null ? this.props.match.params.scope : undefined
-    ) {
+      ) {
       case 'favorites':
         title = 'Your Favorites'
         description = "Everything you've ever loved in one place (finally)!"
@@ -143,7 +143,7 @@ const Index = createReactClass({
                 >
                   <Link
                     className={!this.props.match.params.scope ? 'active' : ''}
-                    to="/explore"
+                    href="/explore"
                   >
                     Recent
                   </Link>
@@ -160,7 +160,7 @@ const Index = createReactClass({
                     className={
                       this.props.match.params.scope == 'popular' ? 'active' : ''
                     }
-                    to="/explore/popular"
+                    href="/explore/popular"
                   >
                     Popular
                   </Link>
@@ -180,7 +180,7 @@ const Index = createReactClass({
                           ? 'active'
                           : ''
                       }
-                      to="/explore/favorites"
+                      href="/explore/favorites"
                     >
                       Favorites
                     </Link>

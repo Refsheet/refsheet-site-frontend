@@ -24,7 +24,12 @@ const findError = error => {
   }
 }
 
-export default ({ error, message }) => {
+export interface ErrorProps {
+  error?: any;
+  message?: string;
+}
+
+const Error: React.FC<ErrorProps> = ({error, message}) => {
   const classNames = ['modal-page-content']
 
   let finalText = message
@@ -33,10 +38,12 @@ export default ({ error, message }) => {
   }
 
   return (
-    <Main className={classNames.join(' ')}>
-      <div className="container">
-        <h1>{finalText}</h1>
-      </div>
-    </Main>
+      <Main className={classNames.join(' ')}>
+        <div className="container">
+          <h1>{finalText}</h1>
+        </div>
+      </Main>
   )
 }
+
+export default Error

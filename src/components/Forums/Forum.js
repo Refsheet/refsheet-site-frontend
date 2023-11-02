@@ -6,7 +6,7 @@ import Error from '../Shared/Error'
 import View from './show/View'
 import Loading from '../Shared/views/Loading'
 
-const getForum = require('./getForum.graphql');
+const getForum = require('../../../app/forums/[forum]/getForum.graphql');
 
 class Forum extends Component {
   render() {

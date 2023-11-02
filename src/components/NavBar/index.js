@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import {Link} from 'react-router-dom'
+import Link from 'next/link'
 import SearchBar from './SearchBar'
 import SiteNav from './SiteNav'
 import UserNav from './UserNav'
@@ -140,7 +140,7 @@ class NavBar extends Component {
               </li>
             </ul>
 
-            <Link to="/" className="logo left">
+            <Link href="/" className="logo left">
               <Image
                 src={this.logoSrc}
                 alt="Refsheet.net"

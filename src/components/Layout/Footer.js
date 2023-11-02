@@ -2,7 +2,7 @@
 
 import React, {Component} from 'react'
 import compose from '../../utils/compose'
-import {Link} from 'react-router-dom'
+import Link from 'next/link'
 import {Row, Col} from 'react-materialize'
 import Restrict from '../Shared/Restrict'
 import i18n from '../../services/i18n'
@@ -117,21 +117,21 @@ class _Footer extends Component {
             <Col s={6} m={2}>
               <ul className="margin-top--none">
                 <li>
-                  <Link to="/">Home</Link>
+                  <Link href="/">Home</Link>
                 </li>
                 <li>
-                  <Link to="/browse">Characters</Link>
+                  <Link href="/browse">Characters</Link>
                 </li>
                 <Restrict development>
                   <li>
-                    <Link to="/artists">Artists</Link>
+                    <Link href="/artists">Artists</Link>
                   </li>
                 </Restrict>
                 <li>
-                  <Link to="/explore">Images</Link>
+                  <Link href="/explore">Images</Link>
                 </li>
                 <li>
-                  <Link to="/forums">Forums</Link>
+                  <Link href="/forums">Forums</Link>
                 </li>
               </ul>
             </Col>
@@ -139,10 +139,10 @@ class _Footer extends Component {
             <Col s={6} m={3}>
               <ul className="margin-top--none">
                 <li>
-                  <Link to="/terms">Terms</Link>
+                  <Link href="/terms">Terms</Link>
                 </li>
                 <li>
-                  <Link to="/privacy">Privacy</Link>
+                  <Link href="/privacy">Privacy</Link>
                 </li>
                 <li>
                   <a href="/api">API</a>
@@ -230,7 +230,7 @@ class _Footer extends Component {
               is granted to Refsheet.net to display and store.<br/> Unauthorized
               uploads and media usage may be reported to{' '}
               <a href="mailto:mau@refsheet.net">mau@refsheet.net</a>. See{' '}
-              <Link to="/terms">Terms</Link> for more details.
+              <Link href="/terms">Terms</Link> for more details.
             </div>
           </div>
         </div>

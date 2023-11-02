@@ -1,3 +1,5 @@
+'use client';
+
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import WindowAlert from 'utils/WindowAlert'
@@ -66,20 +68,16 @@ const Main = styled(_Main)`
 
   &.main-flex {
     &.split-bg-right {
-      background: linear-gradient(
-        to right,
-        ${props => props.theme.background} 50%,
-        ${props => props.theme.cardBackground} 50%
-      );
+      background: linear-gradient(to right,
+      ${props => props.theme.background} 50%,
+      ${props => props.theme.cardBackground} 50%);
     }
 
     &.split-bg-left,
     &.with-sidebar {
-      background: linear-gradient(
-        to left,
-        ${props => props.theme.background} 50%,
-        ${props => props.theme.cardBackground} 50%
-      );
+      background: linear-gradient(to left,
+      ${props => props.theme.background} 50%,
+      ${props => props.theme.cardBackground} 50%);
     }
 
     .container.container-flex {

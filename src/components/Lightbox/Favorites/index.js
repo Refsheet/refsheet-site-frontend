@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {withTranslation} from 'react-i18next'
 import {Icon} from 'react-materialize'
-import {Link} from 'react-router-dom'
+import Link from 'next/link'
 import c from 'classnames'
 import compose, {withMutations} from '../../../utils/compose'
 //graphql.macro
@@ -110,7 +110,7 @@ class Favorites extends Component {
 
         {favorites.map(favorite => (
           <Link
-            to={`/${favorite.user.username}`}
+            href={`/${favorite.user.username}`}
             title={`${favorite.user.name} (@${favorite.user.username})`}
             key={favorite.id}
           >

@@ -5,7 +5,7 @@ import Form from '../../shared/forms/Form'
 import Input from '../../shared/forms/Input'
 import Submit from '../../shared/forms/Submit'
 import Flash from '../../../utils/Flash'
-import {Link} from 'react-router-dom'
+import Link from 'next/link'
 import compose, {withConfig, withCurrentUser} from '../../../utils/compose'
 import ReCAPTCHA from 'react-google-recaptcha'
 import {useHistory} from 'react-router'
@@ -203,7 +203,7 @@ const RegisterView: React.FC<IRegisterViewProps> = ({setCurrentUser, config}) =>
 
                         <div className="form-actions margin-top--large">
                             <Link
-                                to="/login"
+                                href="/login"
                                 query={{username: userData.username}}
                                 className="btn grey darken-3"
                             >

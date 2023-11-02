@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import c from 'classnames'
 import qs from 'query-string'
-import {withRouter} from 'utils/withRouter'
 
 class SearchBar extends Component {
   constructor(props) {
@@ -50,7 +49,7 @@ class SearchBar extends Component {
     if (query) {
       const newPath = `/browse?${qs.stringify({q: query})}`
       e.target.elements[0].blur()
-      this.props.history.push(newPath)
+      // this.props.history.push(newPath)
     }
   }
 
@@ -86,4 +85,4 @@ SearchBar.propTypes = {
   history: PropTypes.object.isRequired,
 }
 
-export default withRouter(SearchBar)
+export default SearchBar

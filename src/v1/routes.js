@@ -141,7 +141,7 @@ const Routes = createReactClass({
                           <Redirect
                             exact
                             from="/account"
-                            to="/account/settings"
+                            href="/account/settings"
                           />
                           <Route
                             path="/account/settings"

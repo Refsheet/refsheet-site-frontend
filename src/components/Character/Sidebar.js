@@ -57,7 +57,7 @@ class Sidebar extends Component {
 
     return sections.map(s => (
       <li key={s.id}>
-        <TocLink to={`#s:${s.id}`}>{s.title}</TocLink>
+        <TocLink href={`#s:${s.id}`}>{s.title}</TocLink>
       </li>
     ))
   }
@@ -101,37 +101,37 @@ class Sidebar extends Component {
             )}
 
             {(!conversionRequired && this.props.editable) || (
-              <SidebarLink to="#edit" onClick={this.toggleEditable} icon="edit">
+              <SidebarLink href="#edit" onClick={this.toggleEditable} icon="edit">
                 Edit
               </SidebarLink>
             )}
             {!conversionRequired && this.props.editable && (
-              <SidebarLink to="#edit" onClick={this.toggleEditable} icon="lock">
+              <SidebarLink href="#edit" onClick={this.toggleEditable} icon="lock">
                 Stop Editing
               </SidebarLink>
             )}
             <SidebarLink
-              to="#settings"
+              href="#settings"
               icon="settings"
               onClick={this.handleSettingsClick.bind(this)}
             >
               Settings
             </SidebarLink>
             <SidebarLink
-              to="#color"
+              href="#color"
               icon="palette"
               onClick={this.handleColorClick.bind(this)}
             >
               Color Scheme
             </SidebarLink>
             <SidebarLink
-              to={'#revisions'}
+              href={'#revisions'}
               icon={'history'}
               onClick={this.handleRevisionsClick.bind(this)}
             >
               Revisions
             </SidebarLink>
-            {/*<SidebarLink to='#' icon='archive'>Archive</SidebarLink>*/}
+            {/*<SidebarLink href='#' icon='archive'>Archive</SidebarLink>*/}
           </div>
         )}
 
@@ -140,11 +140,11 @@ class Sidebar extends Component {
             <MutedHeader>Page Sections</MutedHeader>
           </li>
           <li key={'-summary'}>
-            <TocLink to="#top">Summary</TocLink>
+            <TocLink href="#top">Summary</TocLink>
           </li>
           {this.renderSections()}
           <li key={'-gallery'}>
-            <TocLink to="#gallery">Image Gallery</TocLink>
+            <TocLink href="#gallery">Image Gallery</TocLink>
           </li>
         </ul>
       </div>

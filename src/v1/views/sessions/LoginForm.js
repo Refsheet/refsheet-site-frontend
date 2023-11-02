@@ -12,13 +12,13 @@ import Form from '../../shared/forms/Form'
 import Input from '../../shared/forms/Input'
 import Row from '../../shared/material/Row'
 import Column from '../../shared/material/Column'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import Submit from '../../shared/forms/Submit'
 
 import $ from 'jquery'
 import compose from '../../../utils/compose'
-import { connect } from 'react-redux'
-import { setCurrentUser } from '../../../actions'
+import {connect} from 'react-redux'
+import {setCurrentUser} from '../../../actions'
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
@@ -67,17 +67,17 @@ const LoginForm = createReactClass({
         model={this.state.user}
         onChange={this._handleLogin}
       >
-        <Input name="username" label="Username" autoFocus />
-        <Input name="password" type="password" label="Password" />
+        <Input name="username" label="Username" autoFocus/>
+        <Input name="password" type="password" label="Password"/>
 
         {this.props.children}
 
-        <Input type="checkbox" name="remember" label="Keep me signed in" />
+        <Input type="checkbox" name="remember" label="Keep me signed in"/>
 
         <Row className="actions">
           <Column>
             <Link
-              to="/register"
+              href="/register"
               className="btn btn-secondary z-depth-0 modal-close waves-effect waves-light"
             >
               Register
@@ -93,7 +93,7 @@ const LoginForm = createReactClass({
   },
 })
 
-const mapStateToProps = ({ session }) => ({
+const mapStateToProps = ({session}) => ({
   session,
 })
 

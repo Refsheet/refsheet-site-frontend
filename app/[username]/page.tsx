@@ -26,9 +26,13 @@ export const getServerSideProps: GetServerSideProps<UserProfileProps, UserProfil
         variables: {username: params?.username}
     });
 
+    if (!data.getUser) {
+        return {notFound: true};
+    }
+
     return {
         props: {
-            user: data.getUser || null
+            user: data.getUser
         }
     }
 }

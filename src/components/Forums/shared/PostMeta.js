@@ -1,15 +1,15 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import compose from 'utils/compose'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import Moment from 'react-moment'
-import { withTranslation } from 'react-i18next'
+import {withTranslation} from 'react-i18next'
 import c from 'classnames'
-import Muted, { MutedLink } from '../../Styled/Muted'
+import Muted, {MutedLink} from '../../Styled/Muted'
 
 class PostMeta extends Component {
   render() {
-    const { discussion, forum, t, className } = this.props
+    const {discussion, forum, t, className} = this.props
 
     return (
       <Muted className={c('forum-post--meta', className)}>
@@ -22,7 +22,7 @@ class PostMeta extends Component {
             {' '}
             (
             <MutedLink
-              to={`/forums/${forum.slug}/${discussion.slug}#last`}
+              href={`/forums/${forum.slug}/${discussion.slug}#last`}
               title={t('forums.go_to_last', 'Go to last post')}
             >
               <Moment key={'date'} fromNow unix>

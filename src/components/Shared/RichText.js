@@ -4,17 +4,17 @@
  * DS102: Remove unnecessary code created because of implicit returns
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import replace from 'react-string-replace'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import MarkdownEditor from './MarkdownEditor'
 import c from 'classnames'
 import * as Showdown from 'showdown'
 import Button from '../../v1/shared/material/Button'
 import WindowAlert from '../../utils/WindowAlert'
-import { H2 } from '../Styled/Headings'
-import { sanitize } from '../../utils/sanitize'
+import {H2} from '../Styled/Headings'
+import {sanitize} from '../../utils/sanitize'
 
 class RichText extends Component {
   constructor(props) {
@@ -51,7 +51,7 @@ class RichText extends Component {
 
   UNSAFE_componentWillReceiveProps(newProps) {
     if (this.state.content !== newProps.content) {
-      return this.setState({ content: newProps.content, dirty: false })
+      return this.setState({content: newProps.content, dirty: false})
     }
   }
 
@@ -72,17 +72,17 @@ class RichText extends Component {
         })
       })
       .catch(e => {
-        this.setState({ saving: false })
+        this.setState({saving: false})
         console.error(e)
       })
   }
 
   handleMarkdownChange(name, content) {
-    this.setState({ content, dirty: true })
+    this.setState({content, dirty: true})
   }
 
   handleChange(e) {
-    return this.setState({ content: e.target.value })
+    return this.setState({content: e.target.value})
   }
 
   renderContent(content) {
@@ -94,24 +94,24 @@ class RichText extends Component {
     let n = 0
 
     filtered = replace(filtered, /#(\w+)/g, (match, i) => (
-      <Link key={'hashtag-' + n++} to={`/explore/tag/${match}`}>
+      <Link key={'hashtag-' + n++} href={`/explore/tag/${match}`}>
         #{match}
       </Link>
     ))
 
-    filtered = replace(filtered, /\n/g, (match, i) => <br key={'br-' + n++} />)
+    filtered = replace(filtered, /\n/g, (match, i) => <br key={'br-' + n++}/>)
 
     return filtered
   }
 
   handleEditClick(e) {
     e.preventDefault()
-    this.setState({ editing: true })
+    this.setState({editing: true})
   }
 
   handleEditStop(e) {
     e.preventDefault()
-    this.setState({ editing: false, dirty: false, content: this.props.content })
+    this.setState({editing: false, dirty: false, content: this.props.content})
   }
 
   render() {
@@ -123,7 +123,7 @@ class RichText extends Component {
       titleComponent: Title = H2,
     } = this.props
 
-    const { content } = this.state
+    const {content} = this.state
 
     const outerClassNames = []
     const headerClassNames = []

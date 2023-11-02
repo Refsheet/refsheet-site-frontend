@@ -13,9 +13,9 @@ import Input from '../../shared/forms/Input'
 import Submit from '../../shared/forms/Submit'
 import Icon from '../../shared/material/Icon'
 import RichText from '../../../components/Shared/RichText'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import Model from '../../utils/Model'
-import compose, { withCurrentUser } from '../../../utils/compose'
+import compose, {withCurrentUser} from '../../../utils/compose'
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
@@ -73,12 +73,12 @@ const Index = createReactClass({
       if (comment.user) {
         return (
           <div className="card flat with-avatar" key={comment.id}>
-            <img src={comment.user.avatar_url} className="circle avatar" />
+            <img src={comment.user.avatar_url} className="circle avatar"/>
             <div className="card-content">
               <div className="muted right" title={comment.created_at}>
                 {comment.created_at_human}
               </div>
-              <Link to={comment.user.link}>{comment.user.name}</Link>
+              <Link href={comment.user.link}>{comment.user.name}</Link>
               <RichText
                 contentHtml={comment.comment}
                 content={comment.comment}

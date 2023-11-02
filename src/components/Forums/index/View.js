@@ -4,7 +4,7 @@ import Main from '../../Shared/Main'
 import {StickyContainer} from 'react-sticky'
 import {Col, Container, Row} from 'react-materialize'
 import Jumbotron from '../../Shared/Jumbotron'
-import {Link} from 'react-router-dom'
+import Link from 'next/link'
 import Error from '../../Shared/Error'
 
 class View extends Component {

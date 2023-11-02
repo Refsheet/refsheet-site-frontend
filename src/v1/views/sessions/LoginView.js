@@ -12,7 +12,7 @@ import Main from '../../shared/Main'
 import Form from '../../shared/forms/Form'
 import Input from '../../shared/forms/Input'
 import Submit from '../../shared/forms/Submit'
-import {Link} from 'react-router-dom';
+import Link from 'next/link';
 import {withRouter} from 'utils/withRouter'
 
 import $ from 'jquery'
@@ -103,7 +103,7 @@ const LoginView = createReactClass({
 
               <div className="margin-top--medium">
                 <Link
-                  to="/register"
+                  href="/register"
                   query={{username: this.state.username}}
                   className="btn grey darken-3"
                 >

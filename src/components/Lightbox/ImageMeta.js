@@ -1,29 +1,29 @@
 import React from 'react'
-import { Icon } from 'react-materialize'
+import {Icon} from 'react-materialize'
 import RichText from '../Shared/RichText'
 import replace from 'react-string-replace'
-import { withTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
+import {withTranslation} from 'react-i18next'
+import Link from 'next/link'
 
 const artists = []
 
 const ImageMeta = ({
-  id,
-  caption,
-  caption_html,
-  source_url,
-  source_url_display,
-  tags,
-  hashtags,
-  hidden,
-  image_processing,
-  nsfw,
-  is_v2_image,
-  t,
-}) => (
+                     id,
+                     caption,
+                     caption_html,
+                     source_url,
+                     source_url_display,
+                     tags,
+                     hashtags,
+                     hidden,
+                     image_processing,
+                     nsfw,
+                     is_v2_image,
+                     t,
+                   }) => (
   <div className={'image-meta'}>
     <div className={'image-caption'}>
-      <RichText content={caption} contentHtml={caption_html} />
+      <RichText content={caption} contentHtml={caption_html}/>
     </div>
     <ul className={'attributes'}>
       {hidden && (
@@ -72,7 +72,7 @@ const ImageMeta = ({
           <Icon className={'left'}>brush</Icon>
           {artists.map((artist, i) => (
             <span key={artist.slug}>
-              <Link to={`/artists/${artist.slug}`}>{artist.name}</Link>
+              <Link href={`/artists/${artist.slug}`}>{artist.name}</Link>
               {i + 1 < artists.length ? ', ' : ''}
             </span>
           ))}
@@ -84,7 +84,7 @@ const ImageMeta = ({
           <Icon className={'left'}>tag_faces</Icon>
           {tags.map((characterTag, i) => (
             <span key={characterTag.character.link}>
-              <Link to={characterTag.character.link}>
+              <Link href={characterTag.character.link}>
                 {characterTag.character.name}
               </Link>
               {i + 1 < tags.length ? ', ' : ''}
@@ -96,9 +96,9 @@ const ImageMeta = ({
       {hashtags.length > 0 && (
         <li>
           <Icon className={'left'}>tag</Icon>
-          {hashtags.map(({ tag: mediaTag }, i) => (
+          {hashtags.map(({tag: mediaTag}, i) => (
             <span key={mediaTag} className={'media-tag'}>
-              <Link to={`/explore/tag/${mediaTag}`}>{mediaTag}</Link>
+              <Link href={`/explore/tag/${mediaTag}`}>{mediaTag}</Link>
               {i + 1 < hashtags.length ? ', ' : ''}
             </span>
           ))}

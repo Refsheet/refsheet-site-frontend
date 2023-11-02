@@ -7,7 +7,6 @@ import {Query} from '@apollo/client/react/components'
 import View from './View'
 import Silhouette from './Silhouette'
 import {Error, Loading} from './Status'
-import {withRouter} from 'utils/withRouter'
 import compose from '../../utils/compose'
 import {withErrorBoundary} from '../Shared/ErrorBoundary'
 
@@ -242,5 +241,4 @@ const mapDispatchToProps = {
 export default compose(
   withErrorBoundary,
   connect(mapStateToProps, mapDispatchToProps),
-  withRouter
 )(Wrapped)

@@ -10,7 +10,7 @@ import c from 'classnames'
 import {userClasses} from '../../utils/UserUtils'
 import {closeConversation} from '../../actions'
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
+import Link from 'next/link'
 
 class Conversation extends Component {
   constructor(props) {
@@ -207,7 +207,7 @@ class Conversation extends Component {
           >
             <Icon>{isOpen ? 'keyboard_arrow_down' : 'keyboard_arrow_up'}</Icon>
           </a>
-          <Link to={`/${user.username}`} className="white-text truncate">
+          <Link href={`/${user.username}`} className="white-text truncate">
             {user.name}
             <span className={'username muted small'}>@{user.username}</span>
           </Link>

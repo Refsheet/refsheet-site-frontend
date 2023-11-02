@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import Link from 'next/link'
 import Main from 'components/Shared/Main'
 import Jumbotron from 'components/Shared/Jumbotron'
 
@@ -10,10 +10,6 @@ import Views from 'v1/views/_views'
 
 const Home: React.FC = () => {
     const currentUser = useCurrentUser();
-
-    if (currentUser) {
-        return <Views.Account.Show/>
-    }
 
     const {t} = useTranslation();
 
@@ -32,7 +28,7 @@ const Home: React.FC = () => {
                     </Trans>
                 </p>
                 <div className="jumbotron-action">
-                    <Link to="/register" className="btn btn-large">
+                    <Link href="/register" className="btn btn-large">
                         <Trans i18nKey="cta.get_started">Get Started</Trans>
                     </Link>
                 </div>

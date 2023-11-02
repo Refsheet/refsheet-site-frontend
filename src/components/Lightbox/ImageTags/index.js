@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import compose from 'utils/compose'
 import c from 'classnames'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 
 class ImageTags extends Component {
   constructor(props) {
@@ -18,7 +18,7 @@ class ImageTags extends Component {
     return (
       <li
         key={i}
-        className={c('tag', { left, right: !left, top, bottom: !top })}
+        className={c('tag', {left, right: !left, top, bottom: !top})}
         style={{
           left: left ? `${tag.position_x}%` : 'auto',
           right: left ? 'auto' : `${100 - tag.position_x}%`,
@@ -26,7 +26,7 @@ class ImageTags extends Component {
           bottom: top ? 'auto' : `${100 - tag.position_y}%`,
         }}
       >
-        <Link to={'/'}>
+        <Link href={'/'}>
           <img
             className={'avatar circle'}
             src={'/administrator/test.png'}
@@ -39,7 +39,7 @@ class ImageTags extends Component {
   }
 
   render() {
-    const { tags } = this.props
+    const {tags} = this.props
 
     return (
       <ul className={'image-tags'}>{tags.map(this.renderTag.bind(this))}</ul>
@@ -47,7 +47,7 @@ class ImageTags extends Component {
   }
 }
 
-ImageTags.propTypes = { tags: PropTypes.array.isRequired }
+ImageTags.propTypes = {tags: PropTypes.array.isRequired}
 
 export default compose()(ImageTags)
 // TODO: Add HOC bindings here

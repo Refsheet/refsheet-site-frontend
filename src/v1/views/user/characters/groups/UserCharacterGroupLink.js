@@ -9,7 +9,7 @@ import React from 'react'
 import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
 import UserCharacterGroupForm from './UserCharacterGroupForm'
-import {Link} from 'react-router-dom'
+import Link from 'next/link'
 
 import $ from 'jquery'
 import Model from '../../../../utils/Model'
@@ -137,7 +137,7 @@ export default UserCharacterGroupLink = createReactClass({
         >
           <i className="material-icons left folder">{folder}</i>
 
-          <Link to={this.props.group.link} className="name">
+          <Link href={this.props.group.link} className="name">
             {this.props.group.name}
           </Link>
 

@@ -213,7 +213,7 @@ export default CharacterCard = createReactClass({
         </div>
 
         {/*<div className='user-icon'>
-            <Link to={ '/' + this.state.character.user_id } className='tooltipped' data-tooltip={ this.state.character.user_name } data-position='bottom'>
+            <Link href={ '/' + this.state.character.user_id } className='tooltipped' data-tooltip={ this.state.character.user_name } data-position='bottom'>
                 <img className='circle' src={ this.state.character.user_avatar_url } />
             </Link>
         </div>*/}

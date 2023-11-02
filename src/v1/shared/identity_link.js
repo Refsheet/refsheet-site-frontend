@@ -2,13 +2,13 @@ import React from 'react'
 import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
 
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import Icon from 'v1/shared/material/Icon'
 import StringUtils from '../../utils/StringUtils'
 import NumberUtils from '../utils/NumberUtils'
 import $ from 'jquery'
 import Model from '../utils/Model'
-import compose, { withCurrentUser } from '../../utils/compose'
+import compose, {withCurrentUser} from '../../utils/compose'
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
@@ -35,12 +35,12 @@ const IdentityLink = createReactClass({
   timer: null,
 
   getInitialState() {
-    return { user: null }
+    return {user: null}
   },
 
   _load() {
     return $.get('/users/' + this.props.to.username + '/follow.json', user => {
-      return this.setState({ user })
+      return this.setState({user})
     })
   },
 
@@ -51,7 +51,7 @@ const IdentityLink = createReactClass({
       '/users/' + this.props.to.username + '/follow.json',
       {},
       user => {
-        return this.setState({ user })
+        return this.setState({user})
       }
     )
     return e.preventDefault()
@@ -88,7 +88,7 @@ const IdentityLink = createReactClass({
       isYou,
       mutual,
       nameColor
-    const { user } = this.state
+    const {user} = this.state
     const to = StringUtils.indifferentKeys(this.props.to)
 
     if (this.props.avatarUrl) {
@@ -110,7 +110,7 @@ const IdentityLink = createReactClass({
     }
 
     if (user) {
-      ;({ followed, follower } = user)
+      ;({followed, follower} = user)
 
       mutual = followed || follower
       followColor = followed ? '#ffca28' : 'rgba(255, 255, 255, 0.7)'
@@ -131,7 +131,7 @@ const IdentityLink = createReactClass({
               marginTop: '3px',
             }}
           >
-            By: <Link to={'/' + to.username}>{user.name}</Link>
+            By: <Link href={'/' + to.username}>{user.name}</Link>
           </div>
         )
       }
@@ -140,7 +140,7 @@ const IdentityLink = createReactClass({
     return (
       <div
         className="identity-link-wrapper"
-        style={{ position: 'relative', display: 'inline-block' }}
+        style={{position: 'relative', display: 'inline-block'}}
       >
         <div
           className="identity-card card with-avatar z-depth-2 sp"
@@ -163,7 +163,7 @@ const IdentityLink = createReactClass({
               src={this.props.avatarUrl || to.avatarUrl}
               alt={this.props.name || to.name}
               className="avatar circle"
-              style={{ boxShadow: imgShadow }}
+              style={{boxShadow: imgShadow}}
               height={48}
               width={48}
             />
@@ -174,7 +174,7 @@ const IdentityLink = createReactClass({
               <a
                 href="#"
                 className="secondary-content right"
-                style={{ color: followColor, display: 'block' }}
+                style={{color: followColor, display: 'block'}}
                 onClick={this._handleFollowClick}
               >
                 <Icon>person_add</Icon>
@@ -182,7 +182,7 @@ const IdentityLink = createReactClass({
             )}
 
             <Link
-              to={this.props.link || to.link}
+              href={this.props.link || to.link}
               style={{
                 display: 'block',
                 whiteSpace: 'nowrap',
@@ -195,11 +195,11 @@ const IdentityLink = createReactClass({
 
             <div
               className="smaller"
-              style={{ lineHeight: '1rem', verticalAlign: 'middle' }}
+              style={{lineHeight: '1rem', verticalAlign: 'middle'}}
             >
               {byline}
 
-              <span style={{ color: 'rgba(255,255,255,0.6)' }}>
+              <span style={{color: 'rgba(255,255,255,0.6)'}}>
                 @{to.username}
               </span>
 
@@ -268,10 +268,10 @@ const IdentityLink = createReactClass({
         </div>
 
         <Link
-          to={this.props.link || to.link}
+          href={this.props.link || to.link}
           onMouseOver={this._handleLinkMouseover}
           onMouseOut={this._handleLinkMouseout}
-          style={{ color: nameColor }}
+          style={{color: nameColor}}
         >
           {this.props.name || to.name}
         </Link>

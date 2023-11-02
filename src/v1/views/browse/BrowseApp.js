@@ -13,7 +13,7 @@ import Main from '../../shared/Main'
 import Section from '../../../components/Shared/Section'
 import Loading from '../../shared/Loading'
 import Button from '../../shared/material/Button'
-import {Link} from 'react-router-dom'
+import Link from 'next/link'
 import $ from 'jquery'
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
@@ -161,7 +161,7 @@ export default BrowseApp = createReactClass({
                 {this.props.location.query.q && (
                   <span>
                     {' '}
-                    | <Link to="/browse">Clear Search</Link>
+                    | <Link href="/browse">Clear Search</Link>
                   </span>
                 )}
               </div>

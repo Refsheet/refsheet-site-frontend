@@ -1,3 +1,5 @@
+'use client';
+
 import Section from "../Shared/Section";
 import Main from "../Shared/Main";
 import React from "react";

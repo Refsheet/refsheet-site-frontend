@@ -1,3 +1,5 @@
+'use client';
+
 import React, {useEffect, useState} from 'react'
 
 // Providers
@@ -27,7 +29,7 @@ import ConfigContext from './ConfigContext'
 // Children
 import {withErrorBoundary} from '../Shared/ErrorBoundary'
 import {StaticRouter, BrowserRouter} from "react-router-dom";
-import {useRouter} from "next/router";
+import {NextRouter, useRouter} from "next/router";
 import {GetSessionQuery} from '../../../@types/schema'
 import getSession from 'graph/queries/GetSession.graphql'
 import {setCurrentUser} from 'actions'
@@ -80,16 +82,6 @@ const buildState = (eagerLoad, state) => {
 const buildStore = (state) => {
     const store = createStore(rootReducer, state)
     return store
-}
-
-const Router: React.FC<React.PropsWithChildren> = ({children}) => {
-    if (typeof window === 'undefined') {
-        const router = useRouter();
-        console.log("STATIC -------> " + router.asPath);
-        return <StaticRouter location={router.asPath}>{children}</StaticRouter>;
-    } else {
-        return <BrowserRouter>{children}</BrowserRouter>;
-    }
 }
 
 const App: React.FC<React.PropsWithChildren<IAppProps & IAppServerProps>> = ({children, session, ...props}) => {
@@ -149,7 +141,7 @@ const App: React.FC<React.PropsWithChildren<IAppProps & IAppServerProps>> = ({ch
             .then((body) => body.json())
             .then((session) => {
                 console.log({fetch: "Pre", session});
-                store.dispatch(setCurrentUser(session.current_user));
+                // store.dispatch(setCurrentUser(session.current_user));
             });
 
         // client.query<GetSessionQuery>({
@@ -169,9 +161,7 @@ const App: React.FC<React.PropsWithChildren<IAppProps & IAppServerProps>> = ({ch
                     <ReduxProvider store={store}>
                         <DropzoneProvider>
                             <DndProvider backend={Backend}>
-                                <Router>
-                                    {children}
-                                </Router>
+                                {children}
                             </DndProvider>
                         </DropzoneProvider>
                     </ReduxProvider>

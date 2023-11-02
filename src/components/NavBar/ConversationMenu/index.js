@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import DropdownLink from '../DropdownLink'
 import NotificationItem from '../Dropdown/NotificationItem'
-import {Link} from 'react-router-dom'
+import Link from 'next/link'
 import Scrollbars from 'components/Shared/Scrollbars'
 import subscription from './subscription'
 import {formatBody} from 'components/Chat/ConversationMessage'
@@ -84,7 +84,7 @@ class ConversationMenu extends Component {
             </ul>
           </Scrollbars>
           {false && (
-            <Link to="/conversations" className="cap-link">
+            <Link href="/conversations" className="cap-link">
               New Conversation
             </Link>
           )}

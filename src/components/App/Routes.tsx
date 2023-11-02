@@ -29,8 +29,6 @@ const staticPaths = ['privacy', 'terms', 'support'].map(path => (
 const Routes = () => (
     <Switch>
         {/** Forums **/}
-        <Redirect from={'/v2/forums/:id'} to={'/forums/:id'}/>
-        <Redirect from={'/v2/forums'} to={'/forums'}/>
         <Route path={'/forums/:id'} component={Forum}/>
         <Route path={'/forums'} component={Forums}/>
 
@@ -56,7 +54,7 @@ const Routes = () => (
             render={props2 => (
                 <Views.Account.Layout {...props2}>
                     <Switch>
-                        <Redirect exact from="/account" to="/account/settings"/>
+                        <Redirect exact from="/account" href="/account/settings"/>
                         <Route
                             path="/account/settings"
                             title="Account Settings"

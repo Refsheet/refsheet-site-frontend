@@ -6,7 +6,7 @@
 import React from 'react'
 import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
@@ -23,24 +23,24 @@ const CharacterLinkCard = function (props) {
   return (
     <div
       className="character-link-card"
-      style={{ backgroundColor: colorData['imageBackground'] || '#000000' }}
+      style={{backgroundColor: colorData['imageBackground'] || '#000000'}}
     >
-      <Link to={props.link} className="image">
-        <img src={props.profileImageUrl} />
+      <Link href={props.link} className="image">
+        <img src={props.profileImageUrl}/>
       </Link>
 
       <div
         className="details"
-        style={{ backgroundColor: colorData['cardBackground'] }}
+        style={{backgroundColor: colorData['cardBackground']}}
       >
         <Link
-          to={props.link}
+          href={props.link}
           className="name"
-          style={{ color: colorData['accent1'] }}
+          style={{color: colorData['accent1']}}
         >
           {props.name}
         </Link>
-        <div className="species" style={{ color: colorData['text'] }}>
+        <div className="species" style={{color: colorData['text']}}>
           {props.species || 'Unknown Species'}
         </div>
       </div>

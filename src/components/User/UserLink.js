@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { createIdentity, identitySourceType } from '../../utils/IdentityUtils'
+import React, {Component} from 'react'
+import {createIdentity, identitySourceType} from '../../utils/IdentityUtils'
 
 import IdentityLink from 'v1/shared/identity_link'
 
@@ -11,7 +11,7 @@ class UserLink extends Component {
   }
 
   render() {
-    const { user } = this.props
+    const {user} = this.props
     const identity = createIdentity(this.props)
 
     const legacyUser = {
@@ -26,7 +26,7 @@ class UserLink extends Component {
     }
 
     // noinspection JSUnresolvedVariable
-    return <IdentityLink to={legacyUser} />
+    return <IdentityLink href={legacyUser}/>
   }
 }
 

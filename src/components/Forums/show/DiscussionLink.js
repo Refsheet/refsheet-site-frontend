@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import { Trans, withTranslation } from 'react-i18next'
+import {Trans, withTranslation} from 'react-i18next'
 import UserLink from '../../Shared/UserLink'
 import Moment from 'react-moment'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import UserAvatar from '../../User/UserAvatar'
 import c from 'classnames'
 import KarmaCounter from '../shared/KarmaCounter'
@@ -12,7 +12,7 @@ import compose from '../../../utils/compose'
 
 class DiscussionLink extends Component {
   render() {
-    const { forum, discussion, slim } = this.props
+    const {forum, discussion, slim} = this.props
 
     return (
       <div
@@ -40,7 +40,7 @@ class DiscussionLink extends Component {
             )}
 
             <Link
-              to={`/forums/${forum.slug}/${discussion.slug}`}
+              href={`/forums/${forum.slug}/${discussion.slug}`}
               title={discussion.topic}
             >
               {discussion.topic}
@@ -50,11 +50,11 @@ class DiscussionLink extends Component {
           {!slim && (
             <div className={'forum-post--preview'}>{discussion.preview}</div>
           )}
-          {!slim && <PostMeta forum={forum} discussion={discussion} />}
+          {!slim && <PostMeta forum={forum} discussion={discussion}/>}
         </div>
 
         <div className="forum-post--date">
-          <div className={c('user-summary', { 'padding-right--none': slim })}>
+          <div className={c('user-summary', {'padding-right--none': slim})}>
             {!slim && (
               <UserAvatar
                 user={discussion.user}

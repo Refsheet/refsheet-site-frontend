@@ -27,6 +27,7 @@ module.exports = {
   },
 
   output: 'standalone',
+  appDir: true,
 
   experimental: {
     images: {

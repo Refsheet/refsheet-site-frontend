@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import c from 'classnames'
-import {Link} from 'react-router-dom'
+import Link from 'next/link'
 import {timeDisplay} from 'components/Chat/ConversationMessage'
 import {Icon} from 'react-materialize'
 
@@ -113,7 +113,7 @@ const NotificationItem = props => {
         fullbody: floatTime,
       })}
     >
-      <Link to={link} onClick={click}>
+      <Link href={link} onClick={click}>
         {icon && <img src={icon} className="avatar"/>}
         <div className="body">
           <div className="message">

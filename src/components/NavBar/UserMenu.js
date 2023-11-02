@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import DropdownLink from './DropdownLink'
 import Restrict from '../Shared/Restrict'
-import { withTranslation } from 'react-i18next'
-import { connect } from 'react-redux'
-import { openNewCharacterModal } from '../../actions'
+import {withTranslation} from 'react-i18next'
+import {connect} from 'react-redux'
+import {openNewCharacterModal} from '../../actions'
 import compose from '../../utils/compose'
 
 class UserMenu extends Component {
@@ -44,7 +44,7 @@ class UserMenu extends Component {
           <li>
             <Link
               className="flex align-center"
-              to={'/' + user.username}
+              href={'/' + user.username}
               data-testid={'user-profile-link'}
             >
               <div className="no-grow">
@@ -54,7 +54,7 @@ class UserMenu extends Component {
               </div>
               <div className="flex-grow-1">
                 <span>{identity.name}</span>
-                <br />
+                <br/>
                 <span className="muted">@{user.username}</span>
               </div>
             </Link>
@@ -83,7 +83,7 @@ class UserMenu extends Component {
             </li>
           </Restrict>
 
-          <li className="divider" />
+          <li className="divider"/>
 
           <li>
             <a onClick={onNsfwClick} className={nsfwClassName}>
@@ -121,6 +121,6 @@ UserMenu.propTypes = {
 }
 
 export default compose(
-  connect(undefined, { openNewCharacterModal }),
+  connect(undefined, {openNewCharacterModal}),
   withTranslation('common')
 )(UserMenu)

@@ -1,18 +1,18 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import compose from 'utils/compose'
-import { withTranslation } from 'react-i18next'
-import Stats, { Stat } from '../../Shared/Stats'
-import { Icon, Dropdown } from 'react-materialize'
-import PostTags, { DropdownTag, Tag } from '../shared/PostTags'
-import { Link } from 'react-router-dom'
+import {withTranslation} from 'react-i18next'
+import Stats, {Stat} from '../../Shared/Stats'
+import {Icon, Dropdown} from 'react-materialize'
+import PostTags, {DropdownTag, Tag} from '../shared/PostTags'
+import Link from 'next/link'
 import Restrict from '../../Shared/Restrict'
 
 import Advertisement from 'v1/shared/advertisement'
 
 class About extends Component {
   render() {
-    const { forum, t } = this.props
+    const {forum, t} = this.props
 
     return (
       <div className={'container container-flex'}>
@@ -34,10 +34,10 @@ class About extends Component {
 
               <PostTags>
                 {forum.system_owned && (
-                  <Tag icon={'shield'} label={'System Group'} />
+                  <Tag icon={'shield'} label={'System Group'}/>
                 )}
               </PostTags>
-              <br className={'clearfix'} />
+              <br className={'clearfix'}/>
             </div>
 
             <div className={'forum-description margin-bottom--large'}>
@@ -61,7 +61,7 @@ class About extends Component {
                   This group has no specific rules. Remember, you should always
                   follow the website's rules regarding acceptable content and
                   behaviour. You can read more in the{' '}
-                  <Link to={'/terms'}>Terms and Conditions</Link> document.
+                  <Link href={'/terms'}>Terms and Conditions</Link> document.
                 </div>
               )}
             </div>
@@ -86,7 +86,7 @@ class About extends Component {
         </main>
 
         <aside className={'sidebar left-pad'}>
-          {typeof Advertisement != 'undefined' && <Advertisement />}
+          {typeof Advertisement != 'undefined' && <Advertisement/>}
         </aside>
       </div>
     )

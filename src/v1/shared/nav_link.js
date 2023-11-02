@@ -1,7 +1,7 @@
 import React from 'react'
 import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
-import {Link} from 'react-router-dom'
+import Link from 'next/link'
 import Icon from 'v1/shared/material/Icon'
 import * as ReactRouter from 'react-router'
 import {withRouter} from 'utils/withRouter'
@@ -80,7 +80,7 @@ const NavLink = createReactClass({
 
     return (
       <li className={classNames.join(' ')}>
-        <Link to={to} className={linkClassNames.join(' ')}>
+        <Link href={to} className={linkClassNames.join(' ')}>
           {this.props.icon && <Icon className="left">{this.props.icon}</Icon>}{' '}
           {this.props.text}
         </Link>

@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import compose from '../../../utils/compose'
-import { withTranslation } from 'react-i18next'
+import {withTranslation} from 'react-i18next'
 
-import { Redirect, Route, Switch } from 'react-router'
-import { NavLink } from 'react-router-dom'
-import { Icon } from 'react-materialize'
+import {Redirect, Route, Switch} from 'react-router'
+import {NavLink} from 'react-router-dom'
+import {Icon} from 'react-materialize'
 
 import Main from '../../Shared/Main'
 import Jumbotron from '../../Shared/Jumbotron'
@@ -16,7 +16,7 @@ import About from './About'
 import Members from './Members'
 import NewDiscussion from '../NewDiscussion'
 import SearchForm from './SearchForm'
-import { withQuery } from '../../../utils/RouteUtils'
+import {withQuery} from '../../../utils/RouteUtils'
 import Error from '../../Shared/Error'
 
 class View extends Component {
@@ -27,8 +27,8 @@ class View extends Component {
   }
 
   render() {
-    const { forum, t, query } = this.props
-    if (!forum) return <Error error={'Forum undefined!'} />
+    const {forum, t, query} = this.props
+    if (!forum) return <Error error={'Forum undefined!'}/>
 
     return (
       <Main
@@ -37,7 +37,7 @@ class View extends Component {
       >
         <div
           className={'forum-header z-depth-1'}
-          style={{ position: 'relative', zIndex: 1 }}
+          style={{position: 'relative', zIndex: 1}}
         >
           <Jumbotron short>
             <h1>{forum.name}</h1>
@@ -51,7 +51,7 @@ class View extends Component {
                   <li className={'tab'}>
                     <NavLink
                       activeClassName={'active'}
-                      to={`/forums/${forum.slug}/about`}
+                      href={`/forums/${forum.slug}/about`}
                     >
                       {t('forums.about', 'About & Rules')}
                     </NavLink>
@@ -65,7 +65,7 @@ class View extends Component {
                           ['about', 'members', 'edit'].indexOf(subPath) === -1
                         )
                       }}
-                      to={`/forums/${forum.slug}`}
+                      href={`/forums/${forum.slug}`}
                     >
                       {t('forums.posts', 'Posts')}
                     </NavLink>
@@ -73,7 +73,7 @@ class View extends Component {
                   <li className={'tab'}>
                     <NavLink
                       activeClassName={'active'}
-                      to={`/forums/${forum.slug}/members`}
+                      href={`/forums/${forum.slug}/members`}
                     >
                       {t('forums.members', 'Members')}
                     </NavLink>
@@ -81,7 +81,7 @@ class View extends Component {
                 </ul>
 
                 <div className={'action'}>
-                  <SearchForm forum={forum} query={query.q} />
+                  <SearchForm forum={forum} query={query.q}/>
                 </div>
               </div>
             </div>
@@ -91,34 +91,34 @@ class View extends Component {
         <Switch>
           <Redirect
             from={'/v2/forums/:forumId/about'}
-            to={'/forums/:forumId/about'}
+            href={'/forums/:forumId/about'}
           />
           <Route path={'/forums/:forumId/about'}>
-            <About forum={forum} />
+            <About forum={forum}/>
           </Route>
           <Redirect
             from={'/v2/forums/:forumId/members'}
-            to={'/forums/:forumId/members'}
+            href={'/forums/:forumId/members'}
           />
           <Route path={'/forums/:forumId/members'}>
-            <Members forum={forum} />
+            <Members forum={forum}/>
           </Route>
           <Redirect
             from={'/v2/forums/:forumId/post'}
-            to={'/forums/:forumId/post'}
+            href={'/forums/:forumId/post'}
           />
           <Route path={'/forums/:forumId/post'}>
-            <NewDiscussion forum={forum} />
+            <NewDiscussion forum={forum}/>
           </Route>
           <Redirect
             from={'/v2/forums/:forumId/:discussionId'}
-            to={'/forums/:forumId/:discussionId'}
+            href={'/forums/:forumId/:discussionId'}
           />
           <Route path={'/forums/:forumId/:discussionId'}>
-            <Discussion forum={forum} />
+            <Discussion forum={forum}/>
           </Route>
           <Route>
-            <Discussions forum={forum} query={query.q} />
+            <Discussions forum={forum} query={query.q}/>
           </Route>
         </Switch>
       </Main>

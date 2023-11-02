@@ -39,7 +39,7 @@ export default Character = createReactClass({
           >
             <div className="character-details" style={{minHeight: 'initial'}}>
               <h3 className="name margin-top--none">
-                <IdentityLink to={identity}/>
+                <IdentityLink href={identity}/>
               </h3>
 
               <div className="description">

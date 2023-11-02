@@ -7,7 +7,6 @@ import {withCurrentUser} from '../../../../utils/compose'
 import NewCharacterForm from '../../../../v1/views/characters/NewCharacterForm'
 import {connect} from 'react-redux'
 import {closeNewCharacterModal} from '../../../../actions'
-import {withRouter} from 'utils/withRouter'
 import Flash from '../../../../utils/Flash'
 
 class NewCharacterModal extends Component {
@@ -64,5 +63,4 @@ export default compose(
   withTranslation('common'),
   connect(mapStateToProps, mapDispatchToProps),
   withCurrentUser(),
-  withRouter
 )(NewCharacterModal)

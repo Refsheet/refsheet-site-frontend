@@ -1,6 +1,5 @@
 import React from 'react'
 import NavLink from 'components/Shared/NavLink'
-import {withRouter} from 'utils/withRouter'
 import {withTranslation} from 'react-i18next'
 import Restrict from '../Shared/Restrict'
 
@@ -52,4 +51,4 @@ const SiteNav = ({t}) => {
 
 SiteNav.propTypes = {}
 
-export default withTranslation('common')(withRouter(SiteNav))
+export default withTranslation('common')(SiteNav)

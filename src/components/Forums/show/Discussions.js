@@ -5,7 +5,7 @@ import DiscussionLink from './DiscussionLink'
 import {Query} from '@apollo/client/react/components'
 //graphql.macro
 import Error from '../../Shared/Error'
-import {Link} from 'react-router-dom'
+import Link from 'next/link'
 import PostTags, {DropdownTag} from '../shared/PostTags'
 import Restrict from '../../Shared/Restrict'
 import c from 'classnames'
@@ -111,7 +111,7 @@ class Discussions extends Component {
                 hideAll={!forum.is_member}
               >
                 <Link
-                  to={`/forums/${forum.slug}/post`}
+                  href={`/forums/${forum.slug}/post`}
                   className={'btn btn-small'}
                 >
                   {t('forums.new_discussion', 'New Discussion')}

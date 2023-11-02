@@ -7,7 +7,7 @@
 import React from 'react'
 import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
@@ -38,14 +38,14 @@ export default ForumPost = createReactClass({
         <div
           key={post.id}
           className="card-panel z-depth-0"
-          style={{ backgroundColor: '#1a1a1a', padding: '1rem' }}
+          style={{backgroundColor: '#1a1a1a', padding: '1rem'}}
         >
           <div className="muted right">
-            <Link to={'/forums/' + post.forum.id}>{post.forum.name}</Link>
+            <Link href={'/forums/' + post.forum.id}>{post.forum.name}</Link>
           </div>
 
           <h3 className="margin-top--none margin-bottom--medium">
-            <Link to={post.path || ''}>RE: {post.thread.topic}</Link>
+            <Link href={post.path || ''}>RE: {post.thread.topic}</Link>
           </h3>
           {post.content_text.substr(0, 120)}
         </div>

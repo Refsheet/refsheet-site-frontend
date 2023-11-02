@@ -1,7 +1,7 @@
 import React from 'react'
 import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
@@ -14,12 +14,12 @@ import { Link } from 'react-router-dom'
 let LightboxCharacterBox
 export default LightboxCharacterBox = props => (
   <div className="character-box">
-    <Link to={props.character.link} className="character-avatar">
-      <img src={props.character.profile_image_url} />
+    <Link href={props.character.link} className="character-avatar">
+      <img src={props.character.profile_image_url}/>
     </Link>
 
     <div className="character-details">
-      <Link to={props.character.link} className="name">
+      <Link href={props.character.link} className="name">
         {props.character.name}
       </Link>
       <div className="date">

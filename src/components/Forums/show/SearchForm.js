@@ -1,10 +1,11 @@
+'use client';
+
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {withTranslation} from 'react-i18next'
 import compose from 'utils/compose'
 import {H1} from 'components/Styled/Headings'
 import styled from 'styled-components'
-import {withRouter} from 'utils/withRouter'
 import FormUtils from '../../../utils/FormUtils'
 import LinkUtils from '../../../utils/LinkUtils'
 
@@ -125,5 +126,4 @@ const withStyle = c => styled(c)`
 export default compose(
   withTranslation('common'),
   withStyle,
-  withRouter
 )(SearchForm)

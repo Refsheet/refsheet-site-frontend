@@ -8,7 +8,7 @@ import React from 'react'
 import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
 import Views from 'v1/views/_views'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
@@ -45,7 +45,7 @@ export default UserCard = createReactClass({
     }
 
     return (
-      <div className="user-summary" style={{ height: '2.5rem' }}>
+      <div className="user-summary" style={{height: '2.5rem'}}>
         <img
           src={this.props.user.avatar_url}
           alt={this.props.user.username}
@@ -69,18 +69,18 @@ export default UserCard = createReactClass({
           )}
 
           <Link
-            to={this.props.user.link}
+            href={this.props.user.link}
             className={nameClassNames.join(' ')}
-            style={{ lineHeight: nameLh, color: nameColor }}
+            style={{lineHeight: nameLh, color: nameColor}}
           >
             {this.props.user.name}
           </Link>
 
-          <div className="truncate lighter" style={{ lineHeight: '1.5rem' }}>
+          <div className="truncate lighter" style={{lineHeight: '1.5rem'}}>
             @{this.props.user.username}
           </div>
         </div>
-        <div className="clearfix" />
+        <div className="clearfix"/>
       </div>
     )
   },

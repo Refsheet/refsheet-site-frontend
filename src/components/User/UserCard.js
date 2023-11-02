@@ -1,9 +1,9 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 
 import Follow from 'v1/views/user/Follow'
 
-const UserCard = ({ smaller, user, onFollow }) => {
+const UserCard = ({smaller, user, onFollow}) => {
   let imgShadow, nameColor
   const nameClassNames = ['strong truncate']
 
@@ -22,7 +22,7 @@ const UserCard = ({ smaller, user, onFollow }) => {
   }
 
   return (
-    <div className="user-summary" style={{ height: '2.5rem' }}>
+    <div className="user-summary" style={{height: '2.5rem'}}>
       <img
         src={user.avatar_url}
         alt={user.username}
@@ -46,18 +46,18 @@ const UserCard = ({ smaller, user, onFollow }) => {
         )}
 
         <Link
-          to={`/${user.username}`}
+          href={`/${user.username}`}
           className={nameClassNames.join(' ')}
-          style={{ lineHeight: nameLh, color: nameColor }}
+          style={{lineHeight: nameLh, color: nameColor}}
         >
           {user.name}
         </Link>
 
-        <div className="truncate lighter" style={{ lineHeight: '1.5rem' }}>
+        <div className="truncate lighter" style={{lineHeight: '1.5rem'}}>
           @{user.username}
         </div>
       </div>
-      <div className="clearfix" />
+      <div className="clearfix"/>
     </div>
   )
 }

@@ -9,7 +9,7 @@ import React from 'react'
 import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
 import Views from 'v1/views/_views'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import Icon from '../../../shared/material/Icon'
 import DateFormat from '../../../shared/utils/DateFormat'
 import IdentityLink from 'v1/shared/identity_link'
@@ -36,7 +36,7 @@ export default Card = createReactClass({
   },
 
   getInitialState() {
-    return { is_read: this.props.is_read }
+    return {is_read: this.props.is_read}
   },
 
   _getIdentity() {
@@ -87,12 +87,12 @@ export default Card = createReactClass({
 
       case 'Notifications::ImageComment':
         return (
-          <Views.Account.Activities.Comment comments={this._getActionables()} />
+          <Views.Account.Activities.Comment comments={this._getActionables()}/>
         )
 
       case 'Notifications::ForumReply':
         return (
-          <Views.Account.Activities.ForumPost posts={this._getActionables()} />
+          <Views.Account.Activities.ForumPost posts={this._getActionables()}/>
         )
 
       case 'Notifications::ForumTag':
@@ -107,8 +107,8 @@ export default Card = createReactClass({
         return (
           <div className="red-text padding-bottom--medium">
             {this.props.title} (Unsupported notification card)
-            <br />
-            <Link to={this.props.href}>{this.props.message}</Link>
+            <br/>
+            <Link href={this.props.href}>{this.props.message}</Link>
           </div>
         )
     }
@@ -116,7 +116,7 @@ export default Card = createReactClass({
 
   UNSAFE_componentWillReceiveProps(newProps) {
     if (newProps.is_read !== this.state.is_read) {
-      return this.setState({ is_read: newProps.is_read })
+      return this.setState({is_read: newProps.is_read})
     }
   },
 
@@ -170,20 +170,20 @@ export default Card = createReactClass({
           className="avatar circle"
           src={identity.avatarUrl}
           alt={identity.name}
-          style={{ boxShadow: imgShadow }}
+          style={{boxShadow: imgShadow}}
         />
 
         <div className="card-content padding-bottom--none">
           <div className="muted right">
-            <DateFormat timestamp={this.props.timestamp} fuzzy />
+            <DateFormat timestamp={this.props.timestamp} fuzzy/>
             {unreadLink}
           </div>
-          <IdentityLink to={identity} />
+          <IdentityLink href={identity}/>
 
           {this._getActionable()}
         </div>
 
-        <div className="clearfix" />
+        <div className="clearfix"/>
       </div>
     )
   },

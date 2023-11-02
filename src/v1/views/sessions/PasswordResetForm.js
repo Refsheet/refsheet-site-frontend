@@ -15,7 +15,7 @@ import Input from '../../shared/forms/Input'
 import Submit from '../../shared/forms/Submit'
 import Row from 'v1/shared/material/Row'
 import Column from 'v1/shared/material/Column'
-import {Link} from 'react-router-dom'
+import Link from 'next/link'
 import $ from 'jquery'
 import dynamic from 'next/dynamic'
 
@@ -81,7 +81,7 @@ const PasswordResetForm = createReactClass({
       <Row className="actions">
         <Column>
           <Link
-            to="/login"
+            href="/login"
             className="btn btn-secondary z-depth-0 modal-close waves-effect waves-light"
             onClick={this._handleSignInClick}
           >

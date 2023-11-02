@@ -11,7 +11,7 @@ import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
 import UserCharacterGroupLink from './groups/UserCharacterGroupLink'
 import UserCharacterGroupTrash from './groups/UserCharacterGroupTrash'
-import {Link} from 'react-router-dom'
+import Link from 'next/link'
 import UserCharacterGroupForm from './groups/UserCharacterGroupForm'
 
 import $ from 'jquery'
@@ -122,7 +122,7 @@ export default Groups = createReactClass({
             className={'all fixed'}
           >
             <i className="material-icons left folder">person</i>
-            <Link to={this.props.userLink} className="name">
+            <Link href={this.props.userLink} className="name">
               All Characters
             </Link>
             <span className="count">

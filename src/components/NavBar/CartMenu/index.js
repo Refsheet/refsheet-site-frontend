@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import DropdownLink from '../DropdownLink'
 import NotificationItem from '../Dropdown/NotificationItem'
-import {Link} from 'react-router-dom'
+import Link from 'next/link'
 import Scrollbars from 'components/Shared/Scrollbars'
 // import subscription from './subscription'
 
@@ -51,7 +51,7 @@ const CartMenu = ({
         <Scrollbars>
           <ul>{renderContent()}</ul>
         </Scrollbars>
-        <Link to="/cart" className="cap-link">
+        <Link href="/cart" className="cap-link">
           See More...
         </Link>
       </div>

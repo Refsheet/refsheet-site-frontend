@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import {Link} from 'react-router-dom'
+import Link from 'next/link'
 //graphql.macro
 import compose, {withCurrentUser, withMutations} from '../../../utils/compose'
 import subscribe from '../../../services/buildSubscriptionRender'
@@ -39,7 +39,7 @@ class Comments extends Component {
           <Moment fromNow unix withTitle className={'muted right'}>
             {comment.created_at}
           </Moment>
-          <Link to={`/${comment.user.username}`}>{comment.user.name}</Link>
+          <Link href={`/${comment.user.username}`}>{comment.user.name}</Link>
           <div className={'comment-content'}>{comment.comment}</div>
         </div>
       </div>
