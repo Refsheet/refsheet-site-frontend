@@ -1,7 +1,7 @@
 'use client';
 
-import {useRouter} from "next/router";
 import Section from "../Shared/Section";
+import {useSearchParams} from "next/navigation";
 import Main from "../Shared/Main";
 import React from "react";
 import {extractRoles, IUserRoles} from "../../utils/UserUtils";
@@ -9,7 +9,6 @@ import UserProfileHeader from "./UserProfileHeader";
 import {GetUserProfileQuery} from "../../../@types/schema";
 import CharacterGroupList from "./CharacterGroupList";
 import type {CharacterGroup} from "./types";
-import useCurrentCharacterGroup from "./useCurrentCharacterGroup";
 
 export interface IUserViewProps {
     characterGroups: readonly CharacterGroup[];
@@ -18,8 +17,11 @@ export interface IUserViewProps {
 }
 
 const UserView: React.FC<IUserViewProps> = ({characterGroups, numCharacters, user}) => {
+    const searchParams = useSearchParams();
+    const currentCharacterGroupSlug = searchParams.get("group");
+
+    if (!user) return null;
     const roles: IUserRoles = extractRoles(user);
-    const currentCharacterGroupId = useCurrentCharacterGroup();
 
     return (
         <Main title={[user.name, 'Users']}>
@@ -37,7 +39,7 @@ const UserView: React.FC<IUserViewProps> = ({characterGroups, numCharacters, use
                 <div className="sidebar-container">
                     <div className="sidebar">
                         <CharacterGroupList
-                            currentGroupId={currentCharacterGroupId}
+                            currentGroupId={currentCharacterGroupSlug}
                             groups={characterGroups}
                             numCharacters={numCharacters}
                             username={user.username || "deleted-" + user.id}
@@ -45,7 +47,7 @@ const UserView: React.FC<IUserViewProps> = ({characterGroups, numCharacters, use
                     </div>
 
                     <div className="main-content">
-                        {currentCharacterGroupId ? `(characters from ${currentCharacterGroupId})` : "(all characters)"}
+                        {currentCharacterGroupSlug ? `(characters from ${currentCharacterGroupSlug})` : "(all characters)"}
                     </div>
                 </div>
             </Section>

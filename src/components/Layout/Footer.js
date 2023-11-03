@@ -35,6 +35,7 @@ class _Footer extends Component {
 
   setLocale(locale) {
     return e => {
+      console.log("Locale.");
       e.preventDefault()
       i18n
         .changeLanguage(locale)
@@ -52,6 +53,18 @@ class _Footer extends Component {
   }
 
   render() {
+    const languages = [
+      {code: 'en', name: "English"},
+      {code: 'es', name: "Español"},
+      {code: 'pt', name: "Português"},
+      {code: 'ru', name: "Русский"},
+      {code: 'fr', name: "Français"},
+      {code: 'de', name: "Deutsch"},
+      {code: 'ja', name: "日本語"},
+    ];
+
+    console.log({"Locale": this.state.locale});
+
     return (
       <footer className={'page-footer ' + this.props.className}>
         <div className="container margin-top--large">
@@ -152,61 +165,19 @@ class _Footer extends Component {
 
             <Col s={12} m={1}>
               <ul className="right-align margin-top--none">
-                <li>
-                  <a
-                    className={c(
-                      this.state.locale === 'en' ? 'white-text' : 'grey-text'
-                    )}
-                    href="/?locale=en"
-                    onClick={this.setLocale('en').bind(this)}
-                  >
-                    English
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className={c(
-                      this.state.locale === 'es' ? 'white-text' : 'grey-text'
-                    )}
-                    href="/?locale=es"
-                    onClick={this.setLocale('es').bind(this)}
-                  >
-                    Español
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className={c(
-                      this.state.locale === 'pt' ? 'white-text' : 'grey-text'
-                    )}
-                    href="/?locale=pt"
-                    onClick={this.setLocale('pt').bind(this)}
-                  >
-                    Português
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className={c(
-                      this.state.locale === 'ru' ? 'white-text' : 'grey-text'
-                    )}
-                    href="/?locale=ru"
-                    onClick={this.setLocale('ru').bind(this)}
-                  >
-                    Русский
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className={c(
-                      this.state.locale === 'ja' ? 'white-text' : 'grey-text'
-                    )}
-                    href="/?locale=ja"
-                    onClick={this.setLocale('ja').bind(this)}
-                  >
-                    日本語
-                  </a>
-                </li>
+                {languages.map(({code, name}) =>
+                  <li key={code}>
+                    <a
+                      className={c(
+                        this.state.locale === code ? 'white-text' : 'grey-text'
+                      )}
+                      href={`/?locale=${code}`}
+                      onClick={this.setLocale(code).bind(this)}
+                    >
+                      {name}
+                    </a>
+                  </li>
+                )}
               </ul>
             </Col>
           </Row>

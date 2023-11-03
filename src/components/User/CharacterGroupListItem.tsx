@@ -26,14 +26,22 @@ interface ComponentProps {
     username: string;
 }
 
-function CharacterGroupListItem({ count, icon, id, isActive, isDraggable, label, username }: ComponentProps): React.ReactElement {
+function CharacterGroupListItem({
+                                    count,
+                                    icon,
+                                    id,
+                                    isActive,
+                                    isDraggable,
+                                    label,
+                                    username
+                                }: ComponentProps): React.ReactElement {
     return (
         <li className={classnames("character-group-list-item", isDraggable ? "sortable-link" : "fixed", isActive && "active")}>
             <i className="material-icons left folder">
                 {isActive ? ICON_DEFINITIONS[icon].active : ICON_DEFINITIONS[icon].inactive}
             </i>
-            <Link href={id ? `/${username}#${id}` : `/${username}`} passHref>
-                <a className="name">{label}</a>
+            <Link href={id ? `/${username}?group=${id}` : `/${username}`} passHref>
+                {label}
             </Link>
             <span className="count">
                 {NumberUtils.format(count)}

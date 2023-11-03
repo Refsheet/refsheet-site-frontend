@@ -20,6 +20,7 @@ query getUserProfile($username: String!) {
 
         character_groups {
             id
+            slug
             name
             characters_count
         }

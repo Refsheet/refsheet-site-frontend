@@ -36,7 +36,9 @@ function isLegacyRole(roles: TUserRoles): roles is IUserRolesLegacy {
     return ("is_admin" in roles) || ("is_patron" in roles) || ("is_supporter" in roles) || ("is_moderator" in roles);
 }
 
-export function extractRoles(roles: TUserRoles): IUserRoles {
+export function extractRoles(roles?: TUserRoles): IUserRoles {
+    if (!roles) return {};
+
     if (isLegacyRole(roles)) {
         return {
             admin: roles.is_admin,

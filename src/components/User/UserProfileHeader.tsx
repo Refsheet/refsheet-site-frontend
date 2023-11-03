@@ -5,7 +5,7 @@ import UserActionButtons from "./UserActionButtons";
 import {IUserRoles} from "../../utils/UserUtils";
 import {useCurrentUser} from "../../hooks/useCurrentUser";
 import PatreonLogo from "assets/images/third_party/patreon_logo.png";
-import Image from 'next/future/image';
+import Image from 'next/image';
 import ReactMarkdown from "react-markdown";
 
 export interface IUserProfileHeaderProps {
