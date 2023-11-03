@@ -1,20 +1,25 @@
 'use client';
 
+import {useRouter} from "next/router";
 import Section from "../Shared/Section";
 import Main from "../Shared/Main";
 import React from "react";
 import {extractRoles, IUserRoles} from "../../utils/UserUtils";
 import UserProfileHeader from "./UserProfileHeader";
 import {GetUserProfileQuery} from "../../../@types/schema";
-import Link from "next/link";
-import NumberUtils from "../../v1/utils/NumberUtils";
+import CharacterGroupList from "./CharacterGroupList";
+import type {CharacterGroup} from "./types";
+import useCurrentCharacterGroup from "./useCurrentCharacterGroup";
 
 export interface IUserViewProps {
+    characterGroups: readonly CharacterGroup[];
+    numCharacters: number;
     user: NonNullable<GetUserProfileQuery['getUser']>
 }
 
-const UserView: React.FC<IUserViewProps> = ({user}) => {
+const UserView: React.FC<IUserViewProps> = ({characterGroups, numCharacters, user}) => {
     const roles: IUserRoles = extractRoles(user);
+    const currentCharacterGroupId = useCurrentCharacterGroup();
 
     return (
         <Main title={[user.name, 'Users']}>
@@ -31,27 +36,16 @@ const UserView: React.FC<IUserViewProps> = ({user}) => {
             <Section container className="margin-top--large padding-bottom--none">
                 <div className="sidebar-container">
                     <div className="sidebar">
-                        <ul className="character-group-list margin-bottom--none">
-                            <li className="all fixed">
-                                <i className="material-icons left folder">person</i>
-                                <Link href={`/${user.username}`} className="name">All Characters</Link>
-                                <span className="count">
-                                    {NumberUtils.format(999999)}
-                                </span>
-                            </li>
-
-                            {user.character_groups?.map((group) => group && (
-                                <li className="something">
-                                    <i className="material-icons left folder">folder</i>
-                                    <Link href={`/${user.username}#${group.name}`}>{group.name}</Link>
-                                    <span className="count">{NumberUtils.format(group.characters_count)}</span>
-                                </li>
-                            ))}
-                        </ul>
+                        <CharacterGroupList
+                            currentGroupId={currentCharacterGroupId}
+                            groups={characterGroups}
+                            numCharacters={numCharacters}
+                            username={user.username || "deleted-" + user.id}
+                        />
                     </div>
 
                     <div className="main-content">
-                        ( characters )
+                        {currentCharacterGroupId ? `(characters from ${currentCharacterGroupId})` : "(all characters)"}
                     </div>
                 </div>
             </Section>

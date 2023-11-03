@@ -24,7 +24,12 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "paths": {
+      "@refsheet/*": [
+        "./*"
+      ]
+    }
   },
   "include": [
     "next-env.d.ts",

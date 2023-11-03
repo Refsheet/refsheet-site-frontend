@@ -1,26 +1,22 @@
 import React from 'react'
-import {GetServerSideProps} from "next";
-import {ParsedUrlQuery} from "querystring";
 import client from "services/ApplicationService";
 import getUserProfile from '../../src/graph/queries/getUserProfile.graphql';
-import NotFound from "components/Shared/views/NotFound";
 import UserView from 'components/User/View';
 import {GetUserProfileQuery} from "../../@types/schema";
-
-export interface UserProfileParams extends ParsedUrlQuery {
-    username: string;
-}
+import type {GsspParams, GsspResult} from '@refsheet/types';
+import type {CharacterGroup} from "@refsheet/components/User/types";
 
 export interface UserProfileProps {
-    user: GetUserProfileQuery['getUser'];
+    characterGroups: readonly CharacterGroup[];
+    numCharacters: number;
+    user: NonNullable<GetUserProfileQuery['getUser']>;
 }
 
-const UserProfile: React.FC<UserProfileProps> = ({user}) => {
-    if (!user) return <NotFound/>;
-    return <UserView user={user}/>;
+const UserProfile: React.FC<UserProfileProps> = ({characterGroups, numCharacters, user}) => {
+    return <UserView characterGroups={characterGroups} numCharacters={numCharacters} user={user}/>;
 }
 
-export const getServerSideProps: GetServerSideProps<UserProfileProps, UserProfileParams> = async ({params}) => {
+export async function getServerSideProps({params}: GsspParams<{ username: string }>): GsspResult<UserProfileProps> {
     const {data} = await client.query<GetUserProfileQuery>({
         query: getUserProfile,
         variables: {username: params?.username}
@@ -32,6 +28,18 @@ export const getServerSideProps: GetServerSideProps<UserProfileProps, UserProfil
 
     return {
         props: {
+            characterGroups: data.getUser.character_groups?.map((group): CharacterGroup | null => {
+                if (!group || !group.id) {
+                    return null;
+                }
+
+                return {
+                    id: group.id,
+                    characterCount: group.characters_count,
+                    name: group.name,
+                }
+            }).filter((x): x is CharacterGroup => !!x) ?? [],
+            numCharacters: parseInt(data.getUser.characters_count ?? "0", 10),
             user: data.getUser
         }
     }
