@@ -372,6 +372,6 @@ const Wrapped = props => {
 
 export default compose(
   withErrorBoundary,
-  connect(mapStateToProps, mapDispatchToProps, null, {pure: false}),
+  connect(mapStateToProps, mapDispatchToProps, null),
   withTranslation('common')
 )(Wrapped)

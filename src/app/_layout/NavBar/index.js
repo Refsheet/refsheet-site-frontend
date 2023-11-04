@@ -200,13 +200,9 @@ const mapDispatchToProps = {
   setNsfwMode,
 }
 
-const options = {
-  pure: false,
-}
-
 export default compose(
   withErrorBoundary,
-  connect(mapStateToProps, mapDispatchToProps, null, options)
+  connect(mapStateToProps, mapDispatchToProps, null)
 )(styled(NavBar)`
   nav {
     background-color: ${props => props.theme.cardBackground};

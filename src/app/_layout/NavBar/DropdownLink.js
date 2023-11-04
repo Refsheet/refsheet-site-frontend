@@ -33,6 +33,7 @@ class DropdownLink extends Component {
 
   handleMenuToggle(e) {
     e.preventDefault()
+    console.log("Menu Toggle!!!");
     this.props.onClick && this.props.onClick()
     const visible = !this.state.visible
     this.setState({visible}, () => {
