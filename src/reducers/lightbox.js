@@ -1,8 +1,10 @@
-import { createReducer } from 'reducers'
-import * as Actions from 'actions'
+import {createReducer} from 'reducers'
+
+export const OPEN_LIGHTBOX = "OPEN_LIGHTBOX";
+export const CLOSE_LIGHTBOX = "CLOSE_LIGHTBOX";
 
 const handlers = {
-  [Actions.OPEN_LIGHTBOX]: (state, action) => {
+  [OPEN_LIGHTBOX]: (state, action) => {
     let gallery = []
 
     if (action.gallery) {
@@ -15,7 +17,7 @@ const handlers = {
       gallery,
     }
   },
-  [Actions.CLOSE_LIGHTBOX]: state => ({ ...state, mediaId: null }),
+  [CLOSE_LIGHTBOX]: state => ({...state, mediaId: null}),
 }
 
 export default createReducer({}, handlers)

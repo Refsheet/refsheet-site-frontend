@@ -1,7 +1,0 @@
-#import '../../../graph/fragments/ConversationsFields.graphql'
-
-subscription subscribeToConversations {
-    newConversation {
-        ...ConversationsFields
-    }
-}

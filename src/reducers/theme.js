@@ -1,20 +1,22 @@
-import { createReducer } from 'reducers'
-import * as Actions from 'actions'
+import {createReducer} from 'reducers'
+
+export const SET_THEME_NAME = "SET_THEME_NAME";
+export const SET_THEME_SETTINGS = "SET_THEME_SETTINGS";
 
 const handlers = {
-  [Actions.SET_THEME_NAME]: (state, action) => {
+  [SET_THEME_NAME]: (state, action) => {
     return {
       ...state,
       name: action.name,
     }
   },
-  [Actions.SET_THEME_SETTINGS]: (state, action) => {
+  [SET_THEME_SETTINGS]: (state, action) => {
     const newState = {
       ...state,
       ...action.settings,
     }
 
-    console.log({ newState })
+    console.log({newState})
     return newState
   },
 }

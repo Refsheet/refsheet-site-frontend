@@ -1,3 +1,5 @@
+'use client';
+
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import Filmstrip from './Filmstrip'
@@ -13,15 +15,15 @@ import {withTranslation} from 'react-i18next'
 import compose from '../../utils/compose'
 import dynamic from 'next/dynamic'
 
-let Materialize = null;
-if (typeof window !== 'undefined') {
-  Materialize = require('materialize-css');
-}
-
 
 import Icon from 'v1/shared/material/Icon'
 import Modal from 'v1/shared/Modal'
 import {withErrorBoundary} from '../Shared/ErrorBoundary'
+
+let Materialize = null;
+if (typeof window !== 'undefined') {
+  Materialize = require('materialize-css');
+}
 
 const getCharacterForUpload = require('./getCharacterForUpload.graphql');
 

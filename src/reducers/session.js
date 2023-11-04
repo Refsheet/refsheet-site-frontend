@@ -1,5 +1,4 @@
 import {createReducer} from 'reducers'
-import * as Actions from 'actions'
 import SessionService from '../services/SessionService'
 
 const identityFromUser = user => {
@@ -11,13 +10,17 @@ const identityFromUser = user => {
   }
 }
 
+export const SET_CURRENT_USER = "SET_CURRENT_USER";
+export const SET_NSFW_MODE = "SET_NSFW_MODE";
+export const SET_IDENTITY = "SET_IDENTITY";
+
 const handlers = {
-  [Actions.SET_CURRENT_USER]: (state, action) => ({
+  [SET_CURRENT_USER]: (state, action) => ({
     ...state,
     currentUser: action.user,
     identity: identityFromUser(action.user),
   }),
-  [Actions.SET_NSFW_MODE]: (state, action) => {
+  [SET_NSFW_MODE]: (state, action) => {
     // TODO FIXME HACK: This should use a styled modal and not a browser confirm. Also, it shouldn't do a server call, but hey whatever.
     if (
       action.nsfwOk &&
@@ -33,7 +36,7 @@ const handlers = {
     SessionService.set({nsfwOk: action.nsfwOk}).then()
     return {...state, nsfwOk: action.nsfwOk}
   },
-  [Actions.SET_IDENTITY]: (state, action) => {
+  [SET_IDENTITY]: (state, action) => {
     let identity
 
     if (action.identity) {

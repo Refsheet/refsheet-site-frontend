@@ -1,4 +1,6 @@
-import React, { Component } from 'react'
+'use client';
+
+import React, {Component} from 'react'
 import * as Sentry from '@sentry/browser'
 
 export default class ErrorBoundary extends Component {
@@ -31,7 +33,7 @@ export default class ErrorBoundary extends Component {
   }
 
   renderError() {
-    const { eventId, error } = this.state
+    const {eventId, error} = this.state
     const errorString = (
       <div>
         <h1>You've encountered a bug.</h1>

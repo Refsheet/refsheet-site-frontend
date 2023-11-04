@@ -1,9 +1,11 @@
 import {createReducer} from 'reducers'
-import * as Actions from 'actions'
 import defaultState from 'components/App/defaultState.json'
 
+export const OPEN_CONVERSATION = "OPEN_CONVERSATION";
+export const CLOSE_CONVERSATION = "CLOSE_CONVERSATION";
+
 const handlers = {
-  [Actions.OPEN_CONVERSATION]: (state, action) => {
+  [OPEN_CONVERSATION]: (state, action) => {
     const openConversations = state.openConversations.filter(
       i => i !== action.conversationId
     )
@@ -14,7 +16,7 @@ const handlers = {
     }
   },
 
-  [Actions.CLOSE_CONVERSATION]: (state, action) => {
+  [CLOSE_CONVERSATION]: (state, action) => {
     const openConversations = state.openConversations.filter(
       i =>
         i !== action.conversationId &&

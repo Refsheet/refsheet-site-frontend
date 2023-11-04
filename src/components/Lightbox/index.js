@@ -1,3 +1,5 @@
+'use client';
+
 import React, {Component} from 'react'
 import {closeLightbox, openLightbox} from '../../actions'
 import {connect} from 'react-redux'

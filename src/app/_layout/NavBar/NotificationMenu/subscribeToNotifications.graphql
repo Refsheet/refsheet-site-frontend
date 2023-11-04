@@ -1,0 +1,7 @@
+#import '@refsheet/graph/fragments/NotificationsFields.graphql'
+
+subscription subscribeToNotifications {
+    newNotification {
+        ...NotificationsFields
+    }
+}

@@ -1,0 +1,10 @@
+#import '@refsheet/graph/fragments/NotificationsFields.graphql'
+
+query getNotifications {
+    getNotifications {
+        unreadCount
+        notifications {
+            ...NotificationsFields
+        }
+    }
+}

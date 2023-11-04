@@ -1,22 +1,24 @@
+'use client';
+
 import React from 'react'
 import PropTypes from 'prop-types'
 import Conversation from './Conversation'
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 import NewConversation from './NewConversation'
-import { closeConversation, openConversation } from '../../actions'
-import { withErrorBoundary } from '../Shared/ErrorBoundary'
+import {closeConversation, openConversation} from '../../actions'
+import {withErrorBoundary} from '../Shared/ErrorBoundary'
 import compose from '../../utils/compose'
 
 const ConversationTray = ({
-  openConversations,
-  openConversation,
-  closeConversation,
-}) => {
+                            openConversations,
+                            openConversation,
+                            closeConversation,
+                          }) => {
   const newConversation = conversation => {
     closeConversation()
 
     if (typeof conversation !== 'undefined') {
-      const { id } = conversation
+      const {id} = conversation
       openConversation(id)
     }
   }
@@ -29,7 +31,7 @@ const ConversationTray = ({
     if (typeof id !== 'undefined' && !id.username) {
       return (
         <div key={id} className="chat-popout">
-          <Conversation id={id} onClose={console.log} />
+          <Conversation id={id} onClose={console.log}/>
         </div>
       )
     }
@@ -37,7 +39,7 @@ const ConversationTray = ({
     return (
       <div key={'new-conversation'} className={'chat-popout unread'}>
         <div className={'chat-title'}>New Conversation</div>
-        <div className={'message-list chat-list empty'} />
+        <div className={'message-list chat-list empty'}/>
         <NewConversation
           onClose={newConversation}
           onConversationStart={newConversation}
@@ -56,7 +58,7 @@ const ConversationTray = ({
 
 ConversationTray.propTypes = {}
 
-const mapStateToProps = ({ conversations }, props) => ({
+const mapStateToProps = ({conversations}, props) => ({
   ...props,
   openConversations: conversations.openConversations,
 })

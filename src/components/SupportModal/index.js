@@ -1,10 +1,12 @@
-import React, { Component } from 'react'
+'use client';
+
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import compose, { withCurrentUser } from 'utils/compose'
-import { withTranslation } from 'react-i18next'
+import {connect} from 'react-redux'
+import compose, {withCurrentUser} from 'utils/compose'
+import {withTranslation} from 'react-i18next'
 import Modal from '../Styled/Modal'
-import { closeSupportModal } from '../../actions'
+import {closeSupportModal} from '../../actions'
 
 class SupportModal extends Component {
   handleClose() {
@@ -12,7 +14,7 @@ class SupportModal extends Component {
   }
 
   render() {
-    const { open, currentUser, t } = this.props
+    const {open, currentUser, t} = this.props
 
     if (!open) {
       return null
@@ -38,7 +40,7 @@ SupportModal.propTypes = {
   }),
 }
 
-const mapStateToProps = ({ modals: { support } }, props) => ({
+const mapStateToProps = ({modals: {support}}, props) => ({
   ...props,
   ...support,
 })
