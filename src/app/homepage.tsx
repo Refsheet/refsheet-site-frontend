@@ -2,13 +2,13 @@
 
 import React from 'react'
 import Link from 'next/link'
-import Main from '@refsheet//components/Shared/Main'
-import Jumbotron from '@refsheet//components/Shared/Jumbotron'
+import Main from '@refsheet/components/Shared/Main'
+import Jumbotron from '@refsheet/components/Shared/Jumbotron'
 
-import Typewriter from '@refsheet//assets/images/unsplash/typewriter.jpg'
+import Typewriter from '@refsheet/assets/images/unsplash/typewriter.jpg'
 import {Trans, useTranslation} from "react-i18next";
-import {useCurrentUser} from "@refsheet//hooks/useCurrentUser";
-import Views from '@refsheet//v1/views/_views'
+import {useCurrentUser} from "@refsheet/hooks/useCurrentUser";
+import Views from '@refsheet/v1/views/_views'
 
 const Home: React.FC = () => {
     const currentUser = useCurrentUser();

@@ -4,7 +4,7 @@ import RichText from "../Shared/RichText";
 import UserActionButtons from "./UserActionButtons";
 import {IUserRoles} from "@refsheet/utils/UserUtils";
 import {useCurrentUser} from "@refsheet/hooks/useCurrentUser";
-import PatreonLogo from "@refsheet//assets/images/third_party/patreon_logo.png";
+import PatreonLogo from "@refsheet/assets/images/third_party/patreon_logo.png";
 import Image from 'next/image';
 import ReactMarkdown from "react-markdown";
 

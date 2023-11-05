@@ -12,15 +12,15 @@ import {DndProvider} from 'react-dnd'
 
 // Initialization
 import {createStore} from 'redux'
-import rootReducer from '@refsheet//reducers'
-import client, {host} from '@refsheet//services/ApplicationService'
+import rootReducer from '@refsheet/reducers'
+import client, {host} from '@refsheet/services/ApplicationService'
 import {createBrowserHistory} from 'history'
 import i18n from '@refsheet/services/i18n.js'
 
 // Utilities
 import ReactGA from 'react-ga'
 import WindowAlert from '@refsheet/utils/WindowAlert'
-import StringUtils from '@refsheet//utils/StringUtils'
+import StringUtils from '@refsheet/utils/StringUtils'
 
 // Configuration
 import defaultState from './defaultState.json'
@@ -31,8 +31,8 @@ import {withErrorBoundary} from '../Shared/ErrorBoundary'
 import {StaticRouter, BrowserRouter} from "react-router-dom";
 import {NextRouter, useRouter} from "next/router";
 import {GetSessionQuery} from '../../../@types/schema'
-import getSession from '@refsheet//graph/queries/GetSession.graphql'
-import {setCurrentUser} from '@refsheet//actions'
+import getSession from '@refsheet/graph/queries/GetSession.graphql'
+import {setCurrentUser} from '@refsheet/actions'
 
 
 export interface IAppServerProps {
