@@ -1,10 +1,10 @@
 import React from 'react'
-import client from "@refsheet/services/ApplicationService";
-import getUserProfile from '../../graph/queries/getUserProfile.graphql';
-import UserView from '@refsheet/components/User/View';
+import client from "services/ApplicationService";
+import getUserProfile from '@refsheet/graph/queries/getUserProfile.graphql';
+import UserView from 'components/User/View';
 import {GetUserProfileQuery} from "../../../@types/schema";
-import type {CharacterGroup} from "@refsheet/components/User/types";
-import NotFound from "@refsheet/components/Shared/views/NotFound";
+import type {CharacterGroup} from "components/User/types";
+import NotFound from "components/Shared/views/NotFound";
 
 export interface UserProfileProps {
     characterGroups: readonly CharacterGroup[];

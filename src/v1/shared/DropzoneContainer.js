@@ -2,7 +2,7 @@ import React from 'react'
 import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
 
-import Spinner from 'v1/shared/material/Spinner'
+import Spinner from '@refsheet/v1/shared/material/Spinner'
 import $ from 'jquery'
 import dynamic from 'next/dynamic'
 

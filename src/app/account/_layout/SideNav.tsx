@@ -1,5 +1,5 @@
-import NavLink from "@refsheet/v1/shared/nav_link";
-import Restrict from "@refsheet/components/Shared/Restrict";
+import NavLink from "@refsheet//v1/shared/nav_link";
+import Restrict from "@refsheet//components/Shared/Restrict";
 import React from "react";
 
 export default function SideNav() {

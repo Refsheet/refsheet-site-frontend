@@ -4,13 +4,13 @@ import Main from '../../shared/Main'
 import Form from '../../shared/forms/Form'
 import Input from '../../shared/forms/Input'
 import Submit from '../../shared/forms/Submit'
-import Flash from '../../../utils/Flash'
+import Flash from '@refsheet/utils/Flash'
 import Link from 'next/link'
-import compose, {withConfig, withCurrentUser} from '../../../utils/compose'
+import compose, {withConfig, withCurrentUser} from '@refsheet/utils/compose'
 import ReCAPTCHA from 'react-google-recaptcha'
 import {useHistory} from 'react-router'
 import {Checkbox, Row, Col, Select} from 'react-materialize'
-import {useSearchParams} from "../../../hooks/useSearchParams";
+import {useSearchParams} from "@refsheet/hooks/useSearchParams";
 
 export interface IRegisterViewProps {
     setCurrentUser: (any) => void;

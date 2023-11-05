@@ -1,7 +1,7 @@
 import React from 'react'
 import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
-import StringUtils from '../../utils/StringUtils'
+import StringUtils from '@refsheet/utils/StringUtils'
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
@@ -54,7 +54,7 @@ export default IdentityAvatar = createReactClass({
         src={this.props.avatarUrl || to.avatarUrl}
         alt={this.props.name || to.name}
         className="avatar circle"
-        style={{ boxShadow: imgShadow }}
+        style={{boxShadow: imgShadow}}
         height={48}
         width={48}
       />

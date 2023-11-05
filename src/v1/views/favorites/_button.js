@@ -9,7 +9,7 @@ import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
 
 import $ from 'jquery'
-import compose, { withCurrentUser } from '../../../utils/compose'
+import compose, {withCurrentUser} from '@refsheet/utils/compose'
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
@@ -44,11 +44,11 @@ const FavoriteButton = createReactClass({
   },
 
   getInitialState() {
-    return { isFavorite: this._isFavFromProps(this.props) }
+    return {isFavorite: this._isFavFromProps(this.props)}
   },
 
   UNSAFE_componentWillReceiveProps(newProps) {
-    return this.setState({ isFavorite: this._isFavFromProps(this.props) })
+    return this.setState({isFavorite: this._isFavFromProps(this.props)})
   },
 
   _handleFavorite(e) {
@@ -56,7 +56,7 @@ const FavoriteButton = createReactClass({
 
     if (!this.state.isFavorite) {
       $.post(path + '/favorites', data => {
-        this.setState({ isFavorite: true })
+        this.setState({isFavorite: true})
         if (this.props.onChange) {
           this.props.onChange(true)
         }
@@ -69,7 +69,7 @@ const FavoriteButton = createReactClass({
         url: path + '/favorite',
         type: 'DELETE',
         success: data => {
-          this.setState({ isFavorite: false })
+          this.setState({isFavorite: false})
           if (this.props.onChange) {
             this.props.onChange(false)
           }

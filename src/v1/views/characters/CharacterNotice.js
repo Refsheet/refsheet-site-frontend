@@ -15,7 +15,7 @@ if (typeof window !== 'undefined') {
 }
 
 import $ from 'jquery'
-import compose, {withCurrentUser} from '../../../utils/compose'
+import compose, {withCurrentUser} from '@refsheet/utils/compose'
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*

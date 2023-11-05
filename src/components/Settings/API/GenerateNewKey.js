@@ -4,9 +4,9 @@ import Button from '../../Styled/Button'
 import {Switch} from 'react-materialize'
 import PropTypes from 'prop-types'
 import InputRow from '../shared/InputRow'
-import {withMutations} from '../../../utils/compose'
+import {withMutations} from '@refsheet/utils/compose'
 //graphql.macro
-import Flash from '../../../utils/Flash'
+import Flash from '@refsheet/utils/Flash'
 
 const createApiKey = require('./createApiKey.graphql');
 const getApiKeys = require('./getApiKeys.graphql');

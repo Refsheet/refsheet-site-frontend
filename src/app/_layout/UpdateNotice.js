@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import { host } from 'services/ApplicationService'
-import compose from '../../utils/compose'
-import { withTranslation } from 'react-i18next'
+import React, {Component} from 'react'
+import {host} from '@refsheet/services/ApplicationService'
+import compose from '@refsheet/utils/compose'
+import {withTranslation} from 'react-i18next'
 
 class UpdateNotice extends Component {
   constructor(props) {
@@ -31,7 +31,7 @@ class UpdateNotice extends Component {
         console.log('Version is: ' + data.version)
         if (data.version !== window.Refsheet.version) {
           console.log('Update is available!')
-          _this.setState({ updateAvailable: true })
+          _this.setState({updateAvailable: true})
         }
       })
       .catch(console.error)
@@ -42,7 +42,7 @@ class UpdateNotice extends Component {
       return (
         <div
           className={'update-notice card-panel cyan darken-4 white-text'}
-          style={{ position: 'fixed', bottom: '1rem', left: '1rem' }}
+          style={{position: 'fixed', bottom: '1rem', left: '1rem'}}
         >
           {this.props.t(
             'system.update_available',

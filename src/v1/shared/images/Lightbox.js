@@ -3,13 +3,8 @@ import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
 import dynamic from 'next/dynamic'
 
-let Materialize = null;
-if (typeof window !== 'undefined') {
-  Materialize = require('materialize-css');
-}
-
 import LightboxCharacterBox from './LightboxCharacterBox'
-import RichText from '../../../components/Shared/RichText'
+import RichText from '@refsheet/components/Shared/RichText'
 import Tabs from '../tabs/Tabs'
 import Tab from '../tabs/Tab'
 import Form from '../forms/Form'
@@ -25,12 +20,17 @@ import Favorites from 'v1/views/favorites'
 import Spinner from 'v1/shared/material/Spinner'
 
 import $ from 'jquery'
-import ObjectPath from '../../utils/ObjectPath'
-import StateUtils from '../../utils/StateUtils'
-import HashUtils from '../../utils/HashUtils'
-import compose, {withCurrentUser} from '../../../utils/compose'
-import {withRouter} from 'utils/withRouter'
+import ObjectPath from '@refsheet/utils/ObjectPath'
+import StateUtils from '@refsheet/utils/StateUtils'
+import HashUtils from '@refsheet/utils/HashUtils'
+import compose, {withCurrentUser} from '@refsheet/utils/compose'
+import {withRouter} from '@refsheet/utils/withRouter'
 import Column from "../material/Column";
+
+let Materialize = null;
+if (typeof window !== 'undefined') {
+  Materialize = require('materialize-css');
+}
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.

@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {Icon, Dropdown, Divider} from 'react-materialize'
-import {closeLightbox} from '../../actions'
-import compose, {withMutations} from '../../utils/compose'
+import {closeLightbox} from '@refsheet/actions'
+import compose, {withMutations} from '@refsheet/utils/compose'
 import {withTranslation} from 'react-i18next'
 import {connect} from 'react-redux'
 //graphql.macro
@@ -12,11 +12,11 @@ if (typeof window !== 'undefined') {
 }
 
 import Modal from 'v1/shared/Modal'
-import CacheUtils from '../../utils/CacheUtils'
+import CacheUtils from '@refsheet/utils/CacheUtils'
 
 const deleteMedia = require('./deleteMedia.graphql');
 
-const gcp = require('../../graph/queries/getCharacterProfile.graphql');
+const gcp = require('@refsheet/graph/queries/getCharacterProfile.graphql');
 
 class ImageActions extends Component {
   constructor(props) {

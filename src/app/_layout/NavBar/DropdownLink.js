@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import c from 'classnames'
-import {format as f} from 'utils/NumberUtils'
+import {format as f} from '@refsheet/utils/NumberUtils'
 import {Icon} from 'react-materialize'
 
 class DropdownLink extends Component {

@@ -1,7 +1,7 @@
 'use client';
 
 import React, {Component} from 'react'
-import {closeLightbox, openLightbox} from '../../actions'
+import {closeLightbox, openLightbox} from '@refsheet/actions'
 import {connect} from 'react-redux'
 import {Icon} from 'react-materialize'
 import {Query} from '@apollo/client/react/components'
@@ -9,7 +9,7 @@ import {Query} from '@apollo/client/react/components'
 import View from './View'
 import Silhouette from './Silhouette'
 import {Error, Loading} from './Status'
-import compose from '../../utils/compose'
+import compose from '@refsheet/utils/compose'
 import {withErrorBoundary} from '../Shared/ErrorBoundary'
 
 const getMedia = require('./getMedia.graphql');

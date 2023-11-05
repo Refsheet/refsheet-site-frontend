@@ -5,6 +5,10 @@ module.exports = {
       fs: false
     }
 
+    if (typeof config.resolve.modules === 'undefined') {
+      config.resolve.modules = []
+    }
+
     config.resolve.modules.push('./public')
 
     config.module.rules.push({
@@ -27,11 +31,9 @@ module.exports = {
   },
 
   output: 'standalone',
-  appDir: true,
 
-  experimental: {
-    images: {
-      allowFutureImage: true
-    }
-  }
+  i18n: {
+    locales: ['en', 'es', 'pt', 'ru', 'ja', 'de', 'fr'],
+    defaultLocale: 'en',
+  },
 }

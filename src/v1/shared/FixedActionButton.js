@@ -2,7 +2,7 @@ import React from 'react'
 import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
 
-import ActionButton from 'v1/shared/ActionButton'
+import ActionButton from '@refsheet/v1/shared/ActionButton'
 import dynamic from 'next/dynamic'
 
 let Materialize = null;

@@ -1,10 +1,10 @@
 import React from 'react';
-import * as UserUtils from "../../utils/UserUtils";
+import * as UserUtils from "@refsheet/utils/UserUtils";
 import RichText from "../Shared/RichText";
 import UserActionButtons from "./UserActionButtons";
-import {IUserRoles} from "../../utils/UserUtils";
-import {useCurrentUser} from "../../hooks/useCurrentUser";
-import PatreonLogo from "assets/images/third_party/patreon_logo.png";
+import {IUserRoles} from "@refsheet/utils/UserUtils";
+import {useCurrentUser} from "@refsheet/hooks/useCurrentUser";
+import PatreonLogo from "@refsheet//assets/images/third_party/patreon_logo.png";
 import Image from 'next/image';
 import ReactMarkdown from "react-markdown";
 

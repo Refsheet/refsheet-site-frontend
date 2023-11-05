@@ -33,7 +33,7 @@ fetch(`${API_HOST}/graphql`, {
       }
     });
 
-    fs.writeFile('./src/config/possibleTypes.json', JSON.stringify(possibleTypes, undefined, 2), err => {
+    fs.writeFile('./@refsheet/config/possibleTypes.json', JSON.stringify(possibleTypes, undefined, 2), err => {
       if (err) {
         console.error('Error writing possibleTypes.json', err);
       } else {

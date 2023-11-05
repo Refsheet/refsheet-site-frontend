@@ -2,9 +2,9 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {withTranslation} from 'react-i18next'
 //graphql.macro
-import compose, {withMutations} from '../../../utils/compose'
+import compose, {withMutations} from '@refsheet/utils/compose'
 //import M from 'materialize-css'
-import Icon from 'v1/shared/material/Icon'
+import Icon from '@refsheet/v1/shared/material/Icon'
 
 const gdQuery = require('../getDiscussions.graphql');
 

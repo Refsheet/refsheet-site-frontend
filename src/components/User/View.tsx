@@ -4,7 +4,7 @@ import Section from "../Shared/Section";
 import {useSearchParams} from "next/navigation";
 import Main from "../Shared/Main";
 import React from "react";
-import {extractRoles, IUserRoles} from "../../utils/UserUtils";
+import {extractRoles, IUserRoles} from "@refsheet/utils/UserUtils";
 import UserProfileHeader from "./UserProfileHeader";
 import {GetUserProfileQuery} from "../../../@types/schema";
 import CharacterGroupList from "./CharacterGroupList";

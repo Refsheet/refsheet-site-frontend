@@ -19,7 +19,7 @@ import Input from '../../../shared/forms/Input'
 import Submit from '../../../shared/forms/Submit'
 import Attribute from '../../../shared/attributes/attribute'
 import AttributeTable from '../../../shared/attributes/attribute_table'
-import compose, {withCurrentUser} from '../../../../utils/compose'
+import compose, {withCurrentUser} from '@refsheet/utils/compose'
 
 class Support extends React.Component {
   constructor(props, context) {

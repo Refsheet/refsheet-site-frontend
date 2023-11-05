@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, {withTheme} from 'styled-components'
 import {Style} from 'react-style-tag'
-import Main from 'components/Shared/Main'
+import Main from '@refsheet/components/Shared/Main'
 
 const GlobalStyle = ({theme}) => (
   <Style>{`

@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import compose from '../../../utils/compose'
+import compose from '@refsheet/utils/compose'
 import {withTranslation} from 'react-i18next'
 import DiscussionLink from './DiscussionLink'
 import {Query} from '@apollo/client/react/components'
@@ -10,9 +10,9 @@ import PostTags, {DropdownTag} from '../shared/PostTags'
 import Restrict from '../../Shared/Restrict'
 import c from 'classnames'
 
-import NumberUtils from 'v1/utils/NumberUtils'
+import NumberUtils from '@refsheet/v1/utils/NumberUtils'
 
-import Advertisement from 'v1/shared/advertisement'
+import Advertisement from '@refsheet/v1/shared/advertisement'
 import Loading from '../../Shared/views/Loading'
 
 const getDiscussions = require('../getDiscussions.graphql');

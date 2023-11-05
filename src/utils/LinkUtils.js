@@ -1,8 +1,8 @@
-import routes from '../config/routes'
+import routes from '@refsheet/config/routes'
 import qs from 'querystring'
 
 function buildHelpers(object) {
-  let obj = { ...object }
+  let obj = {...object}
 
   Object.keys(obj).map(key => {
     const match = key.match(/^(\w+)Route$/i)

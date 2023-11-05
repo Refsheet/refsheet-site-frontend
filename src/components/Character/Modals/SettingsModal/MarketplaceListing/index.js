@@ -1,6 +1,6 @@
 import React from 'react'
-import { withCurrentUser } from '../../../../../utils/compose'
-import { restrict } from '../../../../Shared/Restrict'
+import {withCurrentUser} from '@refsheet/utils/compose'
+import {restrict} from '../../../../Shared/Restrict'
 
 /**
  #  id                 :integer          not null, primary key
@@ -22,10 +22,10 @@ import { restrict } from '../../../../Shared/Restrict'
  * @returns {JSX.Element}
  * @constructor
  */
-const MarketplaceListing = ({ currentUser, character }) => {
-  if (restrict({ currentUser, patron: true })) {
-    const { marketplace_listing } = character
-    console.log({ marketplace_listing })
+const MarketplaceListing = ({currentUser, character}) => {
+  if (restrict({currentUser, patron: true})) {
+    const {marketplace_listing} = character
+    console.log({marketplace_listing})
 
     return <div>{JSON.stringify(marketplace_listing)}</div>
   } else {

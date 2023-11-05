@@ -9,7 +9,7 @@ import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
 
 import $ from 'jquery'
-import Model from '../../../../utils/Model'
+import Model from '@refsheet/utils/Model'
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*

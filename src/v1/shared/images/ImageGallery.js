@@ -2,11 +2,11 @@ import React from 'react'
 import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
 
-import Spinner from 'v1/shared/material/Spinner'
-import {V1GalleryImage} from 'v1/shared/images/GalleryImage'
-import GalleryFeature from 'v1/shared/images/GalleryFeature'
+import Spinner from '@refsheet/v1/shared/material/Spinner'
+import {V1GalleryImage} from '@refsheet/v1/shared/images/GalleryImage'
+import GalleryFeature from '@refsheet/v1/shared/images/GalleryFeature'
 
-import ArrayUtils from 'v1/utils/ArrayUtils'
+import ArrayUtils from '@refsheet/v1/utils/ArrayUtils'
 import dynamic from 'next/dynamic'
 
 let Materialize = null;
@@ -15,7 +15,7 @@ if (typeof window !== 'undefined') {
 }
 
 import $ from 'jquery'
-import StateUtils from 'v1/utils/StateUtils'
+import StateUtils from '@refsheet/v1/utils/StateUtils'
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.

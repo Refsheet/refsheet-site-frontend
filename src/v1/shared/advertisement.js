@@ -1,8 +1,8 @@
 import React from 'react'
 import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
-import StateUtils from 'v1/utils/StateUtils'
-import GoogleAd from '../../components/Shared/GoogleAd'
+import StateUtils from '@refsheet/v1/utils/StateUtils'
+import GoogleAd from '@refsheet/components/Shared/GoogleAd'
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.

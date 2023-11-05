@@ -8,8 +8,8 @@ import React from 'react'
 import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
 import Attribute from '../../shared/attributes/attribute'
-import AttributeTable from 'v1/shared/attributes/attribute_table'
-import Model from '../../utils/Model'
+import AttributeTable from '@refsheet/v1/shared/attributes/attribute_table'
+import Model from '@refsheet/utils/Model'
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
@@ -30,7 +30,7 @@ export default Attributes = createReactClass({
   _handleAttributeUpdate(attr, complete, error) {
     return Model.post(
       this.props.characterPath + '/attributes',
-      { custom_attributes: attr },
+      {custom_attributes: attr},
       data => {
         this.props.onChange(data)
         if (complete) {

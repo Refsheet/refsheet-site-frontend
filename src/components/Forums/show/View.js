@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import compose from '../../../utils/compose'
+import compose from '@refsheet/utils/compose'
 import {withTranslation} from 'react-i18next'
 
 import {Redirect, Route, Switch} from 'react-router'
@@ -16,7 +16,7 @@ import About from './About'
 import Members from './Members'
 import NewDiscussion from '../NewDiscussion'
 import SearchForm from './SearchForm'
-import {withQuery} from '../../../utils/RouteUtils'
+import {withQuery} from '@refsheet/utils/RouteUtils'
 import Error from '../../Shared/Error'
 
 class View extends Component {

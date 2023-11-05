@@ -23,7 +23,7 @@ import {graphql} from '@apollo/client/react/hoc'
 import {connect} from 'react-redux'
 import Loading from '../Shared/views/Loading'
 
-const getCharacterProfile = require('../../graph/queries/getCharacterProfile.graphql');
+const getCharacterProfile = require('@refsheet/graph/queries/getCharacterProfile.graphql');
 console.log({getCharacterProfile})
 
 class Character extends Component {

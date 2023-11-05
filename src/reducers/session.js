@@ -1,5 +1,5 @@
-import {createReducer} from 'reducers'
-import SessionService from '../services/SessionService'
+import {createReducer} from '@refsheet/reducers/index'
+import SessionService from '@refsheet/services/SessionService'
 
 const identityFromUser = user => {
   if (!user) return null

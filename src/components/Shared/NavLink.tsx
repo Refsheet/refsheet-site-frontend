@@ -1,32 +1,25 @@
-import {useRouter} from 'next/navigation'
-import PropTypes from 'prop-types'
+import {usePathname, useRouter} from 'next/navigation'
 import Link, {LinkProps} from 'next/link'
 import React, {Children} from 'react'
 
-export interface INavLinkProps {
+export interface INavLinkProps extends React.PropsWithChildren<LinkProps> {
     activeClassName?: string;
+    exact: boolean;
+    className: string;
 }
 
-const ActiveLink: React.FC<React.PropsWithChildren<INavLinkProps & LinkProps>> = ({
-                                                                                      children,
-                                                                                      activeClassName,
-                                                                                      ...props
-                                                                                  }) => {
+export default function NavLink({href, exact, children, activeClassName, ...props}: INavLinkProps) {
+    const pathname = usePathname();
+    const hrefStr = typeof href === 'string' ? href : href.pathname;
+    const isActive = hrefStr && (exact ? pathname === href : pathname.startsWith(hrefStr));
 
-    const className =
-        (false)
-            ? `active ${activeClassName}`.trim()
-            : ''
+    if (isActive) {
+        props.className += activeClassName;
+    }
 
     return (
-        <Link {...props} className={className}>
+        <Link href={href} {...props}>
             {children}
         </Link>
     )
 }
-
-ActiveLink.propTypes = {
-    activeClassName: PropTypes.string.isRequired,
-}
-
-export default ActiveLink

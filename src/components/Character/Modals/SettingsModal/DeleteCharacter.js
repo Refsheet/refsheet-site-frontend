@@ -4,14 +4,14 @@ import compose from 'utils/compose'
 import {Trans, withTranslation} from 'react-i18next'
 import {Row, Col, TextInput} from 'react-materialize'
 //graphql.macro
-import {withMutations} from '../../../../utils/compose'
-import {withRouter} from 'utils/withRouter'
+import {withMutations} from '@refsheet/utils/compose'
+import {withRouter} from '@refsheet/utils/withRouter'
+import LinkUtils from 'utils/LinkUtils'
 
 let M = null;
 if (typeof window !== 'undefined') {
   M = require('materialize-css');
 }
-import LinkUtils from 'utils/LinkUtils'
 
 const archiveCharacter = require('./archiveCharacter.graphql');
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import CharacterPolicy from './CharacterPolicy'
-import { withCurrentUser } from '../utils/compose'
+import {withCurrentUser} from '@refsheet/utils/compose'
 
 const policies = {
   Character: CharacterPolicy,
@@ -59,14 +59,14 @@ function authorize(
   if (!check) {
     console.error(
       'Policy ' + activePolicy.name + ' does not define action ' + action,
-      { user, action, object, activePolicy }
+      {user, action, object, activePolicy}
     )
     return false
   }
 
   console.debug(
     'Checking policy ' + activePolicy.name + ', action: ' + action,
-    { user, action, object, policyInstance, check }
+    {user, action, object, policyInstance, check}
   )
 
   return check.apply(policyInstance, args)
@@ -85,7 +85,7 @@ function authorize(
  * @constructor
  */
 const Authorized = withCurrentUser()(
-  ({ object, action, children, user, currentUser, policy, args }) => {
+  ({object, action, children, user, currentUser, policy, args}) => {
     if (authorize(object, user || currentUser, action, policy, args)) {
       return children
     } else {
@@ -100,9 +100,9 @@ function withAuthorize(Component) {
       return authorize(object, props.currentUser, action, policy, args)
     }
 
-    return <Component {...props} authorize={authorizeWithUser} />
+    return <Component {...props} authorize={authorizeWithUser}/>
   })
 }
 
-export { Authorized, withAuthorize }
+export {Authorized, withAuthorize}
 export default authorize

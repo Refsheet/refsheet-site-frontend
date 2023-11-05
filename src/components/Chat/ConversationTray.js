@@ -5,9 +5,9 @@ import PropTypes from 'prop-types'
 import Conversation from './Conversation'
 import {connect} from 'react-redux'
 import NewConversation from './NewConversation'
-import {closeConversation, openConversation} from '../../actions'
+import {closeConversation, openConversation} from '@refsheet/actions'
 import {withErrorBoundary} from '../Shared/ErrorBoundary'
-import compose from '../../utils/compose'
+import compose from '@refsheet/utils/compose'
 
 const ConversationTray = ({
                             openConversations,

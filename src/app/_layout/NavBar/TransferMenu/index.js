@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import DropdownLink from '../DropdownLink'
 import NotificationItem from '../Dropdown/NotificationItem'
 import Link from 'next/link'
-import Scrollbars from 'components/Shared/Scrollbars'
+import Scrollbars from '@refsheet/components/Shared/Scrollbars'
 // import subscription from './subscription'
 
 const TransferMenu = ({

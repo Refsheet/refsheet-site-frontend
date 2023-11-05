@@ -4,8 +4,8 @@ import {graphql} from '@apollo/client/react/hoc'
 //graphql.macro
 import Error from '../../Shared/Error'
 import View from './View'
-import compose from '../../../utils/compose'
-import {withRouter} from 'utils/withRouter'
+import compose from '@refsheet/utils/compose'
+import {withRouter} from '@refsheet/utils/withRouter'
 
 import Loading from 'v1/shared/Loading'
 

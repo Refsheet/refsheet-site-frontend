@@ -5,11 +5,11 @@ import PropTypes from 'prop-types'
 import {withTranslation} from 'react-i18next'
 import compose from 'utils/compose'
 import Modal from '../../../Styled/Modal'
-import {withCurrentUser} from '../../../../utils/compose'
-import NewCharacterForm from '../../../../v1/views/characters/NewCharacterForm'
+import {withCurrentUser} from '@refsheet/utils/compose'
+import NewCharacterForm from '@refsheet/v1/views/characters/NewCharacterForm'
 import {connect} from 'react-redux'
-import {closeNewCharacterModal} from '../../../../actions'
-import Flash from '../../../../utils/Flash'
+import {closeNewCharacterModal} from '@refsheet/actions'
+import Flash from '@refsheet/utils/Flash'
 
 class NewCharacterModal extends Component {
   constructor(props) {

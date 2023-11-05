@@ -8,7 +8,6 @@ export const metadata = {
     description: 'The Next evolution of Refsheet. Cheaper. Faster. More efficient.',
 }
 
-// todo: App Main goes here.
 export default function App({children}: React.PropsWithChildren) {
     return (
         <html lang="en">

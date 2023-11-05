@@ -12,7 +12,7 @@ if (typeof window !== 'undefined') {
   M = require('materialize-css');
 }
 
-import WindowAlert from '../../utils/WindowAlert'
+import WindowAlert from '@refsheet/utils/WindowAlert'
 
 import AttributeTable from 'v1/shared/attributes/attribute_table'
 import Attribute from 'v1/shared/attributes/attribute'

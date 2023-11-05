@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import c from 'classnames'
 import Link from 'next/link'
-import {timeDisplay} from 'components/Chat/ConversationMessage'
+import {timeDisplay} from '@refsheet/components/Chat/ConversationMessage'
 import {Icon} from 'react-materialize'
 
 /*

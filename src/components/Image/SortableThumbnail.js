@@ -2,11 +2,11 @@ import React, {Component, createRef, useEffect, useState} from 'react'
 import PropTypes from 'prop-types'
 import {DragPreviewImage, DragSource, DropTarget, useDrag, useDrop} from 'react-dnd'
 import Thumbnail from './Thumbnail'
-import compose from '../../utils/compose'
+import compose from '@refsheet/utils/compose'
 import {connect} from 'react-redux'
-import {disableDropzone, enableDropzone} from '../../actions'
+import {disableDropzone, enableDropzone} from '@refsheet/actions'
 import styled from 'styled-components'
-import Spinner from '../../v1/shared/material/Spinner'
+import Spinner from '@refsheet/v1/shared/material/Spinner'
 
 // TODO: Move this to constants somewhere nice.
 const Types = {

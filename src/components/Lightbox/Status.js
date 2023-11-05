@@ -1,6 +1,6 @@
 import React from 'react'
-import { Icon } from 'react-materialize'
-import ImageHandler from '../../utils/ImageHandler'
+import {Icon} from 'react-materialize'
+import ImageHandler from '@refsheet/utils/ImageHandler'
 
 export const Loading = () => (
   <div className={'image-status loading'}>
@@ -9,7 +9,7 @@ export const Loading = () => (
   </div>
 )
 
-export const Error = ({ error: errorObj }) => {
+export const Error = ({error: errorObj}) => {
   const error = ImageHandler.findError(errorObj)
 
   return (

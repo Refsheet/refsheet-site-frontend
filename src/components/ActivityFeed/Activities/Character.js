@@ -1,10 +1,10 @@
 import React from 'react'
 import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
-import Row from 'v1/shared/material/Row'
-import Attribute from 'v1/shared/attributes/attribute'
-import IdentityLink from 'v1/shared/identity_link'
-import AttributeTable from 'v1/shared/attributes/attribute_table'
+import Row from '@refsheet/v1/shared/material/Row'
+import Attribute from '@refsheet/v1/shared/attributes/attribute'
+import IdentityLink from '@refsheet/v1/shared/identity_link'
+import AttributeTable from '@refsheet/v1/shared/attributes/attribute_table'
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.

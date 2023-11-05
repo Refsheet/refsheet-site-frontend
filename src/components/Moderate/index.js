@@ -5,7 +5,7 @@ import {Query} from '@apollo/client/react/components'
 //graphql.macro
 import Loading from 'v1/shared/Loading'
 
-const getNextModeration = require('../../graph/queries/getNextModeration.graphql');
+const getNextModeration = require('@refsheet/graph/queries/getNextModeration.graphql');
 
 class Moderate extends Component {
   constructor(props) {

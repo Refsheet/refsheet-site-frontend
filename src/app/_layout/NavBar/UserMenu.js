@@ -2,11 +2,11 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import Link from 'next/link'
 import DropdownLink from './DropdownLink'
-import Restrict from '../../../components/Shared/Restrict'
+import Restrict from '@refsheet/components/Shared/Restrict'
 import {withTranslation} from 'react-i18next'
 import {connect} from 'react-redux'
-import {openNewCharacterModal} from '../../../actions'
-import compose from '../../../utils/compose'
+import {openNewCharacterModal} from '@refsheet/actions'
+import compose from '@refsheet/utils/compose'
 
 class UserMenu extends Component {
   constructor(props) {

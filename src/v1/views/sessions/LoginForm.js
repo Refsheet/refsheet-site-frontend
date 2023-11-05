@@ -16,9 +16,9 @@ import Link from 'next/link'
 import Submit from '../../shared/forms/Submit'
 
 import $ from 'jquery'
-import compose from '../../../utils/compose'
+import compose from '@refsheet/utils/compose'
 import {connect} from 'react-redux'
-import {setCurrentUser} from '../../../actions'
+import {setCurrentUser} from '@refsheet/actions'
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*

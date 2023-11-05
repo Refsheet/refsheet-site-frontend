@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import compose, {withMutations} from '../../utils/compose'
+import compose, {withMutations} from '@refsheet/utils/compose'
 //graphql.macro
 import {
   Row,

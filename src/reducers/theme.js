@@ -1,4 +1,4 @@
-import {createReducer} from 'reducers'
+import {createReducer} from '@refsheet/reducers/index'
 
 export const SET_THEME_NAME = "SET_THEME_NAME";
 export const SET_THEME_SETTINGS = "SET_THEME_SETTINGS";

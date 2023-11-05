@@ -13,11 +13,11 @@ import Form from '../../shared/forms/Form'
 import Input from '../../shared/forms/Input'
 import Submit from '../../shared/forms/Submit'
 import Link from 'next/link';
-import {withRouter} from 'utils/withRouter'
+import {withRouter} from '@refsheet/utils/withRouter'
 
 import $ from 'jquery'
-import {setCurrentUser} from '../../../actions'
-import compose from '../../../utils/compose'
+import {setCurrentUser} from '@refsheet/actions'
+import compose from '@refsheet/utils/compose'
 import {connect} from 'react-redux'
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.

@@ -1,7 +1,7 @@
 import React from 'react'
-import NavLink from 'components/Shared/NavLink'
+import NavLink from '@refsheet/components/Shared/NavLink'
 import {withTranslation} from 'react-i18next'
-import Restrict from '../../../components/Shared/Restrict'
+import Restrict from '@refsheet/components/Shared/Restrict'
 
 const SiteNav = ({t}) => {
   return (

@@ -8,8 +8,8 @@ let Materialize = null;
 if (typeof window !== 'undefined') {
   Materialize = require('materialize-css');
 }
- 
-import Button from '../../components/Styled/Button'
+
+import Button from '@refsheet/components/Styled/Button'
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*

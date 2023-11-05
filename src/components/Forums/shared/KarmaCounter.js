@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import compose from 'utils/compose'
+import compose from '@refsheet/utils/compose'
 import KarmaButton from './KarmaButton'
 import c from 'classnames'
 

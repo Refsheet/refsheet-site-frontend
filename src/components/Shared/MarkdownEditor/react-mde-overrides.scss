@@ -1,6 +1,6 @@
-@import '~materialize-css/sass/components/color-variables';
-@import 'scss/_variables.shared.sass';
-@import 'scss/_variables.sass';
+@import '../../../../node_modules/materialize-css/sass/components/color-variables';
+@import '@refsheet/scss./@refsheet/scss/variables.shared';
+@import '@refsheet/scss./@refsheet/scss/variables';
 
 $mde-border-radius: 0px;
 $mde-white-color: white;
@@ -16,11 +16,11 @@ $mde-preview-padding: 1rem;
 $mde-preview-default-min-height: $mde-editor-default-min-height;
 $mde-preview-default-height: auto;
 
-@import '~react-mde/lib/styles/scss/variables.scss';
-@import '~react-mde/lib/styles/scss/react-mde.scss';
-@import '~react-mde/lib/styles/scss/react-mde-editor.scss';
-@import '~react-mde/lib/styles/scss/react-mde-suggestions.scss';
-@import '~react-mde/lib/styles/scss/react-mde-toolbar.scss';
+@import '../../../../node_modules/react-mde/lib/styles/scss/variables';
+@import '../../../../node_modules/react-mde/lib/styles/scss/react-mde';
+@import '../../../../node_modules/react-mde/lib/styles/scss/react-mde-editor';
+@import '../../../../node_modules/react-mde/lib/styles/scss/react-mde-suggestions';
+@import '../../../../node_modules/react-mde/lib/styles/scss/react-mde-toolbar';
 
 .react-mde {
   border: none !important;

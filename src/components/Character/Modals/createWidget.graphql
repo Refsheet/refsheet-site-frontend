@@ -1,4 +1,4 @@
-#import '../../../graph/fragments/WidgetFields.graphql'
+#import '@refsheet/graph/fragments/WidgetFields.graphql'
 
 mutation createWidget($characterId: ID!, $sectionId: ID!, $columnId: ID!, $type: String!) {
     createProfileWidget(characterId: $characterId, sectionId: $sectionId, columnId: $columnId, type: $type) {

@@ -5,9 +5,9 @@ import xmljs from 'xml-js'
 import * as Sentry from '@sentry/browser'
 
 // TODO: Make this a mutation too, it deserves it.
-const getCharacterImages = require('../graph/fragments/getCharacterImages.graphql');
-const getImageUploadToken = require('../graph/queries/getImageUploadToken.graphql');
-const uploadImage = require('../graph/mutations/uploadImage.graphql');
+const getCharacterImages = require('@refsheet/graph/fragments/getCharacterImages.graphql');
+const getImageUploadToken = require('@refsheet/graph/queries/getImageUploadToken.graphql');
+const uploadImage = require('@refsheet/graph/mutations/uploadImage.graphql');
 
 class ImageHandler {
   static upload(image, characterId, onChange) {

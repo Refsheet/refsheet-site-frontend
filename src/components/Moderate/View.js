@@ -8,7 +8,7 @@ import Main from 'v1/shared/Main'
 import Spinner from 'v1/shared/material/Spinner'
 import Container from 'v1/shared/material/Container'
 
-const updateModeration = require('../../graph/mutations/updateModeration.graphql');
+const updateModeration = require('@refsheet/graph/mutations/updateModeration.graphql');
 
 const Resolution = ({id, updateModeration, data, loading, error}) => {
   if (loading) {

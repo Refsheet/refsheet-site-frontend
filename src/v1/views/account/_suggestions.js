@@ -7,9 +7,9 @@
 import React from 'react'
 import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
-import StateUtils from '../../utils/StateUtils'
-import HashUtils from '../../utils/HashUtils'
-import UserCard from 'components/User/UserCard'
+import StateUtils from '@refsheet/utils/StateUtils'
+import HashUtils from '@refsheet/utils/HashUtils'
+import UserCard from '@refsheet/components/User/UserCard'
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
@@ -21,14 +21,14 @@ import UserCard from 'components/User/UserCard'
 let Suggestions
 export default Suggestions = createReactClass({
   getInitialState() {
-    return { suggested: null }
+    return {suggested: null}
   },
 
   dataPath: '/users/suggested',
 
   componentDidMount() {
     return StateUtils.load(this, 'suggested', undefined, undefined, {
-      urlParams: { limit: 6 },
+      urlParams: {limit: 6},
     })
   },
 
@@ -53,10 +53,10 @@ export default Suggestions = createReactClass({
       return (
         <li
           className="collection-item margin-bottom--small"
-          style={{ padding: '0.5rem 0' }}
+          style={{padding: '0.5rem 0'}}
           key={user.username}
         >
-          <UserCard user={user} onFollow={_this._handleFollow} smaller />
+          <UserCard user={user} onFollow={_this._handleFollow} smaller/>
         </li>
       )
     })
@@ -64,7 +64,7 @@ export default Suggestions = createReactClass({
     return (
       <ul
         className="collection-flat"
-        style={{ marginTop: 0, marginBottom: '3rem' }}
+        style={{marginTop: 0, marginBottom: '3rem'}}
       >
         <li
           className="subheader"

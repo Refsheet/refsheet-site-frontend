@@ -8,18 +8,18 @@ import React from 'react'
 import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
 import Spinner from '../../shared/material/Spinner'
-import StringUtils from '../../../utils/StringUtils'
-import Restrict from '../../../components/Shared/Restrict'
-import CommentForm from '../../../components/Shared/CommentForm'
+import StringUtils from '@refsheet/utils/StringUtils'
+import Restrict from '@refsheet/components/Shared/Restrict'
+import CommentForm from '@refsheet/components/Shared/CommentForm'
 import InfiniteScroll from '../../shared/InfiniteScroll'
-import Views from 'v1/views/_views'
-import StateUtils from '../../utils/StateUtils'
-import Model from '../../utils/Model'
-import HashUtils from 'v1/utils/HashUtils'
-import GoogleAd from '../../../components/Shared/GoogleAd'
-import { div as Card } from '../../../components/Styled/Card'
-import StatusUpdate from '../../../components/ActivityFeed/StatusUpdate'
-import EmailConfirmationNag from '../../../components/User/EmailConfirmationNag'
+import Views from '@refsheet/v1/views/_views'
+import StateUtils from '@refsheet/utils/StateUtils'
+import Model from '@refsheet/utils/Model'
+import HashUtils from '@refsheet/v1/utils/HashUtils'
+import GoogleAd from '@refsheet/components/Shared/GoogleAd'
+import {div as Card} from '@refsheet/components/Styled/Card'
+import StatusUpdate from '@refsheet/components/ActivityFeed/StatusUpdate'
+import EmailConfirmationNag from '@refsheet/components/User/EmailConfirmationNag'
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
@@ -74,7 +74,7 @@ export default Activity = createReactClass({
         })
         return this._poll()
       },
-      { urlParams: { filter: this.props.filter } }
+      {urlParams: {filter: this.props.filter}}
     )
   },
 
@@ -89,7 +89,7 @@ export default Activity = createReactClass({
       if (this.timer) {
         clearTimeout(this.timer)
       }
-      return this.setState({ activity: null }, () => {
+      return this.setState({activity: null}, () => {
         return StateUtils.load(
           this,
           'activity',
@@ -104,7 +104,7 @@ export default Activity = createReactClass({
             })
             return this._poll()
           },
-          { urlParams: { filter: this.props.filter } }
+          {urlParams: {filter: this.props.filter}}
         )
       })
     }
@@ -124,7 +124,7 @@ export default Activity = createReactClass({
     return (this.timer = setTimeout(() => {
       return Model.poll(
         this.dataPath,
-        { since: this.state.since, filter: this.props.filter },
+        {since: this.state.since, filter: this.props.filter},
         data => {
           return this.setState(
             {
@@ -189,7 +189,7 @@ export default Activity = createReactClass({
 
   render() {
     if (!this.state.activity) {
-      return <Spinner className="margin-top--large" small center />
+      return <Spinner className="margin-top--large" small center/>
     }
 
     let adCount = 0
@@ -208,7 +208,7 @@ export default Activity = createReactClass({
     return (
       <div className="feed-item-stream">
         <EmailConfirmationNag>
-          <StatusUpdate />
+          <StatusUpdate/>
         </EmailConfirmationNag>
 
         {this.state.newActivity && this.state.newActivity.length > 0 && (

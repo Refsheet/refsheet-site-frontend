@@ -9,7 +9,7 @@ if (typeof window !== 'undefined') {
   Materialize = require('materialize-css');
 }
 
-import NumberUtils from '../../utils/NumberUtils'
+import NumberUtils from '@refsheet/utils/NumberUtils'
 import Tab from './Tab'
 import {captureException} from '@sentry/browser'
 

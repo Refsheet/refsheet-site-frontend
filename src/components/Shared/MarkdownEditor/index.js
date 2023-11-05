@@ -7,7 +7,7 @@ import * as Showdown from 'showdown'
 import client from 'services/ApplicationService'
 // import './react-mde-overrides.scss'
 import styled from 'styled-components'
-import {sanitize} from '../../../utils/sanitize'
+import {sanitize} from '@refsheet/utils/sanitize'
 
 const Autocomplete = require('./autocomplete.graphql');
 const SRM = styled(ReactMde)`

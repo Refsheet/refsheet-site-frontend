@@ -3,16 +3,16 @@ import PropTypes from 'prop-types'
 import compose from 'utils/compose'
 import {Trans, withTranslation} from 'react-i18next'
 import {TextInput, Row, Col, Checkbox} from 'react-materialize'
-import {withCurrentUser, withMutations} from '../../../../utils/compose'
+import {withCurrentUser, withMutations} from '@refsheet/utils/compose'
+import {withRouter} from '@refsheet/utils/withRouter'
+import {Authorized} from '@refsheet/policies'
+import validate, {isRequired, isSluggable, isSlug} from 'utils/validate'
+import {errorProps} from '@refsheet/utils/validate'
 //graphql.macro
 let M = null;
 if (typeof window !== 'undefined') {
   M = require('materialize-css');
 }
-import {withRouter} from 'utils/withRouter'
-import {Authorized} from '../../../../policies'
-import validate, {isRequired, isSluggable, isSlug} from 'utils/validate'
-import {errorProps} from '../../../../utils/validate'
 
 const updateSettings = require('./updateSettings.graphql');
 

@@ -13,7 +13,7 @@ import validate, {
 import compose, {
   withCurrentUser,
   withMutations,
-} from '../../../../utils/compose'
+} from '@refsheet/utils/compose'
 //graphql.macro
 const createFolder = require('./createFolder.graphql');
 

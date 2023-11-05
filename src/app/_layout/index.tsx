@@ -3,14 +3,14 @@
 import React from 'react'
 import Footer from './Footer'
 import NavBar from './NavBar'
-import Chat from '../../components/Chat/ConversationTray'
+import Chat from '@refsheet/components/Chat/ConversationTray'
 import {useSelector} from 'react-redux'
 import {ThemeProvider} from 'styled-components'
-import themes from '../../themes'
+import themes from '@refsheet/themes'
 import {useSearchParams} from "next/navigation";
 
-import "@refsheet/scss/index.scss";
-import {GlobalState} from "@refsheet/components/App/state";
+import "scss/index.scss";
+import {GlobalState} from "components/App/state";
 
 
 export default function Layout({children}: React.PropsWithChildren) {

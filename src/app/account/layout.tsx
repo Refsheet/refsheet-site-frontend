@@ -1,13 +1,13 @@
 import React from 'react';
-import Container from "@refsheet/v1/shared/material/Container";
-import UserCard from "@refsheet/v1/views/account/_user_card";
-import Button from "@refsheet/components/Styled/Button";
-import Advertisement from "@refsheet/v1/shared/advertisement";
-import Suggestions from "@refsheet/v1/views/account/_suggestions";
-import Main from "@refsheet/v1/shared/Main";
+import Container from "v1/shared/material/Container";
+import UserCard from "v1/views/account/_user_card";
+import Button from "components/Styled/Button";
+import Advertisement from "v1/shared/advertisement";
+import Suggestions from "v1/views/account/_suggestions";
+import Main from "v1/shared/Main";
 import {useTranslation} from "react-i18next";
-import useModals from "@refsheet/hooks/useModals";
-import {useCurrentUser} from "@refsheet/hooks/useCurrentUser";
+import useModals from "hooks/useModals";
+import {useCurrentUser} from "hooks/useCurrentUser";
 import SideNav from "./_layout/SideNav";
 
 export default function Layout({children}: React.PropsWithChildren) {

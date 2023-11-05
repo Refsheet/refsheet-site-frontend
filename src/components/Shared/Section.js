@@ -8,9 +8,9 @@ import PropTypes from 'prop-types'
 import {Row, Col} from 'react-materialize'
 import {Sticky, StickyContainer} from 'react-sticky'
 import c from 'classnames'
-import EditableHeader from 'components/Shared/EditableHeader'
+import EditableHeader from '@refsheet/components/Shared/EditableHeader'
 import styled from 'styled-components'
-import Icon from 'v1/shared/material/Icon'
+import Icon from '@refsheet/v1/shared/material/Icon'
 
 const H2 = styled.h2`
   color: ${props => props.theme.primary};

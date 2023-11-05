@@ -9,15 +9,15 @@ import SessionNav from './SessionNav'
 import {connect} from 'react-redux'
 import c from 'classnames'
 import styled from 'styled-components'
-import {setCurrentUser, setNsfwMode} from 'actions'
-import SessionService from '../../../services/SessionService'
-import IdentityModal from '../../../components/Shared/CommentForm/IdentityModal'
-import compose from '../../../utils/compose'
-import {withErrorBoundary} from '../../../components/Shared/ErrorBoundary'
-import {buildShadow} from '../../../components/Styled/common'
+import {setCurrentUser, setNsfwMode} from '@refsheet/actions'
+import SessionService from '@refsheet/services/SessionService'
+import IdentityModal from '@refsheet/components/Shared/CommentForm/IdentityModal'
+import compose from '@refsheet/utils/compose'
+import {withErrorBoundary} from '@refsheet/components/Shared/ErrorBoundary'
+import {buildShadow} from '@refsheet/components/Styled/common'
 
 import Image from 'next/image'
-import RefsheetLogo64 from 'assets/images/logos/RefsheetLogo_64.png'
+import RefsheetLogo64 from '@refsheet/assets/images/logos/RefsheetLogo_64.png'
 
 class NavBar extends Component {
   constructor(props) {
@@ -153,7 +153,7 @@ class NavBar extends Component {
             <SiteNav/>
 
             <div className="right">
-              <SearchBar query={query}/>
+              {/*<SearchBar query={query}/>*/}
 
               {currentUser ? (
                 <UserNav

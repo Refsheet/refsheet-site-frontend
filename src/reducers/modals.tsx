@@ -1,6 +1,6 @@
 import {createReducer} from './index'
 
-import defaultState from 'components/App/defaultState.json'
+import defaultState from '@refsheet//components/App/defaultState.json'
 import {Action} from "redux";
 
 export type TModalName = 'support' | 'newCharacter' | 'report';

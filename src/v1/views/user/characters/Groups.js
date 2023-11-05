@@ -15,8 +15,8 @@ import Link from 'next/link'
 import UserCharacterGroupForm from './groups/UserCharacterGroupForm'
 
 import $ from 'jquery'
-import Model from '../../../utils/Model'
-import NumberUtils from '../../../utils/NumberUtils'
+import Model from '@refsheet/utils/Model'
+import NumberUtils from '@refsheet/utils/NumberUtils'
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.

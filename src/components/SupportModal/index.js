@@ -6,7 +6,7 @@ import {connect} from 'react-redux'
 import compose, {withCurrentUser} from 'utils/compose'
 import {withTranslation} from 'react-i18next'
 import Modal from '../Styled/Modal'
-import {closeSupportModal} from '../../actions'
+import {closeSupportModal} from '@refsheet/actions'
 
 class SupportModal extends Component {
   handleClose() {

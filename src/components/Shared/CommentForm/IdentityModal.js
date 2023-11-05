@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import {Query} from '@apollo/client/react/components'
 import {withTranslation} from 'react-i18next'
 //graphql.macro
-import {setIdentity} from 'actions'
+import {setIdentity} from '@refsheet/actions'
 import {connect} from 'react-redux'
-import Modal from 'v1/shared/Modal'
+import Modal from '@refsheet/v1/shared/Modal'
 
 const AutocompleteCharacter = require('../../ActivityFeed/autocompleteCharacter.graphql');
 

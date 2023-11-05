@@ -13,9 +13,9 @@ import Form from '../../shared/forms/Form'
 import Row from '../../shared/material/Row'
 import Submit from '../../shared/forms/Submit'
 import Column from 'v1/shared/material/Column'
-import StateUtils from '../../utils/StateUtils'
-import compose, {withCurrentUser} from '../../../utils/compose'
-import {closeReportModal} from '../../../actions'
+import StateUtils from '@refsheet/utils/StateUtils'
+import compose, {withCurrentUser} from '@refsheet/utils/compose'
+import {closeReportModal} from '@refsheet/actions'
 import {connect} from 'react-redux'
 
 class ReportModal extends React.Component {

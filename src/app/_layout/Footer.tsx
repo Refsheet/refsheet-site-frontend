@@ -1,20 +1,14 @@
 'use client';
 
-import React, {Component, useEffect, useState} from 'react'
-import compose from '../../utils/compose'
+import React from 'react'
 import Link from 'next/link'
 import {Row, Col} from 'react-materialize'
-import Restrict from '../../components/Shared/Restrict'
-import i18n from '../../services/i18n'
-import c from 'classnames'
-import SessionService from '../../services/SessionService'
-import {H3} from '../../components/Styled/Headings'
+import Restrict from '@refsheet/components/Shared/Restrict'
 import styled, {StyledProps} from 'styled-components'
-import {withErrorBoundary} from '../../components/Shared/ErrorBoundary'
 
-import PatreonWhite from 'assets/images/third_party/patreon_white.png'
+import PatreonWhite from '@refsheet/assets/images/third_party/patreon_white.png'
 import Image from 'next/image'
-import Refsheet from 'services/Refsheet'
+import Refsheet from '@refsheet/services/Refsheet'
 
 const languages = [
     {code: 'en', name: "English"},
@@ -26,58 +20,7 @@ const languages = [
     {code: 'ja', name: "日本語"},
 ];
 
-interface ILanguageButtonProps {
-    locale: string,
-    name: string,
-    active: boolean,
-    onChange: (string) => void
-}
-
-function LanguageButton({locale, name, active, onChange}: ILanguageButtonProps) {
-    const handleClick: React.MouseEventHandler = (e) => {
-        e.preventDefault();
-        onChange(e);
-    }
-
-    return (
-        <a
-            className={c(
-                active ? 'white-text' : 'grey-text'
-            )}
-            href={`?locale=${locale}`}
-            onClick={handleClick}
-        >
-            {name}
-        </a>
-    )
-}
-
 export function Footer({className}: StyledProps) {
-    const [locale, setLocale] = useState<string>(i18n.language);
-
-    useEffect(() => {
-        const apply = l => {
-            setLocale(l);
-        }
-
-        i18n.on('languageChanged', apply);
-
-        return () => {
-            i18n.off('languageChanged', apply);
-        }
-    }, [setLocale]);
-
-    useEffect(() => {
-        console.log("Locale: " + locale);
-
-        i18n
-            .changeLanguage(locale)
-            .then(() => {
-                SessionService.set({locale}).then(console.log).catch(console.error)
-            })
-            .catch(console.error)
-    }, [locale]);
-
     return (
         <footer className={'page-footer ' + className}>
             <div className="container margin-top--large">
@@ -180,8 +123,7 @@ export function Footer({className}: StyledProps) {
                         <ul className="right-align margin-top--none">
                             {languages.map(({code, name}) =>
                                 <li key={code}>
-                                    <LanguageButton locale={code} name={name} active={locale === code}
-                                                    onChange={setLocale}/>
+                                    <Link href="" locale={code}>{name}</Link>
                                 </li>
                             )}
                         </ul>
@@ -207,6 +149,12 @@ export function Footer({className}: StyledProps) {
                     uploads and media usage may be reported to{' '}
                     <a href="mailto:mau@refsheet.net">mau@refsheet.net</a>. See{' '}
                     <Link href="/terms">Terms</Link> for more details.
+
+                    <noscript>
+                        <div className="margin-top--small">
+                            Javascript is disabled. Interactive elements of this page will not be available.
+                        </div>
+                    </noscript>
                 </div>
             </div>
         </footer>

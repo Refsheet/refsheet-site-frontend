@@ -1,9 +1,9 @@
 import React from 'react';
 import Button from "../Styled/Button";
-import Icon from "../../v1/shared/material/Icon";
+import Icon from "@refsheet/v1/shared/material/Icon";
 import {Icon as MIcon} from "react-materialize";
-import {useCurrentUser} from "../../hooks/useCurrentUser";
-import {IUserRoles} from "../../utils/UserUtils";
+import {useCurrentUser} from "@refsheet/hooks/useCurrentUser";
+import {IUserRoles} from "@refsheet/utils/UserUtils";
 
 export interface IUserActionButtonsProps {
     username: string;

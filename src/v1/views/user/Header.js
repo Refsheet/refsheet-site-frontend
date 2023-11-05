@@ -2,21 +2,21 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import createReactClass from 'create-react-class'
 import Icon from '../../shared/material/Icon'
-import RichText from '../../../components/Shared/RichText'
+import RichText from '@refsheet/components/Shared/RichText'
 import $ from 'jquery'
-import Model from '../../utils/Model'
-import * as UserUtils from '../../../utils/UserUtils'
-import AvatarModal from '../../../components/User/Modals/AvatarModal'
-import compose, {withCurrentUser, withMutations} from '../../../utils/compose'
-import Button from '../../../components/Styled/Button'
+import Model from '@refsheet/utils/Model'
+import * as UserUtils from '@refsheet/utils/UserUtils'
+import AvatarModal from '@refsheet/components/User/Modals/AvatarModal'
+import compose, {withCurrentUser, withMutations} from '@refsheet/utils/compose'
+import Button from '@refsheet/components/Styled/Button'
 import {Icon as MIcon} from 'react-materialize'
-import {openConversation} from '../../../actions'
+import {openConversation} from '@refsheet/actions'
 import {connect} from 'react-redux'
 //graphql.macro
-import Flash from '../../../utils/Flash'
+import Flash from '@refsheet/utils/Flash'
 
-const blockUser = require('../../../graph/mutations/blockUser.graphql');
-const unblockUser = require('../../../graph/mutations/unblockUser.graphql');
+const blockUser = require('@refsheet/graph/mutations/blockUser.graphql');
+const unblockUser = require('@refsheet/graph/mutations/unblockUser.graphql');
 
 const Header = createReactClass({
   propTypes: {
@@ -213,7 +213,7 @@ const Header = createReactClass({
                 {this.props.user.is_patron && (
                   <span className="user-badge patron-badge" title="Site Patron">
                     <img
-                      src={require("assets/images/third_party/patreon_logo.png")}
+                      src={require("@refsheet/assets/images/third_party/patreon_logo.png")}
                       alt="Patreon"
                     />
                   </span>

@@ -3,11 +3,11 @@ import PropTypes from 'prop-types'
 import DropdownLink from '../DropdownLink'
 import NotificationItem from '../Dropdown/NotificationItem'
 import Link from 'next/link'
-import Scrollbars from 'components/Shared/Scrollbars'
+import Scrollbars from '@refsheet/components/Shared/Scrollbars'
 import subscription from './subscription'
 //graphql.macro
-import WindowAlert from '../../../../utils/WindowAlert'
-import compose, {withMutations} from '../../../../utils/compose'
+import WindowAlert from '@refsheet/utils/WindowAlert'
+import compose, {withMutations} from '@refsheet/utils/compose'
 import {withTranslation} from 'react-i18next'
 
 const markAllNotificationsAsRead = require('./markAllNotificationsAsRead.graphql');

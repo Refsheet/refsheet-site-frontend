@@ -2,11 +2,11 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {Row, Col, Icon, TextInput, Switch, Tabs, Tab} from 'react-materialize'
 import {withTranslation} from 'react-i18next'
-import compose, {withMutations} from '../../../../utils/compose'
-import ColorTheme from '../../../../utils/ColorTheme'
+import compose, {withMutations} from '@refsheet/utils/compose'
+import ColorTheme from '@refsheet/utils/ColorTheme'
 import Modal from 'components/Styled/Modal'
-import Input from '../../../../v1/shared/forms/Input'
-import Flash from '../../../../utils/Flash'
+import Input from '@refsheet/v1/shared/forms/Input'
+import Flash from '@refsheet/utils/Flash'
 //graphql.macro
 const updateColorScheme = require('./updateColorScheme.graphql');
 const createColorScheme = require('./createColorScheme.graphql');

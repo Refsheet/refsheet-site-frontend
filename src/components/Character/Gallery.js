@@ -1,22 +1,22 @@
-import React, { useEffect, useState } from 'react'
+import React, {useEffect, useState} from 'react'
 import PropTypes from 'prop-types'
 import JustifiedLayout from 'react-justified-layout'
 import Measure from 'react-measure'
-import Section from 'components/Shared/Section'
-import Thumbnail from 'components/Image/Thumbnail'
-import compose, { withMutations } from '../../utils/compose'
-import { connect } from 'react-redux'
-import { openUploadModal } from '../../actions'
+import Section from '@refsheet/components/Shared/Section'
+import Thumbnail from '@refsheet/components/Image/Thumbnail'
+import compose, {withMutations} from '@refsheet/utils/compose'
+import {connect} from 'react-redux'
+import {openUploadModal} from '@refsheet/actions'
 import SortableThumbnail from '../Image/SortableThumbnail'
 import gql from 'graphql-tag'
-import ArrayUtils from '../../utils/ArrayUtils'
-import { Icon } from 'react-materialize'
+import ArrayUtils from '@refsheet/utils/ArrayUtils'
+import {Icon} from 'react-materialize'
 import Button from '../Styled/Button'
 import styled from 'styled-components'
-import { buildShadow } from '../Styled/common'
+import {buildShadow} from '../Styled/common'
 import SubfolderButton from '../Styled/SubfolderButton'
-import NumberUtils from '../../v1/utils/NumberUtils'
-import Restrict, { restrict } from '../Shared/Restrict'
+import NumberUtils from '@refsheet/v1/utils/NumberUtils'
+import Restrict, {restrict} from '../Shared/Restrict'
 import NewFolderModal from './Modals/NewFolderModal'
 
 function convertData(images) {
@@ -31,15 +31,15 @@ function convertData(images) {
 }
 
 const Gallery = function ({
-  v1Data,
-  noHeader,
-  images,
-  folders,
-  openUploadModal,
-  sortGalleryImage,
-  characterId,
-  editable,
-}) {
+                            v1Data,
+                            noHeader,
+                            images,
+                            folders,
+                            openUploadModal,
+                            sortGalleryImage,
+                            characterId,
+                            editable,
+                          }) {
   let imageData = images
 
   const [imageOrder, updateImageOrder] = useState(images.map(i => i.id))
@@ -57,7 +57,7 @@ const Gallery = function ({
   const openNewFolderModal = () => setNewFolderModalOpen(true)
   const closeNewFolderModal = () => setNewFolderModalOpen(false)
 
-  const onImageSort = ({ targetImageId, sourceImageId, dropBefore }) => {
+  const onImageSort = ({targetImageId, sourceImageId, dropBefore}) => {
     // console.log('onImageSort', { targetImageId, sourceImageId, dropBefore })
 
     updateImageOrder(
@@ -74,7 +74,7 @@ const Gallery = function ({
         dropBefore,
       },
     })
-      .then(({ data: { sortGalleryImage } }) => {
+      .then(({data: {sortGalleryImage}}) => {
         updatePendingChanges(
           pendingChanges.slice(pendingChanges.indexOf(sourceImageId), 1)
         )
@@ -99,7 +99,7 @@ const Gallery = function ({
   ]
 
   const galleryActions = [
-    restrict({ patron: true }) && {
+    restrict({patron: true}) && {
       icon: 'create_new_folder',
       title: 'New Folder',
       id: 'newFolder',
@@ -172,15 +172,15 @@ const renderSubfolders = folders => {
 }
 
 const renderGallery = (images, onImageSort, imageOrder, pendingChanges) =>
-  function ({ measureRef, contentRect }) {
-    const { width } = contentRect.bounds
+  function ({measureRef, contentRect}) {
+    const {width} = contentRect.bounds
 
     const sorted = [...images].sort(
       (a, b) => imageOrder.indexOf(a.id) - imageOrder.indexOf(b.id)
     )
 
     const imageTiles = sorted.map(function (image) {
-      const { id, aspect_ratio } = image
+      const {id, aspect_ratio} = image
 
       return (
         <SortableThumbnail
@@ -263,5 +263,5 @@ const sortGalleryImage = gql`
 
 export default compose(
   connect(undefined, mapDispatchToProps),
-  withMutations({ sortGalleryImage })
+  withMutations({sortGalleryImage})
 )(Gallery)

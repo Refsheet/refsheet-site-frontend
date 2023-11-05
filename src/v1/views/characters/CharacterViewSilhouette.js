@@ -7,7 +7,7 @@
 import React from 'react'
 import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
-import Main from '../../../components/Shared/Main'
+import Main from '@refsheet/components/Shared/Main'
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
@@ -21,33 +21,33 @@ const CharacterViewSilhouette = props => (
     <section className="page-header">
       <div
         className="page-header-backdrop silhouette-backdrop"
-        style={{ backgroundImage: 'url(' + props.coverImage + ')' }}
+        style={{backgroundImage: 'url(' + props.coverImage + ')'}}
       />
 
       <div className="page-header-content">
         <div className="container">
           <div className="character-card">
             <div className="character-details">
-              <h1 className="name silhouette-text" />
+              <h1 className="name silhouette-text"/>
               <div className="silhouette-stagger">
-                <div className="silhouette-text margin-top--large" />
-                <div className="silhouette-text margin-top--medium" />
-                <div className="silhouette-text margin-top--medium" />
-                <div className="silhouette-text margin-top--medium" />
+                <div className="silhouette-text margin-top--large"/>
+                <div className="silhouette-text margin-top--medium"/>
+                <div className="silhouette-text margin-top--medium"/>
+                <div className="silhouette-text margin-top--medium"/>
               </div>
 
-              <h2 className="silhouette-text margin-top--large" />
+              <h2 className="silhouette-text margin-top--large"/>
               <div className="silhouette-stagger">
-                <div className="silhouette-text" />
+                <div className="silhouette-text"/>
               </div>
             </div>
 
             <div className="character-image silhouette-image">
-              <div className="slant" />
+              <div className="slant"/>
             </div>
           </div>
 
-          <div className="card-panel" />
+          <div className="card-panel"/>
         </div>
       </div>
     </section>
@@ -55,12 +55,12 @@ const CharacterViewSilhouette = props => (
     <section>
       <div className="container">
         <div className="card-panel">
-          <h1 className="silhouette-text" />
+          <h1 className="silhouette-text"/>
           <div className="silhouette-stagger">
-            <div className="silhouette-text margin-top--large" />
-            <div className="silhouette-text margin-top--medium" />
-            <div className="silhouette-text margin-top--medium" />
-            <div className="silhouette-text margin-top--medium" />
+            <div className="silhouette-text margin-top--large"/>
+            <div className="silhouette-text margin-top--medium"/>
+            <div className="silhouette-text margin-top--medium"/>
+            <div className="silhouette-text margin-top--medium"/>
           </div>
         </div>
       </div>

@@ -117,7 +117,7 @@ class WindowAlert {
   static initSound(options) {
     const notificationDing = new Howl({
       src: [
-        require('assets/sounds/woo.mp3')
+        require('@refsheet/assets/sounds/woo.mp3')
       ],
     })
 

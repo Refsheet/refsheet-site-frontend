@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import MarkdownEditor from '../../Shared/MarkdownEditor'
-import { sanitize } from '../../../utils/sanitize'
+import {sanitize} from '@refsheet/utils/sanitize'
 
 class RichTextWidget extends Component {
   constructor(props) {
@@ -9,11 +9,11 @@ class RichTextWidget extends Component {
   }
 
   handleMarkdownChange(name, content) {
-    this.props.onChange({ content })
+    this.props.onChange({content})
   }
 
   render() {
-    const { contentHtml, content, editing } = this.props
+    const {contentHtml, content, editing} = this.props
 
     if (editing) {
       return (

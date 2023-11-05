@@ -12,10 +12,10 @@ import Form from '../../shared/forms/Form'
 import Row from '../../shared/material/Row'
 import Column from '../../shared/material/Column'
 import Input from '../../shared/forms/Input'
-import Restrict from '../../../components/Shared/Restrict'
+import Restrict from '@refsheet/components/Shared/Restrict'
 import Submit from '../../shared/forms/Submit'
-import compose, { withCurrentUser } from '../../../utils/compose'
-import EmailConfirmationNag from '../../../components/User/EmailConfirmationNag'
+import compose, {withCurrentUser} from '@refsheet/utils/compose'
+import EmailConfirmationNag from '@refsheet/components/User/EmailConfirmationNag'
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
@@ -70,10 +70,10 @@ const NewCharacterForm = createReactClass({
         />
         <Row>
           <Column m={6}>
-            <Input name="name" label="Name" autoFocus />
+            <Input name="name" label="Name" autoFocus/>
           </Column>
           <Column m={6}>
-            <Input name="species" label="Species" />
+            <Input name="species" label="Species"/>
           </Column>
         </Row>
 
@@ -88,7 +88,7 @@ const NewCharacterForm = createReactClass({
             />
           </Column>
           <Column m={6}>
-            <Input name="shortcode" label="ref.st/" />
+            <Input name="shortcode" label="ref.st/"/>
           </Column>
         </Row>
 

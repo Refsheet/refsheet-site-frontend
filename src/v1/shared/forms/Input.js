@@ -14,8 +14,8 @@ import validate, {
   errorString,
   isHexColor,
   isColor,
-} from '../../../utils/validate'
-import ColorPicker from '../../../components/Shared/ColorPicker'
+} from '@refsheet/utils/validate'
+import ColorPicker from '@refsheet/components/Shared/ColorPicker'
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*

@@ -14,13 +14,13 @@ import createBrowserHistory from 'history/createBrowserHistory'
 import qs from 'querystring'
 import ReactGA from 'react-ga'
 
-import App from '../components/App'
+import App from '@refsheet/components/App'
 import LegacyApp from './views/_App'
-import Static from '../v1/views/Static'
-import StringUtils from '../v1/utils/StringUtils'
-import LoginView from '../v1/views/sessions/LoginView'
-import RegisterView from '../v1/views/sessions/RegisterView'
-import Views from '../v1/views/_views'
+import Static from './views/Static'
+import StringUtils from './utils/StringUtils'
+import LoginView from './views/sessions/LoginView'
+import RegisterView from './views/sessions/RegisterView'
+import Views from './views/_views'
 import BrowseApp from './views/browse/BrowseApp'
 import Forums from './views/Forums'
 import ImageApp from './views/images/ImageApp'
@@ -35,8 +35,8 @@ if (typeof window !== 'undefined') {
 import User from './views/User'
 
 import $ from 'jquery'
-import Site from '../components/Settings/Site'
-import API from '../components/Settings/API'
+import Site from '@refsheet/components/Settings/Site'
+import API from '@refsheet/components/Settings/API'
 
 // Backfill for Router V4 not parsing query strings.
 const history = createBrowserHistory()

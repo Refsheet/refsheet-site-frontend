@@ -1,11 +1,11 @@
 import React, {Component} from 'react'
-import {format as n} from '../../utils/NumberUtils'
+import {format as n} from '@refsheet/utils/NumberUtils'
 import c from 'classnames'
 import Moment from 'moment'
 import {gql} from 'apollo-client-preset/lib/index'
 import {Subscription} from '@apollo/client/react/components'
 import {formatBody} from './ConversationMessage'
-import {userClasses} from '../../utils/UserUtils'
+import {userClasses} from '@refsheet/utils/UserUtils'
 
 class ConversationLink extends Component {
   constructor(props) {

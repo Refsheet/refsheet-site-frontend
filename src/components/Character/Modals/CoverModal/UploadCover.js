@@ -5,7 +5,7 @@ import compose from 'utils/compose'
 import {DirectUploadProvider} from 'components/Shared/DirectUploadProvider'
 import {TextInput, Button, Row, Col, ProgressBar} from 'react-materialize'
 import Muted, {MutedAnchor} from '../../../Styled/Muted'
-import {withMutations} from '../../../../utils/compose'
+import {withMutations} from '@refsheet/utils/compose'
 //graphql.macro
 import dynamic from 'next/dynamic'
 

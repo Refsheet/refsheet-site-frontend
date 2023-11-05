@@ -8,8 +8,8 @@ import React from 'react'
 import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
 import Icon from '../../shared/material/Icon'
-import Model from '../../utils/Model'
-import compose, { withCurrentUser } from '../../../utils/compose'
+import Model from '@refsheet/utils/Model'
+import compose, {withCurrentUser} from '@refsheet/utils/compose'
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
@@ -54,20 +54,20 @@ const Follow = createReactClass({
         <a
           href="#"
           className="secondary-content btn btn-flat right cs--secondary-color"
-          style={{ border: '1px solid rgba(255,255,255,0.1)' }}
+          style={{border: '1px solid rgba(255,255,255,0.1)'}}
           onClick={this._handleFollowClick}
         >
           {!this.props.short && (
             <span
               className="hide-on-med-and-down cs--secondary-color"
-              style={{ marginRight: '1rem' }}
+              style={{marginRight: '1rem'}}
             >
               {this.props.followed ? 'Following' : 'Follow'}
             </span>
           )}
 
           <Icon
-            style={{ color: followColor, marginLeft: '0' }}
+            style={{color: followColor, marginLeft: '0'}}
             className="right"
           >
             person_add

@@ -1,4 +1,4 @@
-import {subscribe} from 'services/ApplicationService'
+import {subscribe} from '@refsheet/services/ApplicationService'
 //graphql.macro
 const getNotifications = require('./getNotifications.graphql');
 const subscribeToNotifications = require('./subscribeToNotifications.graphql');

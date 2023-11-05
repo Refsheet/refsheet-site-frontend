@@ -1,9 +1,8 @@
 import {ApolloClient, ApolloLink, HttpLink} from '@apollo/client'
 import {setContext} from '@apollo/client/link/context'
 import {InMemoryCache,} from '@apollo/client/cache'
-import fetch from 'node-fetch'
 import ActionCableLink from 'graphql-ruby-client/subscriptions/ActionCableLink'
-import introspectionQueryResultData from '../config/possibleTypes.json'
+import introspectionQueryResultData from '@refsheet/config/possibleTypes.json'
 import Cookies from 'js-cookie'
 
 // https://github.com/rails/rails/pull/39543#issuecomment-639804635

@@ -1,8 +1,8 @@
 import React from 'react'
 import Link from 'next/link'
 import PropTypes from 'prop-types'
-import {userFgColor} from '../../utils/UserUtils'
-import {createIdentity} from '../../utils/IdentityUtils'
+import {userFgColor} from '@refsheet/utils/UserUtils'
+import {createIdentity} from '@refsheet/utils/IdentityUtils'
 
 const UserLink = props => {
   const {user} = props

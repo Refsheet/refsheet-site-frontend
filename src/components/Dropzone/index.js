@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import ReactDropzone from 'react-dropzone'
 import {connect} from 'react-redux'
-import {enqueueUploads} from '../../actions'
+import {enqueueUploads} from '@refsheet/actions'
 
 import dynamic from 'next/dynamic'
 

@@ -1,12 +1,12 @@
 import React from 'react';
-import Error from "../../components/Shared/Error";
-import Main from "../../components/Shared/Main";
-import Jumbotron from "../../components/Shared/Jumbotron";
+import Error from "@refsheet/components/Shared/Error";
+import Main from "@refsheet/components/Shared/Main";
+import Jumbotron from "@refsheet/components/Shared/Jumbotron";
 import Link from "next/link";
 import {Container} from "react-materialize";
 import {GetServerSideProps} from "next";
 import {GetForumsQuery, useGetForumsQuery} from "../../../@types/schema";
-import client from "../../services/ApplicationService";
+import client from "@refsheet/services/ApplicationService";
 import getForums from './getForums.graphql';
 
 export interface ForumsProps {

@@ -15,13 +15,13 @@ if (typeof window !== 'undefined') {
 }
 
 import Attribute from '../../shared/attributes/attribute'
-import RichText from '../../../components/Shared/RichText'
-import Follow from 'v1/views/user/Follow'
+import RichText from '@refsheet/components/Shared/RichText'
+import Follow from '@refsheet/v1/views/user/Follow'
 import Attributes from './_attributes'
-import AttributeTable from 'v1/shared/attributes/attribute_table'
+import AttributeTable from '@refsheet/v1/shared/attributes/attribute_table'
 import $ from 'jquery'
-import HashUtils from '../../utils/HashUtils'
-import Flash from '../../../utils/Flash'
+import HashUtils from '@refsheet/utils/HashUtils'
+import Flash from '@refsheet/utils/Flash'
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*

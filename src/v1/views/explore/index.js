@@ -11,14 +11,14 @@ import PropTypes from 'prop-types'
 import Loading from '../../shared/Loading'
 import InfiniteScroll from '../../shared/InfiniteScroll'
 import Main from '../../shared/Main'
-import Jumbotron from '../../../components/Shared/Jumbotron'
+import Jumbotron from '@refsheet/components/Shared/Jumbotron'
 import Link from 'next/link'
 import Container from '../../shared/material/Container'
 
 import $ from 'jquery'
-import StateUtils from '../../utils/StateUtils'
-import Gallery from '../../../components/Character/Gallery'
-import compose, {withCurrentUser} from '../../../utils/compose'
+import StateUtils from '@refsheet/utils/StateUtils'
+import Gallery from '@refsheet/components/Character/Gallery'
+import compose, {withCurrentUser} from '@refsheet/utils/compose'
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*

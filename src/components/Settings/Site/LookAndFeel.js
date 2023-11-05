@@ -1,14 +1,14 @@
-import React, { useState } from 'react'
-import { div as Card } from '../../Styled/Card'
+import React, {useState} from 'react'
+import {div as Card} from '../../Styled/Card'
 import Button from '../../Styled/Button'
-import { Col, Select, Switch } from 'react-materialize'
+import {Col, Select, Switch} from 'react-materialize'
 import Restrict from '../../Shared/Restrict'
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
-import { setThemeSettings } from '../../../actions'
+import {setThemeSettings} from '@refsheet/actions'
 import InputRow from '../shared/InputRow'
 
-const LookAndFeel = ({ theme = {}, setThemeSettings }) => {
+const LookAndFeel = ({theme = {}, setThemeSettings}) => {
   const [saving, setSaving] = useState(false)
 
   const handleSubmit = e => {
@@ -74,15 +74,15 @@ const LookAndFeel = ({ theme = {}, setThemeSettings }) => {
               <strong>inb4</strong>: This feature isn't finished, the color
               scheme will revert when you reload the page, save does nothing,
               and the two toggle buttons don't actually really work.
-              <br />
-              <br />
+              <br/>
+              <br/>
               If for some reason it does start working, I forgot to remove this
               error message. It's just that way sometimes, I'm doing like 90
               things at once and really want to get features out but like, just
               out enough to be *there* to play with, and I'll finish them later
               when I've had a break and a beer.
-              <br />
-              <br />
+              <br/>
+              <br/>
               If you REALLY, REALLY want this feature done, I GUESS you can ask.
             </Col>
           </div>
@@ -108,7 +108,7 @@ LookAndFeel.propTypes = {
   setThemeSettings: PropTypes.func,
 }
 
-const mapStateToProps = ({ theme }) => ({
+const mapStateToProps = ({theme}) => ({
   theme,
 })
 

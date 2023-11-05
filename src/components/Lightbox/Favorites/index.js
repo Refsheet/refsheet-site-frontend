@@ -3,7 +3,7 @@ import {withTranslation} from 'react-i18next'
 import {Icon} from 'react-materialize'
 import Link from 'next/link'
 import c from 'classnames'
-import compose, {withMutations} from '../../../utils/compose'
+import compose, {withMutations} from '@refsheet/utils/compose'
 //graphql.macro
 import {connect} from 'react-redux'
 

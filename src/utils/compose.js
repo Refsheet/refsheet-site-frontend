@@ -5,8 +5,8 @@ import {Mutation} from '@apollo/client/react/components'
 import {connect} from 'react-redux'
 //import M from 'materialize-css'
 import {deepRemoveKeys} from './ObjectUtils'
-import {setCurrentUser} from '../actions'
-import ConfigContext from '../components/App/ConfigContext'
+import {setCurrentUser} from '@refsheet/actions'
+import ConfigContext from '@refsheet/components/App/ConfigContext'
 
 function compose(...composers) {
   return component => {

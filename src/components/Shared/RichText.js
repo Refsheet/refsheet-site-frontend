@@ -11,10 +11,10 @@ import Link from 'next/link'
 import MarkdownEditor from './MarkdownEditor'
 import c from 'classnames'
 import * as Showdown from 'showdown'
-import Button from '../../v1/shared/material/Button'
-import WindowAlert from '../../utils/WindowAlert'
+import Button from '@refsheet/v1/shared/material/Button'
+import WindowAlert from '@refsheet/utils/WindowAlert'
 import {H2} from '../Styled/Headings'
-import {sanitize} from '../../utils/sanitize'
+import {sanitize} from '@refsheet/utils/sanitize'
 
 class RichText extends Component {
   constructor(props) {

@@ -4,9 +4,9 @@ import PropTypes from 'prop-types'
 
 import Input from './Input'
 import $ from 'jquery'
-import ObjectPath from '../../utils/ObjectPath'
-import Flash from '../../../utils/Flash'
-import {host} from "../../../services/ApplicationService"
+import ObjectPath from '@refsheet/utils/ObjectPath'
+import Flash from '@refsheet/utils/Flash'
+import {host} from "@refsheet/services/ApplicationService"
 
 let Materialize = null;
 if (typeof window !== 'undefined') {

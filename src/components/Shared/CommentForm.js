@@ -7,13 +7,13 @@ import IdentityModal from './CommentForm/IdentityModal'
 import Restrict from './Restrict'
 import MarkdownEditor from './MarkdownEditor'
 import {Row, Col, Button} from 'react-materialize'
-import compose from 'utils/compose'
+import compose from '@refsheet/utils/compose'
 import {withTranslation} from 'react-i18next'
-import WindowAlert from 'utils/WindowAlert'
+import WindowAlert from '@refsheet/utils/WindowAlert'
 import {div as Card} from '../Styled/Card'
 import c from 'classnames'
-import Icon from 'v1/shared/material/Icon'
-import Input from 'v1/shared/forms/Input'
+import Icon from '@refsheet/v1/shared/material/Icon'
+import Input from '@refsheet/v1/shared/forms/Input'
 import dynamic from 'next/dynamic'
 
 let Materialize = null;
@@ -21,7 +21,7 @@ if (typeof window !== 'undefined') {
   Materialize = require('materialize-css');
 }
 
-import {createIdentity} from '../../utils/IdentityUtils'
+import {createIdentity} from '@refsheet/utils/IdentityUtils'
 
 // TODO: This class has now 3 different styles that it produces,
 //       this should be refactored into a generic wrapper that handles

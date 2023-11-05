@@ -1,8 +1,8 @@
-import ObjectPath from 'v1/utils/ObjectPath'
-import Model from 'v1/utils/Model'
+import ObjectPath from '@refsheet/v1/utils/ObjectPath'
+import Model from '@refsheet/v1/utils/Model'
 import $ from 'jquery'
 import HashUtils from './HashUtils'
-import {host} from "../../services/ApplicationService";
+import {host} from "@refsheet/services/ApplicationService";
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.

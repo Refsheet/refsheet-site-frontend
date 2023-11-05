@@ -1,6 +1,6 @@
 import React from 'react'
 import qs from 'querystring'
-import {withRouter} from 'utils/withRouter'
+import {withRouter} from '@refsheet/utils/withRouter'
 
 /**
  * Like +withRouter+ but adds a `query` param.

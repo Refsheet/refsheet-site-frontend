@@ -2,7 +2,7 @@
 
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import WindowAlert from 'utils/WindowAlert'
+import WindowAlert from '@refsheet/utils/WindowAlert'
 import styled from 'styled-components'
 import c from 'classnames'
 import {buildShadow} from '../Styled/common'

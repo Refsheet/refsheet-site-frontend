@@ -4,8 +4,8 @@ import {Input, Row, Col, Button} from 'react-materialize'
 import c from 'classnames'
 import {Mutation} from '@apollo/client/react/components'
 import {gql} from '@apollo/client'
-import {withRouter} from 'utils/withRouter'
-import compose, {withCurrentUser} from '../../../utils/compose'
+import {withRouter} from '@refsheet/utils/withRouter'
+import compose, {withCurrentUser} from '@refsheet/utils/compose'
 
 class DeleteUser extends Component {
   constructor(props) {

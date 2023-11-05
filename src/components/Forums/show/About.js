@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import compose from 'utils/compose'
+import compose from '@refsheet/utils/compose'
 import {withTranslation} from 'react-i18next'
 import Stats, {Stat} from '../../Shared/Stats'
 import {Icon, Dropdown} from 'react-materialize'
@@ -8,7 +8,7 @@ import PostTags, {DropdownTag, Tag} from '../shared/PostTags'
 import Link from 'next/link'
 import Restrict from '../../Shared/Restrict'
 
-import Advertisement from 'v1/shared/advertisement'
+import Advertisement from '@refsheet/v1/shared/advertisement'
 
 class About extends Component {
   render() {

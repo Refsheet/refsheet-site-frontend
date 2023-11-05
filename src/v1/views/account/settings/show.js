@@ -15,11 +15,11 @@ import Row from '../../../shared/material/Row'
 import Column from '../../../shared/material/Column'
 import Input from '../../../shared/forms/Input'
 import Submit from '../../../shared/forms/Submit'
-import DeleteUser from '../../../../components/Settings/Account/DeleteUser'
+import DeleteUser from '@refsheet/components/Settings/Account/DeleteUser'
 
-import Error from '../../../../components/Shared/Error'
-import compose, {withCurrentUser} from '../../../../utils/compose'
-import EmailConfirmationNag from '../../../../components/User/EmailConfirmationNag'
+import Error from '@refsheet/components/Shared/Error'
+import compose, {withCurrentUser} from '@refsheet/utils/compose'
+import EmailConfirmationNag from '@refsheet/components/User/EmailConfirmationNag'
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*

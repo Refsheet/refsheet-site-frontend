@@ -7,12 +7,12 @@
 import React from 'react'
 import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
-import CharacterViewSilhouette from 'v1/views/characters/CharacterViewSilhouette'
-import { connect } from 'react-redux'
-import { openLightbox } from '../../../actions'
+import CharacterViewSilhouette from '@refsheet/v1/views/characters/CharacterViewSilhouette'
+import {connect} from 'react-redux'
+import {openLightbox} from '@refsheet/actions'
 
 import $ from 'jquery'
-import Model from '../../utils/Model'
+import Model from '@refsheet/utils/Model'
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
@@ -24,12 +24,12 @@ import Model from '../../utils/Model'
  */
 const ImageApp = createReactClass({
   getInitialState() {
-    return { image: null }
+    return {image: null}
   },
 
   load(data) {
-    const { openLightbox } = this.props
-    this.setState({ image: data }, function () {
+    const {openLightbox} = this.props
+    this.setState({image: data}, function () {
       data.directLoad = true
       // TODO: We can direct load here.
       openLightbox(data.id)
@@ -55,7 +55,7 @@ const ImageApp = createReactClass({
       (newProps.match != null ? newProps.match.params.imageId : undefined) &&
       this.state.image &&
       (newProps.match != null ? newProps.match.params.imageId : undefined) !==
-        (this.state.image != null ? this.state.image.id : undefined)
+      (this.state.image != null ? this.state.image.id : undefined)
     ) {
       this.fetch(
         newProps.match != null ? newProps.match.params.imageId : undefined
@@ -73,12 +73,12 @@ const ImageApp = createReactClass({
         />
       )
     } else {
-      return <CharacterViewSilhouette />
+      return <CharacterViewSilhouette/>
     }
   },
 })
 
-export default connect(undefined, { openLightbox })(ImageApp)
+export default connect(undefined, {openLightbox})(ImageApp)
 
 // BROKEN THINGS FOR TOMRROW
 

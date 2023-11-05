@@ -1,11 +1,11 @@
 import React, {Component, Fragment} from 'react'
 import Restrict from '../../../Shared/Restrict'
 import Button from '../../../Styled/Button'
-import Input from '../../../../v1/shared/forms/Input'
-import Submit from '../../../../v1/shared/forms/Submit'
+import Input from '@refsheet/v1/shared/forms/Input'
+import Submit from '@refsheet/v1/shared/forms/Submit'
 //graphql.macro
-import compose, {withMutations} from '../../../../utils/compose'
-import Flash from '../../../../utils/Flash'
+import compose, {withMutations} from '@refsheet/utils/compose'
+import Flash from '@refsheet/utils/Flash'
 import gql from 'graphql-tag'
 import Moment from 'react-moment'
 

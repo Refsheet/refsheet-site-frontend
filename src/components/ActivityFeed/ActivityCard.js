@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import { withTranslation } from 'react-i18next'
+import {withTranslation} from 'react-i18next'
 import Moment from 'react-moment'
 import UserAvatar from '../User/UserAvatar'
 import UserLink from '../User/UserLink'
@@ -8,8 +8,8 @@ import * as Activities from './Activities'
 import {
   characterIdentitySourceType,
   userIdentitySourceType,
-} from '../../utils/IdentityUtils'
-import { div as Card } from '../Styled/Card'
+} from '@refsheet/utils/IdentityUtils'
+import {div as Card} from '../Styled/Card'
 
 class ActivityCard extends Component {
   constructor(props) {
@@ -17,16 +17,16 @@ class ActivityCard extends Component {
   }
 
   render() {
-    const { t, user, character, timestamp } = this.props
+    const {t, user, character, timestamp} = this.props
 
     const activityText = Activities.getText(t, this.props)
 
     return (
       <Card className="card sp with-avatar margin-bottom--medium">
-        <UserAvatar user={user} character={character} />
+        <UserAvatar user={user} character={character}/>
 
         <div className="card-content padding-bottom--none">
-          <UserLink user={user} character={character} /> {activityText}
+          <UserLink user={user} character={character}/> {activityText}
           <div className="date">
             <Moment className="muted" unix fromNow>
               {timestamp}
@@ -36,7 +36,7 @@ class ActivityCard extends Component {
 
         {Activities.render(this.props)}
 
-        <div className="clearfix" />
+        <div className="clearfix"/>
       </Card>
     )
   }

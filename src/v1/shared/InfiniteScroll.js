@@ -2,11 +2,11 @@ import React from 'react'
 import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
 
-import Button from 'v1/shared/material/Button'
-import Spinner from 'v1/shared/material/Spinner'
-import ObjectPath from '../utils/ObjectPath'
-import Model from '../utils/Model'
-import StateUtils from '../utils/StateUtils'
+import Button from '@refsheet/v1/shared/material/Button'
+import Spinner from '@refsheet/v1/shared/material/Spinner'
+import ObjectPath from '@refsheet/utils/ObjectPath'
+import Model from '@refsheet/utils/Model'
+import StateUtils from '@refsheet/utils/StateUtils'
 import $ from 'jquery'
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
@@ -45,7 +45,8 @@ export default InfiniteScroll = createReactClass({
     }
   },
 
-  UNSAFE_componentWillReceiveProps(newProps) {},
+  UNSAFE_componentWillReceiveProps(newProps) {
+  },
   //    if newProps.count < newProps.perPage
   //      @setState lastPage: true
   //    else
@@ -57,7 +58,7 @@ export default InfiniteScroll = createReactClass({
         !this.state.lastPage &&
         !this.state.loading &&
         $(window).scrollTop() + $(window).height() >
-          $(document).height() - (this.props.scrollOffset || 100)
+        $(document).height() - (this.props.scrollOffset || 100)
       ) {
         return this._fetch()
       }
@@ -72,9 +73,9 @@ export default InfiniteScroll = createReactClass({
     const fetchUrl = StateUtils.getFetchUrl(this.props.stateLink, {
       params: this.props.match != null ? this.props.match.params : undefined,
     })
-    const data = { page: parseInt(this.state.page) + 1 }
+    const data = {page: parseInt(this.state.page) + 1}
 
-    return this.setState({ loading: true }, () => {
+    return this.setState({loading: true}, () => {
       return Model.request('GET', fetchUrl, data, fetchData => {
         const path =
           typeof this.props.stateLink === 'function'
@@ -87,7 +88,7 @@ export default InfiniteScroll = createReactClass({
 
         const lastPage = items.length < (this.props.perPage || 24)
         return this.setState(
-          { page: meta.page, lastPage, loading: false },
+          {page: meta.page, lastPage, loading: false},
           () => {
             return this.props.onLoad(items)
           }
@@ -120,7 +121,7 @@ export default InfiniteScroll = createReactClass({
 
         {this.state.loading && (
           <div className="margin-top--large center">
-            <Spinner small />
+            <Spinner small/>
           </div>
         )}
       </div>

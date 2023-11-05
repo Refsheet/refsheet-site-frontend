@@ -3,11 +3,11 @@ import PropTypes from 'prop-types'
 import DropdownLink from '../DropdownLink'
 import NotificationItem from '../Dropdown/NotificationItem'
 import Link from 'next/link'
-import Scrollbars from 'components/Shared/Scrollbars'
-import compose from '../../../../utils/compose'
+import Scrollbars from '@refsheet/components/Shared/Scrollbars'
+import compose from '@refsheet/utils/compose'
 import {connect} from 'react-redux'
-import WindowAlert from '../../../../utils/WindowAlert'
-import {clearAllUploads, clearUpload, openUploadModal} from '../../../../actions'
+import WindowAlert from '@refsheet/utils/WindowAlert'
+import {clearAllUploads, clearUpload, openUploadModal} from '@refsheet/actions'
 
 class UploadMenu extends Component {
   handleUploadDismiss(args) {

@@ -1,20 +1,20 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import compose from 'utils/compose'
 import UserAvatar from '../../User/UserAvatar'
-import { Trans } from 'react-i18next'
+import {Trans} from 'react-i18next'
 import Moment from 'react-moment'
 import UserLink from '../../Shared/UserLink'
 import PostMeta from '../shared/PostMeta'
 import RichText from '../../Shared/RichText'
 import LinkUtils from 'utils/LinkUtils'
 import c from 'classnames'
-import { Divider, Icon, Dropdown } from 'react-materialize'
-import Muted, { MutedAnchor } from '../../Styled/Muted'
-import { div as Card } from '../../Styled/Card'
+import {Divider, Icon, Dropdown} from 'react-materialize'
+import Muted, {MutedAnchor} from '../../Styled/Muted'
+import {div as Card} from '../../Styled/Card'
 import DiscussionReplyForm from './DiscussionReplyForm'
-import { openReportModal } from '../../../actions'
-import { connect } from 'react-redux'
+import {openReportModal} from '@refsheet/actions'
+import {connect} from 'react-redux'
 
 class DiscussionReply extends Component {
   constructor(props) {
@@ -27,23 +27,23 @@ class DiscussionReply extends Component {
 
   handleEditStart(e) {
     e.preventDefault()
-    this.setState({ editing: true })
+    this.setState({editing: true})
     this.props.onEditStart && this.props.onEditStart()
   }
 
   handleEditStop() {
-    this.setState({ editing: false })
+    this.setState({editing: false})
     this.props.onEditStop && this.props.onEditStop()
   }
 
   handleSubmit(post) {
-    this.setState({ editing: false })
+    this.setState({editing: false})
     this.props.refetch && this.props.refetch()
   }
 
   render() {
-    const { post, discussionId, forumId } = this.props
-    const { can_edit, can_destroy } = post
+    const {post, discussionId, forumId} = this.props
+    const {can_edit, can_destroy} = post
 
     if (this.state.editing) {
       return (
@@ -58,7 +58,7 @@ class DiscussionReply extends Component {
 
     return (
       <div className={'margin-top--medium forum-post--reply'}>
-        <UserAvatar user={post.user} character={post.character} />
+        <UserAvatar user={post.user} character={post.character}/>
 
         <Card
           className={c('forum-reply card sp', {
@@ -128,7 +128,7 @@ class DiscussionReply extends Component {
                     <span>Delete</span>
                   </a>
                 )}
-                <Divider />
+                <Divider/>
                 <a key="report" href={'#'}>
                   <Icon left>flag</Icon>
                   <span>Report</span>
@@ -136,11 +136,11 @@ class DiscussionReply extends Component {
               </Dropdown>
             </div>
 
-            <UserLink user={post.user} character={post.character} />
+            <UserLink user={post.user} character={post.character}/>
           </div>
 
           <div className={'reply-content card-content'}>
-            <RichText content={post.content} contentHtml={post.content_html} />
+            <RichText content={post.content} contentHtml={post.content_html}/>
           </div>
         </Card>
       </div>
@@ -156,4 +156,4 @@ DiscussionReply.propTypes = {
   refetch: PropTypes.func,
 }
 
-export default compose(connect(undefined, { openReportModal }))(DiscussionReply)
+export default compose(connect(undefined, {openReportModal}))(DiscussionReply)

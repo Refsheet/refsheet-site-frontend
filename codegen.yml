@@ -1,6 +1,6 @@
 overwrite: true
 schema: "./schema.graphql"
-documents: "src/**/*.graphql"
+documents: "@refsheet/**/*.graphql"
 generates:
   ./@types/schema.d.ts:
     plugins:

@@ -4,9 +4,9 @@ import compose from 'utils/compose'
 import {Trans, withTranslation} from 'react-i18next'
 import {Row, Col, TextInput} from 'react-materialize'
 //graphql.macro
-import {withCurrentUser, withMutations} from '../../../../utils/compose'
+import {withCurrentUser, withMutations} from '@refsheet/utils/compose'
 import authorize from 'policies'
-import validate, {errorProps, isRequired} from '../../../../utils/validate'
+import validate, {errorProps, isRequired} from '@refsheet/utils/validate'
 import dynamic from 'next/dynamic'
 
 let Materialize = null;

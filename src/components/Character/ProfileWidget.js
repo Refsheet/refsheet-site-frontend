@@ -13,7 +13,7 @@ if (typeof window !== 'undefined') {
 }
 
 import {div as Card} from '../Styled/Card'
-import compose from '../../utils/compose'
+import compose from '@refsheet/utils/compose'
 import {withErrorBoundary} from '../Shared/ErrorBoundary'
 
 const updateProfileWidget = require('./updateProfileWidget.graphql');

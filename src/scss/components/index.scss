@@ -1,11 +1,11 @@
-@import 'character';
-@import 'forum';
-@import 'image';
-@import 'lightbox';
-@import 'shared';
-@import 'third_party';
-@import 'user';
+@import 'character/index';
+@import 'forum/index';
+@import 'image/index';
+@import 'lightbox/index';
+@import 'shared/index';
+@import 'third_party/index';
+@import 'user/index';
 
-@import './hint';
-@import './NavBar.sass';
+@import 'hint';
+@import 'NavBar';
 @import 'react-markdown';

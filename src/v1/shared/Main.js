@@ -1,2 +1,2 @@
-import Main from 'components/Shared/Main'
+import Main from '@refsheet/components/Shared/Main'
 export default Main

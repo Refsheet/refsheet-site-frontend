@@ -1,16 +1,16 @@
 import React from 'react'
 import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
-import Modal from 'v1/shared/Modal'
-import Form from 'v1/shared/forms/Form'
-import Row from 'v1/shared/material/Row'
-import Column from 'v1/shared/material/Column'
-import Input from 'v1/shared/forms/Input'
-import Submit from 'v1/shared/forms/Submit'
-import AttributeTable from 'v1/shared/attributes/attribute_table'
-import Attribute from 'v1/shared/attributes/attribute'
-import Tabs from 'v1/shared/tabs/Tabs'
-import Tab from 'v1/shared/tabs/Tab'
+import Modal from '@refsheet/v1/shared/Modal'
+import Form from '@refsheet/v1/shared/forms/Form'
+import Row from '@refsheet/v1/shared/material/Row'
+import Column from '@refsheet/v1/shared/material/Column'
+import Input from '@refsheet/v1/shared/forms/Input'
+import Submit from '@refsheet/v1/shared/forms/Submit'
+import AttributeTable from '@refsheet/v1/shared/attributes/attribute_table'
+import Attribute from '@refsheet/v1/shared/attributes/attribute'
+import Tabs from '@refsheet/v1/shared/tabs/Tabs'
+import Tab from '@refsheet/v1/shared/tabs/Tab'
 
 import dynamic from 'next/dynamic'
 
@@ -19,7 +19,7 @@ if (typeof window !== 'undefined') {
   Materialize = require('materialize-css');
 }
 
-import ColorUtils from '../../../../utils/ColorUtils'
+import ColorUtils from '@refsheet/utils/ColorUtils'
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.

@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { userFgColor } from '../../utils/UserUtils'
-import { createIdentity, identitySourceType } from '../../utils/IdentityUtils'
+import {userFgColor} from '@refsheet/utils/UserUtils'
+import {createIdentity, identitySourceType} from '@refsheet/utils/IdentityUtils'
 
 const UserAvatar = props => {
-  const { user, onIdentityChangeClick } = props
+  const {user, onIdentityChangeClick} = props
   const identity = createIdentity(props)
 
   const style = {

@@ -1,16 +1,16 @@
 'use client';
 
 import React from 'react'
-import NavLink from '@refsheet/components/Shared/NavLink';
+import NavLink from '@refsheet//components/Shared/NavLink';
 
-import Main from '@refsheet/components/Shared/Main'
-import Jumbotron from '@refsheet/components/Shared/Jumbotron'
-import Error from '@refsheet/components/Shared/Error'
+import Main from '@refsheet//components/Shared/Main'
+import Jumbotron from '@refsheet//components/Shared/Jumbotron'
+import Error from '@refsheet//components/Shared/Error'
 import {GetForumQuery} from "../../../../@types/schema";
 import {useTranslation} from "react-i18next";
-import SearchForm from '@refsheet/components/Forums/show/SearchForm';
+import SearchForm from '@refsheet//components/Forums/show/SearchForm';
 import {useSearchParams} from "next/navigation";
-import client from "../../../services/ApplicationService";
+import client from "@refsheet/services/ApplicationService";
 import getForumQuery from "./getForum.graphql";
 
 interface ForumProps {

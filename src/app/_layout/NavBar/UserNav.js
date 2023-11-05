@@ -6,8 +6,8 @@ import TransferMenu from './TransferMenu'
 import NotificationMenu from './NotificationMenu'
 import ConversationMenu from './ConversationMenu'
 import UploadMenu from './UploadMenu'
-import Restrict from '../../../components/Shared/Restrict'
-import compose from '../../../utils/compose'
+import Restrict from '@refsheet/components/Shared/Restrict'
+import compose from '@refsheet/utils/compose'
 
 const UserNav = props => (
   <ul className="right">

@@ -8,7 +8,7 @@ import UserAvatar from '../../User/UserAvatar'
 import c from 'classnames'
 import KarmaCounter from '../shared/KarmaCounter'
 import PostMeta from '../shared/PostMeta'
-import compose from '../../../utils/compose'
+import compose from '@refsheet/utils/compose'
 
 class DiscussionLink extends Component {
   render() {

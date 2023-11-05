@@ -4,11 +4,11 @@ import PropTypes from 'prop-types'
 import Spinner from '../../../shared/material/Spinner'
 import Icon from '../../../shared/material/Icon'
 import InfiniteScroll from '../../../shared/InfiniteScroll'
-import Views from '../../../views/_views'
+import Views from '../../_views'
 import $ from 'jquery'
-import StateUtils from '../../../utils/StateUtils'
-import Model from '../../../utils/Model'
-import HashUtils from '../../../utils/HashUtils'
+import StateUtils from '@refsheet/utils/StateUtils'
+import Model from '@refsheet/utils/Model'
+import HashUtils from '@refsheet/utils/HashUtils'
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*
@@ -64,7 +64,7 @@ export default Feed = createReactClass({
         })
         return this._poll()
       },
-      { urlParams: { filter: this.props.filter } }
+      {urlParams: {filter: this.props.filter}}
     )
   },
 
@@ -79,7 +79,7 @@ export default Feed = createReactClass({
       if (this.timer) {
         clearTimeout(this.timer)
       }
-      return this.setState({ notifications: null }, () => {
+      return this.setState({notifications: null}, () => {
         return StateUtils.load(
           this,
           'notifications',
@@ -94,7 +94,7 @@ export default Feed = createReactClass({
             })
             return this._poll()
           },
-          { urlParams: { filter: this.props.filter } }
+          {urlParams: {filter: this.props.filter}}
         )
       })
     }
@@ -114,7 +114,7 @@ export default Feed = createReactClass({
     return (this.timer = setTimeout(() => {
       return Model.poll(
         this.dataPath,
-        { since: this.state.since, filter: this.props.filter },
+        {since: this.state.since, filter: this.props.filter},
         data => {
           return this.setState(
             {
@@ -179,7 +179,7 @@ export default Feed = createReactClass({
   _markRead(read, path) {
     return e => {
       e.preventDefault()
-      return Model.put(path, { read }, data => {
+      return Model.put(path, {read}, data => {
         return StateUtils.updateItem(this, 'notifications', data, 'id')
       })
     }
@@ -190,20 +190,20 @@ export default Feed = createReactClass({
       e.preventDefault()
       const ids = this.state.notifications.map(n => n.id)
 
-      return Model.put('/notifications/bulk_update', { read, ids }, data => {
+      return Model.put('/notifications/bulk_update', {read, ids}, data => {
         const newNotes = this.state.notifications.map(function (n) {
           const note = $.extend({}, n)
           note.is_read = data.read
           return note
         })
-        return this.setState({ notifications: newNotes })
+        return this.setState({notifications: newNotes})
       })
     }
   },
 
   render() {
     if (!this.state.notifications) {
-      return <Spinner className="margin-top--large" small center />
+      return <Spinner className="margin-top--large" small center/>
     }
     const __this = this
 
@@ -235,7 +235,7 @@ export default Feed = createReactClass({
             </a>
           )}
 
-          <br className="clearfix" />
+          <br className="clearfix"/>
         </div>
 
         {out}

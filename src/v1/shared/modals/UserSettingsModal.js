@@ -1,8 +1,8 @@
 import React from 'react'
 import createReactClass from 'create-react-class'
-import Modal from 'v1/shared/Modal'
-import AttributeTable from 'v1/shared/attributes/attribute_table'
-import Attribute from 'v1/shared/attributes/attribute'
+import Modal from '@refsheet/v1/shared/Modal'
+import AttributeTable from '@refsheet/v1/shared/attributes/attribute_table'
+import Attribute from '@refsheet/v1/shared/attributes/attribute'
 import $ from 'jquery'
 import dynamic from 'next/dynamic'
 

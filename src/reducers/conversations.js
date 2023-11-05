@@ -1,5 +1,5 @@
-import {createReducer} from 'reducers'
-import defaultState from 'components/App/defaultState.json'
+import {createReducer} from '@refsheet/reducers/index'
+import defaultState from '@refsheet/components/App/defaultState.json'
 
 export const OPEN_CONVERSATION = "OPEN_CONVERSATION";
 export const CLOSE_CONVERSATION = "CLOSE_CONVERSATION";

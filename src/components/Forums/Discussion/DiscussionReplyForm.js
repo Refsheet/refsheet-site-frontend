@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import compose from 'utils/compose'
-import {withCurrentUser, withMutations} from '../../../utils/compose'
+import {withCurrentUser, withMutations} from '@refsheet/utils/compose'
 
 let M = null;
 if (typeof window !== 'undefined') {

@@ -3,12 +3,12 @@ import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
 
 import Link from 'next/link'
-import Icon from 'v1/shared/material/Icon'
-import StringUtils from '../../utils/StringUtils'
-import NumberUtils from '../utils/NumberUtils'
+import Icon from '@refsheet/v1/shared/material/Icon'
+import StringUtils from '@refsheet/utils/StringUtils'
+import NumberUtils from '@refsheet/utils/NumberUtils'
 import $ from 'jquery'
-import Model from '../utils/Model'
-import compose, {withCurrentUser} from '../../utils/compose'
+import Model from '@refsheet/utils/Model'
+import compose, {withCurrentUser} from '@refsheet/utils/compose'
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*

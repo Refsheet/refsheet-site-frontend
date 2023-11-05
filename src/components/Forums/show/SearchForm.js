@@ -3,13 +3,13 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {withTranslation} from 'react-i18next'
-import compose from 'utils/compose'
-import {H1} from 'components/Styled/Headings'
+import compose from '@refsheet/utils/compose'
+import {H1} from '@refsheet/components/Styled/Headings'
 import styled from 'styled-components'
-import FormUtils from '../../../utils/FormUtils'
-import LinkUtils from '../../../utils/LinkUtils'
+import FormUtils from '@refsheet/utils/FormUtils'
+import LinkUtils from '@refsheet/utils/LinkUtils'
 
-import Icon from 'v1/shared/material/Icon'
+import Icon from '@refsheet/v1/shared/material/Icon'
 
 class SearchForm extends Component {
   constructor(props) {

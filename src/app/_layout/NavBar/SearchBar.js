@@ -68,7 +68,7 @@ class SearchBar extends Component {
             onChange={this.handleQueryChange}
             onFocus={this.activate}
             onBlur={this.deactivate}
-            value={query}
+            value={query || ""}
           />
 
           <label htmlFor="search">

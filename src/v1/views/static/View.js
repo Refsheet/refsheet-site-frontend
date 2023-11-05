@@ -17,8 +17,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import createReactClass from 'create-react-class'
 import Main from '../../shared/Main'
-import StateUtils from '../../utils/StateUtils'
-import { sanitize } from '../../../utils/sanitize'
+import StateUtils from '@refsheet/utils/StateUtils'
+import {sanitize} from '@refsheet/utils/sanitize'
 
 let View
 export default View = createReactClass({
@@ -59,9 +59,9 @@ export default View = createReactClass({
         newProps.location.pathname === this.props.location.pathname) ||
       ((newProps.match != null ? newProps.match.params.pageId : undefined) &&
         (newProps.match != null ? newProps.match.params.pageId : undefined) ===
-          (this.props.match != null
-            ? this.props.match.params.pageId
-            : undefined))
+        (this.props.match != null
+          ? this.props.match.params.pageId
+          : undefined))
     ) {
       return
     }
@@ -96,7 +96,7 @@ export default View = createReactClass({
         </Main>
       )
     } else {
-      return <Main />
+      return <Main/>
     }
   },
 })

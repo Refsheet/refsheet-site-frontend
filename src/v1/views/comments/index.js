@@ -12,10 +12,10 @@ import Form from '../../shared/forms/Form'
 import Input from '../../shared/forms/Input'
 import Submit from '../../shared/forms/Submit'
 import Icon from '../../shared/material/Icon'
-import RichText from '../../../components/Shared/RichText'
+import RichText from '@refsheet/components/Shared/RichText'
 import Link from 'next/link'
-import Model from '../../utils/Model'
-import compose, {withCurrentUser} from '../../../utils/compose'
+import Model from '@refsheet/utils/Model'
+import compose, {withCurrentUser} from '@refsheet/utils/compose'
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*

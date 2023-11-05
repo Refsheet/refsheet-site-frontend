@@ -2,13 +2,13 @@ import React from 'react'
 import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import Icon from 'v1/shared/material/Icon'
-import Model from '../../utils/Model'
-import NumberUtils from '../../utils/NumberUtils'
+import Icon from '@refsheet/v1/shared/material/Icon'
+import Model from '@refsheet/utils/Model'
+import NumberUtils from '@refsheet/utils/NumberUtils'
 
 import $ from 'jquery'
-import compose from '../../../utils/compose'
-import Thumbnail from '../../../components/Image/Thumbnail'
+import compose from '@refsheet/utils/compose'
+import Thumbnail from '@refsheet/components/Image/Thumbnail'
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.

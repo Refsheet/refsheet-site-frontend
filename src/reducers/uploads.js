@@ -1,4 +1,4 @@
-import {createReducer} from 'reducers'
+import {createReducer} from '@refsheet/reducers/index'
 
 function willOpenModal() {
   // Prevent clobbering the lightbox:

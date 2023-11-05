@@ -8,10 +8,10 @@ if (typeof window !== 'undefined') {
 }
 
 import Bowser from 'bowser'
-import Attribute from 'v1/shared/attributes/attribute'
-import AttributeTable from 'v1/shared/attributes/attribute_table'
-import Model from '../../../utils/Model'
-import compose, {withCurrentUser} from 'utils/compose'
+import Attribute from '@refsheet/v1/shared/attributes/attribute'
+import AttributeTable from '@refsheet/v1/shared/attributes/attribute_table'
+import Model from '@refsheet/utils/Model'
+import compose, {withCurrentUser} from '@refsheet/utils/compose'
 
 class Notifications extends React.Component {
   constructor(props) {

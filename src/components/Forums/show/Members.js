@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import compose from 'utils/compose'
+import compose from '@refsheet/utils/compose'
 
-import Advertisement from 'v1/shared/advertisement'
+import Advertisement from '@refsheet/v1/shared/advertisement'
 
 class Members extends Component {
   constructor(props) {

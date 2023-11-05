@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {format} from 'utils/NumberUtils'
+import {format} from '@refsheet/utils/NumberUtils'
 import Moment from 'react-moment'
 
 const Stats = ({children}) => <ul className={'stats'}>{children}</ul>

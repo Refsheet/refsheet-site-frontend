@@ -8,11 +8,11 @@
 import React from 'react'
 import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
-import StringUtils from '../../../../utils/StringUtils'
-import CharacterLinkCard from 'v1/views/characters/CharacterLinkCard'
+import StringUtils from '@refsheet/utils/StringUtils'
+import CharacterLinkCard from '@refsheet/v1/views/characters/CharacterLinkCard'
 
 import $ from 'jquery'
-import Model from '../../../utils/Model'
+import Model from '@refsheet/utils/Model'
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.

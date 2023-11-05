@@ -5,14 +5,14 @@ import PropTypes from 'prop-types'
 import Filmstrip from './Filmstrip'
 import UploadForm from './UploadForm'
 import ImageHandler from 'utils/ImageHandler'
-import {clearUpload, closeUploadModal, modifyUpload} from '../../actions'
+import {clearUpload, closeUploadModal, modifyUpload} from '@refsheet/actions'
 import {connect} from 'react-redux'
 import c from 'classnames'
 import {Query} from '@apollo/client/react/components'
 //graphql.macro
 import IdentityModal from '../Shared/CommentForm/IdentityModal'
 import {withTranslation} from 'react-i18next'
-import compose from '../../utils/compose'
+import compose from '@refsheet/utils/compose'
 import dynamic from 'next/dynamic'
 
 

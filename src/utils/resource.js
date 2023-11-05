@@ -8,7 +8,7 @@
  */
 import Axios from 'axios'
 import {CancelToken} from 'axios'
-import {host} from "../services/ApplicationService";
+import {host} from "@refsheet/services/ApplicationService";
 
 export var get = function ({path, request}) {
   const source = CancelToken.source()

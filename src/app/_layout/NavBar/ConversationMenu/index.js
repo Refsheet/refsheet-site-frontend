@@ -3,11 +3,11 @@ import PropTypes from 'prop-types'
 import DropdownLink from '../DropdownLink'
 import NotificationItem from '../Dropdown/NotificationItem'
 import Link from 'next/link'
-import Scrollbars from 'components/Shared/Scrollbars'
+import Scrollbars from '@refsheet/components/Shared/Scrollbars'
 import subscription from './subscription'
-import {formatBody} from 'components/Chat/ConversationMessage'
+import {formatBody} from '@refsheet/components/Chat/ConversationMessage'
 import {connect} from 'react-redux'
-import {openConversation} from 'actions'
+import {openConversation} from '@refsheet/actions'
 
 class ConversationMenu extends Component {
   constructor(props) {

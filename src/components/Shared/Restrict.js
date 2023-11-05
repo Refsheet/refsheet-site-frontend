@@ -3,7 +3,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect, useSelector} from 'react-redux'
-import Refsheet from 'services/Refsheet'
+import Refsheet from '@refsheet/services/Refsheet'
 
 const restrict = ({
                     tag = '',

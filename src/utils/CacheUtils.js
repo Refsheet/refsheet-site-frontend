@@ -1,5 +1,5 @@
 //graphql.macro
-const gcp = require('../graph/queries/getCharacterProfile.graphql');
+const gcp = require('@refsheet/graph/queries/getCharacterProfile.graphql');
 
 const CacheUtils = {
   deleteMedia: (cache, {data: {deleteMedia}}) => {

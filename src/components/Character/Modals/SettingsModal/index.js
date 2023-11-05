@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import EditCharacter from './EditCharacter'
 import TransferCharacter from './TransferCharacter'
 import {withTranslation} from 'react-i18next'
-import compose from '../../../../utils/compose'
+import compose from '@refsheet/utils/compose'
 import DeleteCharacter from './DeleteCharacter'
 
 import Modal from 'components/Styled/Modal'

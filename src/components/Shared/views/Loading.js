@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Spinner from '../../../v1/shared/material/Spinner'
+import Spinner from '@refsheet/v1/shared/material/Spinner'
 
 const Loading = function (props) {
   const classNames = ['modal-page-content']
@@ -11,7 +11,7 @@ const Loading = function (props) {
   return (
     <main className={classNames.join(' ')}>
       <div className="container">
-        <Spinner small={props.small} />
+        <Spinner small={props.small}/>
 
         {props.message !== false && <h1>{props.message || 'Loading...'}</h1>}
 

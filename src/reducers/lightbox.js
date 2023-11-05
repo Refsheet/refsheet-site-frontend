@@ -1,4 +1,4 @@
-import {createReducer} from 'reducers'
+import {createReducer} from '@refsheet/reducers/index'
 
 export const OPEN_LIGHTBOX = "OPEN_LIGHTBOX";
 export const CLOSE_LIGHTBOX = "CLOSE_LIGHTBOX";

@@ -1,4 +1,4 @@
-import Index from './Index/index.js'
+import Index from './Index'
 import Show from './Show'
 
 export default {

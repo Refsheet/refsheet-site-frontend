@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {withCurrentUser, withMutations} from '../../utils/compose'
+import {withCurrentUser, withMutations} from '@refsheet/utils/compose'
 import Button from '../Styled/Button'
 import gql from 'graphql-tag'
 
