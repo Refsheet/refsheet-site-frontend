@@ -1,5 +1,3 @@
-import {getRequestConfig} from 'next-intl/server';
-
-export default getRequestConfig(async ({locale}) => ({
-    messages: (await import(`./messages/${locale}.json`)).default
-}));
+export const locales = [
+    'en', 'de', 'es', 'fr', 'ja', 'pt', 'ru'
+] as const;
