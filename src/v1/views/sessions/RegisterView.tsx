@@ -5,12 +5,12 @@ import Form from '../../shared/forms/Form'
 import Input from '../../shared/forms/Input'
 import Submit from '../../shared/forms/Submit'
 import Flash from '@refsheet/utils/Flash'
-import Link from 'next/link'
+import {Link} from '@refsheet/navigation'
 import compose, {withConfig, withCurrentUser} from '@refsheet/utils/compose'
 import ReCAPTCHA from 'react-google-recaptcha'
 import {useHistory} from 'react-router'
 import {Checkbox, Row, Col, Select} from 'react-materialize'
-import {useSearchParams} from "@refsheet/hooks/useSearchParams";
+import {useSearchParam} from "@refsheet/hooks/useSearchParam";
 
 export interface IRegisterViewProps {
     setCurrentUser: (any) => void;
@@ -21,11 +21,11 @@ export interface IRegisterViewProps {
 
 const RegisterView: React.FC<IRegisterViewProps> = ({setCurrentUser, config}) => {
     const captchaRef = useRef<ReCAPTCHA>(null);
-    const query = useSearchParams();
+    const username = useSearchParam('username');
     const history = useHistory();
 
     const [userData, setUserData] = useState({
-        username: query.username,
+        username: username,
         email: null,
         password: null,
         password_confirmation: null,
@@ -203,8 +203,7 @@ const RegisterView: React.FC<IRegisterViewProps> = ({setCurrentUser, config}) =>
 
                         <div className="form-actions margin-top--large">
                             <Link
-                                href="/login"
-                                query={{username: userData.username}}
+                                href={{pathname: "/login", query: {username: userData.username}}}
                                 className="btn grey darken-3"
                             >
                                 Log In

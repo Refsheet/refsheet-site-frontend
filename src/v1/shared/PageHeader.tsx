@@ -56,7 +56,7 @@ const PageHeader: React.FC<React.PropsWithChildren<IPageHeaderProps>> = ({
             <div className="page-header-backdrop" ref={sectionRef}>
                 <div className={styles.plxContainer}>
                     <div className={styles.plx} style={{top: `-${calculatePosition()}px`}} ref={imageRef}>
-                        <Image src={backgroundImage} placeholder='blur'/>
+                        <Image alt={"Page Header Backdrop"} src={backgroundImage} placeholder='blur'/>
                     </div>
                 </div>
                 {onHeaderImageEdit && (

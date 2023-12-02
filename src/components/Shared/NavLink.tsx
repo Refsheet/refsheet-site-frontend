@@ -4,8 +4,8 @@ import React, {Children} from 'react'
 
 export interface INavLinkProps extends React.PropsWithChildren<LinkProps> {
     activeClassName?: string;
-    exact: boolean;
-    className: string;
+    exact?: boolean;
+    className?: string;
 }
 
 export default function NavLink({href, exact, children, activeClassName, ...props}: INavLinkProps) {
@@ -14,7 +14,8 @@ export default function NavLink({href, exact, children, activeClassName, ...prop
     const isActive = hrefStr && (exact ? pathname === href : pathname.startsWith(hrefStr));
 
     if (isActive) {
-        props.className += activeClassName;
+        if (!props.className) props.className = "";
+        props.className += " " + activeClassName;
     }
 
     return (

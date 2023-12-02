@@ -1,4 +1,4 @@
-import Index from './Index'
+import Index from './Index/index'
 import Show from './Show'
 
 export default {
