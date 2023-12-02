@@ -1,0 +1,3 @@
+files:
+  - source: /src/i18n/messages/en.json
+    translation: /src/i18n/messages/%locale%.json
