@@ -4,5 +4,13 @@
     "tagline-rich": "Seus personagens, <organized>organizou</organized>.",
     "cta-text": "Deixe que a Refeição o ajude a encomendar, compartilhar e socializar.",
     "cta-button": "Comece Agora"
+  },
+  "NavBar": {
+    "notice": "Notice",
+    "home": "Home",
+    "characters": "Characters",
+    "artists": "Artists",
+    "images": "Images",
+    "forums": "Forums"
   }
 }
