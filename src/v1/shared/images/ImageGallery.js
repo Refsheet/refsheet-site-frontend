@@ -9,13 +9,13 @@ import GalleryFeature from '@refsheet/v1/shared/images/GalleryFeature'
 import ArrayUtils from '@refsheet/v1/utils/ArrayUtils'
 import dynamic from 'next/dynamic'
 
+import $ from 'jquery'
+import StateUtils from '@refsheet/v1/utils/StateUtils'
+
 let Materialize = null;
 if (typeof window !== 'undefined') {
   Materialize = require('materialize-css');
 }
-
-import $ from 'jquery'
-import StateUtils from '@refsheet/v1/utils/StateUtils'
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.

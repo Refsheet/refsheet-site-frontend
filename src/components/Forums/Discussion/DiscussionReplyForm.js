@@ -2,15 +2,15 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import compose from 'utils/compose'
 import {withCurrentUser, withMutations} from '@refsheet/utils/compose'
+import CommentForm from '../../Shared/CommentForm'
+import {Row, Col} from 'react-materialize'
+//graphql.macro
+import Muted from '../../Styled/Muted'
 
 let M = null;
 if (typeof window !== 'undefined') {
   M = require('materialize-css');
 }
-import CommentForm from '../../Shared/CommentForm'
-import {Row, Col} from 'react-materialize'
-//graphql.macro
-import Muted from '../../Styled/Muted'
 
 const postReply = require('./postReply.graphql');
 const editReply = require('./editReply.graphql');

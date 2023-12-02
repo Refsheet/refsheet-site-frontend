@@ -5,14 +5,14 @@ import {closeLightbox} from '@refsheet/actions'
 import compose, {withMutations} from '@refsheet/utils/compose'
 import {withTranslation} from 'react-i18next'
 import {connect} from 'react-redux'
+
+import Modal from 'v1/shared/Modal'
+import CacheUtils from '@refsheet/utils/CacheUtils'
 //graphql.macro
 let M = null;
 if (typeof window !== 'undefined') {
   M = require('materialize-css');
 }
-
-import Modal from 'v1/shared/Modal'
-import CacheUtils from '@refsheet/utils/CacheUtils'
 
 const deleteMedia = require('./deleteMedia.graphql');
 

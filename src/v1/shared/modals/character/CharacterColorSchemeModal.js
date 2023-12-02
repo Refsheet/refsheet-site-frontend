@@ -14,12 +14,12 @@ import Tab from '@refsheet/v1/shared/tabs/Tab'
 
 import dynamic from 'next/dynamic'
 
+import ColorUtils from '@refsheet/utils/ColorUtils'
+
 let Materialize = null;
 if (typeof window !== 'undefined') {
   Materialize = require('materialize-css');
 }
-
-import ColorUtils from '@refsheet/utils/ColorUtils'
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.

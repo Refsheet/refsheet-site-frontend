@@ -4,14 +4,14 @@ import PropTypes from 'prop-types'
 import $ from 'jquery'
 import dynamic from 'next/dynamic'
 
+import NumberUtils from '@refsheet/utils/NumberUtils'
+import Tab from './Tab'
+import {captureException} from '@sentry/browser'
+
 let Materialize = null;
 if (typeof window !== 'undefined') {
   Materialize = require('materialize-css');
 }
-
-import NumberUtils from '@refsheet/utils/NumberUtils'
-import Tab from './Tab'
-import {captureException} from '@sentry/browser'
 
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.

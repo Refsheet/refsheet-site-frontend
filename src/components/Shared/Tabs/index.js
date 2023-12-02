@@ -1,12 +1,12 @@
 import React, {Component} from 'react'
 import dynamic from 'next/dynamic'
 
+import Tab from './Tab'
+
 let M = null;
 if (typeof window !== 'undefined') {
   M = require('materialize-css');
 }
-
-import Tab from './Tab'
 
 class Tabs extends Component {
   constructor(props) {

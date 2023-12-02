@@ -2,16 +2,16 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import dynamic from 'next/dynamic'
 
-let Materialize = null;
-if (typeof window !== 'undefined') {
-  Materialize = require('materialize-css');
-}
-
 import Bowser from 'bowser'
 import Attribute from '@refsheet/v1/shared/attributes/attribute'
 import AttributeTable from '@refsheet/v1/shared/attributes/attribute_table'
 import Model from '@refsheet/utils/Model'
 import compose, {withCurrentUser} from '@refsheet/utils/compose'
+
+let Materialize = null;
+if (typeof window !== 'undefined') {
+  Materialize = require('materialize-css');
+}
 
 class Notifications extends React.Component {
   constructor(props) {

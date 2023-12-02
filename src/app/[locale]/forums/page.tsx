@@ -8,7 +8,7 @@ import client from "@refsheet/services/ApplicationService";
 import getForums from './getForums.graphql';
 
 const Forums: React.FC = () => {
-    const forums = null;
+    const forums = [];
 
     if (!forums) {
         return <Error message={''} error={'This forum did not load properly, it seems.'}/>
@@ -61,19 +61,19 @@ const Forums: React.FC = () => {
                     </tr>
                     </thead>
                     <tbody>
-                    {forums.map(forum => (
-                        <tr key={forum?.id}>
-                            <td>
-                                <div>
-                                    <Link href={`/forums/${forum?.slug}`}>{forum?.name}</Link>
-                                    <div className={'muted'}>{forum?.summary}</div>
-                                </div>
-                            </td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>Very Old</td>
-                        </tr>
-                    ))}
+                    {/*{forums.map(forum => (*/}
+                    {/*    <tr key={forum?.id}>*/}
+                    {/*        <td>*/}
+                    {/*            <div>*/}
+                    {/*                <Link href={`/forums/${forum?.slug}`}>{forum?.name}</Link>*/}
+                    {/*                <div className={'muted'}>{forum?.summary}</div>*/}
+                    {/*            </div>*/}
+                    {/*        </td>*/}
+                    {/*        <td>0</td>*/}
+                    {/*        <td>0</td>*/}
+                    {/*        <td>Very Old</td>*/}
+                    {/*    </tr>*/}
+                    {/*))}*/}
                     </tbody>
                 </table>
             </Container>

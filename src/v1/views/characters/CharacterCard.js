@@ -9,11 +9,6 @@ import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
 import dynamic from 'next/dynamic'
 
-let Materialize = null;
-if (typeof window !== 'undefined') {
-  Materialize = require('materialize-css');
-}
-
 import Attribute from '../../shared/attributes/attribute'
 import RichText from '@refsheet/components/Shared/RichText'
 import Follow from '@refsheet/v1/views/user/Follow'
@@ -22,6 +17,11 @@ import AttributeTable from '@refsheet/v1/shared/attributes/attribute_table'
 import $ from 'jquery'
 import HashUtils from '@refsheet/utils/HashUtils'
 import Flash from '@refsheet/utils/Flash'
+
+let Materialize = null;
+if (typeof window !== 'undefined') {
+  Materialize = require('materialize-css');
+}
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*

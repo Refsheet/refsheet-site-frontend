@@ -5,12 +5,12 @@ import {Mutation} from '@apollo/client/react/components'
 import {gql} from '@apollo/client'
 import dynamic from 'next/dynamic'
 
+import EmailConfirmationNag from '../User/EmailConfirmationNag'
+
 let M = null;
 if (typeof window !== 'undefined') {
   M = require('materialize-css');
 }
-
-import EmailConfirmationNag from '../User/EmailConfirmationNag'
 
 class NewMessage extends Component {
   constructor(props) {

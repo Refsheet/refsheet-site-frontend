@@ -4,12 +4,12 @@ import PropTypes from 'prop-types'
 import $ from 'jquery'
 import dynamic from 'next/dynamic'
 
+import Button from '@refsheet/components/Styled/Button'
+
 let Materialize = null;
 if (typeof window !== 'undefined') {
   Materialize = require('materialize-css');
 }
-
-import Button from '@refsheet/components/Styled/Button'
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*

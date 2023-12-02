@@ -3,13 +3,13 @@ import PropTypes from 'prop-types'
 import {Mutation} from '@apollo/client/react/components'
 import dynamic from 'next/dynamic'
 
+//graphql.macro
+import Modal from 'v1/shared/Modal'
+
 let M = null;
 if (typeof window !== 'undefined') {
   M = require('materialize-css');
 }
-
-//graphql.macro
-import Modal from 'v1/shared/Modal'
 
 const createWidget = require('./createWidget.graphql');
 

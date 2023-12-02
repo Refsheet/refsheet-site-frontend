@@ -6,7 +6,6 @@ import NavLink from '@refsheet/components/Shared/NavLink';
 import Main from '@refsheet/components/Shared/Main'
 import Jumbotron from '@refsheet/components/Shared/Jumbotron'
 import Error from '@refsheet/components/Shared/Error'
-import {GetForumQuery} from "../../../../@types/schema";
 import {useTranslation} from "react-i18next";
 import SearchForm from '@refsheet/components/Forums/show/SearchForm';
 import {useSearchParams} from "next/navigation";
@@ -24,10 +23,14 @@ export default async function Forum(props: ForumProps) {
     const params = useSearchParams();
     const query = params.get('q');
 
-    const {data} = await client.query<GetForumQuery>({
-        query: getForumQuery,
-        variables: {id: props.params.forum},
-    });
+    // const {data} = await client.query<GetForumQuery>({
+    //     query: getForumQuery,
+    //     variables: {id: props.params.forum},
+    // });
+
+    const data = {
+        getForum: null
+    };
 
     if (!data.getForum) return <Error message="Form Undefined."/>
     const forum = data.getForum;

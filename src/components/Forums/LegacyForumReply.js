@@ -2,10 +2,10 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Mutation} from '@apollo/client/react/components'
-//graphql.macro
-const postReply = require('./postReply.graphql');
 import CommentForm from '../Shared/CommentForm'
 import {withTranslation} from 'react-i18next'
+//graphql.macro
+const postReply = require('./postReply.graphql');
 
 class LegacyForumReply extends Component {
   constructor(props) {

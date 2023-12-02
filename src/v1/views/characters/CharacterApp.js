@@ -29,11 +29,6 @@ import PageStylesheet from '../../shared/PageStylesheet'
 import NotFound from '../static/NotFound'
 import dynamic from 'next/dynamic'
 
-let Materialize = null;
-if (typeof window !== 'undefined') {
-  Materialize = require('materialize-css');
-}
-
 import Main from '../../shared/Main'
 import CharacterViewSilhouette from './CharacterViewSilhouette'
 import RichText from '@refsheet/components/Shared/RichText'
@@ -49,6 +44,11 @@ import defaultTheme from '@refsheet/themes/default'
 import {ThemeProvider} from 'styled-components'
 import ColorUtils from '@refsheet/utils/ColorUtils'
 import compose, {withCurrentUser} from '@refsheet/utils/compose'
+
+let Materialize = null;
+if (typeof window !== 'undefined') {
+  Materialize = require('materialize-css');
+}
 
 const getCharacterImages = require('./getCharacterImages.graphql');
 // TODO: This file was created by bulk-decaffeinate.

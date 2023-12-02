@@ -9,17 +9,17 @@ import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
 import dynamic from 'next/dynamic'
 
-let Materialize = null;
-if (typeof window !== 'undefined') {
-  Materialize = require('materialize-css');
-}
-
 import Form from '../../../shared/forms/Form'
 import Input from '../../../shared/forms/Input'
 import Submit from '../../../shared/forms/Submit'
 import Attribute from '../../../shared/attributes/attribute'
 import AttributeTable from '../../../shared/attributes/attribute_table'
 import compose, {withCurrentUser} from '@refsheet/utils/compose'
+
+let Materialize = null;
+if (typeof window !== 'undefined') {
+  Materialize = require('materialize-css');
+}
 
 class Support extends React.Component {
   constructor(props, context) {

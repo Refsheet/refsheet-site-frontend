@@ -27,16 +27,16 @@ import ImageApp from './views/images/ImageApp'
 import CharacterApp from './views/characters/CharacterApp'
 import dynamic from 'next/dynamic'
 
-let Materialize = null;
-if (typeof window !== 'undefined') {
-  Materialize = require('materialize-css');
-}
-
 import User from './views/User'
 
 import $ from 'jquery'
 import Site from '@refsheet/components/Settings/Site'
 import API from '@refsheet/components/Settings/API'
+
+let Materialize = null;
+if (typeof window !== 'undefined') {
+  Materialize = require('materialize-css');
+}
 
 // Backfill for Router V4 not parsing query strings.
 const history = createBrowserHistory()

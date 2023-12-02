@@ -3,11 +3,6 @@ import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
 import dynamic from 'next/dynamic'
 
-let Materialize = null;
-if (typeof window !== 'undefined') {
-  Materialize = require('materialize-css');
-}
-
 import $ from 'jquery'
 import c from 'classnames'
 import validate, {
@@ -16,6 +11,11 @@ import validate, {
   isColor,
 } from '@refsheet/utils/validate'
 import ColorPicker from '@refsheet/components/Shared/ColorPicker'
+
+let Materialize = null;
+if (typeof window !== 'undefined') {
+  Materialize = require('materialize-css');
+}
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*

@@ -2,11 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import dynamic from 'next/dynamic'
 
-let Materialize = null;
-if (typeof window !== 'undefined') {
-  Materialize = require('materialize-css');
-}
-
 import Input from '../../shared/forms/Input'
 import Modal from '../../shared/Modal'
 import Form from '../../shared/forms/Form'
@@ -17,6 +12,11 @@ import StateUtils from '@refsheet/utils/StateUtils'
 import compose, {withCurrentUser} from '@refsheet/utils/compose'
 import {closeReportModal} from '@refsheet/actions'
 import {connect} from 'react-redux'
+
+let Materialize = null;
+if (typeof window !== 'undefined') {
+  Materialize = require('materialize-css');
+}
 
 class ReportModal extends React.Component {
   constructor(props) {

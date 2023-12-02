@@ -11,11 +11,6 @@ import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
 import dynamic from 'next/dynamic'
 
-let Materialize = null;
-if (typeof window !== 'undefined') {
-  Materialize = require('materialize-css');
-}
-
 import Modal from '../../shared/Modal'
 import Form from '../../shared/forms/Form'
 import Row from '../../shared/material/Row'
@@ -24,6 +19,11 @@ import Input from '../../shared/forms/Input'
 import Submit from '../../shared/forms/Submit'
 
 import $ from 'jquery'
+
+let Materialize = null;
+if (typeof window !== 'undefined') {
+  Materialize = require('materialize-css');
+}
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*

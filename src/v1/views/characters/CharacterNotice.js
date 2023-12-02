@@ -9,13 +9,13 @@ import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
 import dynamic from 'next/dynamic'
 
+import $ from 'jquery'
+import compose, {withCurrentUser} from '@refsheet/utils/compose'
+
 let Materialize = null;
 if (typeof window !== 'undefined') {
   Materialize = require('materialize-css');
 }
-
-import $ from 'jquery'
-import compose, {withCurrentUser} from '@refsheet/utils/compose'
 // TODO: This file was created by bulk-decaffeinate.
 // Fix any style issues and re-enable lint.
 /*

@@ -16,12 +16,12 @@ import Icon from '@refsheet/v1/shared/material/Icon'
 import Input from '@refsheet/v1/shared/forms/Input'
 import dynamic from 'next/dynamic'
 
+import {createIdentity} from '@refsheet/utils/IdentityUtils'
+
 let Materialize = null;
 if (typeof window !== 'undefined') {
   Materialize = require('materialize-css');
 }
-
-import {createIdentity} from '@refsheet/utils/IdentityUtils'
 
 // TODO: This class has now 3 different styles that it produces,
 //       this should be refactored into a generic wrapper that handles

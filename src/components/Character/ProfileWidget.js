@@ -7,14 +7,14 @@ import {Mutation} from '@apollo/client/react/components'
 //graphql.macro
 import dynamic from 'next/dynamic'
 
+import {div as Card} from '../Styled/Card'
+import compose from '@refsheet/utils/compose'
+import {withErrorBoundary} from '../Shared/ErrorBoundary'
+
 let M = null;
 if (typeof window !== 'undefined') {
   M = require('materialize-css');
 }
-
-import {div as Card} from '../Styled/Card'
-import compose from '@refsheet/utils/compose'
-import {withErrorBoundary} from '../Shared/ErrorBoundary'
 
 const updateProfileWidget = require('./updateProfileWidget.graphql');
 const deleteProfileWidget = require('./deleteProfileWidget.graphql');

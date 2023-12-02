@@ -11,12 +11,12 @@
  */
 import dynamic from 'next/dynamic'
 
+import $ from 'jquery'
+
 let Materialize = null;
 if (typeof window !== 'undefined') {
   Materialize = require('materialize-css');
 }
-
-import $ from 'jquery'
 
 const Model = {
   get(path, success, error) {

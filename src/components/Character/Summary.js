@@ -7,11 +7,6 @@ import {Mutation} from '@apollo/client/react/components'
 //graphql.macro
 import dynamic from 'next/dynamic'
 
-let M = null;
-if (typeof window !== 'undefined') {
-  M = require('materialize-css');
-}
-
 import WindowAlert from '@refsheet/utils/WindowAlert'
 
 import AttributeTable from 'v1/shared/attributes/attribute_table'
@@ -21,6 +16,11 @@ import {Caption} from '../Styled/Caption'
 import RichText from '../Shared/RichText'
 import MarketplaceBuyModal from './Modals/MarketplaceBuyModal'
 import CharacterSaleButton from './Modals/MarketplaceBuyModal/CharacterSaleButton'
+
+let M = null;
+if (typeof window !== 'undefined') {
+  M = require('materialize-css');
+}
 
 const updateCharacter = require('./updateCharacter.graphql');
 
