@@ -4,5 +4,13 @@
     "tagline-rich": "Tus personajes, <organized>organizó</organized>.",
     "cta-text": "Deje que Refsheet le ayude a comisión, compartir y socializar.",
     "cta-button": "Empezar"
+  },
+  "NavBar": {
+    "notice": "Notice",
+    "home": "Home",
+    "characters": "Characters",
+    "artists": "Artists",
+    "images": "Images",
+    "forums": "Forums"
   }
 }
