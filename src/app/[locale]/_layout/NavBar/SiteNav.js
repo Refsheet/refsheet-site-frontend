@@ -1,40 +1,42 @@
 import React from 'react'
 import NavLink from '@refsheet/components/Shared/NavLink'
-import {withTranslation} from 'react-i18next'
 import Restrict from '@refsheet/components/Shared/Restrict'
+import {useTranslations} from "next-intl";
 
-const SiteNav = ({t}) => {
+export default function SiteNav() {
+  const t = useTranslations('NavBar');
+
   return (
     <ul className="site-nav visible-on-med-and-up">
       <li>
         <NavLink href="/" exact activeClassName="primary-text">
-          {t('nav.home', 'Home')}
+          {t('home')}
         </NavLink>
       </li>
 
       <li>
         <NavLink href="/browse" activeClassName="primary-text">
-          {t('nav.characters', 'Characters')}
+          {t('characters')}
         </NavLink>
       </li>
 
       <Restrict development>
         <li>
           <NavLink href="/artists" activeClassName="primary-text strong">
-            {t('nav.artists', 'Artists')}
+            {t('artists')}
           </NavLink>
         </li>
       </Restrict>
 
       <li>
         <NavLink href="/explore" activeClassName="primary-text">
-          {t('nav.images', 'Images')}
+          {t('images')}
         </NavLink>
       </li>
 
       <li>
         <NavLink href="/forums" activeClassName="primary-text">
-          {t('nav.forums', 'Forums')}
+          {t('forums')}
         </NavLink>
       </li>
 
@@ -48,7 +50,3 @@ const SiteNav = ({t}) => {
     </ul>
   )
 }
-
-SiteNav.propTypes = {}
-
-export default withTranslation('common')(SiteNav)

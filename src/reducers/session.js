@@ -33,7 +33,7 @@ const handlers = {
       return state
     }
 
-    SessionService.set({nsfwOk: action.nsfwOk}).then()
+    // SessionService.set({nsfwOk: action.nsfwOk}).then()
     return {...state, nsfwOk: action.nsfwOk}
   },
   [SET_IDENTITY]: (state, action) => {

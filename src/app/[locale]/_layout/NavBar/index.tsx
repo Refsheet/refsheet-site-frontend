@@ -1,6 +1,6 @@
 'use client';
 
-import React, {Component, useState} from 'react'
+import React, {useState} from 'react'
 import Link from 'next/link'
 import SearchBar from './SearchBar'
 import SiteNav from './SiteNav'
@@ -10,8 +10,9 @@ import c from 'classnames'
 import IdentityModal from '@refsheet/components/Shared/CommentForm/IdentityModal'
 import Image from 'next/image'
 import RefsheetLogo64 from '@refsheet/assets/images/logos/RefsheetLogo_64.png'
-import {useCurrentUser} from "@refsheet/hooks/useCurrentUser";
+import {useCurrentUser, useNsfwOk} from "@refsheet/hooks/useCurrentUser";
 import {useSearchParam} from "@refsheet/hooks/useSearchParam";
+import {useTranslations} from "next-intl";
 
 interface INavBarProps {
     className?: string;
@@ -22,40 +23,13 @@ export default function NavBar({className, notice}: INavBarProps) {
     const query = useSearchParam('q');
     const currentUser = useCurrentUser();
     const identity = undefined; // useCurrentIdentity();
+    const [nsfwOk, _] = useNsfwOk();
 
     const [sessionModalOpen, setSessionModalOpen] = useState<boolean>(false);
     const [identityModalOpen, setIdentityModalOpen] = useState<boolean>(false);
     const [register, setRegister] = useState<boolean>(false);
     const [noticeClosed, setNoticeClosed] = useState<boolean>(false);
     const [menuOpen, setMenuOpen] = useState<boolean>(false);
-
-    const nsfwOk = false; // TODO - move to a proper setting.
-
-    const handleLoginClick = (e) => {
-        e.preventDefault()
-        setSessionModalOpen(true)
-        setRegister(false)
-    }
-
-    const handleRegisterClick = (e) => {
-        e.preventDefault()
-        setSessionModalOpen(true)
-        setRegister(true)
-    }
-
-    const handleLogoutClick = (e) => {
-        e.preventDefault()
-        // SessionService.logout().then(() => {
-        //     // props.setCurrentUser(null)
-        //     // dispatch from redis i guess
-        // })
-    }
-
-    const handleNsfwClick = (e) => {
-        e.preventDefault()
-        // const {nsfwOk} = props.session
-        // props.setNsfwMode(!nsfwOk)
-    }
 
     const handleMenuToggle = (e) => {
         e.preventDefault()
@@ -81,6 +55,8 @@ export default function NavBar({className, notice}: INavBarProps) {
         setIdentityModalOpen(false);
     }
 
+    const t = useTranslations('NavBar');
+
     return (
         <div
             className={c('NavBar navbar-fixed user-bar', className, {menuOpen})}
@@ -93,7 +69,7 @@ export default function NavBar({className, notice}: INavBarProps) {
                     onClick={handleNoticeClose}
                 >
                     <div className={'container'}>
-                        <strong>Notice:</strong> {notice}
+                        <strong>{t('notice')}:</strong> {notice}
                     </div>
 
                     <button
@@ -132,23 +108,12 @@ export default function NavBar({className, notice}: INavBarProps) {
                     <SiteNav/>
 
                     <div className="right">
-                        {/*<SearchBar query={query}/>*/}
+                        <SearchBar query={query}/>
 
                         {currentUser ? (
-                            <UserNav
-                                onNsfwClick={handleNsfwClick}
-                                onLogoutClick={handleLogoutClick}
-                                nsfwOk={nsfwOk}
-                                user={currentUser}
-                                identity={identity}
-                                onIdentityClick={handleIdentityOpen}
-                            />
+                            <UserNav/>
                         ) : (
-                            <SessionNav
-                                onNsfwClick={handleNsfwClick}
-                                onLoginClick={handleLoginClick}
-                                nsfwOk={nsfwOk}
-                            />
+                            <SessionNav/>
                         )}
                     </div>
                 </div>

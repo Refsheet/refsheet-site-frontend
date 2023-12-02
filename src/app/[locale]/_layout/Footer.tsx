@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react'
-import Link from 'next/link'
+import {Link} from '@refsheet/navigation'
 import {Row, Col} from 'react-materialize'
 import Restrict from '@refsheet/components/Shared/Restrict'
 import styled, {StyledProps} from 'styled-components'
@@ -9,16 +9,7 @@ import styled, {StyledProps} from 'styled-components'
 import PatreonWhite from '@refsheet/assets/images/third_party/patreon_white.png'
 import Image from 'next/image'
 import Refsheet from '@refsheet/services/Refsheet'
-
-const languages = [
-    {code: 'en', name: "English"},
-    {code: 'es', name: "Español"},
-    {code: 'pt', name: "Português"},
-    {code: 'ru', name: "Русский"},
-    {code: 'fr', name: "Français"},
-    {code: 'de', name: "Deutsch"},
-    {code: 'ja', name: "日本語"},
-];
+import {languages} from "@refsheet/i18n";
 
 export function Footer({className}: StyledProps) {
     return (
@@ -123,7 +114,7 @@ export function Footer({className}: StyledProps) {
                         <ul className="right-align margin-top--none">
                             {languages.map(({code, name}) =>
                                 <li key={code}>
-                                    <Link href="" locale={code}>{name}</Link>
+                                    <Link href="/" locale={code}>{name}</Link>
                                 </li>
                             )}
                         </ul>

@@ -7,8 +7,6 @@ import Chat from '@refsheet/components/Chat/ConversationTray'
 import {useSelector} from 'react-redux'
 import {ThemeProvider} from 'styled-components'
 import themes from '@refsheet/themes'
-import {useSearchParams} from "next/navigation";
-
 import "scss/index.scss";
 import {GlobalState} from "components/App/state";
 

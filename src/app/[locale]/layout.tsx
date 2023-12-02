@@ -4,6 +4,8 @@ import "@refsheet/scss/index.scss";
 import {dir} from 'i18next';
 import Layout from "./_layout";
 import {Inter} from "next/font/google";
+import {NextIntlClientProvider} from "next-intl";
+import {notFound} from "next/navigation";
 
 export const metadata = {
     title: 'Refsheet.net',
@@ -18,14 +20,23 @@ export interface IRootLayoutProps {
 
 const inter = Inter({subsets: ['latin']})
 
-export default function RootLayout({children, params: {locale}}: React.PropsWithChildren<IRootLayoutProps>) {
+export default async function RootLayout({children, params: {locale}}: React.PropsWithChildren<IRootLayoutProps>) {
+    let messages;
+    try {
+        messages = (await import(`@refsheet/i18n/messages/${locale}.json`)).default;
+    } catch (error) {
+        notFound();
+    }
+
     return (
         <html lang={locale} dir={dir(locale)}>
         <body className={inter.className}>
         <AppMain>
-            <Layout>
-                {children}
-            </Layout>
+            <NextIntlClientProvider locale={locale} messages={messages}>
+                <Layout>
+                    {children}
+                </Layout>
+            </NextIntlClientProvider>
         </AppMain>
         </body>
         </html>

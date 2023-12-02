@@ -1,10 +1,16 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import DropdownLink from './DropdownLink'
-import Link from 'next/link'
+import {Link} from '@refsheet/navigation'
+import {useNsfwOk, useSession} from "@refsheet/hooks/useCurrentUser";
 
-const SessionNav = ({nsfwOk, onLoginClick, onNsfwClick}) => {
+export default function SessionNav() {
+  const [nsfwOk, setNsfwOk] = useNsfwOk();
   const nsfwClassName = nsfwOk ? 'nsfw' : 'no-nsfw'
+
+  const onNsfwClick = (e) => {
+    e.preventDefault();
+    setNsfwOk(!nsfwOk);
+  }
 
   return (
     <ul className="right">
@@ -42,11 +48,3 @@ const SessionNav = ({nsfwOk, onLoginClick, onNsfwClick}) => {
     </ul>
   )
 }
-
-SessionNav.propTypes = {
-  nsfwOk: PropTypes.bool,
-  onLoginClick: PropTypes.func.isRequired,
-  onNsfwClick: PropTypes.func.isRequired,
-}
-
-export default SessionNav
