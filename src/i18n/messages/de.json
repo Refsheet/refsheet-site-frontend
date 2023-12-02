@@ -4,5 +4,13 @@
     "tagline-rich": "Deine Zeichen, <organized>organisiert</organized>.",
     "cta-text": "Lassen Sie sich von Refsheet bei der Auftragsvergabe, beim Teilen und bei der Sozialisierung unterstützen.",
     "cta-button": "Los geht's"
+  },
+  "NavBar": {
+    "notice": "Notice",
+    "home": "Home",
+    "characters": "Characters",
+    "artists": "Artists",
+    "images": "Images",
+    "forums": "Forums"
   }
 }
