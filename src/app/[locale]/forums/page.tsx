@@ -4,26 +4,12 @@ import Main from "@refsheet/components/Shared/Main";
 import Jumbotron from "@refsheet/components/Shared/Jumbotron";
 import Link from "next/link";
 import {Container} from "react-materialize";
-import {GetServerSideProps} from "next";
-import {GetForumsQuery, useGetForumsQuery} from "../../../@types/schema";
 import client from "@refsheet/services/ApplicationService";
 import getForums from './getForums.graphql';
 
-export interface ForumsProps {
-    forums: GetForumsQuery['getForums'] | null;
-}
+const Forums: React.FC = () => {
+    const forums = null;
 
-export const getServerSideProps: GetServerSideProps<ForumsProps> = async () => {
-    const {data} = await client.query<GetForumsQuery>({query: getForums});
-
-    return {
-        props: {
-            forums: data?.getForums || null
-        }
-    }
-}
-
-const Forums: React.FC<ForumsProps> = ({forums}) => {
     if (!forums) {
         return <Error message={''} error={'This forum did not load properly, it seems.'}/>
     }
