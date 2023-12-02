@@ -4,5 +4,13 @@
     "tagline-rich": "Your characters, <organized>organized</organized>.",
     "cta-text": "Позволить вам работать с Refsheet помогать вам в комиссиях, делиться и общаться.",
     "cta-button": "Начать работу"
+  },
+  "NavBar": {
+    "notice": "Notice",
+    "home": "Home",
+    "characters": "Characters",
+    "artists": "Artists",
+    "images": "Images",
+    "forums": "Forums"
   }
 }
