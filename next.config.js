@@ -1,4 +1,4 @@
-module.exports = {
+const nextConfig = {
   webpack: (config) => {
     config.resolve.fallback = {
       ...config.resolve.fallback,
@@ -32,8 +32,13 @@ module.exports = {
 
   output: 'standalone',
 
-  i18n: {
-    locales: ['en', 'es', 'pt', 'ru', 'ja', 'de', 'fr'],
-    defaultLocale: 'en',
+  compiler: {
+    styledComponents: true
   },
 }
+
+const withNextIntl = require('next-intl/plugin')(
+  './src/i18n/index.ts'
+);
+
+module.exports = withNextIntl(nextConfig);

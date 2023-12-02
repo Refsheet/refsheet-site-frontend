@@ -5,6 +5,7 @@ import UserView from 'components/User/View';
 import {GetUserProfileQuery} from "../../../@types/schema";
 import type {CharacterGroup} from "components/User/types";
 import NotFound from "components/Shared/views/NotFound";
+import Error from "../../components/Shared/Error";
 
 export interface UserProfileProps {
     characterGroups: readonly CharacterGroup[];
@@ -41,5 +42,3 @@ export default async function Page({params}) {
 
     return <UserView characterGroups={characterGroups} numCharacters={numCharacters} user={user}/>;
 }
-
-export const dynamic = "force-dynamic";

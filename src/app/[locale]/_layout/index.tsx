@@ -16,7 +16,6 @@ import {GlobalState} from "components/App/state";
 export default function Layout({children}: React.PropsWithChildren) {
     const themeState = useSelector<GlobalState, GlobalState["theme"]>(state => state.theme);
     const theme = themes[themeState.name] || themes.dark
-    const query = useSearchParams();
 
     return (
         <ThemeProvider theme={theme.base}>
@@ -29,8 +28,6 @@ export default function Layout({children}: React.PropsWithChildren) {
                 {/*<ReportModal/>*/}
 
                 <NavBar
-                    query={query.get('q')}
-                    onUserChange={console.log}
                     notice={""}
                 />
 
