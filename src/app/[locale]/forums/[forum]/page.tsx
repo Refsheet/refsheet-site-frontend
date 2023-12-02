@@ -11,6 +11,7 @@ import SearchForm from '@refsheet/components/Forums/show/SearchForm';
 import {useSearchParams} from "next/navigation";
 import client from "@refsheet/services/ApplicationService";
 import getForumQuery from "./getForum.graphql";
+import {GetForumQuery} from "../../../../../@types/schema";
 
 interface ForumProps {
     params: {
@@ -28,7 +29,7 @@ export default async function Forum(props: ForumProps) {
     //     variables: {id: props.params.forum},
     // });
 
-    const data = {
+    const data: GetForumQuery = {
         getForum: null
     };
 
