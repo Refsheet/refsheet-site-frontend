@@ -1,5 +1,6 @@
-import { gql } from '@apollo/client';
+import {gql} from '@apollo/client';
 import * as Apollo from '@apollo/client';
+
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -1435,14 +1436,22 @@ export type CreateLodestoneLinkMutationVariables = Exact<{
 }>;
 
 
-export type CreateLodestoneLinkMutation = { __typename?: 'Mutation', createLodestoneLink?: { __typename?: 'Lodestone_Character', id?: string | null, name?: string | null, bio?: string | null, lodestone_id?: string | null, nameday?: string | null, remote_updated_at?: number | null, portrait_url?: string | null, title?: string | null, title_top?: boolean | null, town?: string | null, tribe?: string | null, diety?: string | null, gc_name?: string | null, gc_rank_name?: string | null, created_at?: number | null, updated_at?: number | null, race?: { __typename?: 'Lodestone_Race', id?: string | null, name?: string | null } | null, server?: { __typename?: 'Lodestone_Server', id?: string | null, name?: string | null, datacenter?: string | null } | null, active_class_job?: { __typename?: 'Lodestone_ClassJob', id?: string | null } | null, class_jobs?: Array<{ __typename?: 'Lodestone_ClassJob', id?: string | null, name?: string | null, class_abbr?: string | null, class_icon_url?: string | null, class_name?: string | null, job_abbr?: string | null, job_name?: string | null, level?: number | null, exp_level?: number | null, exp_level_max?: number | null, exp_level_togo?: number | null, specialized?: boolean | null, job_active?: boolean | null } | null> | null } | null };
+export type CreateLodestoneLinkMutation = {
+  __typename?: 'Mutation', createLodestoneLink?: {
+    __typename?: 'Lodestone_Character', id?: string | null, name?: string | null, bio?: string | null, lodestone_id?: string | null, nameday?: string | null, remote_updated_at?: number | null, portrait_url?: string | null, title?: string | null, title_top?: boolean | null, town?: string | null, tribe?: string | null, diety?: string | null, gc_name?: string | null, gc_rank_name?: string | null, created_at?: number | null, updated_at?: number | null, race?: { __typename?: 'Lodestone_Race', id?: string | null, name?: string | null } | null, server?: { __typename?: 'Lodestone_Server', id?: string | null, name?: string | null, datacenter?: string | null } | null, active_class_job?: { __typename?: 'Lodestone_ClassJob', id?: string | null } | null, class_jobs?: Array<{ __typename?: 'Lodestone_ClassJob', id?: string | null, name?: string | null, class_abbr?: string | null, class_icon_url?: string | null, class_name?: string | null, job_abbr?: string | null, job_name?: string | null, level?: number | null, exp_level?: number | null, exp_level_max?: number | null, exp_level_togo?: number | null, specialized?: boolean | null, job_active?: boolean | null } | null> | null
+  } | null
+};
 
 export type UpdateLodestoneLinkMutationVariables = Exact<{
   characterId: Scalars['ID'];
 }>;
 
 
-export type UpdateLodestoneLinkMutation = { __typename?: 'Mutation', updateLodestoneLink?: { __typename?: 'Lodestone_Character', id?: string | null, name?: string | null, bio?: string | null, lodestone_id?: string | null, nameday?: string | null, remote_updated_at?: number | null, portrait_url?: string | null, title?: string | null, title_top?: boolean | null, town?: string | null, tribe?: string | null, diety?: string | null, gc_name?: string | null, gc_rank_name?: string | null, created_at?: number | null, updated_at?: number | null, race?: { __typename?: 'Lodestone_Race', id?: string | null, name?: string | null } | null, server?: { __typename?: 'Lodestone_Server', id?: string | null, name?: string | null, datacenter?: string | null } | null, active_class_job?: { __typename?: 'Lodestone_ClassJob', id?: string | null } | null, class_jobs?: Array<{ __typename?: 'Lodestone_ClassJob', id?: string | null, name?: string | null, class_abbr?: string | null, class_icon_url?: string | null, class_name?: string | null, job_abbr?: string | null, job_name?: string | null, level?: number | null, exp_level?: number | null, exp_level_max?: number | null, exp_level_togo?: number | null, specialized?: boolean | null, job_active?: boolean | null } | null> | null } | null };
+export type UpdateLodestoneLinkMutation = {
+  __typename?: 'Mutation', updateLodestoneLink?: {
+    __typename?: 'Lodestone_Character', id?: string | null, name?: string | null, bio?: string | null, lodestone_id?: string | null, nameday?: string | null, remote_updated_at?: number | null, portrait_url?: string | null, title?: string | null, title_top?: boolean | null, town?: string | null, tribe?: string | null, diety?: string | null, gc_name?: string | null, gc_rank_name?: string | null, created_at?: number | null, updated_at?: number | null, race?: { __typename?: 'Lodestone_Race', id?: string | null, name?: string | null } | null, server?: { __typename?: 'Lodestone_Server', id?: string | null, name?: string | null, datacenter?: string | null } | null, active_class_job?: { __typename?: 'Lodestone_ClassJob', id?: string | null } | null, class_jobs?: Array<{ __typename?: 'Lodestone_ClassJob', id?: string | null, name?: string | null, class_abbr?: string | null, class_icon_url?: string | null, class_name?: string | null, job_abbr?: string | null, job_name?: string | null, level?: number | null, exp_level?: number | null, exp_level_max?: number | null, exp_level_togo?: number | null, specialized?: boolean | null, job_active?: boolean | null } | null> | null
+  } | null
+};
 
 export type ArchiveCharacterMutationVariables = Exact<{
   id: Scalars['ID'];
@@ -1561,7 +1570,11 @@ export type GetDiscussionQueryVariables = Exact<{
 }>;
 
 
-export type GetDiscussionQuery = { __typename?: 'Query', getDiscussion?: { __typename?: 'ForumDiscussion', id?: string | null, topic?: string | null, slug?: string | null, locked?: boolean | null, karma_total?: number | null, updated_at?: number | null, created_at?: number | null, reply_count?: number | null, content?: string | null, content_html?: string | null, admin_post?: boolean | null, moderator_post?: boolean | null, can_edit?: boolean | null, can_destroy?: boolean | null, forum?: { __typename?: 'Forum', id?: string | null, slug?: string | null, name: string } | null, user?: { __typename?: 'User', username?: string | null, name?: string | null, is_admin?: boolean | null, is_patron?: boolean | null, is_supporter?: boolean | null, avatar_url?: string | null } | null, character?: { __typename?: 'Character', id?: string | null, name: string, slug: string, profile_image?: { __typename?: 'Image', url?: { __typename?: 'ImageUrl', thumbnail?: string | null } | null } | null } | null, posts?: Array<{ __typename?: 'ForumPost', id?: string | null, content?: string | null, content_html?: string | null, karma_total?: number | null, created_at?: number | null, updated_at?: number | null, admin_post?: boolean | null, moderator_post?: boolean | null, is_edited?: boolean | null, can_edit?: boolean | null, can_destroy?: boolean | null, user?: { __typename?: 'User', username?: string | null, name?: string | null, is_admin?: boolean | null, is_patron?: boolean | null, is_supporter?: boolean | null, avatar_url?: string | null } | null, character?: { __typename?: 'Character', id?: string | null, name: string, slug: string, profile_image?: { __typename?: 'Image', url?: { __typename?: 'ImageUrl', thumbnail?: string | null } | null } | null } | null } | null> | null } | null };
+export type GetDiscussionQuery = {
+  __typename?: 'Query', getDiscussion?: {
+    __typename?: 'ForumDiscussion', id?: string | null, topic?: string | null, slug?: string | null, locked?: boolean | null, karma_total?: number | null, updated_at?: number | null, created_at?: number | null, reply_count?: number | null, content?: string | null, content_html?: string | null, admin_post?: boolean | null, moderator_post?: boolean | null, can_edit?: boolean | null, can_destroy?: boolean | null, forum?: { __typename?: 'Forum', id?: string | null, slug?: string | null, name: string } | null, user?: { __typename?: 'User', username?: string | null, name?: string | null, is_admin?: boolean | null, is_patron?: boolean | null, is_supporter?: boolean | null, avatar_url?: string | null } | null, character?: { __typename?: 'Character', id?: string | null, name: string, slug: string, profile_image?: { __typename?: 'Image', url?: { __typename?: 'ImageUrl', thumbnail?: string | null } | null } | null } | null, posts?: Array<{ __typename?: 'ForumPost', id?: string | null, content?: string | null, content_html?: string | null, karma_total?: number | null, created_at?: number | null, updated_at?: number | null, admin_post?: boolean | null, moderator_post?: boolean | null, is_edited?: boolean | null, can_edit?: boolean | null, can_destroy?: boolean | null, user?: { __typename?: 'User', username?: string | null, name?: string | null, is_admin?: boolean | null, is_patron?: boolean | null, is_supporter?: boolean | null, avatar_url?: string | null } | null, character?: { __typename?: 'Character', id?: string | null, name: string, slug: string, profile_image?: { __typename?: 'Image', url?: { __typename?: 'ImageUrl', thumbnail?: string | null } | null } | null } | null } | null> | null
+  } | null
+};
 
 export type PostDiscussionReplyMutationVariables = Exact<{
   discussionId: Scalars['ID'];
@@ -1602,7 +1615,13 @@ export type GetDiscussionsQueryVariables = Exact<{
 }>;
 
 
-export type GetDiscussionsQuery = { __typename?: 'Query', getForum?: { __typename?: 'Forum', id?: string | null, discussions?: { __typename?: 'ForumDiscussionCollection', count?: number | null, offset?: number | null, totalEntries?: number | null, currentPage?: number | null, perPage?: number | null, totalPages?: number | null, discussions?: Array<{ __typename?: 'ForumDiscussion', id?: string | null, topic?: string | null, slug?: string | null, locked?: boolean | null, karma_total?: number | null, updated_at?: number | null, created_at?: number | null, preview?: string | null, last_read_at?: number | null, unread_posts_count?: number | null, last_post_at?: number | null, reply_count?: number | null, admin_post?: boolean | null, moderator_post?: boolean | null, user?: { __typename?: 'User', username?: string | null, name?: string | null, is_admin?: boolean | null, is_patron?: boolean | null, is_supporter?: boolean | null, avatar_url?: string | null } | null, character?: { __typename?: 'Character', id?: string | null, name: string, slug: string, profile_image?: { __typename?: 'Image', url?: { __typename?: 'ImageUrl', thumbnail?: string | null } | null } | null } | null } | null> | null } | null } | null };
+export type GetDiscussionsQuery = {
+  __typename?: 'Query', getForum?: {
+    __typename?: 'Forum', id?: string | null, discussions?: {
+      __typename?: 'ForumDiscussionCollection', count?: number | null, offset?: number | null, totalEntries?: number | null, currentPage?: number | null, perPage?: number | null, totalPages?: number | null, discussions?: Array<{ __typename?: 'ForumDiscussion', id?: string | null, topic?: string | null, slug?: string | null, locked?: boolean | null, karma_total?: number | null, updated_at?: number | null, created_at?: number | null, preview?: string | null, last_read_at?: number | null, unread_posts_count?: number | null, last_post_at?: number | null, reply_count?: number | null, admin_post?: boolean | null, moderator_post?: boolean | null, user?: { __typename?: 'User', username?: string | null, name?: string | null, is_admin?: boolean | null, is_patron?: boolean | null, is_supporter?: boolean | null, avatar_url?: string | null } | null, character?: { __typename?: 'Character', id?: string | null, name: string, slug: string, profile_image?: { __typename?: 'Image', url?: { __typename?: 'ImageUrl', thumbnail?: string | null } | null } | null } | null } | null> | null
+    } | null
+  } | null
+};
 
 export type GetForumQueryVariables = Exact<{
   id: Scalars['String'];
@@ -1706,7 +1725,11 @@ export type GetMediaQueryVariables = Exact<{
 }>;
 
 
-export type GetMediaQuery = { __typename?: 'Query', getMedia?: { __typename?: 'Image', id?: string | null, title?: string | null, created_at?: number | null, caption?: string | null, caption_html?: string | null, source_url?: string | null, source_url_display?: string | null, is_v2_image?: boolean | null, nsfw?: boolean | null, hidden?: boolean | null, background_color?: string | null, image_processing?: boolean | null, image_processing_error?: string | null, favorites_count?: number | null, comments_count?: number | null, is_favorite?: boolean | null, is_managed?: boolean | null, watermark?: boolean | null, gravity?: string | null, download_link?: string | null, url?: { __typename?: 'ImageUrl', large?: string | null } | null, hashtags?: Array<{ __typename?: 'MediaHashtag', tag?: string | null } | null> | null, tags?: Array<{ __typename?: 'MediaTag', position_x?: number | null, position_y?: number | null, character?: { __typename?: 'Character', id?: string | null, name: string } | null } | null> | null, character?: { __typename?: 'Character', id?: string | null, name: string, path: string, profile_image?: { __typename?: 'Image', url?: { __typename?: 'ImageUrl', thumbnail?: string | null } | null } | null } | null, favorites?: Array<{ __typename?: 'MediaFavorite', id?: string | null, user?: { __typename?: 'User', username?: string | null, name?: string | null, avatar_url?: string | null } | null } | null> | null } | null };
+export type GetMediaQuery = {
+  __typename?: 'Query', getMedia?: {
+    __typename?: 'Image', id?: string | null, title?: string | null, created_at?: number | null, caption?: string | null, caption_html?: string | null, source_url?: string | null, source_url_display?: string | null, is_v2_image?: boolean | null, nsfw?: boolean | null, hidden?: boolean | null, background_color?: string | null, image_processing?: boolean | null, image_processing_error?: string | null, favorites_count?: number | null, comments_count?: number | null, is_favorite?: boolean | null, is_managed?: boolean | null, watermark?: boolean | null, gravity?: string | null, download_link?: string | null, url?: { __typename?: 'ImageUrl', large?: string | null } | null, hashtags?: Array<{ __typename?: 'MediaHashtag', tag?: string | null } | null> | null, tags?: Array<{ __typename?: 'MediaTag', position_x?: number | null, position_y?: number | null, character?: { __typename?: 'Character', id?: string | null, name: string } | null } | null> | null, character?: { __typename?: 'Character', id?: string | null, name: string, path: string, profile_image?: { __typename?: 'Image', url?: { __typename?: 'ImageUrl', thumbnail?: string | null } | null } | null } | null, favorites?: Array<{ __typename?: 'MediaFavorite', id?: string | null, user?: { __typename?: 'User', username?: string | null, name?: string | null, avatar_url?: string | null } | null } | null> | null
+  } | null
+};
 
 export type UpdateImageMutationVariables = Exact<{
   id: Scalars['ID'];
@@ -1801,11 +1824,17 @@ export type CharacterThemeFragment = { __typename?: 'Character', theme?: { __typ
 
 export type CharacterUserFragment = { __typename?: 'Character', user?: { __typename?: 'User', username?: string | null, name?: string | null, is_admin?: boolean | null, is_patron?: boolean | null, avatar_url?: string | null, is_followed?: boolean | null } | null };
 
-export type DefaultCharacterFieldsFragment = { __typename?: 'Character', avatar_url?: string | null, cover_image_url?: string | null, name: string, id?: string | null, slug: string, username: string, shortcode?: string | null, hidden?: boolean | null, nsfw?: boolean | null, special_notes?: string | null, special_notes_html?: string | null, species?: string | null, created_at?: number | null, version?: number | null, can_edit?: boolean | null, featured_image?: { __typename?: 'Image', url?: { __typename?: 'ImageUrl', large?: string | null } | null } | null, profile_image?: { __typename?: 'Image', url?: { __typename?: 'ImageUrl', medium?: string | null } | null } | null, lodestone_character?: { __typename?: 'Lodestone_Character', id?: string | null, name?: string | null, bio?: string | null, lodestone_id?: string | null, nameday?: string | null, remote_updated_at?: number | null, portrait_url?: string | null, title?: string | null, title_top?: boolean | null, town?: string | null, tribe?: string | null, diety?: string | null, gc_name?: string | null, gc_rank_name?: string | null, created_at?: number | null, updated_at?: number | null, race?: { __typename?: 'Lodestone_Race', id?: string | null, name?: string | null } | null, server?: { __typename?: 'Lodestone_Server', id?: string | null, name?: string | null, datacenter?: string | null } | null, active_class_job?: { __typename?: 'Lodestone_ClassJob', id?: string | null } | null, class_jobs?: Array<{ __typename?: 'Lodestone_ClassJob', id?: string | null, name?: string | null, class_abbr?: string | null, class_icon_url?: string | null, class_name?: string | null, job_abbr?: string | null, job_name?: string | null, level?: number | null, exp_level?: number | null, exp_level_max?: number | null, exp_level_togo?: number | null, specialized?: boolean | null, job_active?: boolean | null } | null> | null } | null, marketplace_listing?: { __typename?: 'MarketplaceListing', id?: string | null, amount_cents?: number | null, amount_currency?: string | null } | null, custom_attributes?: Array<{ __typename?: 'Attribute', id: string, name: string, value?: string | null } | null> | null, profile_sections?: Array<{ __typename?: 'ProfileSection', id: string, title?: string | null, columns: Array<number | null>, row_order?: number | null, widgets?: Array<{ __typename?: 'Widget', id: string, widget_type: string, column: number, title?: string | null, row_order?: number | null, data?: { __typename?: 'Json' } | { __typename?: 'RichText', content?: string | null, content_html?: string | null } | { __typename?: 'Youtube', url?: string | null } | null } | null> | null } | null> | null, swatches?: Array<{ __typename?: 'Swatch', id?: string | null, name?: string | null, color?: string | null, notes?: string | null } | null> | null, images?: Array<{ __typename?: 'Image', id?: string | null, title?: string | null, nsfw?: boolean | null, hidden?: boolean | null, background_color?: string | null, aspect_ratio?: number | null, comments_count?: number | null, favorites_count?: number | null, image_processing?: boolean | null, image_processing_error?: string | null, is_favorite?: boolean | null, is_managed?: boolean | null, width?: number | null, height?: number | null, url?: { __typename?: 'ImageUrl', small?: string | null, small_square?: string | null, medium?: string | null } | null, size?: { __typename?: 'ImageSize', small?: { __typename?: 'Geometry', width: number, height: number } | null, small_square?: { __typename?: 'Geometry', width: number, height: number } | null, medium?: { __typename?: 'Geometry', width: number, height: number } | null } | null } | null> | null, user?: { __typename?: 'User', username?: string | null, name?: string | null, is_admin?: boolean | null, is_patron?: boolean | null, avatar_url?: string | null, is_followed?: boolean | null } | null, theme?: { __typename?: 'Theme', id?: string | null, name?: string | null, colors?: { __typename?: 'ThemeColorData', primary?: string | null, accent1?: string | null, accent2?: string | null, background?: string | null, cardBackground?: string | null, imageBackground?: string | null, text?: string | null, textLight?: string | null, textMedium?: string | null } | null } | null };
+export type DefaultCharacterFieldsFragment = {
+  __typename?: 'Character', avatar_url?: string | null, cover_image_url?: string | null, name: string, id?: string | null, slug: string, username: string, shortcode?: string | null, hidden?: boolean | null, nsfw?: boolean | null, special_notes?: string | null, special_notes_html?: string | null, species?: string | null, created_at?: number | null, version?: number | null, can_edit?: boolean | null, featured_image?: { __typename?: 'Image', url?: { __typename?: 'ImageUrl', large?: string | null } | null } | null, profile_image?: { __typename?: 'Image', url?: { __typename?: 'ImageUrl', medium?: string | null } | null } | null, lodestone_character?: {
+    __typename?: 'Lodestone_Character', id?: string | null, name?: string | null, bio?: string | null, lodestone_id?: string | null, nameday?: string | null, remote_updated_at?: number | null, portrait_url?: string | null, title?: string | null, title_top?: boolean | null, town?: string | null, tribe?: string | null, diety?: string | null, gc_name?: string | null, gc_rank_name?: string | null, created_at?: number | null, updated_at?: number | null, race?: { __typename?: 'Lodestone_Race', id?: string | null, name?: string | null } | null, server?: { __typename?: 'Lodestone_Server', id?: string | null, name?: string | null, datacenter?: string | null } | null, active_class_job?: { __typename?: 'Lodestone_ClassJob', id?: string | null } | null, class_jobs?: Array<{ __typename?: 'Lodestone_ClassJob', id?: string | null, name?: string | null, class_abbr?: string | null, class_icon_url?: string | null, class_name?: string | null, job_abbr?: string | null, job_name?: string | null, level?: number | null, exp_level?: number | null, exp_level_max?: number | null, exp_level_togo?: number | null, specialized?: boolean | null, job_active?: boolean | null } | null> | null
+  } | null, marketplace_listing?: { __typename?: 'MarketplaceListing', id?: string | null, amount_cents?: number | null, amount_currency?: string | null } | null, custom_attributes?: Array<{ __typename?: 'Attribute', id: string, name: string, value?: string | null } | null> | null, profile_sections?: Array<{ __typename?: 'ProfileSection', id: string, title?: string | null, columns: Array<number | null>, row_order?: number | null, widgets?: Array<{ __typename?: 'Widget', id: string, widget_type: string, column: number, title?: string | null, row_order?: number | null, data?: { __typename?: 'Json' } | { __typename?: 'RichText', content?: string | null, content_html?: string | null } | { __typename?: 'Youtube', url?: string | null } | null } | null> | null } | null> | null, swatches?: Array<{ __typename?: 'Swatch', id?: string | null, name?: string | null, color?: string | null, notes?: string | null } | null> | null, images?: Array<{ __typename?: 'Image', id?: string | null, title?: string | null, nsfw?: boolean | null, hidden?: boolean | null, background_color?: string | null, aspect_ratio?: number | null, comments_count?: number | null, favorites_count?: number | null, image_processing?: boolean | null, image_processing_error?: string | null, is_favorite?: boolean | null, is_managed?: boolean | null, width?: number | null, height?: number | null, url?: { __typename?: 'ImageUrl', small?: string | null, small_square?: string | null, medium?: string | null } | null, size?: { __typename?: 'ImageSize', small?: { __typename?: 'Geometry', width: number, height: number } | null, small_square?: { __typename?: 'Geometry', width: number, height: number } | null, medium?: { __typename?: 'Geometry', width: number, height: number } | null } | null } | null> | null, user?: { __typename?: 'User', username?: string | null, name?: string | null, is_admin?: boolean | null, is_patron?: boolean | null, avatar_url?: string | null, is_followed?: boolean | null } | null, theme?: { __typename?: 'Theme', id?: string | null, name?: string | null, colors?: { __typename?: 'ThemeColorData', primary?: string | null, accent1?: string | null, accent2?: string | null, background?: string | null, cardBackground?: string | null, imageBackground?: string | null, text?: string | null, textLight?: string | null, textMedium?: string | null } | null } | null
+};
 
 export type GalleryImageFieldsFragment = { __typename?: 'Image', id?: string | null, created_at?: number | null, title?: string | null, nsfw?: boolean | null, hidden?: boolean | null, background_color?: string | null, aspect_ratio?: number | null, comments_count?: number | null, favorites_count?: number | null, image_processing?: boolean | null, image_processing_error?: string | null, is_favorite?: boolean | null, is_managed?: boolean | null, width?: number | null, height?: number | null, url?: { __typename?: 'ImageUrl', thumbnail?: string | null, small?: string | null, medium?: string | null, large?: string | null } | null, size?: { __typename?: 'ImageSize', small?: { __typename?: 'Geometry', width: number, height: number } | null, small_square?: { __typename?: 'Geometry', width: number, height: number } | null, medium?: { __typename?: 'Geometry', width: number, height: number } | null } | null };
 
-export type LodestoneCharacterFieldsFragment = { __typename?: 'Lodestone_Character', id?: string | null, name?: string | null, bio?: string | null, lodestone_id?: string | null, nameday?: string | null, remote_updated_at?: number | null, portrait_url?: string | null, title?: string | null, title_top?: boolean | null, town?: string | null, tribe?: string | null, diety?: string | null, gc_name?: string | null, gc_rank_name?: string | null, created_at?: number | null, updated_at?: number | null, race?: { __typename?: 'Lodestone_Race', id?: string | null, name?: string | null } | null, server?: { __typename?: 'Lodestone_Server', id?: string | null, name?: string | null, datacenter?: string | null } | null, active_class_job?: { __typename?: 'Lodestone_ClassJob', id?: string | null } | null, class_jobs?: Array<{ __typename?: 'Lodestone_ClassJob', id?: string | null, name?: string | null, class_abbr?: string | null, class_icon_url?: string | null, class_name?: string | null, job_abbr?: string | null, job_name?: string | null, level?: number | null, exp_level?: number | null, exp_level_max?: number | null, exp_level_togo?: number | null, specialized?: boolean | null, job_active?: boolean | null } | null> | null };
+export type LodestoneCharacterFieldsFragment = {
+  __typename?: 'Lodestone_Character', id?: string | null, name?: string | null, bio?: string | null, lodestone_id?: string | null, nameday?: string | null, remote_updated_at?: number | null, portrait_url?: string | null, title?: string | null, title_top?: boolean | null, town?: string | null, tribe?: string | null, diety?: string | null, gc_name?: string | null, gc_rank_name?: string | null, created_at?: number | null, updated_at?: number | null, race?: { __typename?: 'Lodestone_Race', id?: string | null, name?: string | null } | null, server?: { __typename?: 'Lodestone_Server', id?: string | null, name?: string | null, datacenter?: string | null } | null, active_class_job?: { __typename?: 'Lodestone_ClassJob', id?: string | null } | null, class_jobs?: Array<{ __typename?: 'Lodestone_ClassJob', id?: string | null, name?: string | null, class_abbr?: string | null, class_icon_url?: string | null, class_name?: string | null, job_abbr?: string | null, job_name?: string | null, level?: number | null, exp_level?: number | null, exp_level_max?: number | null, exp_level_togo?: number | null, specialized?: boolean | null, job_active?: boolean | null } | null> | null
+};
 
 export type NotificationsFieldsFragment = { __typename?: 'Notification', id?: string | null, type?: string | null, title?: string | null, message?: string | null, icon?: string | null, href?: string | null, link?: string | null, tag?: string | null, read_at?: number | null, created_at?: number | null, is_unread?: boolean | null };
 
@@ -1860,14 +1889,26 @@ export type GetCharacterProfileQueryVariables = Exact<{
 }>;
 
 
-export type GetCharacterProfileQuery = { __typename?: 'Query', getCharacterByUrl?: { __typename?: 'Character', avatar_url?: string | null, cover_image_url?: string | null, name: string, id?: string | null, slug: string, username: string, shortcode?: string | null, hidden?: boolean | null, nsfw?: boolean | null, special_notes?: string | null, special_notes_html?: string | null, species?: string | null, created_at?: number | null, version?: number | null, can_edit?: boolean | null, featured_image?: { __typename?: 'Image', url?: { __typename?: 'ImageUrl', large?: string | null } | null } | null, profile_image?: { __typename?: 'Image', url?: { __typename?: 'ImageUrl', medium?: string | null } | null } | null, lodestone_character?: { __typename?: 'Lodestone_Character', id?: string | null, name?: string | null, bio?: string | null, lodestone_id?: string | null, nameday?: string | null, remote_updated_at?: number | null, portrait_url?: string | null, title?: string | null, title_top?: boolean | null, town?: string | null, tribe?: string | null, diety?: string | null, gc_name?: string | null, gc_rank_name?: string | null, created_at?: number | null, updated_at?: number | null, race?: { __typename?: 'Lodestone_Race', id?: string | null, name?: string | null } | null, server?: { __typename?: 'Lodestone_Server', id?: string | null, name?: string | null, datacenter?: string | null } | null, active_class_job?: { __typename?: 'Lodestone_ClassJob', id?: string | null } | null, class_jobs?: Array<{ __typename?: 'Lodestone_ClassJob', id?: string | null, name?: string | null, class_abbr?: string | null, class_icon_url?: string | null, class_name?: string | null, job_abbr?: string | null, job_name?: string | null, level?: number | null, exp_level?: number | null, exp_level_max?: number | null, exp_level_togo?: number | null, specialized?: boolean | null, job_active?: boolean | null } | null> | null } | null, marketplace_listing?: { __typename?: 'MarketplaceListing', id?: string | null, amount_cents?: number | null, amount_currency?: string | null } | null, custom_attributes?: Array<{ __typename?: 'Attribute', id: string, name: string, value?: string | null } | null> | null, profile_sections?: Array<{ __typename?: 'ProfileSection', id: string, title?: string | null, columns: Array<number | null>, row_order?: number | null, widgets?: Array<{ __typename?: 'Widget', id: string, widget_type: string, column: number, title?: string | null, row_order?: number | null, data?: { __typename?: 'Json' } | { __typename?: 'RichText', content?: string | null, content_html?: string | null } | { __typename?: 'Youtube', url?: string | null } | null } | null> | null } | null> | null, swatches?: Array<{ __typename?: 'Swatch', id?: string | null, name?: string | null, color?: string | null, notes?: string | null } | null> | null, images?: Array<{ __typename?: 'Image', id?: string | null, title?: string | null, nsfw?: boolean | null, hidden?: boolean | null, background_color?: string | null, aspect_ratio?: number | null, comments_count?: number | null, favorites_count?: number | null, image_processing?: boolean | null, image_processing_error?: string | null, is_favorite?: boolean | null, is_managed?: boolean | null, width?: number | null, height?: number | null, url?: { __typename?: 'ImageUrl', small?: string | null, small_square?: string | null, medium?: string | null } | null, size?: { __typename?: 'ImageSize', small?: { __typename?: 'Geometry', width: number, height: number } | null, small_square?: { __typename?: 'Geometry', width: number, height: number } | null, medium?: { __typename?: 'Geometry', width: number, height: number } | null } | null } | null> | null, user?: { __typename?: 'User', username?: string | null, name?: string | null, is_admin?: boolean | null, is_patron?: boolean | null, avatar_url?: string | null, is_followed?: boolean | null } | null, theme?: { __typename?: 'Theme', id?: string | null, name?: string | null, colors?: { __typename?: 'ThemeColorData', primary?: string | null, accent1?: string | null, accent2?: string | null, background?: string | null, cardBackground?: string | null, imageBackground?: string | null, text?: string | null, textLight?: string | null, textMedium?: string | null } | null } | null } | null };
+export type GetCharacterProfileQuery = {
+  __typename?: 'Query', getCharacterByUrl?: {
+    __typename?: 'Character', avatar_url?: string | null, cover_image_url?: string | null, name: string, id?: string | null, slug: string, username: string, shortcode?: string | null, hidden?: boolean | null, nsfw?: boolean | null, special_notes?: string | null, special_notes_html?: string | null, species?: string | null, created_at?: number | null, version?: number | null, can_edit?: boolean | null, featured_image?: { __typename?: 'Image', url?: { __typename?: 'ImageUrl', large?: string | null } | null } | null, profile_image?: { __typename?: 'Image', url?: { __typename?: 'ImageUrl', medium?: string | null } | null } | null, lodestone_character?: {
+      __typename?: 'Lodestone_Character', id?: string | null, name?: string | null, bio?: string | null, lodestone_id?: string | null, nameday?: string | null, remote_updated_at?: number | null, portrait_url?: string | null, title?: string | null, title_top?: boolean | null, town?: string | null, tribe?: string | null, diety?: string | null, gc_name?: string | null, gc_rank_name?: string | null, created_at?: number | null, updated_at?: number | null, race?: { __typename?: 'Lodestone_Race', id?: string | null, name?: string | null } | null, server?: { __typename?: 'Lodestone_Server', id?: string | null, name?: string | null, datacenter?: string | null } | null, active_class_job?: { __typename?: 'Lodestone_ClassJob', id?: string | null } | null, class_jobs?: Array<{ __typename?: 'Lodestone_ClassJob', id?: string | null, name?: string | null, class_abbr?: string | null, class_icon_url?: string | null, class_name?: string | null, job_abbr?: string | null, job_name?: string | null, level?: number | null, exp_level?: number | null, exp_level_max?: number | null, exp_level_togo?: number | null, specialized?: boolean | null, job_active?: boolean | null } | null> | null
+    } | null, marketplace_listing?: { __typename?: 'MarketplaceListing', id?: string | null, amount_cents?: number | null, amount_currency?: string | null } | null, custom_attributes?: Array<{ __typename?: 'Attribute', id: string, name: string, value?: string | null } | null> | null, profile_sections?: Array<{ __typename?: 'ProfileSection', id: string, title?: string | null, columns: Array<number | null>, row_order?: number | null, widgets?: Array<{ __typename?: 'Widget', id: string, widget_type: string, column: number, title?: string | null, row_order?: number | null, data?: { __typename?: 'Json' } | { __typename?: 'RichText', content?: string | null, content_html?: string | null } | { __typename?: 'Youtube', url?: string | null } | null } | null> | null } | null> | null, swatches?: Array<{ __typename?: 'Swatch', id?: string | null, name?: string | null, color?: string | null, notes?: string | null } | null> | null, images?: Array<{ __typename?: 'Image', id?: string | null, title?: string | null, nsfw?: boolean | null, hidden?: boolean | null, background_color?: string | null, aspect_ratio?: number | null, comments_count?: number | null, favorites_count?: number | null, image_processing?: boolean | null, image_processing_error?: string | null, is_favorite?: boolean | null, is_managed?: boolean | null, width?: number | null, height?: number | null, url?: { __typename?: 'ImageUrl', small?: string | null, small_square?: string | null, medium?: string | null } | null, size?: { __typename?: 'ImageSize', small?: { __typename?: 'Geometry', width: number, height: number } | null, small_square?: { __typename?: 'Geometry', width: number, height: number } | null, medium?: { __typename?: 'Geometry', width: number, height: number } | null } | null } | null> | null, user?: { __typename?: 'User', username?: string | null, name?: string | null, is_admin?: boolean | null, is_patron?: boolean | null, avatar_url?: string | null, is_followed?: boolean | null } | null, theme?: { __typename?: 'Theme', id?: string | null, name?: string | null, colors?: { __typename?: 'ThemeColorData', primary?: string | null, accent1?: string | null, accent2?: string | null, background?: string | null, cardBackground?: string | null, imageBackground?: string | null, text?: string | null, textLight?: string | null, textMedium?: string | null } | null } | null
+  } | null
+};
 
 export type GetCharacterProfileByIdQueryVariables = Exact<{
   id: Scalars['ID'];
 }>;
 
 
-export type GetCharacterProfileByIdQuery = { __typename?: 'Query', getCharacter?: { __typename?: 'Character', avatar_url?: string | null, cover_image_url?: string | null, name: string, id?: string | null, slug: string, username: string, shortcode?: string | null, hidden?: boolean | null, nsfw?: boolean | null, special_notes?: string | null, special_notes_html?: string | null, species?: string | null, created_at?: number | null, version?: number | null, can_edit?: boolean | null, featured_image?: { __typename?: 'Image', url?: { __typename?: 'ImageUrl', large?: string | null } | null } | null, profile_image?: { __typename?: 'Image', url?: { __typename?: 'ImageUrl', medium?: string | null } | null } | null, lodestone_character?: { __typename?: 'Lodestone_Character', id?: string | null, name?: string | null, bio?: string | null, lodestone_id?: string | null, nameday?: string | null, remote_updated_at?: number | null, portrait_url?: string | null, title?: string | null, title_top?: boolean | null, town?: string | null, tribe?: string | null, diety?: string | null, gc_name?: string | null, gc_rank_name?: string | null, created_at?: number | null, updated_at?: number | null, race?: { __typename?: 'Lodestone_Race', id?: string | null, name?: string | null } | null, server?: { __typename?: 'Lodestone_Server', id?: string | null, name?: string | null, datacenter?: string | null } | null, active_class_job?: { __typename?: 'Lodestone_ClassJob', id?: string | null } | null, class_jobs?: Array<{ __typename?: 'Lodestone_ClassJob', id?: string | null, name?: string | null, class_abbr?: string | null, class_icon_url?: string | null, class_name?: string | null, job_abbr?: string | null, job_name?: string | null, level?: number | null, exp_level?: number | null, exp_level_max?: number | null, exp_level_togo?: number | null, specialized?: boolean | null, job_active?: boolean | null } | null> | null } | null, marketplace_listing?: { __typename?: 'MarketplaceListing', id?: string | null, amount_cents?: number | null, amount_currency?: string | null } | null, custom_attributes?: Array<{ __typename?: 'Attribute', id: string, name: string, value?: string | null } | null> | null, profile_sections?: Array<{ __typename?: 'ProfileSection', id: string, title?: string | null, columns: Array<number | null>, row_order?: number | null, widgets?: Array<{ __typename?: 'Widget', id: string, widget_type: string, column: number, title?: string | null, row_order?: number | null, data?: { __typename?: 'Json' } | { __typename?: 'RichText', content?: string | null, content_html?: string | null } | { __typename?: 'Youtube', url?: string | null } | null } | null> | null } | null> | null, swatches?: Array<{ __typename?: 'Swatch', id?: string | null, name?: string | null, color?: string | null, notes?: string | null } | null> | null, images?: Array<{ __typename?: 'Image', id?: string | null, title?: string | null, nsfw?: boolean | null, hidden?: boolean | null, background_color?: string | null, aspect_ratio?: number | null, comments_count?: number | null, favorites_count?: number | null, image_processing?: boolean | null, image_processing_error?: string | null, is_favorite?: boolean | null, is_managed?: boolean | null, width?: number | null, height?: number | null, url?: { __typename?: 'ImageUrl', small?: string | null, small_square?: string | null, medium?: string | null } | null, size?: { __typename?: 'ImageSize', small?: { __typename?: 'Geometry', width: number, height: number } | null, small_square?: { __typename?: 'Geometry', width: number, height: number } | null, medium?: { __typename?: 'Geometry', width: number, height: number } | null } | null } | null> | null, user?: { __typename?: 'User', username?: string | null, name?: string | null, is_admin?: boolean | null, is_patron?: boolean | null, avatar_url?: string | null, is_followed?: boolean | null } | null, theme?: { __typename?: 'Theme', id?: string | null, name?: string | null, colors?: { __typename?: 'ThemeColorData', primary?: string | null, accent1?: string | null, accent2?: string | null, background?: string | null, cardBackground?: string | null, imageBackground?: string | null, text?: string | null, textLight?: string | null, textMedium?: string | null } | null } | null } | null };
+export type GetCharacterProfileByIdQuery = {
+  __typename?: 'Query', getCharacter?: {
+    __typename?: 'Character', avatar_url?: string | null, cover_image_url?: string | null, name: string, id?: string | null, slug: string, username: string, shortcode?: string | null, hidden?: boolean | null, nsfw?: boolean | null, special_notes?: string | null, special_notes_html?: string | null, species?: string | null, created_at?: number | null, version?: number | null, can_edit?: boolean | null, featured_image?: { __typename?: 'Image', url?: { __typename?: 'ImageUrl', large?: string | null } | null } | null, profile_image?: { __typename?: 'Image', url?: { __typename?: 'ImageUrl', medium?: string | null } | null } | null, lodestone_character?: {
+      __typename?: 'Lodestone_Character', id?: string | null, name?: string | null, bio?: string | null, lodestone_id?: string | null, nameday?: string | null, remote_updated_at?: number | null, portrait_url?: string | null, title?: string | null, title_top?: boolean | null, town?: string | null, tribe?: string | null, diety?: string | null, gc_name?: string | null, gc_rank_name?: string | null, created_at?: number | null, updated_at?: number | null, race?: { __typename?: 'Lodestone_Race', id?: string | null, name?: string | null } | null, server?: { __typename?: 'Lodestone_Server', id?: string | null, name?: string | null, datacenter?: string | null } | null, active_class_job?: { __typename?: 'Lodestone_ClassJob', id?: string | null } | null, class_jobs?: Array<{ __typename?: 'Lodestone_ClassJob', id?: string | null, name?: string | null, class_abbr?: string | null, class_icon_url?: string | null, class_name?: string | null, job_abbr?: string | null, job_name?: string | null, level?: number | null, exp_level?: number | null, exp_level_max?: number | null, exp_level_togo?: number | null, specialized?: boolean | null, job_active?: boolean | null } | null> | null
+    } | null, marketplace_listing?: { __typename?: 'MarketplaceListing', id?: string | null, amount_cents?: number | null, amount_currency?: string | null } | null, custom_attributes?: Array<{ __typename?: 'Attribute', id: string, name: string, value?: string | null } | null> | null, profile_sections?: Array<{ __typename?: 'ProfileSection', id: string, title?: string | null, columns: Array<number | null>, row_order?: number | null, widgets?: Array<{ __typename?: 'Widget', id: string, widget_type: string, column: number, title?: string | null, row_order?: number | null, data?: { __typename?: 'Json' } | { __typename?: 'RichText', content?: string | null, content_html?: string | null } | { __typename?: 'Youtube', url?: string | null } | null } | null> | null } | null> | null, swatches?: Array<{ __typename?: 'Swatch', id?: string | null, name?: string | null, color?: string | null, notes?: string | null } | null> | null, images?: Array<{ __typename?: 'Image', id?: string | null, title?: string | null, nsfw?: boolean | null, hidden?: boolean | null, background_color?: string | null, aspect_ratio?: number | null, comments_count?: number | null, favorites_count?: number | null, image_processing?: boolean | null, image_processing_error?: string | null, is_favorite?: boolean | null, is_managed?: boolean | null, width?: number | null, height?: number | null, url?: { __typename?: 'ImageUrl', small?: string | null, small_square?: string | null, medium?: string | null } | null, size?: { __typename?: 'ImageSize', small?: { __typename?: 'Geometry', width: number, height: number } | null, small_square?: { __typename?: 'Geometry', width: number, height: number } | null, medium?: { __typename?: 'Geometry', width: number, height: number } | null } | null } | null> | null, user?: { __typename?: 'User', username?: string | null, name?: string | null, is_admin?: boolean | null, is_patron?: boolean | null, avatar_url?: string | null, is_followed?: boolean | null } | null, theme?: { __typename?: 'Theme', id?: string | null, name?: string | null, colors?: { __typename?: 'ThemeColorData', primary?: string | null, accent1?: string | null, accent2?: string | null, background?: string | null, cardBackground?: string | null, imageBackground?: string | null, text?: string | null, textLight?: string | null, textMedium?: string | null } | null } | null
+  } | null
+};
 
 export type GetImageUploadTokenQueryVariables = Exact<{
   characterId: Scalars['ID'];
@@ -1886,7 +1927,7 @@ export type GetUserProfileQueryVariables = Exact<{
 }>;
 
 
-export type GetUserProfileQuery = { __typename?: 'Query', getUser?: { __typename?: 'User', id: string, name?: string | null, username?: string | null, created_at?: number | null, characters_count?: string | null, profile?: string | null, profile_html?: string | null, profile_image_url?: string | null, blocks?: boolean | null, is_blocked?: boolean | null, is_followed?: boolean | null, is_admin?: boolean | null, is_managed?: boolean | null, is_moderator?: boolean | null, is_supporter?: boolean | null, is_patron?: boolean | null, character_groups?: Array<{ __typename?: 'CharacterGroup', id?: string | null, name: string, characters_count: number } | null> | null } | null };
+export type GetUserProfileQuery = { __typename?: 'Query', getUser?: { __typename?: 'User', id: string, name?: string | null, username?: string | null, created_at?: number | null, characters_count?: string | null, profile?: string | null, profile_html?: string | null, profile_image_url?: string | null, blocks?: boolean | null, is_blocked?: boolean | null, is_followed?: boolean | null, is_admin?: boolean | null, is_managed?: boolean | null, is_moderator?: boolean | null, is_supporter?: boolean | null, is_patron?: boolean | null, character_groups?: Array<{ __typename?: 'CharacterGroup', id?: string | null, slug: string, name: string, characters_count: number } | null> | null } | null };
 
 export type GetCharacterImagesQueryVariables = Exact<{
   username: Scalars['String'];
@@ -1894,134 +1935,293 @@ export type GetCharacterImagesQueryVariables = Exact<{
 }>;
 
 
-export type GetCharacterImagesQuery = { __typename?: 'Query', getCharacterByUrl?: { __typename?: 'Character', id?: string | null, media_folders?: Array<{ __typename?: 'MediaFolder', name?: string | null, slug?: string | null, id?: string | null, is_nsfw?: boolean | null, is_password_protected?: boolean | null, media_count?: number | null } | null> | null, images?: Array<{ __typename?: 'Image', id?: string | null, created_at?: number | null, title?: string | null, nsfw?: boolean | null, hidden?: boolean | null, background_color?: string | null, aspect_ratio?: number | null, comments_count?: number | null, favorites_count?: number | null, image_processing?: boolean | null, image_processing_error?: string | null, is_favorite?: boolean | null, is_managed?: boolean | null, width?: number | null, height?: number | null, url?: { __typename?: 'ImageUrl', thumbnail?: string | null, small?: string | null, medium?: string | null, large?: string | null } | null, size?: { __typename?: 'ImageSize', small?: { __typename?: 'Geometry', width: number, height: number } | null, small_square?: { __typename?: 'Geometry', width: number, height: number } | null, medium?: { __typename?: 'Geometry', width: number, height: number } | null } | null } | null> | null } | null };
+export type GetCharacterImagesQuery = {
+  __typename?: 'Query', getCharacterByUrl?: {
+    __typename?: 'Character', id?: string | null, media_folders?: Array<{ __typename?: 'MediaFolder', name?: string | null, slug?: string | null, id?: string | null, is_nsfw?: boolean | null, is_password_protected?: boolean | null, media_count?: number | null } | null> | null, images?: Array<{ __typename?: 'Image', id?: string | null, created_at?: number | null, title?: string | null, nsfw?: boolean | null, hidden?: boolean | null, background_color?: string | null, aspect_ratio?: number | null, comments_count?: number | null, favorites_count?: number | null, image_processing?: boolean | null, image_processing_error?: string | null, is_favorite?: boolean | null, is_managed?: boolean | null, width?: number | null, height?: number | null, url?: { __typename?: 'ImageUrl', thumbnail?: string | null, small?: string | null, medium?: string | null, large?: string | null } | null, size?: { __typename?: 'ImageSize', small?: { __typename?: 'Geometry', width: number, height: number } | null, small_square?: { __typename?: 'Geometry', width: number, height: number } | null, medium?: { __typename?: 'Geometry', width: number, height: number } | null } | null } | null> | null
+  } | null
+};
 
 export const ConversationsFieldsFragmentDoc = gql`
-    fragment ConversationsFields on Conversation {
-  id
-  guid
-  unreadCount
-  lastMessage {
-    message
-    created_at
-    is_self
+  fragment ConversationsFields on Conversation {
+    id
+    guid
+    unreadCount
+    lastMessage {
+      message
+      created_at
+      is_self
+      user {
+        name
+      }
+    }
     user {
       name
+      username
+      avatar_url
+      is_admin
+      is_patron
     }
   }
-  user {
-    name
-    username
-    avatar_url
-    is_admin
-    is_patron
-  }
-}
-    `;
+`;
 export const ForumPostFieldsFragmentDoc = gql`
-    fragment ForumPostFields on ForumPost {
-  id
-  content
-  content_html
-  karma_total
-  created_at
-  updated_at
-  admin_post
-  moderator_post
-  is_edited
-  can_edit
-  can_destroy
-  user {
-    username
-    name
-    is_admin
-    is_patron
-    is_supporter
-    avatar_url
-  }
-  character {
+  fragment ForumPostFields on ForumPost {
     id
-    name
-    slug
-    profile_image {
-      url {
-        thumbnail
+    content
+    content_html
+    karma_total
+    created_at
+    updated_at
+    admin_post
+    moderator_post
+    is_edited
+    can_edit
+    can_destroy
+    user {
+      username
+      name
+      is_admin
+      is_patron
+      is_supporter
+      avatar_url
+    }
+    character {
+      id
+      name
+      slug
+      profile_image {
+        url {
+          thumbnail
+        }
       }
     }
   }
-}
-    `;
+`;
 export const CharacterFieldsFragmentDoc = gql`
-    fragment CharacterFields on Character {
-  name
-  id
-  slug
-  username
-  shortcode
-  hidden
-  nsfw
-  special_notes
-  special_notes_html
-  species
-  created_at
-  version
-  can_edit
-}
-    `;
+  fragment CharacterFields on Character {
+    name
+    id
+    slug
+    username
+    shortcode
+    hidden
+    nsfw
+    special_notes
+    special_notes_html
+    species
+    created_at
+    version
+    can_edit
+  }
+`;
 export const CharacterAttributesFragmentDoc = gql`
-    fragment CharacterAttributes on Character {
-  custom_attributes {
-    id
-    name
-    value
+  fragment CharacterAttributes on Character {
+    custom_attributes {
+      id
+      name
+      value
+    }
   }
-}
-    `;
+`;
 export const WidgetFieldsFragmentDoc = gql`
-    fragment WidgetFields on Widget {
-  id
-  widget_type
-  column
-  title
-  row_order
-  data {
-    ... on RichText {
-      content
-      content_html
-    }
-    ... on Youtube {
-      url
-    }
-  }
-}
-    `;
-export const CharacterProfileFragmentDoc = gql`
-    fragment CharacterProfile on Character {
-  profile_sections {
+  fragment WidgetFields on Widget {
     id
+    widget_type
+    column
     title
-    columns
     row_order
-    widgets {
-      ...WidgetFields
+    data {
+      ... on RichText {
+        content
+        content_html
+      }
+      ... on Youtube {
+        url
+      }
     }
   }
-}
-    ${WidgetFieldsFragmentDoc}`;
+`;
+export const CharacterProfileFragmentDoc = gql`
+  fragment CharacterProfile on Character {
+    profile_sections {
+      id
+      title
+      columns
+      row_order
+      widgets {
+        ...WidgetFields
+      }
+    }
+  }
+${WidgetFieldsFragmentDoc}`;
 export const CharacterSwatchesFragmentDoc = gql`
-    fragment CharacterSwatches on Character {
-  swatches {
+  fragment CharacterSwatches on Character {
+    swatches {
+      id
+      name
+      color
+      notes
+    }
+  }
+`;
+export const CharacterImagesFragmentDoc = gql`
+  fragment CharacterImages on Character {
+    images {
+      id
+      title
+      nsfw
+      hidden
+      background_color
+      aspect_ratio
+      comments_count
+      favorites_count
+      image_processing
+      image_processing_error
+      is_favorite
+      is_managed
+      width
+      height
+      url {
+        small
+        small_square
+        medium
+      }
+      size {
+        small {
+          width
+          height
+        }
+        small_square {
+          width
+          height
+        }
+        medium {
+          width
+          height
+        }
+      }
+    }
+  }
+`;
+export const CharacterUserFragmentDoc = gql`
+  fragment CharacterUser on Character {
+    user {
+      username
+      name
+      is_admin
+      is_patron
+      avatar_url
+      is_followed
+    }
+  }
+`;
+export const CharacterThemeFragmentDoc = gql`
+  fragment CharacterTheme on Character {
+    theme {
+      id
+      name
+      colors {
+        primary
+        accent1
+        accent2
+        background
+        cardBackground
+        imageBackground
+        text
+        textLight
+        textMedium
+      }
+    }
+  }
+`;
+export const LodestoneCharacterFieldsFragmentDoc = gql`
+  fragment LodestoneCharacterFields on Lodestone_Character {
     id
     name
-    color
-    notes
+    bio
+    lodestone_id
+    nameday
+    remote_updated_at
+    portrait_url
+    title
+    title_top
+    town
+    tribe
+    diety
+    gc_name
+    gc_rank_name
+    created_at
+    updated_at
+    race {
+      id
+      name
+    }
+    server {
+      id
+      name
+      datacenter
+    }
+    active_class_job {
+      id
+    }
+    class_jobs {
+      id
+      name
+      class_abbr
+      class_icon_url
+      class_name
+      job_abbr
+      job_name
+      level
+      exp_level
+      exp_level_max
+      exp_level_togo
+      specialized
+      job_active
+    }
   }
-}
-    `;
-export const CharacterImagesFragmentDoc = gql`
-    fragment CharacterImages on Character {
-  images {
+`;
+export const DefaultCharacterFieldsFragmentDoc = gql`
+  fragment DefaultCharacterFields on Character {
+    ...CharacterFields
+    ...CharacterAttributes
+    ...CharacterProfile
+    ...CharacterSwatches
+    ...CharacterImages
+    ...CharacterUser
+    ...CharacterTheme
+    featured_image {
+      url {
+        large
+      }
+    }
+    profile_image {
+      url {
+        medium
+      }
+    }
+    avatar_url(style: "medium")
+    cover_image_url(style: "large")
+    lodestone_character {
+      ...LodestoneCharacterFields
+    }
+    marketplace_listing {
+      id
+      amount_cents
+      amount_currency
+    }
+  }
+  ${CharacterFieldsFragmentDoc}
+  ${CharacterAttributesFragmentDoc}
+  ${CharacterProfileFragmentDoc}
+  ${CharacterSwatchesFragmentDoc}
+  ${CharacterImagesFragmentDoc}
+  ${CharacterUserFragmentDoc}
+  ${CharacterThemeFragmentDoc}
+${LodestoneCharacterFieldsFragmentDoc}`;
+export const GalleryImageFieldsFragmentDoc = gql`
+  fragment GalleryImageFields on Image {
     id
+    created_at
     title
     nsfw
     hidden
@@ -2036,9 +2236,11 @@ export const CharacterImagesFragmentDoc = gql`
     width
     height
     url {
+      thumbnail
       small
-      small_square
+      small
       medium
+      large
     }
     size {
       small {
@@ -2055,225 +2257,68 @@ export const CharacterImagesFragmentDoc = gql`
       }
     }
   }
-}
-    `;
-export const CharacterUserFragmentDoc = gql`
-    fragment CharacterUser on Character {
-  user {
-    username
-    name
-    is_admin
-    is_patron
-    avatar_url
-    is_followed
-  }
-}
-    `;
-export const CharacterThemeFragmentDoc = gql`
-    fragment CharacterTheme on Character {
-  theme {
-    id
-    name
-    colors {
-      primary
-      accent1
-      accent2
-      background
-      cardBackground
-      imageBackground
-      text
-      textLight
-      textMedium
-    }
-  }
-}
-    `;
-export const LodestoneCharacterFieldsFragmentDoc = gql`
-    fragment LodestoneCharacterFields on Lodestone_Character {
-  id
-  name
-  bio
-  lodestone_id
-  nameday
-  remote_updated_at
-  portrait_url
-  title
-  title_top
-  town
-  tribe
-  diety
-  gc_name
-  gc_rank_name
-  created_at
-  updated_at
-  race {
-    id
-    name
-  }
-  server {
-    id
-    name
-    datacenter
-  }
-  active_class_job {
-    id
-  }
-  class_jobs {
-    id
-    name
-    class_abbr
-    class_icon_url
-    class_name
-    job_abbr
-    job_name
-    level
-    exp_level
-    exp_level_max
-    exp_level_togo
-    specialized
-    job_active
-  }
-}
-    `;
-export const DefaultCharacterFieldsFragmentDoc = gql`
-    fragment DefaultCharacterFields on Character {
-  ...CharacterFields
-  ...CharacterAttributes
-  ...CharacterProfile
-  ...CharacterSwatches
-  ...CharacterImages
-  ...CharacterUser
-  ...CharacterTheme
-  featured_image {
-    url {
-      large
-    }
-  }
-  profile_image {
-    url {
-      medium
-    }
-  }
-  avatar_url(style: "medium")
-  cover_image_url(style: "large")
-  lodestone_character {
-    ...LodestoneCharacterFields
-  }
-  marketplace_listing {
-    id
-    amount_cents
-    amount_currency
-  }
-}
-    ${CharacterFieldsFragmentDoc}
-${CharacterAttributesFragmentDoc}
-${CharacterProfileFragmentDoc}
-${CharacterSwatchesFragmentDoc}
-${CharacterImagesFragmentDoc}
-${CharacterUserFragmentDoc}
-${CharacterThemeFragmentDoc}
-${LodestoneCharacterFieldsFragmentDoc}`;
-export const GalleryImageFieldsFragmentDoc = gql`
-    fragment GalleryImageFields on Image {
-  id
-  created_at
-  title
-  nsfw
-  hidden
-  background_color
-  aspect_ratio
-  comments_count
-  favorites_count
-  image_processing
-  image_processing_error
-  is_favorite
-  is_managed
-  width
-  height
-  url {
-    thumbnail
-    small
-    small
-    medium
-    large
-  }
-  size {
-    small {
-      width
-      height
-    }
-    small_square {
-      width
-      height
-    }
-    medium {
-      width
-      height
-    }
-  }
-}
-    `;
+`;
 export const NotificationsFieldsFragmentDoc = gql`
-    fragment NotificationsFields on Notification {
-  id
-  type
-  title
-  message
-  icon
-  href
-  link
-  tag
-  read_at
-  created_at
-  is_unread
-}
-    `;
-export const TransfersFieldsFragmentDoc = gql`
-    fragment TransfersFields on Conversation {
-  id
-  guid
-  unreadCount
-  lastMessage {
+  fragment NotificationsFields on Notification {
+    id
+    type
+    title
     message
+    icon
+    href
+    link
+    tag
+    read_at
     created_at
-    is_self
-    user {
-      name
-    }
+    is_unread
   }
-  user {
-    name
-    username
-    avatar_url
-    is_admin
-    is_patron
-  }
-}
-    `;
-export const GetCharacterImagesFragmentDoc = gql`
-    fragment getCharacterImages on Character {
-  id
-  images {
+`;
+export const TransfersFieldsFragmentDoc = gql`
+  fragment TransfersFields on Conversation {
     id
-  }
-}
-    `;
-export const AutocompleteCharacterDocument = gql`
-    query AutocompleteCharacter($slug: String!, $username: String!) {
-  autocompleteCharacter(slug: $slug, username: $username) {
-    id
-    name
-    shortcode
-    species
-    profile_image {
-      url {
-        thumbnail
+    guid
+    unreadCount
+    lastMessage {
+      message
+      created_at
+      is_self
+      user {
+        name
       }
     }
-    path
+    user {
+      name
+      username
+      avatar_url
+      is_admin
+      is_patron
+    }
   }
-}
-    `;
+`;
+export const GetCharacterImagesFragmentDoc = gql`
+  fragment getCharacterImages on Character {
+    id
+    images {
+      id
+    }
+  }
+`;
+export const AutocompleteCharacterDocument = gql`
+  query AutocompleteCharacter($slug: String!, $username: String!) {
+    autocompleteCharacter(slug: $slug, username: $username) {
+      id
+      name
+      shortcode
+      species
+      profile_image {
+        url {
+          thumbnail
+        }
+      }
+      path
+    }
+  }
+`;
 
 /**
  * __useAutocompleteCharacterQuery__
@@ -2293,26 +2338,28 @@ export const AutocompleteCharacterDocument = gql`
  * });
  */
 export function useAutocompleteCharacterQuery(baseOptions: Apollo.QueryHookOptions<AutocompleteCharacterQuery, AutocompleteCharacterQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<AutocompleteCharacterQuery, AutocompleteCharacterQueryVariables>(AutocompleteCharacterDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useQuery<AutocompleteCharacterQuery, AutocompleteCharacterQueryVariables>(AutocompleteCharacterDocument, options);
+}
+
 export function useAutocompleteCharacterLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AutocompleteCharacterQuery, AutocompleteCharacterQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<AutocompleteCharacterQuery, AutocompleteCharacterQueryVariables>(AutocompleteCharacterDocument, options);
-        }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useLazyQuery<AutocompleteCharacterQuery, AutocompleteCharacterQueryVariables>(AutocompleteCharacterDocument, options);
+}
+
 export type AutocompleteCharacterQueryHookResult = ReturnType<typeof useAutocompleteCharacterQuery>;
 export type AutocompleteCharacterLazyQueryHookResult = ReturnType<typeof useAutocompleteCharacterLazyQuery>;
 export type AutocompleteCharacterQueryResult = Apollo.QueryResult<AutocompleteCharacterQuery, AutocompleteCharacterQueryVariables>;
 export const CreateActivityDocument = gql`
-    mutation CreateActivity($comment: String!, $characterId: ID) {
-  createActivity(comment: $comment, character_id: $characterId) {
-    id
-    user_id
-    character_id
-    comment
+  mutation CreateActivity($comment: String!, $characterId: ID) {
+    createActivity(comment: $comment, character_id: $characterId) {
+      id
+      user_id
+      character_id
+      comment
+    }
   }
-}
-    `;
+`;
 export type CreateActivityMutationFn = Apollo.MutationFunction<CreateActivityMutation, CreateActivityMutationVariables>;
 
 /**
@@ -2334,33 +2381,34 @@ export type CreateActivityMutationFn = Apollo.MutationFunction<CreateActivityMut
  * });
  */
 export function useCreateActivityMutation(baseOptions?: Apollo.MutationHookOptions<CreateActivityMutation, CreateActivityMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<CreateActivityMutation, CreateActivityMutationVariables>(CreateActivityDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useMutation<CreateActivityMutation, CreateActivityMutationVariables>(CreateActivityDocument, options);
+}
+
 export type CreateActivityMutationHookResult = ReturnType<typeof useCreateActivityMutation>;
 export type CreateActivityMutationResult = Apollo.MutationResult<CreateActivityMutation>;
 export type CreateActivityMutationOptions = Apollo.BaseMutationOptions<CreateActivityMutation, CreateActivityMutationVariables>;
 export const GetArtistsDocument = gql`
-    query getArtists($page: Int!) {
-  getArtists(page: $page) {
-    currentPage
-    perPage
-    artists {
-      name
-      slug
-      guid
-      profile_markdown
-      commission_info_markdown
-      locked
-      avatar_url
-      user {
+  query getArtists($page: Int!) {
+    getArtists(page: $page) {
+      currentPage
+      perPage
+      artists {
         name
-        username
+        slug
+        guid
+        profile_markdown
+        commission_info_markdown
+        locked
+        avatar_url
+        user {
+          name
+          username
+        }
       }
     }
   }
-}
-    `;
+`;
 
 /**
  * __useGetArtistsQuery__
@@ -2379,33 +2427,35 @@ export const GetArtistsDocument = gql`
  * });
  */
 export function useGetArtistsQuery(baseOptions: Apollo.QueryHookOptions<GetArtistsQuery, GetArtistsQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetArtistsQuery, GetArtistsQueryVariables>(GetArtistsDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useQuery<GetArtistsQuery, GetArtistsQueryVariables>(GetArtistsDocument, options);
+}
+
 export function useGetArtistsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetArtistsQuery, GetArtistsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetArtistsQuery, GetArtistsQueryVariables>(GetArtistsDocument, options);
-        }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useLazyQuery<GetArtistsQuery, GetArtistsQueryVariables>(GetArtistsDocument, options);
+}
+
 export type GetArtistsQueryHookResult = ReturnType<typeof useGetArtistsQuery>;
 export type GetArtistsLazyQueryHookResult = ReturnType<typeof useGetArtistsLazyQuery>;
 export type GetArtistsQueryResult = Apollo.QueryResult<GetArtistsQuery, GetArtistsQueryVariables>;
 export const GetArtistDocument = gql`
-    query getArtist($slug: String!) {
-  getArtist(slug: $slug) {
-    name
-    slug
-    guid
-    profile_markdown
-    commission_info_markdown
-    locked
-    avatar_url
-    user {
+  query getArtist($slug: String!) {
+    getArtist(slug: $slug) {
       name
-      username
+      slug
+      guid
+      profile_markdown
+      commission_info_markdown
+      locked
+      avatar_url
+      user {
+        name
+        username
+      }
     }
   }
-}
-    `;
+`;
 
 /**
  * __useGetArtistQuery__
@@ -2424,24 +2474,26 @@ export const GetArtistDocument = gql`
  * });
  */
 export function useGetArtistQuery(baseOptions: Apollo.QueryHookOptions<GetArtistQuery, GetArtistQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetArtistQuery, GetArtistQueryVariables>(GetArtistDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useQuery<GetArtistQuery, GetArtistQueryVariables>(GetArtistDocument, options);
+}
+
 export function useGetArtistLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetArtistQuery, GetArtistQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetArtistQuery, GetArtistQueryVariables>(GetArtistDocument, options);
-        }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useLazyQuery<GetArtistQuery, GetArtistQueryVariables>(GetArtistDocument, options);
+}
+
 export type GetArtistQueryHookResult = ReturnType<typeof useGetArtistQuery>;
 export type GetArtistLazyQueryHookResult = ReturnType<typeof useGetArtistLazyQuery>;
 export type GetArtistQueryResult = Apollo.QueryResult<GetArtistQuery, GetArtistQueryVariables>;
 export const SetCharacterAvatarBlobDocument = gql`
-    mutation setCharacterAvatarBlob($id: ID!, $blob: String) {
-  setCharacterAvatarBlob(id: $id, blob: $blob) {
-    id
-    avatar_url(style: "medium")
+  mutation setCharacterAvatarBlob($id: ID!, $blob: String) {
+    setCharacterAvatarBlob(id: $id, blob: $blob) {
+      id
+      avatar_url(style: "medium")
+    }
   }
-}
-    `;
+`;
 export type SetCharacterAvatarBlobMutationFn = Apollo.MutationFunction<SetCharacterAvatarBlobMutation, SetCharacterAvatarBlobMutationVariables>;
 
 /**
@@ -2463,31 +2515,32 @@ export type SetCharacterAvatarBlobMutationFn = Apollo.MutationFunction<SetCharac
  * });
  */
 export function useSetCharacterAvatarBlobMutation(baseOptions?: Apollo.MutationHookOptions<SetCharacterAvatarBlobMutation, SetCharacterAvatarBlobMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<SetCharacterAvatarBlobMutation, SetCharacterAvatarBlobMutationVariables>(SetCharacterAvatarBlobDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useMutation<SetCharacterAvatarBlobMutation, SetCharacterAvatarBlobMutationVariables>(SetCharacterAvatarBlobDocument, options);
+}
+
 export type SetCharacterAvatarBlobMutationHookResult = ReturnType<typeof useSetCharacterAvatarBlobMutation>;
 export type SetCharacterAvatarBlobMutationResult = Apollo.MutationResult<SetCharacterAvatarBlobMutation>;
 export type SetCharacterAvatarBlobMutationOptions = Apollo.BaseMutationOptions<SetCharacterAvatarBlobMutation, SetCharacterAvatarBlobMutationVariables>;
 export const CreateColorSchemeDocument = gql`
-    mutation createColorScheme($characterId: ID!, $colorData: ThemeColorDataInput) {
-  createColorScheme(characterId: $characterId, colorData: $colorData) {
-    id
-    name
-    colors {
-      primary
-      accent1
-      accent2
-      background
-      cardBackground
-      imageBackground
-      text
-      textLight
-      textMedium
+  mutation createColorScheme($characterId: ID!, $colorData: ThemeColorDataInput) {
+    createColorScheme(characterId: $characterId, colorData: $colorData) {
+      id
+      name
+      colors {
+        primary
+        accent1
+        accent2
+        background
+        cardBackground
+        imageBackground
+        text
+        textLight
+        textMedium
+      }
     }
   }
-}
-    `;
+`;
 export type CreateColorSchemeMutationFn = Apollo.MutationFunction<CreateColorSchemeMutation, CreateColorSchemeMutationVariables>;
 
 /**
@@ -2509,31 +2562,32 @@ export type CreateColorSchemeMutationFn = Apollo.MutationFunction<CreateColorSch
  * });
  */
 export function useCreateColorSchemeMutation(baseOptions?: Apollo.MutationHookOptions<CreateColorSchemeMutation, CreateColorSchemeMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<CreateColorSchemeMutation, CreateColorSchemeMutationVariables>(CreateColorSchemeDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useMutation<CreateColorSchemeMutation, CreateColorSchemeMutationVariables>(CreateColorSchemeDocument, options);
+}
+
 export type CreateColorSchemeMutationHookResult = ReturnType<typeof useCreateColorSchemeMutation>;
 export type CreateColorSchemeMutationResult = Apollo.MutationResult<CreateColorSchemeMutation>;
 export type CreateColorSchemeMutationOptions = Apollo.BaseMutationOptions<CreateColorSchemeMutation, CreateColorSchemeMutationVariables>;
 export const UpdateColorSchemeDocument = gql`
-    mutation updateColorScheme($id: ID!, $colorData: ThemeColorDataInput!) {
-  udpateColorScheme(id: $id, colorData: $colorData) {
-    id
-    name
-    colors {
-      primary
-      accent1
-      accent2
-      background
-      cardBackground
-      imageBackground
-      text
-      textLight
-      textMedium
+  mutation updateColorScheme($id: ID!, $colorData: ThemeColorDataInput!) {
+    udpateColorScheme(id: $id, colorData: $colorData) {
+      id
+      name
+      colors {
+        primary
+        accent1
+        accent2
+        background
+        cardBackground
+        imageBackground
+        text
+        textLight
+        textMedium
+      }
     }
   }
-}
-    `;
+`;
 export type UpdateColorSchemeMutationFn = Apollo.MutationFunction<UpdateColorSchemeMutation, UpdateColorSchemeMutationVariables>;
 
 /**
@@ -2555,20 +2609,21 @@ export type UpdateColorSchemeMutationFn = Apollo.MutationFunction<UpdateColorSch
  * });
  */
 export function useUpdateColorSchemeMutation(baseOptions?: Apollo.MutationHookOptions<UpdateColorSchemeMutation, UpdateColorSchemeMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UpdateColorSchemeMutation, UpdateColorSchemeMutationVariables>(UpdateColorSchemeDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useMutation<UpdateColorSchemeMutation, UpdateColorSchemeMutationVariables>(UpdateColorSchemeDocument, options);
+}
+
 export type UpdateColorSchemeMutationHookResult = ReturnType<typeof useUpdateColorSchemeMutation>;
 export type UpdateColorSchemeMutationResult = Apollo.MutationResult<UpdateColorSchemeMutation>;
 export type UpdateColorSchemeMutationOptions = Apollo.BaseMutationOptions<UpdateColorSchemeMutation, UpdateColorSchemeMutationVariables>;
 export const SetCharacterCoverBlobDocument = gql`
-    mutation setCharacterCoverBlob($id: ID!, $blob: String) {
-  setCharacterCoverBlob(id: $id, blob: $blob) {
-    id
-    cover_image_url(style: "large")
+  mutation setCharacterCoverBlob($id: ID!, $blob: String) {
+    setCharacterCoverBlob(id: $id, blob: $blob) {
+      id
+      cover_image_url(style: "large")
+    }
   }
-}
-    `;
+`;
 export type SetCharacterCoverBlobMutationFn = Apollo.MutationFunction<SetCharacterCoverBlobMutation, SetCharacterCoverBlobMutationVariables>;
 
 /**
@@ -2590,20 +2645,21 @@ export type SetCharacterCoverBlobMutationFn = Apollo.MutationFunction<SetCharact
  * });
  */
 export function useSetCharacterCoverBlobMutation(baseOptions?: Apollo.MutationHookOptions<SetCharacterCoverBlobMutation, SetCharacterCoverBlobMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<SetCharacterCoverBlobMutation, SetCharacterCoverBlobMutationVariables>(SetCharacterCoverBlobDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useMutation<SetCharacterCoverBlobMutation, SetCharacterCoverBlobMutationVariables>(SetCharacterCoverBlobDocument, options);
+}
+
 export type SetCharacterCoverBlobMutationHookResult = ReturnType<typeof useSetCharacterCoverBlobMutation>;
 export type SetCharacterCoverBlobMutationResult = Apollo.MutationResult<SetCharacterCoverBlobMutation>;
 export type SetCharacterCoverBlobMutationOptions = Apollo.BaseMutationOptions<SetCharacterCoverBlobMutation, SetCharacterCoverBlobMutationVariables>;
 export const CreateMediaFolderDocument = gql`
-    mutation createMediaFolder($characterId: ID!, $name: String!, $slug: String) {
-  createMediaFolder(characterId: $characterId, name: $name, slug: $slug) {
-    name
-    slug
+  mutation createMediaFolder($characterId: ID!, $name: String!, $slug: String) {
+    createMediaFolder(characterId: $characterId, name: $name, slug: $slug) {
+      name
+      slug
+    }
   }
-}
-    `;
+`;
 export type CreateMediaFolderMutationFn = Apollo.MutationFunction<CreateMediaFolderMutation, CreateMediaFolderMutationVariables>;
 
 /**
@@ -2626,33 +2682,34 @@ export type CreateMediaFolderMutationFn = Apollo.MutationFunction<CreateMediaFol
  * });
  */
 export function useCreateMediaFolderMutation(baseOptions?: Apollo.MutationHookOptions<CreateMediaFolderMutation, CreateMediaFolderMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<CreateMediaFolderMutation, CreateMediaFolderMutationVariables>(CreateMediaFolderDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useMutation<CreateMediaFolderMutation, CreateMediaFolderMutationVariables>(CreateMediaFolderDocument, options);
+}
+
 export type CreateMediaFolderMutationHookResult = ReturnType<typeof useCreateMediaFolderMutation>;
 export type CreateMediaFolderMutationResult = Apollo.MutationResult<CreateMediaFolderMutation>;
 export type CreateMediaFolderMutationOptions = Apollo.BaseMutationOptions<CreateMediaFolderMutation, CreateMediaFolderMutationVariables>;
 export const GetCharacterVersionsDocument = gql`
-    query getCharacterVersions($characterId: ID!) {
-  getCharacter(id: $characterId) {
-    id
-    slug
-    shortcode
-    versions {
+  query getCharacterVersions($characterId: ID!) {
+    getCharacter(id: $characterId) {
       id
-      index
-      event
-      was_me
-      created_at
-      whodunnit {
-        name
-        username
+      slug
+      shortcode
+      versions {
+        id
+        index
+        event
+        was_me
+        created_at
+        whodunnit {
+          name
+          username
+        }
+        object_changes
       }
-      object_changes
     }
   }
-}
-    `;
+`;
 
 /**
  * __useGetCharacterVersionsQuery__
@@ -2671,23 +2728,25 @@ export const GetCharacterVersionsDocument = gql`
  * });
  */
 export function useGetCharacterVersionsQuery(baseOptions: Apollo.QueryHookOptions<GetCharacterVersionsQuery, GetCharacterVersionsQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetCharacterVersionsQuery, GetCharacterVersionsQueryVariables>(GetCharacterVersionsDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useQuery<GetCharacterVersionsQuery, GetCharacterVersionsQueryVariables>(GetCharacterVersionsDocument, options);
+}
+
 export function useGetCharacterVersionsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetCharacterVersionsQuery, GetCharacterVersionsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetCharacterVersionsQuery, GetCharacterVersionsQueryVariables>(GetCharacterVersionsDocument, options);
-        }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useLazyQuery<GetCharacterVersionsQuery, GetCharacterVersionsQueryVariables>(GetCharacterVersionsDocument, options);
+}
+
 export type GetCharacterVersionsQueryHookResult = ReturnType<typeof useGetCharacterVersionsQuery>;
 export type GetCharacterVersionsLazyQueryHookResult = ReturnType<typeof useGetCharacterVersionsLazyQuery>;
 export type GetCharacterVersionsQueryResult = Apollo.QueryResult<GetCharacterVersionsQuery, GetCharacterVersionsQueryVariables>;
 export const CreateLodestoneLinkDocument = gql`
-    mutation createLodestoneLink($characterId: ID!, $lodestoneId: String!) {
-  createLodestoneLink(characterId: $characterId, lodestoneId: $lodestoneId) {
-    ...LodestoneCharacterFields
+  mutation createLodestoneLink($characterId: ID!, $lodestoneId: String!) {
+    createLodestoneLink(characterId: $characterId, lodestoneId: $lodestoneId) {
+      ...LodestoneCharacterFields
+    }
   }
-}
-    ${LodestoneCharacterFieldsFragmentDoc}`;
+${LodestoneCharacterFieldsFragmentDoc}`;
 export type CreateLodestoneLinkMutationFn = Apollo.MutationFunction<CreateLodestoneLinkMutation, CreateLodestoneLinkMutationVariables>;
 
 /**
@@ -2709,19 +2768,20 @@ export type CreateLodestoneLinkMutationFn = Apollo.MutationFunction<CreateLodest
  * });
  */
 export function useCreateLodestoneLinkMutation(baseOptions?: Apollo.MutationHookOptions<CreateLodestoneLinkMutation, CreateLodestoneLinkMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<CreateLodestoneLinkMutation, CreateLodestoneLinkMutationVariables>(CreateLodestoneLinkDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useMutation<CreateLodestoneLinkMutation, CreateLodestoneLinkMutationVariables>(CreateLodestoneLinkDocument, options);
+}
+
 export type CreateLodestoneLinkMutationHookResult = ReturnType<typeof useCreateLodestoneLinkMutation>;
 export type CreateLodestoneLinkMutationResult = Apollo.MutationResult<CreateLodestoneLinkMutation>;
 export type CreateLodestoneLinkMutationOptions = Apollo.BaseMutationOptions<CreateLodestoneLinkMutation, CreateLodestoneLinkMutationVariables>;
 export const UpdateLodestoneLinkDocument = gql`
-    mutation updateLodestoneLink($characterId: ID!) {
-  updateLodestoneLink(characterId: $characterId) {
-    ...LodestoneCharacterFields
+  mutation updateLodestoneLink($characterId: ID!) {
+    updateLodestoneLink(characterId: $characterId) {
+      ...LodestoneCharacterFields
+    }
   }
-}
-    ${LodestoneCharacterFieldsFragmentDoc}`;
+${LodestoneCharacterFieldsFragmentDoc}`;
 export type UpdateLodestoneLinkMutationFn = Apollo.MutationFunction<UpdateLodestoneLinkMutation, UpdateLodestoneLinkMutationVariables>;
 
 /**
@@ -2742,20 +2802,21 @@ export type UpdateLodestoneLinkMutationFn = Apollo.MutationFunction<UpdateLodest
  * });
  */
 export function useUpdateLodestoneLinkMutation(baseOptions?: Apollo.MutationHookOptions<UpdateLodestoneLinkMutation, UpdateLodestoneLinkMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UpdateLodestoneLinkMutation, UpdateLodestoneLinkMutationVariables>(UpdateLodestoneLinkDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useMutation<UpdateLodestoneLinkMutation, UpdateLodestoneLinkMutationVariables>(UpdateLodestoneLinkDocument, options);
+}
+
 export type UpdateLodestoneLinkMutationHookResult = ReturnType<typeof useUpdateLodestoneLinkMutation>;
 export type UpdateLodestoneLinkMutationResult = Apollo.MutationResult<UpdateLodestoneLinkMutation>;
 export type UpdateLodestoneLinkMutationOptions = Apollo.BaseMutationOptions<UpdateLodestoneLinkMutation, UpdateLodestoneLinkMutationVariables>;
 export const ArchiveCharacterDocument = gql`
-    mutation archiveCharacter($id: ID!, $confirmation: String!) {
-  destroyCharacter(id: $id, confirmation: $confirmation) {
-    id
-    deleted_at
+  mutation archiveCharacter($id: ID!, $confirmation: String!) {
+    destroyCharacter(id: $id, confirmation: $confirmation) {
+      id
+      deleted_at
+    }
   }
-}
-    `;
+`;
 export type ArchiveCharacterMutationFn = Apollo.MutationFunction<ArchiveCharacterMutation, ArchiveCharacterMutationVariables>;
 
 /**
@@ -2777,23 +2838,24 @@ export type ArchiveCharacterMutationFn = Apollo.MutationFunction<ArchiveCharacte
  * });
  */
 export function useArchiveCharacterMutation(baseOptions?: Apollo.MutationHookOptions<ArchiveCharacterMutation, ArchiveCharacterMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<ArchiveCharacterMutation, ArchiveCharacterMutationVariables>(ArchiveCharacterDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useMutation<ArchiveCharacterMutation, ArchiveCharacterMutationVariables>(ArchiveCharacterDocument, options);
+}
+
 export type ArchiveCharacterMutationHookResult = ReturnType<typeof useArchiveCharacterMutation>;
 export type ArchiveCharacterMutationResult = Apollo.MutationResult<ArchiveCharacterMutation>;
 export type ArchiveCharacterMutationOptions = Apollo.BaseMutationOptions<ArchiveCharacterMutation, ArchiveCharacterMutationVariables>;
 export const TransferCharacterDocument = gql`
-    mutation transferCharacter($id: ID!, $destination: String!) {
-  transferCharacter(id: $id, destination: $destination) {
-    id
-    pending_transfer {
-      created_at
+  mutation transferCharacter($id: ID!, $destination: String!) {
+    transferCharacter(id: $id, destination: $destination) {
       id
+      pending_transfer {
+        created_at
+        id
+      }
     }
   }
-}
-    `;
+`;
 export type TransferCharacterMutationFn = Apollo.MutationFunction<TransferCharacterMutation, TransferCharacterMutationVariables>;
 
 /**
@@ -2815,33 +2877,34 @@ export type TransferCharacterMutationFn = Apollo.MutationFunction<TransferCharac
  * });
  */
 export function useTransferCharacterMutation(baseOptions?: Apollo.MutationHookOptions<TransferCharacterMutation, TransferCharacterMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<TransferCharacterMutation, TransferCharacterMutationVariables>(TransferCharacterDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useMutation<TransferCharacterMutation, TransferCharacterMutationVariables>(TransferCharacterDocument, options);
+}
+
 export type TransferCharacterMutationHookResult = ReturnType<typeof useTransferCharacterMutation>;
 export type TransferCharacterMutationResult = Apollo.MutationResult<TransferCharacterMutation>;
 export type TransferCharacterMutationOptions = Apollo.BaseMutationOptions<TransferCharacterMutation, TransferCharacterMutationVariables>;
 export const UpdateSettingsDocument = gql`
-    mutation updateSettings($id: ID!, $name: String, $species: String, $slug: String, $shortcode: String, $nsfw: Boolean, $hidden: Boolean) {
-  updateCharacter(
-    id: $id
-    name: $name
-    species: $species
-    slug: $slug
-    shortcode: $shortcode
-    nsfw: $nsfw
-    hidden: $hidden
-  ) {
-    id
-    name
-    species
-    slug
-    shortcode
-    nsfw
-    hidden
+  mutation updateSettings($id: ID!, $name: String, $species: String, $slug: String, $shortcode: String, $nsfw: Boolean, $hidden: Boolean) {
+    updateCharacter(
+      id: $id
+      name: $name
+      species: $species
+      slug: $slug
+      shortcode: $shortcode
+      nsfw: $nsfw
+      hidden: $hidden
+    ) {
+      id
+      name
+      species
+      slug
+      shortcode
+      nsfw
+      hidden
+    }
   }
-}
-    `;
+`;
 export type UpdateSettingsMutationFn = Apollo.MutationFunction<UpdateSettingsMutation, UpdateSettingsMutationVariables>;
 
 /**
@@ -2868,24 +2931,25 @@ export type UpdateSettingsMutationFn = Apollo.MutationFunction<UpdateSettingsMut
  * });
  */
 export function useUpdateSettingsMutation(baseOptions?: Apollo.MutationHookOptions<UpdateSettingsMutation, UpdateSettingsMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UpdateSettingsMutation, UpdateSettingsMutationVariables>(UpdateSettingsDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useMutation<UpdateSettingsMutation, UpdateSettingsMutationVariables>(UpdateSettingsDocument, options);
+}
+
 export type UpdateSettingsMutationHookResult = ReturnType<typeof useUpdateSettingsMutation>;
 export type UpdateSettingsMutationResult = Apollo.MutationResult<UpdateSettingsMutation>;
 export type UpdateSettingsMutationOptions = Apollo.BaseMutationOptions<UpdateSettingsMutation, UpdateSettingsMutationVariables>;
 export const CreateWidgetDocument = gql`
-    mutation createWidget($characterId: ID!, $sectionId: ID!, $columnId: ID!, $type: String!) {
-  createProfileWidget(
-    characterId: $characterId
-    sectionId: $sectionId
-    columnId: $columnId
-    type: $type
-  ) {
-    ...WidgetFields
+  mutation createWidget($characterId: ID!, $sectionId: ID!, $columnId: ID!, $type: String!) {
+    createProfileWidget(
+      characterId: $characterId
+      sectionId: $sectionId
+      columnId: $columnId
+      type: $type
+    ) {
+      ...WidgetFields
+    }
   }
-}
-    ${WidgetFieldsFragmentDoc}`;
+${WidgetFieldsFragmentDoc}`;
 export type CreateWidgetMutationFn = Apollo.MutationFunction<CreateWidgetMutation, CreateWidgetMutationVariables>;
 
 /**
@@ -2909,24 +2973,25 @@ export type CreateWidgetMutationFn = Apollo.MutationFunction<CreateWidgetMutatio
  * });
  */
 export function useCreateWidgetMutation(baseOptions?: Apollo.MutationHookOptions<CreateWidgetMutation, CreateWidgetMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<CreateWidgetMutation, CreateWidgetMutationVariables>(CreateWidgetDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useMutation<CreateWidgetMutation, CreateWidgetMutationVariables>(CreateWidgetDocument, options);
+}
+
 export type CreateWidgetMutationHookResult = ReturnType<typeof useCreateWidgetMutation>;
 export type CreateWidgetMutationResult = Apollo.MutationResult<CreateWidgetMutation>;
 export type CreateWidgetMutationOptions = Apollo.BaseMutationOptions<CreateWidgetMutation, CreateWidgetMutationVariables>;
 export const CreateProfileSectionDocument = gql`
-    mutation createProfileSection($characterId: ID!, $createAfterSectionId: ID) {
-  createProfileSection(
-    characterId: $characterId
-    createAfterSectionId: $createAfterSectionId
-  ) {
-    id
-    title
-    row_order
+  mutation createProfileSection($characterId: ID!, $createAfterSectionId: ID) {
+    createProfileSection(
+      characterId: $characterId
+      createAfterSectionId: $createAfterSectionId
+    ) {
+      id
+      title
+      row_order
+    }
   }
-}
-    `;
+`;
 export type CreateProfileSectionMutationFn = Apollo.MutationFunction<CreateProfileSectionMutation, CreateProfileSectionMutationVariables>;
 
 /**
@@ -2948,19 +3013,20 @@ export type CreateProfileSectionMutationFn = Apollo.MutationFunction<CreateProfi
  * });
  */
 export function useCreateProfileSectionMutation(baseOptions?: Apollo.MutationHookOptions<CreateProfileSectionMutation, CreateProfileSectionMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<CreateProfileSectionMutation, CreateProfileSectionMutationVariables>(CreateProfileSectionDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useMutation<CreateProfileSectionMutation, CreateProfileSectionMutationVariables>(CreateProfileSectionDocument, options);
+}
+
 export type CreateProfileSectionMutationHookResult = ReturnType<typeof useCreateProfileSectionMutation>;
 export type CreateProfileSectionMutationResult = Apollo.MutationResult<CreateProfileSectionMutation>;
 export type CreateProfileSectionMutationOptions = Apollo.BaseMutationOptions<CreateProfileSectionMutation, CreateProfileSectionMutationVariables>;
 export const DeleteProfileSectionDocument = gql`
-    mutation deleteProfileSection($id: ID!) {
-  deleteProfileSection(id: $id) {
-    id
+  mutation deleteProfileSection($id: ID!) {
+    deleteProfileSection(id: $id) {
+      id
+    }
   }
-}
-    `;
+`;
 export type DeleteProfileSectionMutationFn = Apollo.MutationFunction<DeleteProfileSectionMutation, DeleteProfileSectionMutationVariables>;
 
 /**
@@ -2981,19 +3047,20 @@ export type DeleteProfileSectionMutationFn = Apollo.MutationFunction<DeleteProfi
  * });
  */
 export function useDeleteProfileSectionMutation(baseOptions?: Apollo.MutationHookOptions<DeleteProfileSectionMutation, DeleteProfileSectionMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<DeleteProfileSectionMutation, DeleteProfileSectionMutationVariables>(DeleteProfileSectionDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useMutation<DeleteProfileSectionMutation, DeleteProfileSectionMutationVariables>(DeleteProfileSectionDocument, options);
+}
+
 export type DeleteProfileSectionMutationHookResult = ReturnType<typeof useDeleteProfileSectionMutation>;
 export type DeleteProfileSectionMutationResult = Apollo.MutationResult<DeleteProfileSectionMutation>;
 export type DeleteProfileSectionMutationOptions = Apollo.BaseMutationOptions<DeleteProfileSectionMutation, DeleteProfileSectionMutationVariables>;
 export const DeleteProfileWidgetDocument = gql`
-    mutation deleteProfileWidget($id: ID!) {
-  deleteProfileWidget(id: $id) {
-    id
+  mutation deleteProfileWidget($id: ID!) {
+    deleteProfileWidget(id: $id) {
+      id
+    }
   }
-}
-    `;
+`;
 export type DeleteProfileWidgetMutationFn = Apollo.MutationFunction<DeleteProfileWidgetMutation, DeleteProfileWidgetMutationVariables>;
 
 /**
@@ -3014,28 +3081,29 @@ export type DeleteProfileWidgetMutationFn = Apollo.MutationFunction<DeleteProfil
  * });
  */
 export function useDeleteProfileWidgetMutation(baseOptions?: Apollo.MutationHookOptions<DeleteProfileWidgetMutation, DeleteProfileWidgetMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<DeleteProfileWidgetMutation, DeleteProfileWidgetMutationVariables>(DeleteProfileWidgetDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useMutation<DeleteProfileWidgetMutation, DeleteProfileWidgetMutationVariables>(DeleteProfileWidgetDocument, options);
+}
+
 export type DeleteProfileWidgetMutationHookResult = ReturnType<typeof useDeleteProfileWidgetMutation>;
 export type DeleteProfileWidgetMutationResult = Apollo.MutationResult<DeleteProfileWidgetMutation>;
 export type DeleteProfileWidgetMutationOptions = Apollo.BaseMutationOptions<DeleteProfileWidgetMutation, DeleteProfileWidgetMutationVariables>;
 export const UpdateCharacterDocument = gql`
-    mutation updateCharacter($id: ID!, $name: String, $species: String, $special_notes: String) {
-  updateCharacter(
-    id: $id
-    name: $name
-    species: $species
-    special_notes: $special_notes
-  ) {
-    slug
-    name
-    species
-    special_notes
-    special_notes_html
+  mutation updateCharacter($id: ID!, $name: String, $species: String, $special_notes: String) {
+    updateCharacter(
+      id: $id
+      name: $name
+      species: $species
+      special_notes: $special_notes
+    ) {
+      slug
+      name
+      species
+      special_notes
+      special_notes_html
+    }
   }
-}
-    `;
+`;
 export type UpdateCharacterMutationFn = Apollo.MutationFunction<UpdateCharacterMutation, UpdateCharacterMutationVariables>;
 
 /**
@@ -3059,25 +3127,26 @@ export type UpdateCharacterMutationFn = Apollo.MutationFunction<UpdateCharacterM
  * });
  */
 export function useUpdateCharacterMutation(baseOptions?: Apollo.MutationHookOptions<UpdateCharacterMutation, UpdateCharacterMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UpdateCharacterMutation, UpdateCharacterMutationVariables>(UpdateCharacterDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useMutation<UpdateCharacterMutation, UpdateCharacterMutationVariables>(UpdateCharacterDocument, options);
+}
+
 export type UpdateCharacterMutationHookResult = ReturnType<typeof useUpdateCharacterMutation>;
 export type UpdateCharacterMutationResult = Apollo.MutationResult<UpdateCharacterMutation>;
 export type UpdateCharacterMutationOptions = Apollo.BaseMutationOptions<UpdateCharacterMutation, UpdateCharacterMutationVariables>;
 export const UpdateProfileWidgetDocument = gql`
-    mutation updateProfileWidget($id: ID!, $title: String, $data: String, $row_order_position: String, $column: Int) {
-  updateProfileWidget(
-    id: $id
-    title: $title
-    data: $data
-    row_order_position: $row_order_position
-    column: $column
-  ) {
-    ...WidgetFields
+  mutation updateProfileWidget($id: ID!, $title: String, $data: String, $row_order_position: String, $column: Int) {
+    updateProfileWidget(
+      id: $id
+      title: $title
+      data: $data
+      row_order_position: $row_order_position
+      column: $column
+    ) {
+      ...WidgetFields
+    }
   }
-}
-    ${WidgetFieldsFragmentDoc}`;
+${WidgetFieldsFragmentDoc}`;
 export type UpdateProfileWidgetMutationFn = Apollo.MutationFunction<UpdateProfileWidgetMutation, UpdateProfileWidgetMutationVariables>;
 
 /**
@@ -3102,19 +3171,20 @@ export type UpdateProfileWidgetMutationFn = Apollo.MutationFunction<UpdateProfil
  * });
  */
 export function useUpdateProfileWidgetMutation(baseOptions?: Apollo.MutationHookOptions<UpdateProfileWidgetMutation, UpdateProfileWidgetMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UpdateProfileWidgetMutation, UpdateProfileWidgetMutationVariables>(UpdateProfileWidgetDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useMutation<UpdateProfileWidgetMutation, UpdateProfileWidgetMutationVariables>(UpdateProfileWidgetDocument, options);
+}
+
 export type UpdateProfileWidgetMutationHookResult = ReturnType<typeof useUpdateProfileWidgetMutation>;
 export type UpdateProfileWidgetMutationResult = Apollo.MutationResult<UpdateProfileWidgetMutation>;
 export type UpdateProfileWidgetMutationOptions = Apollo.BaseMutationOptions<UpdateProfileWidgetMutation, UpdateProfileWidgetMutationVariables>;
 export const GetConversationsDocument = gql`
-    query getConversations {
-  getConversations {
-    ...ConversationsFields
+  query getConversations {
+    getConversations {
+      ...ConversationsFields
+    }
   }
-}
-    ${ConversationsFieldsFragmentDoc}`;
+${ConversationsFieldsFragmentDoc}`;
 
 /**
  * __useGetConversationsQuery__
@@ -3132,23 +3202,25 @@ export const GetConversationsDocument = gql`
  * });
  */
 export function useGetConversationsQuery(baseOptions?: Apollo.QueryHookOptions<GetConversationsQuery, GetConversationsQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetConversationsQuery, GetConversationsQueryVariables>(GetConversationsDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useQuery<GetConversationsQuery, GetConversationsQueryVariables>(GetConversationsDocument, options);
+}
+
 export function useGetConversationsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetConversationsQuery, GetConversationsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetConversationsQuery, GetConversationsQueryVariables>(GetConversationsDocument, options);
-        }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useLazyQuery<GetConversationsQuery, GetConversationsQueryVariables>(GetConversationsDocument, options);
+}
+
 export type GetConversationsQueryHookResult = ReturnType<typeof useGetConversationsQuery>;
 export type GetConversationsLazyQueryHookResult = ReturnType<typeof useGetConversationsLazyQuery>;
 export type GetConversationsQueryResult = Apollo.QueryResult<GetConversationsQuery, GetConversationsQueryVariables>;
 export const SubscribeToConversationsDocument = gql`
-    subscription subscribeToConversations {
-  newConversation {
-    ...ConversationsFields
+  subscription subscribeToConversations {
+    newConversation {
+      ...ConversationsFields
+    }
   }
-}
-    ${ConversationsFieldsFragmentDoc}`;
+${ConversationsFieldsFragmentDoc}`;
 
 /**
  * __useSubscribeToConversationsSubscription__
@@ -3166,19 +3238,20 @@ export const SubscribeToConversationsDocument = gql`
  * });
  */
 export function useSubscribeToConversationsSubscription(baseOptions?: Apollo.SubscriptionHookOptions<SubscribeToConversationsSubscription, SubscribeToConversationsSubscriptionVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useSubscription<SubscribeToConversationsSubscription, SubscribeToConversationsSubscriptionVariables>(SubscribeToConversationsDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useSubscription<SubscribeToConversationsSubscription, SubscribeToConversationsSubscriptionVariables>(SubscribeToConversationsDocument, options);
+}
+
 export type SubscribeToConversationsSubscriptionHookResult = ReturnType<typeof useSubscribeToConversationsSubscription>;
 export type SubscribeToConversationsSubscriptionResult = Apollo.SubscriptionResult<SubscribeToConversationsSubscription>;
 export const DestroyDiscussionDocument = gql`
-    mutation destroyDiscussion($id: ID!) {
-  destroyDiscussion(id: $id) {
-    id
-    deleted_at
+  mutation destroyDiscussion($id: ID!) {
+    destroyDiscussion(id: $id) {
+      id
+      deleted_at
+    }
   }
-}
-    `;
+`;
 export type DestroyDiscussionMutationFn = Apollo.MutationFunction<DestroyDiscussionMutation, DestroyDiscussionMutationVariables>;
 
 /**
@@ -3199,19 +3272,20 @@ export type DestroyDiscussionMutationFn = Apollo.MutationFunction<DestroyDiscuss
  * });
  */
 export function useDestroyDiscussionMutation(baseOptions?: Apollo.MutationHookOptions<DestroyDiscussionMutation, DestroyDiscussionMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<DestroyDiscussionMutation, DestroyDiscussionMutationVariables>(DestroyDiscussionDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useMutation<DestroyDiscussionMutation, DestroyDiscussionMutationVariables>(DestroyDiscussionDocument, options);
+}
+
 export type DestroyDiscussionMutationHookResult = ReturnType<typeof useDestroyDiscussionMutation>;
 export type DestroyDiscussionMutationResult = Apollo.MutationResult<DestroyDiscussionMutation>;
 export type DestroyDiscussionMutationOptions = Apollo.BaseMutationOptions<DestroyDiscussionMutation, DestroyDiscussionMutationVariables>;
 export const EditReplyDocument = gql`
-    mutation editReply($postId: ID!, $content: String!) {
-  editReply(postId: $postId, content: $content) {
-    ...ForumPostFields
+  mutation editReply($postId: ID!, $content: String!) {
+    editReply(postId: $postId, content: $content) {
+      ...ForumPostFields
+    }
   }
-}
-    ${ForumPostFieldsFragmentDoc}`;
+${ForumPostFieldsFragmentDoc}`;
 export type EditReplyMutationFn = Apollo.MutationFunction<EditReplyMutation, EditReplyMutationVariables>;
 
 /**
@@ -3233,58 +3307,59 @@ export type EditReplyMutationFn = Apollo.MutationFunction<EditReplyMutation, Edi
  * });
  */
 export function useEditReplyMutation(baseOptions?: Apollo.MutationHookOptions<EditReplyMutation, EditReplyMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<EditReplyMutation, EditReplyMutationVariables>(EditReplyDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useMutation<EditReplyMutation, EditReplyMutationVariables>(EditReplyDocument, options);
+}
+
 export type EditReplyMutationHookResult = ReturnType<typeof useEditReplyMutation>;
 export type EditReplyMutationResult = Apollo.MutationResult<EditReplyMutation>;
 export type EditReplyMutationOptions = Apollo.BaseMutationOptions<EditReplyMutation, EditReplyMutationVariables>;
 export const GetDiscussionDocument = gql`
-    query getDiscussion($forumId: String!, $discussionId: String!) {
-  getDiscussion(forumId: $forumId, id: $discussionId) {
-    id
-    topic
-    slug
-    locked
-    karma_total
-    updated_at
-    created_at
-    reply_count
-    content
-    content_html
-    admin_post
-    moderator_post
-    can_edit
-    can_destroy
-    forum {
+  query getDiscussion($forumId: String!, $discussionId: String!) {
+    getDiscussion(forumId: $forumId, id: $discussionId) {
       id
+      topic
       slug
-      name
-    }
-    user {
-      username
-      name
-      is_admin
-      is_patron
-      is_supporter
-      avatar_url
-    }
-    character {
-      id
-      name
-      slug
-      profile_image {
-        url {
-          thumbnail
+      locked
+      karma_total
+      updated_at
+      created_at
+      reply_count
+      content
+      content_html
+      admin_post
+      moderator_post
+      can_edit
+      can_destroy
+      forum {
+        id
+        slug
+        name
+      }
+      user {
+        username
+        name
+        is_admin
+        is_patron
+        is_supporter
+        avatar_url
+      }
+      character {
+        id
+        name
+        slug
+        profile_image {
+          url {
+            thumbnail
+          }
         }
       }
-    }
-    posts {
-      ...ForumPostFields
+      posts {
+        ...ForumPostFields
+      }
     }
   }
-}
-    ${ForumPostFieldsFragmentDoc}`;
+${ForumPostFieldsFragmentDoc}`;
 
 /**
  * __useGetDiscussionQuery__
@@ -3304,27 +3379,29 @@ export const GetDiscussionDocument = gql`
  * });
  */
 export function useGetDiscussionQuery(baseOptions: Apollo.QueryHookOptions<GetDiscussionQuery, GetDiscussionQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetDiscussionQuery, GetDiscussionQueryVariables>(GetDiscussionDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useQuery<GetDiscussionQuery, GetDiscussionQueryVariables>(GetDiscussionDocument, options);
+}
+
 export function useGetDiscussionLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetDiscussionQuery, GetDiscussionQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetDiscussionQuery, GetDiscussionQueryVariables>(GetDiscussionDocument, options);
-        }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useLazyQuery<GetDiscussionQuery, GetDiscussionQueryVariables>(GetDiscussionDocument, options);
+}
+
 export type GetDiscussionQueryHookResult = ReturnType<typeof useGetDiscussionQuery>;
 export type GetDiscussionLazyQueryHookResult = ReturnType<typeof useGetDiscussionLazyQuery>;
 export type GetDiscussionQueryResult = Apollo.QueryResult<GetDiscussionQuery, GetDiscussionQueryVariables>;
 export const PostDiscussionReplyDocument = gql`
-    mutation postDiscussionReply($discussionId: ID!, $characterId: ID, $content: String!) {
-  postReply(
-    discussionId: $discussionId
-    characterId: $characterId
-    content: $content
-  ) {
-    ...ForumPostFields
+  mutation postDiscussionReply($discussionId: ID!, $characterId: ID, $content: String!) {
+    postReply(
+      discussionId: $discussionId
+      characterId: $characterId
+      content: $content
+    ) {
+      ...ForumPostFields
+    }
   }
-}
-    ${ForumPostFieldsFragmentDoc}`;
+${ForumPostFieldsFragmentDoc}`;
 export type PostDiscussionReplyMutationFn = Apollo.MutationFunction<PostDiscussionReplyMutation, PostDiscussionReplyMutationVariables>;
 
 /**
@@ -3347,34 +3424,35 @@ export type PostDiscussionReplyMutationFn = Apollo.MutationFunction<PostDiscussi
  * });
  */
 export function usePostDiscussionReplyMutation(baseOptions?: Apollo.MutationHookOptions<PostDiscussionReplyMutation, PostDiscussionReplyMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<PostDiscussionReplyMutation, PostDiscussionReplyMutationVariables>(PostDiscussionReplyDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useMutation<PostDiscussionReplyMutation, PostDiscussionReplyMutationVariables>(PostDiscussionReplyDocument, options);
+}
+
 export type PostDiscussionReplyMutationHookResult = ReturnType<typeof usePostDiscussionReplyMutation>;
 export type PostDiscussionReplyMutationResult = Apollo.MutationResult<PostDiscussionReplyMutation>;
 export type PostDiscussionReplyMutationOptions = Apollo.BaseMutationOptions<PostDiscussionReplyMutation, PostDiscussionReplyMutationVariables>;
 export const UpdateDiscussionDocument = gql`
-    mutation updateDiscussion($id: ID!, $topic: String, $content: String, $locked: Boolean, $sticky: Boolean) {
-  updateDiscussion(
-    id: $id
-    topic: $topic
-    content: $content
-    locked: $locked
-    sticky: $sticky
-  ) {
-    id
-    topic
-    slug
-    locked
-    sticky
-    forum {
+  mutation updateDiscussion($id: ID!, $topic: String, $content: String, $locked: Boolean, $sticky: Boolean) {
+    updateDiscussion(
+      id: $id
+      topic: $topic
+      content: $content
+      locked: $locked
+      sticky: $sticky
+    ) {
       id
+      topic
       slug
-      name
+      locked
+      sticky
+      forum {
+        id
+        slug
+        name
+      }
     }
   }
-}
-    `;
+`;
 export type UpdateDiscussionMutationFn = Apollo.MutationFunction<UpdateDiscussionMutation, UpdateDiscussionMutationVariables>;
 
 /**
@@ -3399,34 +3477,35 @@ export type UpdateDiscussionMutationFn = Apollo.MutationFunction<UpdateDiscussio
  * });
  */
 export function useUpdateDiscussionMutation(baseOptions?: Apollo.MutationHookOptions<UpdateDiscussionMutation, UpdateDiscussionMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UpdateDiscussionMutation, UpdateDiscussionMutationVariables>(UpdateDiscussionDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useMutation<UpdateDiscussionMutation, UpdateDiscussionMutationVariables>(UpdateDiscussionDocument, options);
+}
+
 export type UpdateDiscussionMutationHookResult = ReturnType<typeof useUpdateDiscussionMutation>;
 export type UpdateDiscussionMutationResult = Apollo.MutationResult<UpdateDiscussionMutation>;
 export type UpdateDiscussionMutationOptions = Apollo.BaseMutationOptions<UpdateDiscussionMutation, UpdateDiscussionMutationVariables>;
 export const CreateDiscussionDocument = gql`
-    mutation createDiscussion($forumId: String!, $topic: String!, $content: String!, $locked: Boolean!, $sticky: Boolean!) {
-  createDiscussion(
-    forumId: $forumId
-    topic: $topic
-    content: $content
-    locked: $locked
-    sticky: $sticky
-  ) {
-    id
-    topic
-    slug
-    locked
-    sticky
-    forum {
+  mutation createDiscussion($forumId: String!, $topic: String!, $content: String!, $locked: Boolean!, $sticky: Boolean!) {
+    createDiscussion(
+      forumId: $forumId
+      topic: $topic
+      content: $content
+      locked: $locked
+      sticky: $sticky
+    ) {
       id
+      topic
       slug
-      name
+      locked
+      sticky
+      forum {
+        id
+        slug
+        name
+      }
     }
   }
-}
-    `;
+`;
 export type CreateDiscussionMutationFn = Apollo.MutationFunction<CreateDiscussionMutation, CreateDiscussionMutationVariables>;
 
 /**
@@ -3451,61 +3530,62 @@ export type CreateDiscussionMutationFn = Apollo.MutationFunction<CreateDiscussio
  * });
  */
 export function useCreateDiscussionMutation(baseOptions?: Apollo.MutationHookOptions<CreateDiscussionMutation, CreateDiscussionMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<CreateDiscussionMutation, CreateDiscussionMutationVariables>(CreateDiscussionDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useMutation<CreateDiscussionMutation, CreateDiscussionMutationVariables>(CreateDiscussionDocument, options);
+}
+
 export type CreateDiscussionMutationHookResult = ReturnType<typeof useCreateDiscussionMutation>;
 export type CreateDiscussionMutationResult = Apollo.MutationResult<CreateDiscussionMutation>;
 export type CreateDiscussionMutationOptions = Apollo.BaseMutationOptions<CreateDiscussionMutation, CreateDiscussionMutationVariables>;
 export const GetDiscussionsDocument = gql`
-    query getDiscussions($forumId: String!, $page: Int, $sort: String, $query: String) {
-  getForum(slug: $forumId) {
-    id
-    discussions(page: $page, sort: $sort, query: $query) {
-      count
-      offset
-      totalEntries
-      currentPage
-      perPage
-      totalPages
-      discussions {
-        id
-        topic
-        slug
-        locked
-        karma_total
-        updated_at
-        created_at
-        preview
-        last_read_at
-        unread_posts_count
-        last_post_at
-        reply_count
-        admin_post
-        moderator_post
-        user {
-          username
-          name
-          is_admin
-          is_patron
-          is_supporter
-          avatar_url
-        }
-        character {
+  query getDiscussions($forumId: String!, $page: Int, $sort: String, $query: String) {
+    getForum(slug: $forumId) {
+      id
+      discussions(page: $page, sort: $sort, query: $query) {
+        count
+        offset
+        totalEntries
+        currentPage
+        perPage
+        totalPages
+        discussions {
           id
-          name
+          topic
           slug
-          profile_image {
-            url {
-              thumbnail
+          locked
+          karma_total
+          updated_at
+          created_at
+          preview
+          last_read_at
+          unread_posts_count
+          last_post_at
+          reply_count
+          admin_post
+          moderator_post
+          user {
+            username
+            name
+            is_admin
+            is_patron
+            is_supporter
+            avatar_url
+          }
+          character {
+            id
+            name
+            slug
+            profile_image {
+              url {
+                thumbnail
+              }
             }
           }
         }
       }
     }
   }
-}
-    `;
+`;
 
 /**
  * __useGetDiscussionsQuery__
@@ -3527,55 +3607,57 @@ export const GetDiscussionsDocument = gql`
  * });
  */
 export function useGetDiscussionsQuery(baseOptions: Apollo.QueryHookOptions<GetDiscussionsQuery, GetDiscussionsQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetDiscussionsQuery, GetDiscussionsQueryVariables>(GetDiscussionsDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useQuery<GetDiscussionsQuery, GetDiscussionsQueryVariables>(GetDiscussionsDocument, options);
+}
+
 export function useGetDiscussionsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetDiscussionsQuery, GetDiscussionsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetDiscussionsQuery, GetDiscussionsQueryVariables>(GetDiscussionsDocument, options);
-        }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useLazyQuery<GetDiscussionsQuery, GetDiscussionsQueryVariables>(GetDiscussionsDocument, options);
+}
+
 export type GetDiscussionsQueryHookResult = ReturnType<typeof useGetDiscussionsQuery>;
 export type GetDiscussionsLazyQueryHookResult = ReturnType<typeof useGetDiscussionsLazyQuery>;
 export type GetDiscussionsQueryResult = Apollo.QueryResult<GetDiscussionsQuery, GetDiscussionsQueryVariables>;
 export const GetForumDocument = gql`
-    query getForum($id: String!) {
-  getForum(slug: $id) {
-    id
-    slug
-    name
-    summary
-    description
-    system_owned
-    created_at
-    rules
-    prepost_message
-    is_open
-    is_member
-    member_count
-    discussion_count
-    owner {
-      username
+  query getForum($id: String!) {
+    getForum(slug: $id) {
+      id
+      slug
       name
-      is_admin
-      is_patron
-      is_supporter
-      avatar_url
-    }
-    discussions(sticky: true) {
-      discussions {
-        id
-        topic
-        slug
-        updated_at
-        created_at
-        admin_post
-        moderator_post
-        sticky
+      summary
+      description
+      system_owned
+      created_at
+      rules
+      prepost_message
+      is_open
+      is_member
+      member_count
+      discussion_count
+      owner {
+        username
+        name
+        is_admin
+        is_patron
+        is_supporter
+        avatar_url
+      }
+      discussions(sticky: true) {
+        discussions {
+          id
+          topic
+          slug
+          updated_at
+          created_at
+          admin_post
+          moderator_post
+          sticky
+        }
       }
     }
   }
-}
-    `;
+`;
 
 /**
  * __useGetForumQuery__
@@ -3594,29 +3676,31 @@ export const GetForumDocument = gql`
  * });
  */
 export function useGetForumQuery(baseOptions: Apollo.QueryHookOptions<GetForumQuery, GetForumQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetForumQuery, GetForumQueryVariables>(GetForumDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useQuery<GetForumQuery, GetForumQueryVariables>(GetForumDocument, options);
+}
+
 export function useGetForumLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetForumQuery, GetForumQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetForumQuery, GetForumQueryVariables>(GetForumDocument, options);
-        }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useLazyQuery<GetForumQuery, GetForumQueryVariables>(GetForumDocument, options);
+}
+
 export type GetForumQueryHookResult = ReturnType<typeof useGetForumQuery>;
 export type GetForumLazyQueryHookResult = ReturnType<typeof useGetForumLazyQuery>;
 export type GetForumQueryResult = Apollo.QueryResult<GetForumQuery, GetForumQueryVariables>;
 export const GetForumsDocument = gql`
-    query getForums {
-  getForums {
-    id
-    slug
-    name
-    summary
-    system_owned
-    is_open
-    created_at
+  query getForums {
+    getForums {
+      id
+      slug
+      name
+      summary
+      system_owned
+      is_open
+      created_at
+    }
   }
-}
-    `;
+`;
 
 /**
  * __useGetForumsQuery__
@@ -3634,48 +3718,50 @@ export const GetForumsDocument = gql`
  * });
  */
 export function useGetForumsQuery(baseOptions?: Apollo.QueryHookOptions<GetForumsQuery, GetForumsQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetForumsQuery, GetForumsQueryVariables>(GetForumsDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useQuery<GetForumsQuery, GetForumsQueryVariables>(GetForumsDocument, options);
+}
+
 export function useGetForumsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetForumsQuery, GetForumsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetForumsQuery, GetForumsQueryVariables>(GetForumsDocument, options);
-        }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useLazyQuery<GetForumsQuery, GetForumsQueryVariables>(GetForumsDocument, options);
+}
+
 export type GetForumsQueryHookResult = ReturnType<typeof useGetForumsQuery>;
 export type GetForumsLazyQueryHookResult = ReturnType<typeof useGetForumsLazyQuery>;
 export type GetForumsQueryResult = Apollo.QueryResult<GetForumsQuery, GetForumsQueryVariables>;
 export const PostReplyDocument = gql`
-    mutation postReply($content: String!, $characterId: ID, $discussionId: ID!) {
-  postReply(
-    content: $content
-    characterId: $characterId
-    discussionId: $discussionId
-  ) {
-    id
-    content
-    content_html
-    character {
+  mutation postReply($content: String!, $characterId: ID, $discussionId: ID!) {
+    postReply(
+      content: $content
+      characterId: $characterId
+      discussionId: $discussionId
+    ) {
       id
-      name
-      profile_image {
-        url {
-          thumbnail
+      content
+      content_html
+      character {
+        id
+        name
+        profile_image {
+          url {
+            thumbnail
+          }
         }
       }
-    }
-    user {
-      id
-      username
-      name
-      avatar_url
-      link
-      is_admin
-      is_patron
-      is_supporter
+      user {
+        id
+        username
+        name
+        avatar_url
+        link
+        is_admin
+        is_patron
+        is_supporter
+      }
     }
   }
-}
-    `;
+`;
 export type PostReplyMutationFn = Apollo.MutationFunction<PostReplyMutation, PostReplyMutationVariables>;
 
 /**
@@ -3698,20 +3784,21 @@ export type PostReplyMutationFn = Apollo.MutationFunction<PostReplyMutation, Pos
  * });
  */
 export function usePostReplyMutation(baseOptions?: Apollo.MutationHookOptions<PostReplyMutation, PostReplyMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<PostReplyMutation, PostReplyMutationVariables>(PostReplyDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useMutation<PostReplyMutation, PostReplyMutationVariables>(PostReplyDocument, options);
+}
+
 export type PostReplyMutationHookResult = ReturnType<typeof usePostReplyMutation>;
 export type PostReplyMutationResult = Apollo.MutationResult<PostReplyMutation>;
 export type PostReplyMutationOptions = Apollo.BaseMutationOptions<PostReplyMutation, PostReplyMutationVariables>;
 export const SendKarmaDocument = gql`
-    mutation sendKarma($postId: ID!, $take: Boolean!) {
-  sendKarma(discussionId: $postId, take: $take) {
-    id
-    karma_total
+  mutation sendKarma($postId: ID!, $take: Boolean!) {
+    sendKarma(discussionId: $postId, take: $take) {
+      id
+      karma_total
+    }
   }
-}
-    `;
+`;
 export type SendKarmaMutationFn = Apollo.MutationFunction<SendKarmaMutation, SendKarmaMutationVariables>;
 
 /**
@@ -3733,25 +3820,26 @@ export type SendKarmaMutationFn = Apollo.MutationFunction<SendKarmaMutation, Sen
  * });
  */
 export function useSendKarmaMutation(baseOptions?: Apollo.MutationHookOptions<SendKarmaMutation, SendKarmaMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<SendKarmaMutation, SendKarmaMutationVariables>(SendKarmaDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useMutation<SendKarmaMutation, SendKarmaMutationVariables>(SendKarmaDocument, options);
+}
+
 export type SendKarmaMutationHookResult = ReturnType<typeof useSendKarmaMutation>;
 export type SendKarmaMutationResult = Apollo.MutationResult<SendKarmaMutation>;
 export type SendKarmaMutationOptions = Apollo.BaseMutationOptions<SendKarmaMutation, SendKarmaMutationVariables>;
 export const GetCharacterForUploadDocument = gql`
-    query getCharacterForUpload($id: ID!) {
-  getCharacter(id: $id) {
-    name
-    nsfw
-    profile_image {
-      url {
-        small
+  query getCharacterForUpload($id: ID!) {
+    getCharacter(id: $id) {
+      name
+      nsfw
+      profile_image {
+        url {
+          small
+        }
       }
     }
   }
-}
-    `;
+`;
 
 /**
  * __useGetCharacterForUploadQuery__
@@ -3770,50 +3858,52 @@ export const GetCharacterForUploadDocument = gql`
  * });
  */
 export function useGetCharacterForUploadQuery(baseOptions: Apollo.QueryHookOptions<GetCharacterForUploadQuery, GetCharacterForUploadQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetCharacterForUploadQuery, GetCharacterForUploadQueryVariables>(GetCharacterForUploadDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useQuery<GetCharacterForUploadQuery, GetCharacterForUploadQueryVariables>(GetCharacterForUploadDocument, options);
+}
+
 export function useGetCharacterForUploadLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetCharacterForUploadQuery, GetCharacterForUploadQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetCharacterForUploadQuery, GetCharacterForUploadQueryVariables>(GetCharacterForUploadDocument, options);
-        }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useLazyQuery<GetCharacterForUploadQuery, GetCharacterForUploadQueryVariables>(GetCharacterForUploadDocument, options);
+}
+
 export type GetCharacterForUploadQueryHookResult = ReturnType<typeof useGetCharacterForUploadQuery>;
 export type GetCharacterForUploadLazyQueryHookResult = ReturnType<typeof useGetCharacterForUploadLazyQuery>;
 export type GetCharacterForUploadQueryResult = Apollo.QueryResult<GetCharacterForUploadQuery, GetCharacterForUploadQueryVariables>;
 export const OnImageProcessingCompleteDocument = gql`
-    subscription onImageProcessingComplete($imageId: ID!) {
-  imageProcessingComplete(imageId: $imageId) {
-    id
-    title
-    nsfw
-    hidden
-    background_color
-    aspect_ratio
-    comments_count
-    favorites_count
-    image_processing
-    image_processing_error
-    is_favorite
-    is_managed
-    width
-    height
-    url {
-      small
-      medium
-    }
-    size {
-      small {
-        width
-        height
+  subscription onImageProcessingComplete($imageId: ID!) {
+    imageProcessingComplete(imageId: $imageId) {
+      id
+      title
+      nsfw
+      hidden
+      background_color
+      aspect_ratio
+      comments_count
+      favorites_count
+      image_processing
+      image_processing_error
+      is_favorite
+      is_managed
+      width
+      height
+      url {
+        small
+        medium
       }
-      medium {
-        width
-        height
+      size {
+        small {
+          width
+          height
+        }
+        medium {
+          width
+          height
+        }
       }
     }
   }
-}
-    `;
+`;
 
 /**
  * __useOnImageProcessingCompleteSubscription__
@@ -3832,25 +3922,26 @@ export const OnImageProcessingCompleteDocument = gql`
  * });
  */
 export function useOnImageProcessingCompleteSubscription(baseOptions: Apollo.SubscriptionHookOptions<OnImageProcessingCompleteSubscription, OnImageProcessingCompleteSubscriptionVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useSubscription<OnImageProcessingCompleteSubscription, OnImageProcessingCompleteSubscriptionVariables>(OnImageProcessingCompleteDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useSubscription<OnImageProcessingCompleteSubscription, OnImageProcessingCompleteSubscriptionVariables>(OnImageProcessingCompleteDocument, options);
+}
+
 export type OnImageProcessingCompleteSubscriptionHookResult = ReturnType<typeof useOnImageProcessingCompleteSubscription>;
 export type OnImageProcessingCompleteSubscriptionResult = Apollo.SubscriptionResult<OnImageProcessingCompleteSubscription>;
 export const AddCommentDocument = gql`
-    mutation addComment($mediaId: ID!, $comment: String!) {
-  addComment(mediaId: $mediaId, comment: $comment) {
-    id
-    created_at
-    user {
-      username
-      name
-      avatar_url
+  mutation addComment($mediaId: ID!, $comment: String!) {
+    addComment(mediaId: $mediaId, comment: $comment) {
+      id
+      created_at
+      user {
+        username
+        name
+        avatar_url
+      }
+      comment
     }
-    comment
   }
-}
-    `;
+`;
 export type AddCommentMutationFn = Apollo.MutationFunction<AddCommentMutation, AddCommentMutationVariables>;
 
 /**
@@ -3872,34 +3963,35 @@ export type AddCommentMutationFn = Apollo.MutationFunction<AddCommentMutation, A
  * });
  */
 export function useAddCommentMutation(baseOptions?: Apollo.MutationHookOptions<AddCommentMutation, AddCommentMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<AddCommentMutation, AddCommentMutationVariables>(AddCommentDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useMutation<AddCommentMutation, AddCommentMutationVariables>(AddCommentDocument, options);
+}
+
 export type AddCommentMutationHookResult = ReturnType<typeof useAddCommentMutation>;
 export type AddCommentMutationResult = Apollo.MutationResult<AddCommentMutation>;
 export type AddCommentMutationOptions = Apollo.BaseMutationOptions<AddCommentMutation, AddCommentMutationVariables>;
 export const GetCommentsDocument = gql`
-    query getComments($mediaId: ID!, $page: Int, $perPage: Int, $since: Int) {
-  getComments(mediaId: $mediaId, page: $page, perPage: $perPage, since: $since) {
-    count
-    totalEntries
-    currentPage
-    totalPages
-    perPage
-    offset
-    comments {
-      id
-      created_at
-      user {
-        username
-        name
-        avatar_url
+  query getComments($mediaId: ID!, $page: Int, $perPage: Int, $since: Int) {
+    getComments(mediaId: $mediaId, page: $page, perPage: $perPage, since: $since) {
+      count
+      totalEntries
+      currentPage
+      totalPages
+      perPage
+      offset
+      comments {
+        id
+        created_at
+        user {
+          username
+          name
+          avatar_url
+        }
+        comment
       }
-      comment
     }
   }
-}
-    `;
+`;
 
 /**
  * __useGetCommentsQuery__
@@ -3921,23 +4013,25 @@ export const GetCommentsDocument = gql`
  * });
  */
 export function useGetCommentsQuery(baseOptions: Apollo.QueryHookOptions<GetCommentsQuery, GetCommentsQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetCommentsQuery, GetCommentsQueryVariables>(GetCommentsDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useQuery<GetCommentsQuery, GetCommentsQueryVariables>(GetCommentsDocument, options);
+}
+
 export function useGetCommentsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetCommentsQuery, GetCommentsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetCommentsQuery, GetCommentsQueryVariables>(GetCommentsDocument, options);
-        }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useLazyQuery<GetCommentsQuery, GetCommentsQueryVariables>(GetCommentsDocument, options);
+}
+
 export type GetCommentsQueryHookResult = ReturnType<typeof useGetCommentsQuery>;
 export type GetCommentsLazyQueryHookResult = ReturnType<typeof useGetCommentsLazyQuery>;
 export type GetCommentsQueryResult = Apollo.QueryResult<GetCommentsQuery, GetCommentsQueryVariables>;
 export const RemoveCommentDocument = gql`
-    mutation removeComment($mediaId: ID!, $id: ID!) {
-  removeComment(mediaId: $mediaId, id: $id) {
-    id
+  mutation removeComment($mediaId: ID!, $id: ID!) {
+    removeComment(mediaId: $mediaId, id: $id) {
+      id
+    }
   }
-}
-    `;
+`;
 export type RemoveCommentMutationFn = Apollo.MutationFunction<RemoveCommentMutation, RemoveCommentMutationVariables>;
 
 /**
@@ -3959,26 +4053,27 @@ export type RemoveCommentMutationFn = Apollo.MutationFunction<RemoveCommentMutat
  * });
  */
 export function useRemoveCommentMutation(baseOptions?: Apollo.MutationHookOptions<RemoveCommentMutation, RemoveCommentMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<RemoveCommentMutation, RemoveCommentMutationVariables>(RemoveCommentDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useMutation<RemoveCommentMutation, RemoveCommentMutationVariables>(RemoveCommentDocument, options);
+}
+
 export type RemoveCommentMutationHookResult = ReturnType<typeof useRemoveCommentMutation>;
 export type RemoveCommentMutationResult = Apollo.MutationResult<RemoveCommentMutation>;
 export type RemoveCommentMutationOptions = Apollo.BaseMutationOptions<RemoveCommentMutation, RemoveCommentMutationVariables>;
 export const SubscribeToCommentsDocument = gql`
-    subscription subscribeToComments($mediaId: ID!) {
-  newComment(mediaId: $mediaId) {
-    id
-    created_at
-    user {
-      username
-      name
-      avatar_url
+  subscription subscribeToComments($mediaId: ID!) {
+    newComment(mediaId: $mediaId) {
+      id
+      created_at
+      user {
+        username
+        name
+        avatar_url
+      }
+      comment
     }
-    comment
   }
-}
-    `;
+`;
 
 /**
  * __useSubscribeToCommentsSubscription__
@@ -3997,23 +4092,24 @@ export const SubscribeToCommentsDocument = gql`
  * });
  */
 export function useSubscribeToCommentsSubscription(baseOptions: Apollo.SubscriptionHookOptions<SubscribeToCommentsSubscription, SubscribeToCommentsSubscriptionVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useSubscription<SubscribeToCommentsSubscription, SubscribeToCommentsSubscriptionVariables>(SubscribeToCommentsDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useSubscription<SubscribeToCommentsSubscription, SubscribeToCommentsSubscriptionVariables>(SubscribeToCommentsDocument, options);
+}
+
 export type SubscribeToCommentsSubscriptionHookResult = ReturnType<typeof useSubscribeToCommentsSubscription>;
 export type SubscribeToCommentsSubscriptionResult = Apollo.SubscriptionResult<SubscribeToCommentsSubscription>;
 export const AddFavoriteDocument = gql`
-    mutation addFavorite($mediaId: ID!) {
-  addFavorite(mediaId: $mediaId) {
-    id
-    user {
-      username
-      name
-      avatar_url
+  mutation addFavorite($mediaId: ID!) {
+    addFavorite(mediaId: $mediaId) {
+      id
+      user {
+        username
+        name
+        avatar_url
+      }
     }
   }
-}
-    `;
+`;
 export type AddFavoriteMutationFn = Apollo.MutationFunction<AddFavoriteMutation, AddFavoriteMutationVariables>;
 
 /**
@@ -4034,19 +4130,20 @@ export type AddFavoriteMutationFn = Apollo.MutationFunction<AddFavoriteMutation,
  * });
  */
 export function useAddFavoriteMutation(baseOptions?: Apollo.MutationHookOptions<AddFavoriteMutation, AddFavoriteMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<AddFavoriteMutation, AddFavoriteMutationVariables>(AddFavoriteDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useMutation<AddFavoriteMutation, AddFavoriteMutationVariables>(AddFavoriteDocument, options);
+}
+
 export type AddFavoriteMutationHookResult = ReturnType<typeof useAddFavoriteMutation>;
 export type AddFavoriteMutationResult = Apollo.MutationResult<AddFavoriteMutation>;
 export type AddFavoriteMutationOptions = Apollo.BaseMutationOptions<AddFavoriteMutation, AddFavoriteMutationVariables>;
 export const RemoveFavoriteDocument = gql`
-    mutation removeFavorite($mediaId: ID!) {
-  removeFavorite(mediaId: $mediaId) {
-    id
+  mutation removeFavorite($mediaId: ID!) {
+    removeFavorite(mediaId: $mediaId) {
+      id
+    }
   }
-}
-    `;
+`;
 export type RemoveFavoriteMutationFn = Apollo.MutationFunction<RemoveFavoriteMutation, RemoveFavoriteMutationVariables>;
 
 /**
@@ -4067,25 +4164,26 @@ export type RemoveFavoriteMutationFn = Apollo.MutationFunction<RemoveFavoriteMut
  * });
  */
 export function useRemoveFavoriteMutation(baseOptions?: Apollo.MutationHookOptions<RemoveFavoriteMutation, RemoveFavoriteMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<RemoveFavoriteMutation, RemoveFavoriteMutationVariables>(RemoveFavoriteDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useMutation<RemoveFavoriteMutation, RemoveFavoriteMutationVariables>(RemoveFavoriteDocument, options);
+}
+
 export type RemoveFavoriteMutationHookResult = ReturnType<typeof useRemoveFavoriteMutation>;
 export type RemoveFavoriteMutationResult = Apollo.MutationResult<RemoveFavoriteMutation>;
 export type RemoveFavoriteMutationOptions = Apollo.BaseMutationOptions<RemoveFavoriteMutation, RemoveFavoriteMutationVariables>;
 export const DeleteMediaDocument = gql`
-    mutation deleteMedia($mediaId: ID!) {
-  deleteMedia(mediaId: $mediaId) {
-    id
-    character {
+  mutation deleteMedia($mediaId: ID!) {
+    deleteMedia(mediaId: $mediaId) {
       id
-      username
-      slug
+      character {
+        id
+        username
+        slug
+      }
+      deleted_at
     }
-    deleted_at
   }
-}
-    `;
+`;
 export type DeleteMediaMutationFn = Apollo.MutationFunction<DeleteMediaMutation, DeleteMediaMutationVariables>;
 
 /**
@@ -4106,70 +4204,71 @@ export type DeleteMediaMutationFn = Apollo.MutationFunction<DeleteMediaMutation,
  * });
  */
 export function useDeleteMediaMutation(baseOptions?: Apollo.MutationHookOptions<DeleteMediaMutation, DeleteMediaMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<DeleteMediaMutation, DeleteMediaMutationVariables>(DeleteMediaDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useMutation<DeleteMediaMutation, DeleteMediaMutationVariables>(DeleteMediaDocument, options);
+}
+
 export type DeleteMediaMutationHookResult = ReturnType<typeof useDeleteMediaMutation>;
 export type DeleteMediaMutationResult = Apollo.MutationResult<DeleteMediaMutation>;
 export type DeleteMediaMutationOptions = Apollo.BaseMutationOptions<DeleteMediaMutation, DeleteMediaMutationVariables>;
 export const GetMediaDocument = gql`
-    query getMedia($mediaId: ID!) {
-  getMedia(mediaId: $mediaId) {
-    id
-    title
-    created_at
-    caption
-    caption_html
-    source_url
-    source_url_display
-    is_v2_image
-    nsfw
-    hidden
-    background_color
-    image_processing
-    image_processing_error
-    favorites_count
-    comments_count
-    is_favorite
-    is_managed
-    watermark
-    gravity
-    url {
-      large
-    }
-    download_link
-    hashtags {
-      tag
-    }
-    tags {
-      position_x
-      position_y
+  query getMedia($mediaId: ID!) {
+    getMedia(mediaId: $mediaId) {
+      id
+      title
+      created_at
+      caption
+      caption_html
+      source_url
+      source_url_display
+      is_v2_image
+      nsfw
+      hidden
+      background_color
+      image_processing
+      image_processing_error
+      favorites_count
+      comments_count
+      is_favorite
+      is_managed
+      watermark
+      gravity
+      url {
+        large
+      }
+      download_link
+      hashtags {
+        tag
+      }
+      tags {
+        position_x
+        position_y
+        character {
+          id
+          name
+        }
+      }
       character {
         id
         name
+        path
+        profile_image {
+          url {
+            thumbnail
+          }
+        }
       }
-    }
-    character {
-      id
-      name
-      path
-      profile_image {
-        url {
-          thumbnail
+      favorites {
+        id
+        user {
+          username
+          name
+          avatar_url
         }
       }
     }
-    favorites {
-      id
-      user {
-        username
-        name
-        avatar_url
-      }
-    }
   }
-}
-    `;
+`;
 
 /**
  * __useGetMediaQuery__
@@ -4188,49 +4287,51 @@ export const GetMediaDocument = gql`
  * });
  */
 export function useGetMediaQuery(baseOptions: Apollo.QueryHookOptions<GetMediaQuery, GetMediaQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetMediaQuery, GetMediaQueryVariables>(GetMediaDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useQuery<GetMediaQuery, GetMediaQueryVariables>(GetMediaDocument, options);
+}
+
 export function useGetMediaLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetMediaQuery, GetMediaQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetMediaQuery, GetMediaQueryVariables>(GetMediaDocument, options);
-        }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useLazyQuery<GetMediaQuery, GetMediaQueryVariables>(GetMediaDocument, options);
+}
+
 export type GetMediaQueryHookResult = ReturnType<typeof useGetMediaQuery>;
 export type GetMediaLazyQueryHookResult = ReturnType<typeof useGetMediaLazyQuery>;
 export type GetMediaQueryResult = Apollo.QueryResult<GetMediaQuery, GetMediaQueryVariables>;
 export const UpdateImageDocument = gql`
-    mutation updateImage($id: ID!, $caption: String, $title: String, $nsfw: Boolean, $hidden: Boolean, $source_url: String, $watermark: Boolean, $gravity: String) {
-  updateImage(
-    mediaId: $id
-    caption: $caption
-    title: $title
-    nsfw: $nsfw
-    hidden: $hidden
-    source_url: $source_url
-    watermark: $watermark
-    gravity: $gravity
-  ) {
-    id
-    title
-    caption
-    caption_html
-    source_url
-    source_url_display
-    nsfw
-    hidden
-    watermark
-    gravity
-    image_processing
-    image_processing_error
-    hashtags {
-      tag
-    }
-    url {
-      large
+  mutation updateImage($id: ID!, $caption: String, $title: String, $nsfw: Boolean, $hidden: Boolean, $source_url: String, $watermark: Boolean, $gravity: String) {
+    updateImage(
+      mediaId: $id
+      caption: $caption
+      title: $title
+      nsfw: $nsfw
+      hidden: $hidden
+      source_url: $source_url
+      watermark: $watermark
+      gravity: $gravity
+    ) {
+      id
+      title
+      caption
+      caption_html
+      source_url
+      source_url_display
+      nsfw
+      hidden
+      watermark
+      gravity
+      image_processing
+      image_processing_error
+      hashtags {
+        tag
+      }
+      url {
+        large
+      }
     }
   }
-}
-    `;
+`;
 export type UpdateImageMutationFn = Apollo.MutationFunction<UpdateImageMutation, UpdateImageMutationVariables>;
 
 /**
@@ -4258,22 +4359,23 @@ export type UpdateImageMutationFn = Apollo.MutationFunction<UpdateImageMutation,
  * });
  */
 export function useUpdateImageMutation(baseOptions?: Apollo.MutationHookOptions<UpdateImageMutation, UpdateImageMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UpdateImageMutation, UpdateImageMutationVariables>(UpdateImageDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useMutation<UpdateImageMutation, UpdateImageMutationVariables>(UpdateImageDocument, options);
+}
+
 export type UpdateImageMutationHookResult = ReturnType<typeof useUpdateImageMutation>;
 export type UpdateImageMutationResult = Apollo.MutationResult<UpdateImageMutation>;
 export type UpdateImageMutationOptions = Apollo.BaseMutationOptions<UpdateImageMutation, UpdateImageMutationVariables>;
 export const GetNotificationsDocument = gql`
-    query getNotifications {
-  getNotifications {
-    unreadCount
-    notifications {
-      ...NotificationsFields
+  query getNotifications {
+    getNotifications {
+      unreadCount
+      notifications {
+        ...NotificationsFields
+      }
     }
   }
-}
-    ${NotificationsFieldsFragmentDoc}`;
+${NotificationsFieldsFragmentDoc}`;
 
 /**
  * __useGetNotificationsQuery__
@@ -4291,23 +4393,25 @@ export const GetNotificationsDocument = gql`
  * });
  */
 export function useGetNotificationsQuery(baseOptions?: Apollo.QueryHookOptions<GetNotificationsQuery, GetNotificationsQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetNotificationsQuery, GetNotificationsQueryVariables>(GetNotificationsDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useQuery<GetNotificationsQuery, GetNotificationsQueryVariables>(GetNotificationsDocument, options);
+}
+
 export function useGetNotificationsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetNotificationsQuery, GetNotificationsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetNotificationsQuery, GetNotificationsQueryVariables>(GetNotificationsDocument, options);
-        }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useLazyQuery<GetNotificationsQuery, GetNotificationsQueryVariables>(GetNotificationsDocument, options);
+}
+
 export type GetNotificationsQueryHookResult = ReturnType<typeof useGetNotificationsQuery>;
 export type GetNotificationsLazyQueryHookResult = ReturnType<typeof useGetNotificationsLazyQuery>;
 export type GetNotificationsQueryResult = Apollo.QueryResult<GetNotificationsQuery, GetNotificationsQueryVariables>;
 export const MarkAllNotificationsAsReadDocument = gql`
-    mutation markAllNotificationsAsRead {
-  markAllNotificationsAsRead {
-    unreadCount
+  mutation markAllNotificationsAsRead {
+    markAllNotificationsAsRead {
+      unreadCount
+    }
   }
-}
-    `;
+`;
 export type MarkAllNotificationsAsReadMutationFn = Apollo.MutationFunction<MarkAllNotificationsAsReadMutation, MarkAllNotificationsAsReadMutationVariables>;
 
 /**
@@ -4327,19 +4431,20 @@ export type MarkAllNotificationsAsReadMutationFn = Apollo.MutationFunction<MarkA
  * });
  */
 export function useMarkAllNotificationsAsReadMutation(baseOptions?: Apollo.MutationHookOptions<MarkAllNotificationsAsReadMutation, MarkAllNotificationsAsReadMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<MarkAllNotificationsAsReadMutation, MarkAllNotificationsAsReadMutationVariables>(MarkAllNotificationsAsReadDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useMutation<MarkAllNotificationsAsReadMutation, MarkAllNotificationsAsReadMutationVariables>(MarkAllNotificationsAsReadDocument, options);
+}
+
 export type MarkAllNotificationsAsReadMutationHookResult = ReturnType<typeof useMarkAllNotificationsAsReadMutation>;
 export type MarkAllNotificationsAsReadMutationResult = Apollo.MutationResult<MarkAllNotificationsAsReadMutation>;
 export type MarkAllNotificationsAsReadMutationOptions = Apollo.BaseMutationOptions<MarkAllNotificationsAsReadMutation, MarkAllNotificationsAsReadMutationVariables>;
 export const ReadNotificationDocument = gql`
-    mutation readNotification($id: ID!) {
-  readNotification(id: $id) {
-    ...NotificationsFields
+  mutation readNotification($id: ID!) {
+    readNotification(id: $id) {
+      ...NotificationsFields
+    }
   }
-}
-    ${NotificationsFieldsFragmentDoc}`;
+${NotificationsFieldsFragmentDoc}`;
 export type ReadNotificationMutationFn = Apollo.MutationFunction<ReadNotificationMutation, ReadNotificationMutationVariables>;
 
 /**
@@ -4360,19 +4465,20 @@ export type ReadNotificationMutationFn = Apollo.MutationFunction<ReadNotificatio
  * });
  */
 export function useReadNotificationMutation(baseOptions?: Apollo.MutationHookOptions<ReadNotificationMutation, ReadNotificationMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<ReadNotificationMutation, ReadNotificationMutationVariables>(ReadNotificationDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useMutation<ReadNotificationMutation, ReadNotificationMutationVariables>(ReadNotificationDocument, options);
+}
+
 export type ReadNotificationMutationHookResult = ReturnType<typeof useReadNotificationMutation>;
 export type ReadNotificationMutationResult = Apollo.MutationResult<ReadNotificationMutation>;
 export type ReadNotificationMutationOptions = Apollo.BaseMutationOptions<ReadNotificationMutation, ReadNotificationMutationVariables>;
 export const SubscribeToNotificationsDocument = gql`
-    subscription subscribeToNotifications {
-  newNotification {
-    ...NotificationsFields
+  subscription subscribeToNotifications {
+    newNotification {
+      ...NotificationsFields
+    }
   }
-}
-    ${NotificationsFieldsFragmentDoc}`;
+${NotificationsFieldsFragmentDoc}`;
 
 /**
  * __useSubscribeToNotificationsSubscription__
@@ -4390,21 +4496,22 @@ export const SubscribeToNotificationsDocument = gql`
  * });
  */
 export function useSubscribeToNotificationsSubscription(baseOptions?: Apollo.SubscriptionHookOptions<SubscribeToNotificationsSubscription, SubscribeToNotificationsSubscriptionVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useSubscription<SubscribeToNotificationsSubscription, SubscribeToNotificationsSubscriptionVariables>(SubscribeToNotificationsDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useSubscription<SubscribeToNotificationsSubscription, SubscribeToNotificationsSubscriptionVariables>(SubscribeToNotificationsDocument, options);
+}
+
 export type SubscribeToNotificationsSubscriptionHookResult = ReturnType<typeof useSubscribeToNotificationsSubscription>;
 export type SubscribeToNotificationsSubscriptionResult = Apollo.SubscriptionResult<SubscribeToNotificationsSubscription>;
 export const CreateApiKeyDocument = gql`
-    mutation createApiKey($name: String!, $read_only: Boolean!) {
-  createApiKey(name: $name, read_only: $read_only) {
-    id
-    name
-    read_only
-    secret
+  mutation createApiKey($name: String!, $read_only: Boolean!) {
+    createApiKey(name: $name, read_only: $read_only) {
+      id
+      name
+      read_only
+      secret
+    }
   }
-}
-    `;
+`;
 export type CreateApiKeyMutationFn = Apollo.MutationFunction<CreateApiKeyMutation, CreateApiKeyMutationVariables>;
 
 /**
@@ -4426,22 +4533,23 @@ export type CreateApiKeyMutationFn = Apollo.MutationFunction<CreateApiKeyMutatio
  * });
  */
 export function useCreateApiKeyMutation(baseOptions?: Apollo.MutationHookOptions<CreateApiKeyMutation, CreateApiKeyMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<CreateApiKeyMutation, CreateApiKeyMutationVariables>(CreateApiKeyDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useMutation<CreateApiKeyMutation, CreateApiKeyMutationVariables>(CreateApiKeyDocument, options);
+}
+
 export type CreateApiKeyMutationHookResult = ReturnType<typeof useCreateApiKeyMutation>;
 export type CreateApiKeyMutationResult = Apollo.MutationResult<CreateApiKeyMutation>;
 export type CreateApiKeyMutationOptions = Apollo.BaseMutationOptions<CreateApiKeyMutation, CreateApiKeyMutationVariables>;
 export const GetApiKeysDocument = gql`
-    query getApiKeys {
-  getApiKeys {
-    id
-    name
-    read_only
-    secret
+  query getApiKeys {
+    getApiKeys {
+      id
+      name
+      read_only
+      secret
+    }
   }
-}
-    `;
+`;
 
 /**
  * __useGetApiKeysQuery__
@@ -4459,24 +4567,26 @@ export const GetApiKeysDocument = gql`
  * });
  */
 export function useGetApiKeysQuery(baseOptions?: Apollo.QueryHookOptions<GetApiKeysQuery, GetApiKeysQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetApiKeysQuery, GetApiKeysQueryVariables>(GetApiKeysDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useQuery<GetApiKeysQuery, GetApiKeysQueryVariables>(GetApiKeysDocument, options);
+}
+
 export function useGetApiKeysLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetApiKeysQuery, GetApiKeysQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetApiKeysQuery, GetApiKeysQueryVariables>(GetApiKeysDocument, options);
-        }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useLazyQuery<GetApiKeysQuery, GetApiKeysQueryVariables>(GetApiKeysDocument, options);
+}
+
 export type GetApiKeysQueryHookResult = ReturnType<typeof useGetApiKeysQuery>;
 export type GetApiKeysLazyQueryHookResult = ReturnType<typeof useGetApiKeysLazyQuery>;
 export type GetApiKeysQueryResult = Apollo.QueryResult<GetApiKeysQuery, GetApiKeysQueryVariables>;
 export const AutcompleteUserDocument = gql`
-    query autcompleteUser($username: String) {
-  autocompleteUser(username: $username) {
-    name
-    username
+  query autcompleteUser($username: String) {
+    autocompleteUser(username: $username) {
+      name
+      username
+    }
   }
-}
-    `;
+`;
 
 /**
  * __useAutcompleteUserQuery__
@@ -4495,25 +4605,27 @@ export const AutcompleteUserDocument = gql`
  * });
  */
 export function useAutcompleteUserQuery(baseOptions?: Apollo.QueryHookOptions<AutcompleteUserQuery, AutcompleteUserQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<AutcompleteUserQuery, AutcompleteUserQueryVariables>(AutcompleteUserDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useQuery<AutcompleteUserQuery, AutcompleteUserQueryVariables>(AutcompleteUserDocument, options);
+}
+
 export function useAutcompleteUserLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AutcompleteUserQuery, AutcompleteUserQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<AutcompleteUserQuery, AutcompleteUserQueryVariables>(AutcompleteUserDocument, options);
-        }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useLazyQuery<AutcompleteUserQuery, AutcompleteUserQueryVariables>(AutcompleteUserDocument, options);
+}
+
 export type AutcompleteUserQueryHookResult = ReturnType<typeof useAutcompleteUserQuery>;
 export type AutcompleteUserLazyQueryHookResult = ReturnType<typeof useAutcompleteUserLazyQuery>;
 export type AutcompleteUserQueryResult = Apollo.QueryResult<AutcompleteUserQuery, AutcompleteUserQueryVariables>;
 export const AutocompleteCharacterDocument = gql`
-    query autocompleteCharacter($username: String, $slug: String) {
-  autocompleteCharacter(username: $username, slug: $slug) {
-    name
-    username
-    slug
+  query autocompleteCharacter($username: String, $slug: String) {
+    autocompleteCharacter(username: $username, slug: $slug) {
+      name
+      username
+      slug
+    }
   }
-}
-    `;
+`;
 
 /**
  * __useAutocompleteCharacterQuery__
@@ -4533,24 +4645,26 @@ export const AutocompleteCharacterDocument = gql`
  * });
  */
 export function useAutocompleteCharacterQuery(baseOptions?: Apollo.QueryHookOptions<AutocompleteCharacterQuery, AutocompleteCharacterQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<AutocompleteCharacterQuery, AutocompleteCharacterQueryVariables>(AutocompleteCharacterDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useQuery<AutocompleteCharacterQuery, AutocompleteCharacterQueryVariables>(AutocompleteCharacterDocument, options);
+}
+
 export function useAutocompleteCharacterLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AutocompleteCharacterQuery, AutocompleteCharacterQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<AutocompleteCharacterQuery, AutocompleteCharacterQueryVariables>(AutocompleteCharacterDocument, options);
-        }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useLazyQuery<AutocompleteCharacterQuery, AutocompleteCharacterQueryVariables>(AutocompleteCharacterDocument, options);
+}
+
 export type AutocompleteCharacterQueryHookResult = ReturnType<typeof useAutocompleteCharacterQuery>;
 export type AutocompleteCharacterLazyQueryHookResult = ReturnType<typeof useAutocompleteCharacterLazyQuery>;
 export type AutocompleteCharacterQueryResult = Apollo.QueryResult<AutocompleteCharacterQuery, AutocompleteCharacterQueryVariables>;
 export const AutocompleteHashtagsDocument = gql`
-    query autocompleteHashtags($hashtag: String!) {
-  autocompleteHashtags(hashtag: $hashtag) {
-    tag
-    count
+  query autocompleteHashtags($hashtag: String!) {
+    autocompleteHashtags(hashtag: $hashtag) {
+      tag
+      count
+    }
   }
-}
-    `;
+`;
 
 /**
  * __useAutocompleteHashtagsQuery__
@@ -4569,25 +4683,27 @@ export const AutocompleteHashtagsDocument = gql`
  * });
  */
 export function useAutocompleteHashtagsQuery(baseOptions: Apollo.QueryHookOptions<AutocompleteHashtagsQuery, AutocompleteHashtagsQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<AutocompleteHashtagsQuery, AutocompleteHashtagsQueryVariables>(AutocompleteHashtagsDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useQuery<AutocompleteHashtagsQuery, AutocompleteHashtagsQueryVariables>(AutocompleteHashtagsDocument, options);
+}
+
 export function useAutocompleteHashtagsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AutocompleteHashtagsQuery, AutocompleteHashtagsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<AutocompleteHashtagsQuery, AutocompleteHashtagsQueryVariables>(AutocompleteHashtagsDocument, options);
-        }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useLazyQuery<AutocompleteHashtagsQuery, AutocompleteHashtagsQueryVariables>(AutocompleteHashtagsDocument, options);
+}
+
 export type AutocompleteHashtagsQueryHookResult = ReturnType<typeof useAutocompleteHashtagsQuery>;
 export type AutocompleteHashtagsLazyQueryHookResult = ReturnType<typeof useAutocompleteHashtagsLazyQuery>;
 export type AutocompleteHashtagsQueryResult = Apollo.QueryResult<AutocompleteHashtagsQuery, AutocompleteHashtagsQueryVariables>;
 export const SetUserAvatarBlobDocument = gql`
-    mutation setUserAvatarBlob($id: ID, $blob: String) {
-  setUserAvatarBlob(id: $id, blob: $blob) {
-    id
-    avatar_url(style: "thumbnail")
-    profile_image_url
+  mutation setUserAvatarBlob($id: ID, $blob: String) {
+    setUserAvatarBlob(id: $id, blob: $blob) {
+      id
+      avatar_url(style: "thumbnail")
+      profile_image_url
+    }
   }
-}
-    `;
+`;
 export type SetUserAvatarBlobMutationFn = Apollo.MutationFunction<SetUserAvatarBlobMutation, SetUserAvatarBlobMutationVariables>;
 
 /**
@@ -4609,22 +4725,23 @@ export type SetUserAvatarBlobMutationFn = Apollo.MutationFunction<SetUserAvatarB
  * });
  */
 export function useSetUserAvatarBlobMutation(baseOptions?: Apollo.MutationHookOptions<SetUserAvatarBlobMutation, SetUserAvatarBlobMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<SetUserAvatarBlobMutation, SetUserAvatarBlobMutationVariables>(SetUserAvatarBlobDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useMutation<SetUserAvatarBlobMutation, SetUserAvatarBlobMutationVariables>(SetUserAvatarBlobDocument, options);
+}
+
 export type SetUserAvatarBlobMutationHookResult = ReturnType<typeof useSetUserAvatarBlobMutation>;
 export type SetUserAvatarBlobMutationResult = Apollo.MutationResult<SetUserAvatarBlobMutation>;
 export type SetUserAvatarBlobMutationOptions = Apollo.BaseMutationOptions<SetUserAvatarBlobMutation, SetUserAvatarBlobMutationVariables>;
 export const BlockUserDocument = gql`
-    mutation blockUser($username: String!) {
-  blockUser(username: $username) {
-    id
-    username
-    is_blocked
-    is_followed
+  mutation blockUser($username: String!) {
+    blockUser(username: $username) {
+      id
+      username
+      is_blocked
+      is_followed
+    }
   }
-}
-    `;
+`;
 export type BlockUserMutationFn = Apollo.MutationFunction<BlockUserMutation, BlockUserMutationVariables>;
 
 /**
@@ -4645,22 +4762,23 @@ export type BlockUserMutationFn = Apollo.MutationFunction<BlockUserMutation, Blo
  * });
  */
 export function useBlockUserMutation(baseOptions?: Apollo.MutationHookOptions<BlockUserMutation, BlockUserMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<BlockUserMutation, BlockUserMutationVariables>(BlockUserDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useMutation<BlockUserMutation, BlockUserMutationVariables>(BlockUserDocument, options);
+}
+
 export type BlockUserMutationHookResult = ReturnType<typeof useBlockUserMutation>;
 export type BlockUserMutationResult = Apollo.MutationResult<BlockUserMutation>;
 export type BlockUserMutationOptions = Apollo.BaseMutationOptions<BlockUserMutation, BlockUserMutationVariables>;
 export const UnblockUserDocument = gql`
-    mutation unblockUser($username: String!) {
-  unblockUser(username: $username) {
-    id
-    username
-    is_blocked
-    is_followed
+  mutation unblockUser($username: String!) {
+    unblockUser(username: $username) {
+      id
+      username
+      is_blocked
+      is_followed
+    }
   }
-}
-    `;
+`;
 export type UnblockUserMutationFn = Apollo.MutationFunction<UnblockUserMutation, UnblockUserMutationVariables>;
 
 /**
@@ -4681,20 +4799,21 @@ export type UnblockUserMutationFn = Apollo.MutationFunction<UnblockUserMutation,
  * });
  */
 export function useUnblockUserMutation(baseOptions?: Apollo.MutationHookOptions<UnblockUserMutation, UnblockUserMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UnblockUserMutation, UnblockUserMutationVariables>(UnblockUserDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useMutation<UnblockUserMutation, UnblockUserMutationVariables>(UnblockUserDocument, options);
+}
+
 export type UnblockUserMutationHookResult = ReturnType<typeof useUnblockUserMutation>;
 export type UnblockUserMutationResult = Apollo.MutationResult<UnblockUserMutation>;
 export type UnblockUserMutationOptions = Apollo.BaseMutationOptions<UnblockUserMutation, UnblockUserMutationVariables>;
 export const UpdateModerationDocument = gql`
-    mutation updateModeration($id: ID!, $resolution: String!) {
-  updateModeration(id: $id, resolution: $resolution) {
-    id
-    status
+  mutation updateModeration($id: ID!, $resolution: String!) {
+    updateModeration(id: $id, resolution: $resolution) {
+      id
+      status
+    }
   }
-}
-    `;
+`;
 export type UpdateModerationMutationFn = Apollo.MutationFunction<UpdateModerationMutation, UpdateModerationMutationVariables>;
 
 /**
@@ -4716,29 +4835,30 @@ export type UpdateModerationMutationFn = Apollo.MutationFunction<UpdateModeratio
  * });
  */
 export function useUpdateModerationMutation(baseOptions?: Apollo.MutationHookOptions<UpdateModerationMutation, UpdateModerationMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UpdateModerationMutation, UpdateModerationMutationVariables>(UpdateModerationDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useMutation<UpdateModerationMutation, UpdateModerationMutationVariables>(UpdateModerationDocument, options);
+}
+
 export type UpdateModerationMutationHookResult = ReturnType<typeof useUpdateModerationMutation>;
 export type UpdateModerationMutationResult = Apollo.MutationResult<UpdateModerationMutation>;
 export type UpdateModerationMutationOptions = Apollo.BaseMutationOptions<UpdateModerationMutation, UpdateModerationMutationVariables>;
 export const UploadImageDocument = gql`
-    mutation uploadImage($characterId: ID!, $folder: String, $title: String, $nsfw: Boolean, $key: String!, $location: String!) {
-  uploadImage(
-    characterId: $characterId
-    folder: $folder
-    title: $title
-    nsfw: $nsfw
-    key: $key
-    location: $location
-  ) {
-    character {
-      id
+  mutation uploadImage($characterId: ID!, $folder: String, $title: String, $nsfw: Boolean, $key: String!, $location: String!) {
+    uploadImage(
+      characterId: $characterId
+      folder: $folder
+      title: $title
+      nsfw: $nsfw
+      key: $key
+      location: $location
+    ) {
+      character {
+        id
+      }
+      ...GalleryImageFields
     }
-    ...GalleryImageFields
   }
-}
-    ${GalleryImageFieldsFragmentDoc}`;
+${GalleryImageFieldsFragmentDoc}`;
 export type UploadImageMutationFn = Apollo.MutationFunction<UploadImageMutation, UploadImageMutationVariables>;
 
 /**
@@ -4764,24 +4884,25 @@ export type UploadImageMutationFn = Apollo.MutationFunction<UploadImageMutation,
  * });
  */
 export function useUploadImageMutation(baseOptions?: Apollo.MutationHookOptions<UploadImageMutation, UploadImageMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UploadImageMutation, UploadImageMutationVariables>(UploadImageDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useMutation<UploadImageMutation, UploadImageMutationVariables>(UploadImageDocument, options);
+}
+
 export type UploadImageMutationHookResult = ReturnType<typeof useUploadImageMutation>;
 export type UploadImageMutationResult = Apollo.MutationResult<UploadImageMutation>;
 export type UploadImageMutationOptions = Apollo.BaseMutationOptions<UploadImageMutation, UploadImageMutationVariables>;
 export const GetSessionDocument = gql`
-    query getSession {
-  getSession {
-    sessionId
-    currentUser {
-      name
-      username
-      is_admin
+  query getSession {
+    getSession {
+      sessionId
+      currentUser {
+        name
+        username
+        is_admin
+      }
     }
   }
-}
-    `;
+`;
 
 /**
  * __useGetSessionQuery__
@@ -4799,23 +4920,25 @@ export const GetSessionDocument = gql`
  * });
  */
 export function useGetSessionQuery(baseOptions?: Apollo.QueryHookOptions<GetSessionQuery, GetSessionQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetSessionQuery, GetSessionQueryVariables>(GetSessionDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useQuery<GetSessionQuery, GetSessionQueryVariables>(GetSessionDocument, options);
+}
+
 export function useGetSessionLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetSessionQuery, GetSessionQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetSessionQuery, GetSessionQueryVariables>(GetSessionDocument, options);
-        }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useLazyQuery<GetSessionQuery, GetSessionQueryVariables>(GetSessionDocument, options);
+}
+
 export type GetSessionQueryHookResult = ReturnType<typeof useGetSessionQuery>;
 export type GetSessionLazyQueryHookResult = ReturnType<typeof useGetSessionLazyQuery>;
 export type GetSessionQueryResult = Apollo.QueryResult<GetSessionQuery, GetSessionQueryVariables>;
 export const GetCharacterProfileDocument = gql`
-    query getCharacterProfile($username: String!, $slug: String!) {
-  getCharacterByUrl(username: $username, slug: $slug) {
-    ...DefaultCharacterFields
+  query getCharacterProfile($username: String!, $slug: String!) {
+    getCharacterByUrl(username: $username, slug: $slug) {
+      ...DefaultCharacterFields
+    }
   }
-}
-    ${DefaultCharacterFieldsFragmentDoc}`;
+${DefaultCharacterFieldsFragmentDoc}`;
 
 /**
  * __useGetCharacterProfileQuery__
@@ -4835,23 +4958,25 @@ export const GetCharacterProfileDocument = gql`
  * });
  */
 export function useGetCharacterProfileQuery(baseOptions: Apollo.QueryHookOptions<GetCharacterProfileQuery, GetCharacterProfileQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetCharacterProfileQuery, GetCharacterProfileQueryVariables>(GetCharacterProfileDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useQuery<GetCharacterProfileQuery, GetCharacterProfileQueryVariables>(GetCharacterProfileDocument, options);
+}
+
 export function useGetCharacterProfileLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetCharacterProfileQuery, GetCharacterProfileQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetCharacterProfileQuery, GetCharacterProfileQueryVariables>(GetCharacterProfileDocument, options);
-        }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useLazyQuery<GetCharacterProfileQuery, GetCharacterProfileQueryVariables>(GetCharacterProfileDocument, options);
+}
+
 export type GetCharacterProfileQueryHookResult = ReturnType<typeof useGetCharacterProfileQuery>;
 export type GetCharacterProfileLazyQueryHookResult = ReturnType<typeof useGetCharacterProfileLazyQuery>;
 export type GetCharacterProfileQueryResult = Apollo.QueryResult<GetCharacterProfileQuery, GetCharacterProfileQueryVariables>;
 export const GetCharacterProfileByIdDocument = gql`
-    query getCharacterProfileById($id: ID!) {
-  getCharacter(id: $id) {
-    ...DefaultCharacterFields
+  query getCharacterProfileById($id: ID!) {
+    getCharacter(id: $id) {
+      ...DefaultCharacterFields
+    }
   }
-}
-    ${DefaultCharacterFieldsFragmentDoc}`;
+${DefaultCharacterFieldsFragmentDoc}`;
 
 /**
  * __useGetCharacterProfileByIdQuery__
@@ -4870,31 +4995,33 @@ export const GetCharacterProfileByIdDocument = gql`
  * });
  */
 export function useGetCharacterProfileByIdQuery(baseOptions: Apollo.QueryHookOptions<GetCharacterProfileByIdQuery, GetCharacterProfileByIdQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetCharacterProfileByIdQuery, GetCharacterProfileByIdQueryVariables>(GetCharacterProfileByIdDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useQuery<GetCharacterProfileByIdQuery, GetCharacterProfileByIdQueryVariables>(GetCharacterProfileByIdDocument, options);
+}
+
 export function useGetCharacterProfileByIdLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetCharacterProfileByIdQuery, GetCharacterProfileByIdQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetCharacterProfileByIdQuery, GetCharacterProfileByIdQueryVariables>(GetCharacterProfileByIdDocument, options);
-        }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useLazyQuery<GetCharacterProfileByIdQuery, GetCharacterProfileByIdQueryVariables>(GetCharacterProfileByIdDocument, options);
+}
+
 export type GetCharacterProfileByIdQueryHookResult = ReturnType<typeof useGetCharacterProfileByIdQuery>;
 export type GetCharacterProfileByIdLazyQueryHookResult = ReturnType<typeof useGetCharacterProfileByIdLazyQuery>;
 export type GetCharacterProfileByIdQueryResult = Apollo.QueryResult<GetCharacterProfileByIdQuery, GetCharacterProfileByIdQueryVariables>;
 export const GetImageUploadTokenDocument = gql`
-    query getImageUploadToken($characterId: ID!) {
-  getImageUploadToken(characterId: $characterId) {
-    key
-    acl
-    success_action_status
-    policy
-    x_amz_credential
-    x_amz_algorithm
-    x_amz_date
-    x_amz_signature
-    url
+  query getImageUploadToken($characterId: ID!) {
+    getImageUploadToken(characterId: $characterId) {
+      key
+      acl
+      success_action_status
+      policy
+      x_amz_credential
+      x_amz_algorithm
+      x_amz_date
+      x_amz_signature
+      url
+    }
   }
-}
-    `;
+`;
 
 /**
  * __useGetImageUploadTokenQuery__
@@ -4913,47 +5040,49 @@ export const GetImageUploadTokenDocument = gql`
  * });
  */
 export function useGetImageUploadTokenQuery(baseOptions: Apollo.QueryHookOptions<GetImageUploadTokenQuery, GetImageUploadTokenQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetImageUploadTokenQuery, GetImageUploadTokenQueryVariables>(GetImageUploadTokenDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useQuery<GetImageUploadTokenQuery, GetImageUploadTokenQueryVariables>(GetImageUploadTokenDocument, options);
+}
+
 export function useGetImageUploadTokenLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetImageUploadTokenQuery, GetImageUploadTokenQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetImageUploadTokenQuery, GetImageUploadTokenQueryVariables>(GetImageUploadTokenDocument, options);
-        }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useLazyQuery<GetImageUploadTokenQuery, GetImageUploadTokenQueryVariables>(GetImageUploadTokenDocument, options);
+}
+
 export type GetImageUploadTokenQueryHookResult = ReturnType<typeof useGetImageUploadTokenQuery>;
 export type GetImageUploadTokenLazyQueryHookResult = ReturnType<typeof useGetImageUploadTokenLazyQuery>;
 export type GetImageUploadTokenQueryResult = Apollo.QueryResult<GetImageUploadTokenQuery, GetImageUploadTokenQueryVariables>;
 export const GetNextModerationDocument = gql`
-    query getNextModeration {
-  getNextModeration {
-    id
-    user {
-      username
-    }
-    sender {
-      username
-    }
-    comment
-    violationType
-    violationMessage
-    dmcaSourceUrl
-    status
-    itemType
-    itemId
-    item {
-      ... on Image {
-        caption
-        hidden
-        nsfw
-        source_url
-        url {
-          medium
+  query getNextModeration {
+    getNextModeration {
+      id
+      user {
+        username
+      }
+      sender {
+        username
+      }
+      comment
+      violationType
+      violationMessage
+      dmcaSourceUrl
+      status
+      itemType
+      itemId
+      item {
+        ... on Image {
+          caption
+          hidden
+          nsfw
+          source_url
+          url {
+            medium
+          }
         }
       }
     }
   }
-}
-    `;
+`;
 
 /**
  * __useGetNextModerationQuery__
@@ -4971,43 +5100,45 @@ export const GetNextModerationDocument = gql`
  * });
  */
 export function useGetNextModerationQuery(baseOptions?: Apollo.QueryHookOptions<GetNextModerationQuery, GetNextModerationQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetNextModerationQuery, GetNextModerationQueryVariables>(GetNextModerationDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useQuery<GetNextModerationQuery, GetNextModerationQueryVariables>(GetNextModerationDocument, options);
+}
+
 export function useGetNextModerationLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetNextModerationQuery, GetNextModerationQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetNextModerationQuery, GetNextModerationQueryVariables>(GetNextModerationDocument, options);
-        }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useLazyQuery<GetNextModerationQuery, GetNextModerationQueryVariables>(GetNextModerationDocument, options);
+}
+
 export type GetNextModerationQueryHookResult = ReturnType<typeof useGetNextModerationQuery>;
 export type GetNextModerationLazyQueryHookResult = ReturnType<typeof useGetNextModerationLazyQuery>;
 export type GetNextModerationQueryResult = Apollo.QueryResult<GetNextModerationQuery, GetNextModerationQueryVariables>;
 export const GetUserProfileDocument = gql`
-    query getUserProfile($username: String!) {
-  getUser(username: $username) {
-    id
-    name
-    username
-    created_at
-    characters_count
-    profile
-    profile_html
-    profile_image_url
-    blocks
-    is_blocked
-    is_followed
-    is_admin
-    is_managed
-    is_moderator
-    is_supporter
-    is_patron
-    character_groups {
+  query getUserProfile($username: String!) {
+    getUser(username: $username) {
       id
       name
+      username
+      created_at
       characters_count
+      profile
+      profile_html
+      profile_image_url
+      blocks
+      is_blocked
+      is_followed
+      is_admin
+      is_managed
+      is_moderator
+      is_supporter
+      is_patron
+      character_groups {
+        id
+        name
+        characters_count
+      }
     }
   }
-}
-    `;
+`;
 
 /**
  * __useGetUserProfileQuery__
@@ -5026,34 +5157,36 @@ export const GetUserProfileDocument = gql`
  * });
  */
 export function useGetUserProfileQuery(baseOptions: Apollo.QueryHookOptions<GetUserProfileQuery, GetUserProfileQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetUserProfileQuery, GetUserProfileQueryVariables>(GetUserProfileDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useQuery<GetUserProfileQuery, GetUserProfileQueryVariables>(GetUserProfileDocument, options);
+}
+
 export function useGetUserProfileLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetUserProfileQuery, GetUserProfileQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetUserProfileQuery, GetUserProfileQueryVariables>(GetUserProfileDocument, options);
-        }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useLazyQuery<GetUserProfileQuery, GetUserProfileQueryVariables>(GetUserProfileDocument, options);
+}
+
 export type GetUserProfileQueryHookResult = ReturnType<typeof useGetUserProfileQuery>;
 export type GetUserProfileLazyQueryHookResult = ReturnType<typeof useGetUserProfileLazyQuery>;
 export type GetUserProfileQueryResult = Apollo.QueryResult<GetUserProfileQuery, GetUserProfileQueryVariables>;
 export const GetCharacterImagesDocument = gql`
-    query getCharacterImages($username: String!, $slug: String!) {
-  getCharacterByUrl(username: $username, slug: $slug) {
-    id
-    media_folders {
-      name
-      slug
+  query getCharacterImages($username: String!, $slug: String!) {
+    getCharacterByUrl(username: $username, slug: $slug) {
       id
-      is_nsfw
-      is_password_protected
-      media_count
-    }
-    images {
-      ...GalleryImageFields
+      media_folders {
+        name
+        slug
+        id
+        is_nsfw
+        is_password_protected
+        media_count
+      }
+      images {
+        ...GalleryImageFields
+      }
     }
   }
-}
-    ${GalleryImageFieldsFragmentDoc}`;
+${GalleryImageFieldsFragmentDoc}`;
 
 /**
  * __useGetCharacterImagesQuery__
@@ -5073,729 +5206,732 @@ export const GetCharacterImagesDocument = gql`
  * });
  */
 export function useGetCharacterImagesQuery(baseOptions: Apollo.QueryHookOptions<GetCharacterImagesQuery, GetCharacterImagesQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetCharacterImagesQuery, GetCharacterImagesQueryVariables>(GetCharacterImagesDocument, options);
-      }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useQuery<GetCharacterImagesQuery, GetCharacterImagesQueryVariables>(GetCharacterImagesDocument, options);
+}
+
 export function useGetCharacterImagesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetCharacterImagesQuery, GetCharacterImagesQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetCharacterImagesQuery, GetCharacterImagesQueryVariables>(GetCharacterImagesDocument, options);
-        }
+  const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useLazyQuery<GetCharacterImagesQuery, GetCharacterImagesQueryVariables>(GetCharacterImagesDocument, options);
+}
+
 export type GetCharacterImagesQueryHookResult = ReturnType<typeof useGetCharacterImagesQuery>;
 export type GetCharacterImagesLazyQueryHookResult = ReturnType<typeof useGetCharacterImagesLazyQuery>;
 export type GetCharacterImagesQueryResult = Apollo.QueryResult<GetCharacterImagesQuery, GetCharacterImagesQueryVariables>;
 
 declare module '*/autocompleteCharacter.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const AutocompleteCharacter: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/createActivity.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const CreateActivity: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/getArtists.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const getArtists: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/getArtist.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const getArtist: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/setCharacterAvatarBlob.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const setCharacterAvatarBlob: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/createColorScheme.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const createColorScheme: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/updateColorScheme.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const updateColorScheme: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/setCharacterCoverBlob.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const setCharacterCoverBlob: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/createFolder.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const createMediaFolder: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/getCharacterVersions.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const getCharacterVersions: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/createLodestoneLink.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const createLodestoneLink: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/updateLodestoneLink.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const updateLodestoneLink: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/archiveCharacter.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const archiveCharacter: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/transferCharacter.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const transferCharacter: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/updateSettings.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const updateSettings: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/createWidget.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const createWidget: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/createProfileSection.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const createProfileSection: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/deleteProfileSection.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const deleteProfileSection: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/deleteProfileWidget.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const deleteProfileWidget: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/updateCharacter.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const updateCharacter: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/updateProfileWidget.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const updateProfileWidget: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/ConversationsFields.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const ConversationsFields: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/getConversations.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const getConversations: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/subscribeToConversations.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const subscribeToConversations: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/ForumPostFields.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const ForumPostFields: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/destroyDiscussion.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const destroyDiscussion: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/editReply.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const editReply: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/getDiscussion.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const getDiscussion: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/postReply.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const postDiscussionReply: DocumentNode;
-export const postReply: DocumentNode;
+  export const postReply: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/updateDiscussion.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const updateDiscussion: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/createDiscussion.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const createDiscussion: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/getDiscussions.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const getDiscussions: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/getForum.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const getForum: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/getForums.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const getForums: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/sendKarma.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const sendKarma: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/getCharacterForUpload.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const getCharacterForUpload: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/imageProcessingComplete.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const onImageProcessingComplete: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/addComment.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const addComment: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/getComments.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const getComments: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/removeComment.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const removeComment: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/subscribeToComments.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const subscribeToComments: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/addFavorite.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const addFavorite: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/removeFavorite.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const removeFavorite: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/deleteMedia.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const deleteMedia: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/getMedia.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const getMedia: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/updateImage.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const updateImage: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/getNotifications.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const getNotifications: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/markAllNotificationsAsRead.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const markAllNotificationsAsRead: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/readNotification.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const readNotification: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/subscribeToNotifications.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const subscribeToNotifications: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/createApiKey.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const createApiKey: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/getApiKeys.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const getApiKeys: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/autocomplete.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const autcompleteUser: DocumentNode;
-export const autocompleteCharacter: DocumentNode;
-export const autocompleteHashtags: DocumentNode;
+  export const autocompleteCharacter: DocumentNode;
+  export const autocompleteHashtags: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/setUserAvatarBlob.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const setUserAvatarBlob: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/CharacterAttributes.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const CharacterAttributes: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/CharacterFields.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const CharacterFields: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/CharacterImages.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const CharacterImages: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/CharacterProfile.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const CharacterProfile: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/CharacterSwatches.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const CharacterSwatches: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/CharacterTheme.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const CharacterTheme: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/CharacterUser.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const CharacterUser: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/DefaultCharacterFields.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const DefaultCharacterFields: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/GalleryImageFields.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const GalleryImageFields: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/LodestoneCharacterFields.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const LodestoneCharacterFields: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/NotificationsFields.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const NotificationsFields: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/TransfersFields.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const TransfersFields: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/WidgetFields.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const WidgetFields: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/getCharacterImages.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const getCharacterImages: DocumentNode;
-export const getCharacterImages: DocumentNode;
+  export const getCharacterImages: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/blockUser.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const blockUser: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/unblockUser.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const unblockUser: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/updateModeration.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const updateModeration: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/uploadImage.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const uploadImage: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/GetSession.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const getSession: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/getCharacterProfile.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const getCharacterProfile: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/getCharacterProfileById.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const getCharacterProfileById: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/getImageUploadToken.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const getImageUploadToken: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/getNextModeration.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const getNextModeration: DocumentNode;
 
   export default defaultDocument;
 }
-    
+
 
 declare module '*/getUserProfile.graphql' {
-  import { DocumentNode } from 'graphql';
+  import {DocumentNode} from 'graphql';
   const defaultDocument: DocumentNode;
   export const getUserProfile: DocumentNode;
 
   export default defaultDocument;
 }
-    
 
-      export interface PossibleTypesResultData {
-        possibleTypes: {
-          [key: string]: string[]
-        }
-      }
-      const result: PossibleTypesResultData = {
+
+export interface PossibleTypesResultData {
+  possibleTypes: {
+    [key: string]: string[]
+  }
+}
+
+const result: PossibleTypesResultData = {
   "possibleTypes": {
     "ApplicationRecord": [
       "Activity",
@@ -5849,5 +5985,4 @@ declare module '*/getUserProfile.graphql' {
     ]
   }
 };
-      export default result;
-    
+export default result;

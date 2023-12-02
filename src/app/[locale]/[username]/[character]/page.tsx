@@ -1,11 +1,9 @@
 import React from 'react';
 
-export function CharacterProfile() {
+export default async function CharacterProfile() {
     return (
         <div>
 
         </div>
     );
 }
-
-export default CharacterProfile;
