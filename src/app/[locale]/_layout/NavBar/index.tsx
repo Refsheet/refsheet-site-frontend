@@ -108,8 +108,6 @@ export default function NavBar({className, notice}: INavBarProps) {
                     <SiteNav/>
 
                     <div className="right">
-                        <SearchBar query={query}/>
-
                         {currentUser ? (
                             <UserNav/>
                         ) : (

@@ -1,7 +1,0 @@
-#import '@refsheet/graph/fragments/ConversationsFields.graphql'
-
-query getConversations {
-    getConversations {
-        ...ConversationsFields
-    }
-}
