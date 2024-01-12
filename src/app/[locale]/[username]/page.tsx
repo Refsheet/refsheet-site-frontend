@@ -1,11 +1,12 @@
+"use client";
+
 import React from 'react'
-import client from "services/ApplicationService";
 import getUserProfile from '@refsheet/graph/queries/getUserProfile.graphql';
 import UserView from 'components/User/View';
 import {GetUserProfileQuery} from "../../../../@types/schema";
 import type {CharacterGroup} from "components/User/types";
 import NotFound from "components/Shared/views/NotFound";
-import Error from "@refsheet/components/Shared/Error";
+import {getShardClient} from "@refsheet/services/shardClient";
 
 export interface UserProfileProps {
     characterGroups: readonly CharacterGroup[];
@@ -14,12 +15,19 @@ export interface UserProfileProps {
 }
 
 export default async function Page({params}) {
-    const {data} = await client.query<GetUserProfileQuery>({
+    const shard = getShardClient();
+    if (!shard) return NotFound;
+    const username = params?.username.split('.')[0];
+    console.log("=======================> ", username);
+
+    const {data, ...rest} = await shard.query<GetUserProfileQuery>({
         query: getUserProfile,
-        variables: {username: params?.username}
+        variables: {username}
     });
 
-    if (!data.getUser) {
+    console.log({data, rest, errors: rest.errors});
+
+    if (!data || !data.getUser) {
         return <NotFound/>;
     }
 

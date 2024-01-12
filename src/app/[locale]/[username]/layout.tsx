@@ -1,5 +1,8 @@
+"use client";
+
 import React from 'react';
-import fetch from 'node-fetch';
+import buildShardClient from "@refsheet/services/shardClient";
+import {ApolloNextAppProvider} from '@apollo/experimental-nextjs-app-support/ssr';
 
 export const metadata = {
     title: 'Refsheet.net Shard',
@@ -22,14 +25,11 @@ export default async function ShardLayout({children, params: {username}}: React.
 
     console.log({username, handle, server});
 
-    const fetchUrl = `https://${server.join('.')}/~${username}`;
-
-    const data = await fetch(fetchUrl);
-    console.log({data});
+    buildShardClient(server.join('.'));
 
     return (
-        <div>
+        <ApolloNextAppProvider makeClient={() => buildShardClient(server.join('.'))}>
             {children}
-        </div>
+        </ApolloNextAppProvider>
     );
 }

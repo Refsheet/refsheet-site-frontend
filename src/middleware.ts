@@ -3,10 +3,11 @@ import {locales} from '@refsheet/i18n';
 
 export default createMiddleware({
     locales,
-    defaultLocale: 'en'
+    defaultLocale: 'en',
+    localePrefix: "never",
 });
 
 export const config = {
     // Skip all paths that should not be internationalized.
-    matcher: ['/((?!api|_next|_vercel|\\.ico$).*)']
+    matcher: ['/((?!api|_next|_vercel|.*\\.(?:ico|txt|html|png|xml|json|svg)$).*)']
 };
